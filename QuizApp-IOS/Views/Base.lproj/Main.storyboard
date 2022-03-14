@@ -113,6 +113,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iYR-Sl-iEz" userLabel="Sign Up Button">
                                         <rect key="frame" x="0.0" y="236" width="334" height="30"/>
                                         <state key="normal" title="Sign Up"/>
+                                        <connections>
+                                            <action selector="signUpTapped:" destination="S58-cX-EiV" eventType="touchUpInside" id="kPD-Kl-eHM"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uu1-tk-eAL" userLabel="Error Label">
                                         <rect key="frame" x="0.0" y="291" width="334" height="20.5"/>
@@ -174,6 +177,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oPg-aC-dzi" userLabel="Login Button">
                                         <rect key="frame" x="0.0" y="173" width="334" height="30"/>
                                         <state key="normal" title="Login"/>
+                                        <connections>
+                                            <action selector="loginTapped:" destination="tQJ-tZ-MrQ" eventType="touchUpInside" id="2gX-l9-ycE"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMX-Wa-B9m" userLabel="Error Label">
                                         <rect key="frame" x="0.0" y="228" width="334" height="20.5"/>
@@ -206,10 +212,10 @@
             </objects>
             <point key="canvasLocation" x="1579.7101449275362" y="460.71428571428567"/>
         </scene>
-        <!--Administration View Controller-->
+        <!--Admin View Controller-->
         <scene sceneID="1RV-rI-mBi">
             <objects>
-                <viewController storyboardIdentifier="Administration" modalPresentationStyle="fullScreen" id="7lv-L9-ZJA" customClass="AdministrationViewController" customModule="QuizApp_IOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="7lv-L9-ZJA" customClass="AdminViewController" customModule="QuizApp_IOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7sS-jM-adn">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

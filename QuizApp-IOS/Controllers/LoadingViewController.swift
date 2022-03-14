@@ -9,7 +9,7 @@ import UIKit
 
 class LoadingViewController: UIViewController {
     
-    private let userIsLoggedIn = true
+    private let userIsLoggedIn = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,12 +23,12 @@ class LoadingViewController: UIViewController {
     }
     
     private func showInitialView() {
-        // if user is logged in => main tab bar controller
-        // if user is NOT logged in => show onboarding controller
+        // if user is logged in => ?? controller
+        // if user is NOT logged in => show login/signup controller
         if userIsLoggedIn {
-            performSegue(withIdentifier: K.Segue.showInitial, sender: nil)
-        } else {
             //performSegue(withIdentifier: , sender: nil)
+        } else {
+            performSegue(withIdentifier: K.Segue.showInitial, sender: nil)
         }
     }
 }
