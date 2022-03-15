@@ -21,8 +21,8 @@ class InitialViewController: UIViewController {
     }
     
     private func setupViews() {
-        Utilities.styleFilledButton(signUpButton)
-        Utilities.styleFilledButton(loginButton)
+        //Utilities.styleFilledButton(signUpButton)
+        //Utilities.styleFilledButton(loginButton)
     }
 }
 
