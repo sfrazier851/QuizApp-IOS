@@ -48,7 +48,6 @@
                                         <state key="normal" title="Sign Up"/>
                                         <connections>
                                             <action selector="signUpButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yMT-qZ-YN8"/>
-                                            <segue destination="S58-cX-EiV" kind="show" identifier="showSignUp" id="vRg-Sz-6jh"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wdB-6Y-Old" userLabel="Login Button">
@@ -56,7 +55,6 @@
                                         <state key="normal" title="Login"/>
                                         <connections>
                                             <action selector="loginButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dAT-tc-xOI"/>
-                                            <segue destination="tQJ-tZ-MrQ" kind="show" identifier="showLogin" id="Zau-95-UJj"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -72,6 +70,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="kaZ-N2-biA"/>
+                    <connections>
+                        <segue destination="S58-cX-EiV" kind="show" identifier="showSignUp" id="cmm-lt-EDn"/>
+                        <segue destination="tQJ-tZ-MrQ" kind="show" identifier="showLogin" id="vh2-dv-xzZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
