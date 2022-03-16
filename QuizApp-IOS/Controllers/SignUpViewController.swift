@@ -146,4 +146,9 @@ class SignUpViewController: UIViewController {
         view.window?.makeKeyAndVisible()
     }
     */
+    
+    @IBAction func backButtonTapped(_ sender: Any) {
+        performSegue(withIdentifier: K.Segue.backFromSignUp, sender: nil)
+    }
+    
 }

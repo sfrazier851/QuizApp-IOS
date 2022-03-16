@@ -24,5 +24,16 @@ class InitialViewController: UIViewController {
         //Utilities.styleFilledButton(signUpButton)
         //Utilities.styleFilledButton(loginButton)
     }
+    
+    @IBAction func signUpButtonTapped(_ sender: Any) {
+        let signUpVC = UIStoryboard.init(name: K.StoryboardID.main, bundle: nil).instantiateViewController(identifier: K.StoryboardID.signUpViewController) as SignUpViewController
+        
+        self.present(signUpVC, animated: true)
+        //performSegue(withIdentifier: K.Segue.showSignUp, sender: nil)
+    }
+    
+    @IBAction func loginButtonTapped(_ sender: Any) {
+        performSegue(withIdentifier: K.Segue.showLogin, sender: nil)
+    }
 }
 

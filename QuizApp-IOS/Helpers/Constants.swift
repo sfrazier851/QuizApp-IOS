@@ -14,10 +14,16 @@ struct K {
     
     struct Segue {
         static let showInitial = "showInitial"
+        static let showSignUp = "showSignUp"
+        static let backFromSignUp = "backFromSignUp"
+        static let showLogin = "showLogin"
+        static let backFromLogin = "backFromLogin"
     }
     
     struct StoryboardID {
         static let main = "Main"
+        static let signUpViewController = "SignUpViewController"
+        static let loginViewController = "LoginViewController"
     }
     
 }

@@ -137,4 +137,8 @@ class LoginViewController: UIViewController {
         errorLabel.alpha = 1
     }
 
+    @IBAction func backButtonTapped(_ sender: Any) {
+        performSegue(withIdentifier: K.Segue.backFromLogin, sender: nil)
+    }
+    
 }
