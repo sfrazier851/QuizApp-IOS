@@ -217,8 +217,6 @@
                         <outlet property="forgotPasswordButton" destination="XHm-55-aB2" id="NLr-7u-JXu"/>
                         <outlet property="loginButton" destination="oPg-aC-dzi" id="SgJ-99-nVy"/>
                         <outlet property="passwordTextField" destination="BJD-aM-0iL" id="ffv-1R-lxH"/>
-                        <segue destination="2pL-oQ-xb9" kind="show" identifier="showUserHome" id="N8J-ui-R6c"/>
-                        <segue destination="7lv-L9-ZJA" kind="show" identifier="showAdminHome" id="UrA-42-aLW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fbt-EA-KRo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
