@@ -148,7 +148,7 @@ class SignUpViewController: UIViewController {
     */
     
     @IBAction func backButtonTapped(_ sender: Any) {
-        performSegue(withIdentifier: K.Segue.backFromSignUp, sender: nil)
+        PresenterManager.shared.show(vc: .initial)
     }
     
 }
