@@ -24,9 +24,6 @@
                         <viewLayoutGuide key="safeArea" id="TXc-ez-abV"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="showInitial" id="gNz-cV-S1v"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iaE-0l-wk8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -70,10 +67,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="kaZ-N2-biA"/>
-                    <connections>
-                        <segue destination="S58-cX-EiV" kind="show" identifier="showSignUp" id="cmm-lt-EDn"/>
-                        <segue destination="tQJ-tZ-MrQ" kind="show" identifier="showLogin" id="vh2-dv-xzZ"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -152,7 +145,6 @@
                         <outlet property="passwordTextField" destination="3fR-Hl-Xjk" id="yit-OX-JZV"/>
                         <outlet property="signUpButton" destination="iYR-Sl-iEz" id="37D-Is-lph"/>
                         <outlet property="usernameTextField" destination="97f-kz-3xR" id="J3n-JB-LRY"/>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="backFromSignUp" id="CIm-5n-sEB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sar-Ac-UzS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -162,7 +154,7 @@
         <!--Login View Controller-->
         <scene sceneID="g3N-SC-O1d">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="tQJ-tZ-MrQ" userLabel="Login View Controller" customClass="LoginViewController" customModule="QuizApp_IOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" modalPresentationStyle="fullScreen" id="tQJ-tZ-MrQ" userLabel="Login View Controller" customClass="LoginViewController" customModule="QuizApp_IOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fpz-Fy-bLS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -225,27 +217,63 @@
                         <outlet property="forgotPasswordButton" destination="XHm-55-aB2" id="NLr-7u-JXu"/>
                         <outlet property="loginButton" destination="oPg-aC-dzi" id="SgJ-99-nVy"/>
                         <outlet property="passwordTextField" destination="BJD-aM-0iL" id="ffv-1R-lxH"/>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="backFromLogin" id="hDY-Dr-bRY"/>
+                        <segue destination="2pL-oQ-xb9" kind="show" identifier="showUserHome" id="N8J-ui-R6c"/>
+                        <segue destination="7lv-L9-ZJA" kind="show" identifier="showAdminHome" id="UrA-42-aLW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fbt-EA-KRo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="829" y="452"/>
         </scene>
-        <!--Admin View Controller-->
+        <!--User Home View Controller-->
+        <scene sceneID="lYA-t3-x0z">
+            <objects>
+                <viewController storyboardIdentifier="UserHomeViewController" modalPresentationStyle="fullScreen" id="2pL-oQ-xb9" customClass="UserHomeViewController" customModule="QuizApp_IOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qfW-da-YJi">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="User Home" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xAb-R9-6sL">
+                                <rect key="frame" x="164" y="411" width="86" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="nib-jD-TaF"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="QTD-Ir-g23"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wmW-fu-3F1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1756.521739130435" y="627.45535714285711"/>
+        </scene>
+        <!--Admin Home View Controller-->
         <scene sceneID="1RV-rI-mBi">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="7lv-L9-ZJA" customClass="AdminViewController" customModule="QuizApp_IOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AdminHomeViewController" modalPresentationStyle="fullScreen" id="7lv-L9-ZJA" customClass="AdminHomeViewController" customModule="QuizApp_IOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7sS-jM-adn">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Admin Home" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cI5-pF-esY">
+                                <rect key="frame" x="158" y="438" width="98" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="CZC-z6-nXr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="RAD-Ob-Bgb"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RLP-12-lE9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2399" y="-621"/>
+            <point key="canvasLocation" x="1756.521739130435" y="-429.24107142857139"/>
         </scene>
         <!--Java View Controller-->
         <scene sceneID="keC-nk-OyZ">
@@ -293,9 +321,6 @@
             <point key="canvasLocation" x="5610" y="-326"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="gNz-cV-S1v"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

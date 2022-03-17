@@ -26,11 +26,11 @@ class InitialViewController: UIViewController {
     }
     
     @IBAction func signUpButtonTapped(_ sender: Any) {
-        performSegue(withIdentifier: K.Segue.showSignUp, sender: nil)
+        PresenterManager.shared.show(vc: .signUp)
     }
     
     @IBAction func loginButtonTapped(_ sender: Any) {
-        performSegue(withIdentifier: K.Segue.showLogin, sender: nil)
+        PresenterManager.shared.show(vc: .login)
     }
 }
 
