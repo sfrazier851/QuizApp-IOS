@@ -22,4 +22,6 @@ struct K {
         static let userHomeViewController = "UserHomeViewController"
     }
     
+    static let dailyAttempt = UserDefaults.standard.integer(forKey: "DailyAttempts")
+    
 }
