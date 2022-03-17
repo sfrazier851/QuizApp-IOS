@@ -8,6 +8,8 @@
 import UIKit
 
 class LoginViewController: UIViewController {
+    
+    var userIsAdmin = false;
 
     @IBOutlet weak var emailTextField: UITextField!
     
@@ -43,6 +45,10 @@ class LoginViewController: UIViewController {
         //Utilities.styleFilledButton(loginButton)
         
         //forgotPasswordButton.tintColor = K.Color.Blue
+        
+        // temporary
+        emailTextField.text = "s@gmail.com"
+        passwordTextField.text = "Password!"
         
         emailTextField.becomeFirstResponder()
     }
@@ -91,8 +97,14 @@ class LoginViewController: UIViewController {
         else {
         
             // Remove whitespace and new lines from email and password textfield values
-            let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            //let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            //let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            if userIsAdmin {
+                performSegue(withIdentifier: K.Segue.showAdminHome, sender: nil)
+            } else {
+                performSegue(withIdentifier: K.Segue.showUserHome, sender: nil)
+            }
             /*
             var userToLogin: [User]? = ModelController.getUsersByEmail(email: email)
             

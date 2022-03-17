@@ -11,6 +11,7 @@
 		7F65179327DFB7CE008C635E /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F65179227DFB7CE008C635E /* LoadingViewController.swift */; };
 		7F65179927DFCD40008C635E /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F65179827DFCD40008C635E /* Utilities.swift */; };
 		7F6517A327DFE970008C635E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6517A227DFE970008C635E /* Constants.swift */; };
+		7F65183327E37A2F008C635E /* UserHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F65183227E37A2F008C635E /* UserHomeViewController.swift */; };
 		9AB2C3B327DC62D300B8E171 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2C3B227DC62D300B8E171 /* AppDelegate.swift */; };
 		9AB2C3B527DC62D300B8E171 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2C3B427DC62D300B8E171 /* SceneDelegate.swift */; };
 		9AB2C3B727DC62D300B8E171 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2C3B627DC62D300B8E171 /* InitialViewController.swift */; };
@@ -22,7 +23,7 @@
 		9AB2C3D027DC6DF100B8E171 /* JavaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2C3CF27DC6DF100B8E171 /* JavaViewController.swift */; };
 		9AB2C3D227DC6E0100B8E171 /* IOSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2C3D127DC6E0100B8E171 /* IOSViewController.swift */; };
 		9AB2C3D427DC6E1500B8E171 /* AndroidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2C3D327DC6E1500B8E171 /* AndroidViewController.swift */; };
-		9AB2C3D627DC6E3C00B8E171 /* AdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2C3D527DC6E3C00B8E171 /* AdminViewController.swift */; };
+		9AB2C3D627DC6E3C00B8E171 /* AdminHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2C3D527DC6E3C00B8E171 /* AdminHomeViewController.swift */; };
 		9AB2C3D827DC6E7F00B8E171 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2C3D727DC6E7F00B8E171 /* Globals.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		7F65179227DFB7CE008C635E /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		7F65179827DFCD40008C635E /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		7F6517A227DFE970008C635E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		7F65183227E37A2F008C635E /* UserHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHomeViewController.swift; sourceTree = "<group>"; };
 		9AB2C3AF27DC62D300B8E171 /* QuizApp-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QuizApp-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AB2C3B227DC62D300B8E171 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9AB2C3B427DC62D300B8E171 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -44,7 +46,7 @@
 		9AB2C3CF27DC6DF100B8E171 /* JavaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JavaViewController.swift; sourceTree = "<group>"; };
 		9AB2C3D127DC6E0100B8E171 /* IOSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSViewController.swift; sourceTree = "<group>"; };
 		9AB2C3D327DC6E1500B8E171 /* AndroidViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AndroidViewController.swift; sourceTree = "<group>"; };
-		9AB2C3D527DC6E3C00B8E171 /* AdminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminViewController.swift; sourceTree = "<group>"; };
+		9AB2C3D527DC6E3C00B8E171 /* AdminHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminHomeViewController.swift; sourceTree = "<group>"; };
 		9AB2C3D727DC6E7F00B8E171 /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,8 +120,9 @@
 				9AB2C3CF27DC6DF100B8E171 /* JavaViewController.swift */,
 				9AB2C3D127DC6E0100B8E171 /* IOSViewController.swift */,
 				9AB2C3D327DC6E1500B8E171 /* AndroidViewController.swift */,
-				9AB2C3D527DC6E3C00B8E171 /* AdminViewController.swift */,
+				9AB2C3D527DC6E3C00B8E171 /* AdminHomeViewController.swift */,
 				7F65179227DFB7CE008C635E /* LoadingViewController.swift */,
+				7F65183227E37A2F008C635E /* UserHomeViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -206,12 +209,13 @@
 				7F65178F27DFB78F008C635E /* Helpers.swift in Sources */,
 				9AB2C3CC27DC6CB300B8E171 /* LoginViewController.swift in Sources */,
 				9AB2C3B727DC62D300B8E171 /* InitialViewController.swift in Sources */,
+				7F65183327E37A2F008C635E /* UserHomeViewController.swift in Sources */,
 				9AB2C3D027DC6DF100B8E171 /* JavaViewController.swift in Sources */,
 				7F65179927DFCD40008C635E /* Utilities.swift in Sources */,
 				9AB2C3B327DC62D300B8E171 /* AppDelegate.swift in Sources */,
 				9AB2C3D227DC6E0100B8E171 /* IOSViewController.swift in Sources */,
 				9AB2C3B527DC62D300B8E171 /* SceneDelegate.swift in Sources */,
-				9AB2C3D627DC6E3C00B8E171 /* AdminViewController.swift in Sources */,
+				9AB2C3D627DC6E3C00B8E171 /* AdminHomeViewController.swift in Sources */,
 				9AB2C3D427DC6E1500B8E171 /* AndroidViewController.swift in Sources */,
 				9AB2C3D827DC6E7F00B8E171 /* Globals.swift in Sources */,
 				7F6517A327DFE970008C635E /* Constants.swift in Sources */,

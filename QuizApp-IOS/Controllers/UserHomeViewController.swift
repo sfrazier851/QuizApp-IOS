@@ -1,14 +1,14 @@
 //
-//  AdministrationViewController.swift
+//  UserHomeViewController.swift
 //  QuizApp-IOS
 //
-//  Created by Maricel Sumulong on 3/11/22.
+//  Created by iMac on 3/17/22.
 //
 
 import UIKit
 
-class AdminViewController: UIViewController {
-
+class UserHomeViewController: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

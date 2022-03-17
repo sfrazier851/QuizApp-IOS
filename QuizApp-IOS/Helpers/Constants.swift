@@ -18,12 +18,16 @@ struct K {
         static let backFromSignUp = "backFromSignUp"
         static let showLogin = "showLogin"
         static let backFromLogin = "backFromLogin"
+        static let showAdminHome = "showAdminHome"
+        static let showUserHome = "showUserHome"
     }
     
     struct StoryboardID {
         static let main = "Main"
         static let signUpViewController = "SignUpViewController"
         static let loginViewController = "LoginViewController"
+        static let adminHomeViewController = "AdminHomeViewController"
+        static let userHomeViewController = "UserHomeViewController"
     }
     
 }
