@@ -12,6 +12,7 @@
 		7F65179927DFCD40008C635E /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F65179827DFCD40008C635E /* Utilities.swift */; };
 		7F6517A327DFE970008C635E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6517A227DFE970008C635E /* Constants.swift */; };
 		7F65183327E37A2F008C635E /* UserHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F65183227E37A2F008C635E /* UserHomeViewController.swift */; };
+		7F65183827E3849D008C635E /* PresenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F65183727E3849D008C635E /* PresenterManager.swift */; };
 		9AB2C3B327DC62D300B8E171 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2C3B227DC62D300B8E171 /* AppDelegate.swift */; };
 		9AB2C3B527DC62D300B8E171 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2C3B427DC62D300B8E171 /* SceneDelegate.swift */; };
 		9AB2C3B727DC62D300B8E171 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2C3B627DC62D300B8E171 /* InitialViewController.swift */; };
@@ -33,6 +34,7 @@
 		7F65179827DFCD40008C635E /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		7F6517A227DFE970008C635E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7F65183227E37A2F008C635E /* UserHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHomeViewController.swift; sourceTree = "<group>"; };
+		7F65183727E3849D008C635E /* PresenterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterManager.swift; sourceTree = "<group>"; };
 		9AB2C3AF27DC62D300B8E171 /* QuizApp-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QuizApp-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AB2C3B227DC62D300B8E171 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9AB2C3B427DC62D300B8E171 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +73,14 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		7F65183627E3848B008C635E /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				7F65183727E3849D008C635E /* PresenterManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		9AB2C3A627DC62D300B8E171 = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +100,7 @@
 		9AB2C3B127DC62D300B8E171 /* QuizApp-IOS */ = {
 			isa = PBXGroup;
 			children = (
+				7F65183627E3848B008C635E /* Manager */,
 				7F65178D27DFB770008C635E /* Helpers */,
 				9AB2C3CA27DC63F500B8E171 /* Models */,
 				9AB2C3C927DC638600B8E171 /* Controllers */,
@@ -210,6 +221,7 @@
 				9AB2C3CC27DC6CB300B8E171 /* LoginViewController.swift in Sources */,
 				9AB2C3B727DC62D300B8E171 /* InitialViewController.swift in Sources */,
 				7F65183327E37A2F008C635E /* UserHomeViewController.swift in Sources */,
+				7F65183827E3849D008C635E /* PresenterManager.swift in Sources */,
 				9AB2C3D027DC6DF100B8E171 /* JavaViewController.swift in Sources */,
 				7F65179927DFCD40008C635E /* Utilities.swift in Sources */,
 				9AB2C3B327DC62D300B8E171 /* AppDelegate.swift in Sources */,

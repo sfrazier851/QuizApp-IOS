@@ -28,7 +28,7 @@ class LoadingViewController: UIViewController {
         if userIsLoggedIn {
             //performSegue(withIdentifier: , sender: nil)
         } else {
-            performSegue(withIdentifier: K.Segue.showInitial, sender: nil)
+            PresenterManager.shared.show(vc: .initial)
         }
     }
 }

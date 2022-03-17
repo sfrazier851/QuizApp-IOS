@@ -101,9 +101,9 @@ class LoginViewController: UIViewController {
             //let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             
             if userIsAdmin {
-                performSegue(withIdentifier: K.Segue.showAdminHome, sender: nil)
+                PresenterManager.shared.show(vc: .adminHome)
             } else {
-                performSegue(withIdentifier: K.Segue.showUserHome, sender: nil)
+                PresenterManager.shared.show(vc: .userHome)
             }
             /*
             var userToLogin: [User]? = ModelController.getUsersByEmail(email: email)
@@ -150,7 +150,7 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func backButtonTapped(_ sender: Any) {
-        performSegue(withIdentifier: K.Segue.backFromLogin, sender: nil)
+        PresenterManager.shared.show(vc: .initial)
     }
     
 }

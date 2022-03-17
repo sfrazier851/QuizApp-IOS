@@ -24,9 +24,6 @@
                         <viewLayoutGuide key="safeArea" id="TXc-ez-abV"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="showInitial" id="gNz-cV-S1v"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iaE-0l-wk8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -70,10 +67,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="kaZ-N2-biA"/>
-                    <connections>
-                        <segue destination="S58-cX-EiV" kind="show" identifier="showSignUp" id="cmm-lt-EDn"/>
-                        <segue destination="tQJ-tZ-MrQ" kind="show" identifier="showLogin" id="vh2-dv-xzZ"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -152,7 +145,6 @@
                         <outlet property="passwordTextField" destination="3fR-Hl-Xjk" id="yit-OX-JZV"/>
                         <outlet property="signUpButton" destination="iYR-Sl-iEz" id="37D-Is-lph"/>
                         <outlet property="usernameTextField" destination="97f-kz-3xR" id="J3n-JB-LRY"/>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="backFromSignUp" id="CIm-5n-sEB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sar-Ac-UzS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -162,7 +154,7 @@
         <!--Login View Controller-->
         <scene sceneID="g3N-SC-O1d">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="tQJ-tZ-MrQ" userLabel="Login View Controller" customClass="LoginViewController" customModule="QuizApp_IOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" modalPresentationStyle="fullScreen" id="tQJ-tZ-MrQ" userLabel="Login View Controller" customClass="LoginViewController" customModule="QuizApp_IOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fpz-Fy-bLS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -225,7 +217,6 @@
                         <outlet property="forgotPasswordButton" destination="XHm-55-aB2" id="NLr-7u-JXu"/>
                         <outlet property="loginButton" destination="oPg-aC-dzi" id="SgJ-99-nVy"/>
                         <outlet property="passwordTextField" destination="BJD-aM-0iL" id="ffv-1R-lxH"/>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="backFromLogin" id="hDY-Dr-bRY"/>
                         <segue destination="2pL-oQ-xb9" kind="show" identifier="showUserHome" id="N8J-ui-R6c"/>
                         <segue destination="7lv-L9-ZJA" kind="show" identifier="showAdminHome" id="UrA-42-aLW"/>
                     </connections>
@@ -330,9 +321,6 @@
             <point key="canvasLocation" x="5610" y="-326"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="hDY-Dr-bRY"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
