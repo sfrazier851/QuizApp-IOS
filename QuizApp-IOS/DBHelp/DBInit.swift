@@ -45,20 +45,26 @@ class DBInit{
             print("there is error", err)
         }
         //Question table
-        stmt="CREATE TABLE IF NOT EXISTS `Questions` (`Question` TEXT NOT NULL, `Awnser` TEXT NOT NULL, `Quiz_ID` INT NOT NULL, `Quiz_Technology_Title` TEXT NOT NULL, `Quiz_ID1` INT NOT NULL, `Quiz_Technology_Title1` TEXT NOT NULL, PRIMARY KEY (`Question`, `Quiz_ID`, `Quiz_Technology_Title`), CONSTRAINT `fk_Questions_Quiz1` FOREIGN KEY (`Quiz_ID1` , `Quiz_Technology_Title1`) REFERENCES `Quiz` (`ID` , `Technology_Title`) ON DELETE NO ACTION ON UPDATE NO ACTION); CREATE INDEX `fk_Questions_Quiz1_idx`on`Questions` (`Quiz_ID1` ASC, `Quiz_Technology_Title1` ASC);"
+        stmt="CREATE TABLE IF NOT EXISTS `Questions` (`Question` TEXT NULL, `Awnser` TEXT NOT NULL,`Quiz_ID` INT NOT NULL, `ID` INT  AUTO_INCREMENT NOT NULL, PRIMARY KEY (`ID`), CONSTRAINT `fk_Questions_Quiz1` FOREIGN KEY (`Quiz_ID`) REFERENCES `Quiz` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION); CREATE INDEX `fk_Questions_Quiz1_idx` ON `Questions` (`Quiz_ID` ASC);"
         if sqlite3_exec(DBInit.db, stmt, nil, nil, nil) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(DBInit.db)!)
             print("there is error", err)
         }
         	
         //Choices
-        stmt="CREATE TABLE IF NOT EXISTS `choices` (`choice` TEXT NOT NULL, `Questions_Question` TEXT NOT NULL, `Questions_Quiz_ID` INT NOT NULL, `Questions_Quiz_Technology_Title` TEXT NOT NULL, PRIMARY KEY (`choice`, `Questions_Question`, `Questions_Quiz_ID`, `Questions_Quiz_Technology_Title`), CONSTRAINT `fk_choices_Questions1` FOREIGN KEY (`Questions_Question` , `Questions_Quiz_ID` , `Questions_Quiz_Technology_Title`) REFERENCES `Questions` (`Question` , `Quiz_ID` , `Quiz_Technology_Title`) ON DELETE NO ACTION ON UPDATE NO ACTION); CREATE INDEX `fk_choices_Questions1_idx` ON `choices` (`Questions_Question` ASC, `Questions_Quiz_ID` ASC, `Questions_Quiz_Technology_Title` ASC);"
+        stmt="CREATE TABLE IF NOT EXISTS `choices` (`choice` TEXT NOT NULL, `Questions_ID` INT NOT NULL, PRIMARY KEY (`choice`), CONSTRAINT `fk_choices_Questions1` FOREIGN KEY (`Questions_ID`) REFERENCES `Questions` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION); CREATE INDEX `fk_choices_Questions1_idx` ON `choices` (`Questions_ID` ASC);"
         if sqlite3_exec(DBInit.db, stmt, nil, nil, nil) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(DBInit.db)!)
             print("there is error", err)
         }
         //Quiz has dual keys
+        stmt="CREATE TABLE IF NOT EXISTS `Quiz` ( `Title` TEXT NULL, `ID` INTEGER Primary KEY AUTOINCREMENT NOT NULL, `Technology_Title` TEXT NOT NULL, CONSTRAINT `fk_Quiz_Technology1` FOREIGN KEY (`Technology_Title`) REFERENCES `Technology` (`Title`) ON DELETE NO ACTION ON UPDATE NO ACTION); CREATE INDEX `fk_Quiz_Technology1_idx` ON `Quiz` (`Technology_Title` ASC);"
+        if sqlite3_exec(DBInit.db, stmt, nil, nil, nil) != SQLITE_OK{
+            let err = String(cString: sqlite3_errmsg(DBInit.db)!)
+            print("there is error", err)
+        }
         
+
         //Prizes has dual keys
         	stmt="CREATE TABLE IF NOT EXISTS `Prizes` (`idPrizes` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `GivenDate` DATE NULL, `StartDate` DATE NULL, `EndDate` DATE NULL, `active` TINYINT NULL, `Type` TEXT NULL, `User_ID` INT NOT NULL, CONSTRAINT `fk_Prizes_User1` FOREIGN KEY (`User_ID`) REFERENCES `User` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION); CREATE INDEX `fk_Prizes_User1_idx` ON `Prizes` (`User_ID` ASC);"
         if sqlite3_exec(DBInit.db, stmt, nil, nil, nil) != SQLITE_OK{
@@ -67,13 +73,13 @@ class DBInit{
         }
         
         //Score table
-        stmt="CREATE TABLE IF NOT EXISTS `ScoreBoard` (`Score` INT NOT NULL, `Quiz_ID` INT NOT NULL, `Quiz_Technology_Title` TEXT NOT NULL, `User_ID` INT NOT NULL, PRIMARY KEY (`User_ID`), CONSTRAINT `fk_ScoreBoard_Quiz1` FOREIGN KEY (`Quiz_ID` , `Quiz_Technology_Title`)REFERENCES `Quiz` (`ID` , `Technology_Title`) ON DELETE NO ACTION ON UPDATE NO ACTION, CONSTRAINT `fk_ScoreBoard_User1` FOREIGN KEY (`User_ID`) REFERENCES `User` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION); CREATE INDEX `fk_ScoreBoard_Quiz1_idx` ON `ScoreBoard` (`Quiz_ID` ASC,`Quiz_Technology_Title` ASC);"
+        stmt="CREATE TABLE IF NOT EXISTS `ScoreBoard` (`Score` INT NOT NULL, `Quiz_ID` INT NOT NULL, `User_ID` INT NOT NULL, `Technology_Title` TEXT NOT NULL, PRIMARY KEY (`User_ID`),   CONSTRAINT `fk_ScoreBoard_Quiz1` FOREIGN KEY (`Quiz_ID`) REFERENCES `Quiz` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION, CONSTRAINT `fk_ScoreBoard_User1` FOREIGN KEY (`User_ID`)  REFERENCES `User` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION, CONSTRAINT `fk_ScoreBoard_Technology1` FOREIGN KEY (`Technology_Title`) REFERENCES `Technology` (`Title`) ON DELETE NO ACTION ON UPDATE NO ACTION);  CREATE INDEX `fk_ScoreBoard_Quiz1_idx` ON `ScoreBoard` (`Quiz_ID` ASC);  CREATE INDEX `fk_ScoreBoard_Technology1_idx` ON `ScoreBoard` (`Technology_Title` ASC);"
         if sqlite3_exec(DBInit.db, stmt, nil, nil, nil) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(DBInit.db)!)
             print("there is error", err)
         }
         //User table
-        stmt="CREATE TABLE `User` (`ID` INTEGER Primary KEY  AUTOINCREMENT NOT NULL, `UserName` TEXT NULL, `Email` TEXT NULL,`Password` TEXT NOT NULL, `Dob` DATE NULL, `admin` TINYINT NULL, `subcription` INT NULL, `Status` TEXT NULL, `First` TEXT NULL, `Last` TEXT NULL)"
+        stmt="CREATE TABLE `User` (`ID` INTEGER Primary KEY  AUTOINCREMENT NOT NULL, `UserName` TEXT NULL, `Password` TEXT NOT NULL, `Dob` DATE NULL, `admin` TINYINT NULL, `subcription` TEXT NULL, `Status` INT NULL, `First` TEXT NULL, `Last` TEXT NULL)"
         if sqlite3_exec(DBInit.db, stmt, nil, nil, nil) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(DBInit.db)!)
             print("there is error", err)

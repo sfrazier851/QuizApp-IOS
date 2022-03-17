@@ -10,8 +10,11 @@
 		847CA11D27E0F61900FF6D28 /* DBInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847CA11C27E0F61900FF6D28 /* DBInit.swift */; };
 		847CA11F27E1001000FF6D28 /* UserModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847CA11E27E1001000FF6D28 /* UserModels.swift */; };
 		847CA12127E1002E00FF6D28 /* QuizModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847CA12027E1002E00FF6D28 /* QuizModels.swift */; };
-		847CA12327E1004F00FF6D28 /* ExamModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847CA12227E1004F00FF6D28 /* ExamModels.swift */; };
 		847CA12527E100A800FF6D28 /* PrizeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847CA12427E100A800FF6D28 /* PrizeModels.swift */; };
+		84A5DABA27E1B34800AFD467 /* ScoreBoardModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A5DAB927E1B34800AFD467 /* ScoreBoardModels.swift */; };
+		84A5DABC27E1B3BA00AFD467 /* DBCRUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A5DABB27E1B3BA00AFD467 /* DBCRUD.swift */; };
+		84A5DABE27E1C0DA00AFD467 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A5DABD27E1C0DA00AFD467 /* Login.swift */; };
+		84A5DB0227E3D07300AFD467 /* ReviewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A5DB0127E3D07300AFD467 /* ReviewModels.swift */; };
 		9AB2C3B327DC62D300B8E171 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2C3B227DC62D300B8E171 /* AppDelegate.swift */; };
 		9AB2C3B527DC62D300B8E171 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2C3B427DC62D300B8E171 /* SceneDelegate.swift */; };
 		9AB2C3B727DC62D300B8E171 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2C3B627DC62D300B8E171 /* WelcomeViewController.swift */; };
@@ -31,8 +34,11 @@
 		847CA11C27E0F61900FF6D28 /* DBInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBInit.swift; sourceTree = "<group>"; };
 		847CA11E27E1001000FF6D28 /* UserModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModels.swift; sourceTree = "<group>"; };
 		847CA12027E1002E00FF6D28 /* QuizModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizModels.swift; sourceTree = "<group>"; };
-		847CA12227E1004F00FF6D28 /* ExamModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamModels.swift; sourceTree = "<group>"; };
 		847CA12427E100A800FF6D28 /* PrizeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrizeModels.swift; sourceTree = "<group>"; };
+		84A5DAB927E1B34800AFD467 /* ScoreBoardModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBoardModels.swift; sourceTree = "<group>"; };
+		84A5DABB27E1B3BA00AFD467 /* DBCRUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBCRUD.swift; sourceTree = "<group>"; };
+		84A5DABD27E1C0DA00AFD467 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		84A5DB0127E3D07300AFD467 /* ReviewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewModels.swift; sourceTree = "<group>"; };
 		9AB2C3AF27DC62D300B8E171 /* QuizApp-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QuizApp-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AB2C3B227DC62D300B8E171 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9AB2C3B427DC62D300B8E171 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,8 +73,11 @@
 				847CA11C27E0F61900FF6D28 /* DBInit.swift */,
 				847CA11E27E1001000FF6D28 /* UserModels.swift */,
 				847CA12027E1002E00FF6D28 /* QuizModels.swift */,
-				847CA12227E1004F00FF6D28 /* ExamModels.swift */,
+				84A5DAB927E1B34800AFD467 /* ScoreBoardModels.swift */,
 				847CA12427E100A800FF6D28 /* PrizeModels.swift */,
+				84A5DABB27E1B3BA00AFD467 /* DBCRUD.swift */,
+				84A5DABD27E1C0DA00AFD467 /* Login.swift */,
+				84A5DB0127E3D07300AFD467 /* ReviewModels.swift */,
 			);
 			path = DBHelp;
 			sourceTree = "<group>";
@@ -207,14 +216,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AB2C3CC27DC6CB300B8E171 /* SignInViewController.swift in Sources */,
+				84A5DABE27E1C0DA00AFD467 /* Login.swift in Sources */,
 				847CA12527E100A800FF6D28 /* PrizeModels.swift in Sources */,
 				9AB2C3B727DC62D300B8E171 /* WelcomeViewController.swift in Sources */,
-				847CA12327E1004F00FF6D28 /* ExamModels.swift in Sources */,
 				9AB2C3D027DC6DF100B8E171 /* JavaViewController.swift in Sources */,
+				84A5DABC27E1B3BA00AFD467 /* DBCRUD.swift in Sources */,
 				9AB2C3B327DC62D300B8E171 /* AppDelegate.swift in Sources */,
 				9AB2C3D227DC6E0100B8E171 /* IOSViewController.swift in Sources */,
 				9AB2C3B527DC62D300B8E171 /* SceneDelegate.swift in Sources */,
 				9AB2C3D627DC6E3C00B8E171 /* AdministrationViewController.swift in Sources */,
+				84A5DABA27E1B34800AFD467 /* ScoreBoardModels.swift in Sources */,
+				84A5DB0227E3D07300AFD467 /* ReviewModels.swift in Sources */,
 				9AB2C3D427DC6E1500B8E171 /* AndroidViewController.swift in Sources */,
 				9AB2C3D827DC6E7F00B8E171 /* Globals.swift in Sources */,
 				9AB2C3CE27DC6CD800B8E171 /* SignUpViewController.swift in Sources */,
@@ -378,7 +390,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -408,7 +420,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
