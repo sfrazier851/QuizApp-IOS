@@ -15,4 +15,10 @@ class ReviewModels{
         rate=0
         comments=""
     }
+    init(rate:Int, comments:String, idReviews:Int, User_ID:Int){
+        self.rate=rate
+        self.comments=comments
+        self.idReviews=idReviews
+        self.User_ID=User_ID
+    }
 }

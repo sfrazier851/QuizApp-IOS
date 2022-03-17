@@ -222,6 +222,7 @@ if sqlite3_bind_int(stmt, 1, Int32(id)) != SQLITE_OK{
         
         }
     }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Email
 //create
 func CreateEmail(ID:Int,NE:String){
@@ -360,10 +361,126 @@ var stmt : OpaquePointer?
     }
     
 }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //REVIEW
 //create
+    func createReview(r:ReviewModels){
+        let query = "INSERT INTO Review (rate, comments, User_ID) Values(?,?,?)"
+        var stmt : OpaquePointer?
+
+            if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
+                let err = String(cString: sqlite3_errmsg(db)!)
+                print("There is an Error:",err)
+                return
+            }
+        if sqlite3_bind_int(stmt, 0, Int32(r.rate)) != SQLITE_OK{
+            let err = String(cString: sqlite3_errmsg(db)!)
+            print("There is an Error:",err)
+            return
+        }
+        if sqlite3_bind_text(stmt, 1, (r.comments as! NSString).utf8String, -1, nil) != SQLITE_OK{
+            let err = String(cString: sqlite3_errmsg(db)!)
+            print("There is an Error:",err)
+            return}
+        if sqlite3_bind_int(stmt, 2, Int32(r.User_ID!)) != SQLITE_OK{
+            let err = String(cString: sqlite3_errmsg(db)!)
+            print("There is an Error:",err)
+            return
+        }
+    }
 //read
+    func ReviewCount()->Int{
+        var i = 0
+        let query = "select COUNT() from Review"
+            var stmt : OpaquePointer?
+        
+            if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
+                let err = String(cString: sqlite3_errmsg(db)!)
+                print("There is an Error:",err)
+                return i
+            }
+        if(sqlite3_step(stmt) == SQLITE_ROW){
+             i = Int(sqlite3_column_int(stmt, 0))
+        }
+        return i
+    }
+    func getReview(id:Int)->ReviewModels{
+        let query = "select * from Review WHERE idReviews = ?"
+            var stmt : OpaquePointer?
+        
+            if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
+                let err = String(cString: sqlite3_errmsg(db)!)
+                print("There is an Error:",err)
+                return ReviewModels()
+            }
+        //bind
+        if sqlite3_bind_int(stmt, 1, Int32(id)) != SQLITE_OK{
+            let err = String(cString: sqlite3_errmsg(db)!)
+            print("There is an Error:",err)
+            return ReviewModels()
+        }
+        var rev: ReviewModels=ReviewModels()
+        //step
+        //Appending Emails to Array
+            if(sqlite3_step(stmt) == SQLITE_ROW){
+                 rev = ReviewModels(rate: Int(sqlite3_column_int(stmt, 0)), comments: String(cString: sqlite3_column_text(stmt, 1)), idReviews: Int(sqlite3_column_int(stmt, 2)), User_ID: Int(sqlite3_column_int(stmt, 3)))
+            }
+            return rev
+    }
+    
+    func getUserReview(id:Int)->[ReviewModels]{
+        let query = "select * from Review WHERE User_ID = ?"
+        var ReviewArray = [ReviewModels]()
+            var stmt : OpaquePointer?
+        
+            if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
+                let err = String(cString: sqlite3_errmsg(db)!)
+                print("There is an Error:",err)
+                return ReviewArray
+            }
+        //bind
+        if sqlite3_bind_int(stmt, 1, Int32(id)) != SQLITE_OK{
+            let err = String(cString: sqlite3_errmsg(db)!)
+            print("There is an Error:",err)
+            return ReviewArray
+        }
+        
+        //step
+        //Appending Emails to Array
+            while(sqlite3_step(stmt) == SQLITE_ROW){
+                 let rev = ReviewModels(rate: Int(sqlite3_column_int(stmt, 0)), comments: String(cString: sqlite3_column_text(stmt, 1)), idReviews: Int(sqlite3_column_int(stmt, 2)), User_ID: Int(sqlite3_column_int(stmt, 3)))
+                ReviewArray.append(rev)
+            }
+            return ReviewArray
+    }
 //update
+    func updateReview(r:ReviewModels){
+        let query = "UPDATE Review set rate = ?, comments = ? WHERE idReviews = ?"
+    var stmt : OpaquePointer?
+
+    if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
+        let err = String(cString: sqlite3_errmsg(db)!)
+        print("There is an Error:",err)
+    }
+        if sqlite3_bind_int(stmt, 1, Int32(r.rate)) != SQLITE_OK{
+        let err = String(cString: sqlite3_errmsg(db)!)
+        print("There is an Error:",err)
+    }
+        if sqlite3_bind_text(stmt, 2, (r.comments as! NSString).utf8String, -1, nil) != SQLITE_OK{
+        let err = String(cString: sqlite3_errmsg(db)!)
+        print("There is an Error:",err)
+    }
+        if sqlite3_bind_int(stmt, 3, Int32(r.idReviews!)) != SQLITE_OK{
+        let err = String(cString: sqlite3_errmsg(db)!)
+        print("There is an Error:",err)
+    }
+    if sqlite3_step(stmt) != SQLITE_DONE{
+        let err = String(cString: sqlite3_errmsg(db)!)
+        print("There is an Error:",err)
+    
+    }
+        
+    }
 //delete
     func deleteAllUserReviews(NE:Int){
         let query = "DELETE FROM Reviews WHERE User_ID = ?"
@@ -403,10 +520,18 @@ var stmt : OpaquePointer?
         }
         
     }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Technology
+    //create
+    //read
+    //update
+    //delete
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //QUIZ
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Questions
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //PRIZE
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Scoreboard
 }

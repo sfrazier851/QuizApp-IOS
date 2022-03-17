@@ -74,10 +74,10 @@
 				847CA11E27E1001000FF6D28 /* UserModels.swift */,
 				847CA12027E1002E00FF6D28 /* QuizModels.swift */,
 				84A5DAB927E1B34800AFD467 /* ScoreBoardModels.swift */,
+				84A5DB0127E3D07300AFD467 /* ReviewModels.swift */,
 				847CA12427E100A800FF6D28 /* PrizeModels.swift */,
 				84A5DABB27E1B3BA00AFD467 /* DBCRUD.swift */,
 				84A5DABD27E1C0DA00AFD467 /* Login.swift */,
-				84A5DB0127E3D07300AFD467 /* ReviewModels.swift */,
 			);
 			path = DBHelp;
 			sourceTree = "<group>";
