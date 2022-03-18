@@ -12,6 +12,10 @@ struct K {
         static let Blue = UIColor.init(red: 93/255, green: 163/255, blue: 216/255, alpha: 1.0)
     }
     
+    struct ReuseIdentifier {
+        static let selectQuizCollectionViewCell = "cell"
+    }
+    
     struct StoryboardID {
         static let main = "Main"
         static let loadingViewController = "LoadingViewController"
