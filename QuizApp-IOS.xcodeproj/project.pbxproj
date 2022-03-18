@@ -15,6 +15,8 @@
 		84A5DABC27E1B3BA00AFD467 /* DBCRUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A5DABB27E1B3BA00AFD467 /* DBCRUD.swift */; };
 		84A5DABE27E1C0DA00AFD467 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A5DABD27E1C0DA00AFD467 /* Login.swift */; };
 		84A5DB0227E3D07300AFD467 /* ReviewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A5DB0127E3D07300AFD467 /* ReviewModels.swift */; };
+		84A5DB0427E4C53F00AFD467 /* QuestionModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A5DB0327E4C53F00AFD467 /* QuestionModels.swift */; };
+		84A5DB0627E4CE8D00AFD467 /* TechnologyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A5DB0527E4CE8D00AFD467 /* TechnologyModel.swift */; };
 		9AB2C3B327DC62D300B8E171 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2C3B227DC62D300B8E171 /* AppDelegate.swift */; };
 		9AB2C3B527DC62D300B8E171 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2C3B427DC62D300B8E171 /* SceneDelegate.swift */; };
 		9AB2C3B727DC62D300B8E171 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2C3B627DC62D300B8E171 /* WelcomeViewController.swift */; };
@@ -39,6 +41,8 @@
 		84A5DABB27E1B3BA00AFD467 /* DBCRUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBCRUD.swift; sourceTree = "<group>"; };
 		84A5DABD27E1C0DA00AFD467 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		84A5DB0127E3D07300AFD467 /* ReviewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewModels.swift; sourceTree = "<group>"; };
+		84A5DB0327E4C53F00AFD467 /* QuestionModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionModels.swift; sourceTree = "<group>"; };
+		84A5DB0527E4CE8D00AFD467 /* TechnologyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechnologyModel.swift; sourceTree = "<group>"; };
 		9AB2C3AF27DC62D300B8E171 /* QuizApp-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QuizApp-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AB2C3B227DC62D300B8E171 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9AB2C3B427DC62D300B8E171 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,12 +75,14 @@
 			isa = PBXGroup;
 			children = (
 				847CA11C27E0F61900FF6D28 /* DBInit.swift */,
+				84A5DABB27E1B3BA00AFD467 /* DBCRUD.swift */,
 				847CA11E27E1001000FF6D28 /* UserModels.swift */,
-				847CA12027E1002E00FF6D28 /* QuizModels.swift */,
-				84A5DAB927E1B34800AFD467 /* ScoreBoardModels.swift */,
 				84A5DB0127E3D07300AFD467 /* ReviewModels.swift */,
 				847CA12427E100A800FF6D28 /* PrizeModels.swift */,
-				84A5DABB27E1B3BA00AFD467 /* DBCRUD.swift */,
+				84A5DB0527E4CE8D00AFD467 /* TechnologyModel.swift */,
+				847CA12027E1002E00FF6D28 /* QuizModels.swift */,
+				84A5DB0327E4C53F00AFD467 /* QuestionModels.swift */,
+				84A5DAB927E1B34800AFD467 /* ScoreBoardModels.swift */,
 				84A5DABD27E1C0DA00AFD467 /* Login.swift */,
 			);
 			path = DBHelp;
@@ -220,6 +226,8 @@
 				847CA12527E100A800FF6D28 /* PrizeModels.swift in Sources */,
 				9AB2C3B727DC62D300B8E171 /* WelcomeViewController.swift in Sources */,
 				9AB2C3D027DC6DF100B8E171 /* JavaViewController.swift in Sources */,
+				84A5DB0627E4CE8D00AFD467 /* TechnologyModel.swift in Sources */,
+				84A5DB0427E4C53F00AFD467 /* QuestionModels.swift in Sources */,
 				84A5DABC27E1B3BA00AFD467 /* DBCRUD.swift in Sources */,
 				9AB2C3B327DC62D300B8E171 /* AppDelegate.swift in Sources */,
 				9AB2C3D227DC6E0100B8E171 /* IOSViewController.swift in Sources */,
