@@ -25,7 +25,6 @@
 		9AB2C3D227DC6E0100B8E171 /* IOSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2C3D127DC6E0100B8E171 /* IOSViewController.swift */; };
 		9AB2C3D427DC6E1500B8E171 /* AndroidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2C3D327DC6E1500B8E171 /* AndroidViewController.swift */; };
 		9AB2C3D627DC6E3C00B8E171 /* AdminHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2C3D527DC6E3C00B8E171 /* AdminHomeViewController.swift */; };
-		9AB2C3D827DC6E7F00B8E171 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2C3D727DC6E7F00B8E171 /* Globals.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,7 +48,6 @@
 		9AB2C3D127DC6E0100B8E171 /* IOSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSViewController.swift; sourceTree = "<group>"; };
 		9AB2C3D327DC6E1500B8E171 /* AndroidViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AndroidViewController.swift; sourceTree = "<group>"; };
 		9AB2C3D527DC6E3C00B8E171 /* AdminHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminHomeViewController.swift; sourceTree = "<group>"; };
-		9AB2C3D727DC6E7F00B8E171 /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,7 +100,6 @@
 			children = (
 				7F65183627E3848B008C635E /* Manager */,
 				7F65178D27DFB770008C635E /* Helpers */,
-				9AB2C3CA27DC63F500B8E171 /* Models */,
 				9AB2C3C927DC638600B8E171 /* Controllers */,
 				9AB2C3C727DC635800B8E171 /* Views */,
 				9AB2C3B227DC62D300B8E171 /* AppDelegate.swift */,
@@ -136,13 +133,6 @@
 				7F65183227E37A2F008C635E /* UserHomeViewController.swift */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		9AB2C3CA27DC63F500B8E171 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
