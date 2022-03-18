@@ -19,9 +19,9 @@ class IOSViewController: UIViewController {
     @IBOutlet weak var progressBar: UIProgressView!
     
     var qArr = [
-        1:["What does IOS mean?","Internet Operation System","iPhone Operation System","Interval Operation System","iPhone Overriding System","iPhone Operation System"],
-        2:["It manages the appearance of the table.","UITableView","UIViewController","UICollectionView","UIImageView","UITableView"],
-        3:["It is the topmost layer in the iOS Architecture.","Core Services","Media Services","Cocoa Touch","Core OS","Cocoa Touch"]
+        ["What does IOS mean?","Internet Operation System","iPhone Operation System","Interval Operation System","iPhone Overriding System","iPhone Operation System"],
+        ["It manages the appearance of the table.","UITableView","UIViewController","UICollectionView","UIImageView","UITableView"],
+        ["It is the topmost layer in the iOS Architecture.","Core Services","Media Services","Cocoa Touch","Core OS","Cocoa Touch"]
     ]
     
     var qAsked = 0 //for questions answered by player
@@ -47,8 +47,10 @@ class IOSViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         progressBar.progress = 0.0
+        count = qArr.count
         timerLabel.text = String(minTime)+":0"+String(secTime)
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
+        //ans_1.setBackgroundImage(UIImage(named: "purpleButton"), for: .normal)
         showQuestionsForIOS()
         
     }
@@ -75,11 +77,28 @@ class IOSViewController: UIViewController {
     
     @IBAction func checkAnswer(_ sender: UIButton) {
         
-        if sender.currentTitle!.lowercased() == qArr[rand]![5].lowercased() {
+        if sender.currentTitle!.lowercased() == qArr[rand][5].lowercased() {
             gamescore += 1
         }
         
+        qAsked += 1
         
+        let perc = Float(qAsked) / Float(count)
+        
+        progressBar.progress = perc
+        
+        if perc == 1 {
+            
+            timer.invalidate()
+            print("Game Over! Your score is \(gamescore).")
+            
+        } else {
+            
+            qArr.remove(at: rand)
+            print(qArr)
+            showQuestionsForIOS()
+            
+          }
     }
     
     @objc func updateTime() {
@@ -125,7 +144,8 @@ class IOSViewController: UIViewController {
         
         rand = Int.random(in: 0...qArr.count - 1)
         //rand_choices = Int.random(in: 1...4)
-        ios_que_tv.text = qArr[rand]![0]
+        print(rand)
+        ios_que_tv.text = qArr[rand][0]
         var shuffled_choices : [Int] = []
         while shuffled_choices.count != 4 {
             rand_choices = Int.random(in: 1...4)
@@ -134,10 +154,10 @@ class IOSViewController: UIViewController {
             }
         }
 
-        ans_1.setTitle(qArr[rand]![shuffled_choices[0]], for: .normal)
-        ans_2.setTitle(qArr[rand]![shuffled_choices[1]], for: .normal)
-        ans_3.setTitle(qArr[rand]![shuffled_choices[2]], for: .normal)
-        ans_4.setTitle(qArr[rand]![shuffled_choices[3]], for: .normal)
+        ans_1.setTitle(qArr[rand][shuffled_choices[0]], for: .normal)
+        ans_2.setTitle(qArr[rand][shuffled_choices[1]], for: .normal)
+        ans_3.setTitle(qArr[rand][shuffled_choices[2]], for: .normal)
+        ans_4.setTitle(qArr[rand][shuffled_choices[3]], for: .normal)
         
     }
     
