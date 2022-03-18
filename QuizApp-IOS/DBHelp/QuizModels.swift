@@ -8,7 +8,7 @@
 import Foundation
 class QuizModels{
     var ID:Int?
-    var Questions:[Question]?
+    var Questions:[QuestionModels]?
     var Title:String
     var Technology_Title:String
     init(){Title=""
