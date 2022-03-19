@@ -20,8 +20,14 @@ struct K {
         static let loginViewController = "LoginViewController"
         static let adminHomeViewController = "AdminHomeViewController"
         static let userHomeViewController = "UserHomeViewController"
+        static let iosHomeViewController = "IOSHomeViewController"
+        static let iosViewController = "IOSViewController"
+        static let gameOverViewController = "GameOverViewController"
     }
     
-    static let dailyAttempt = UserDefaults.standard.integer(forKey: "DailyAttempts")
+    //static let dailyAttempt = UserDefaults.standard.integer(forKey: "DailyAttempts")
+    static var dailyAttempt = 0
+    
+    static var ios_gamescore = 0
     
 }
