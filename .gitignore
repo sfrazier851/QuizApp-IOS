@@ -26,8 +26,8 @@ xcuserdata/
 *.moved-aside
 *.xccheckout
 *.xcscmblueprint
-*.png
-*.imageasset
+#*.png
+#*.imageasset
 
 ## Obj-C/Swift specific
 *.hmap

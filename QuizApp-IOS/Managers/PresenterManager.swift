@@ -20,6 +20,11 @@ class PresenterManager {
         case login
         case adminHome
         case userHome
+        case iosHome
+        case ios
+//        case java
+//        case android
+        case gameOver
     }
     
     func show(vc: VC) {
@@ -28,23 +33,39 @@ class PresenterManager {
         
         switch vc {
         
-        case .loading:
-            viewController = UIStoryboard(name: K.StoryboardID.main, bundle: nil).instantiateViewController(identifier: K.StoryboardID.loadingViewController)
-        
-        case .initial:
-            viewController = UIStoryboard(name: K.StoryboardID.main, bundle: nil).instantiateViewController(identifier: K.StoryboardID.initialViewController)
-        
-        case .signUp:
-            viewController = UIStoryboard(name: K.StoryboardID.main, bundle: nil).instantiateViewController(identifier: K.StoryboardID.signUpViewController)
-        
-        case .login:
-            viewController = UIStoryboard(name: K.StoryboardID.main, bundle: nil).instantiateViewController(identifier: K.StoryboardID.loginViewController)
+            case .loading:
+                viewController = UIStoryboard(name: K.StoryboardID.main, bundle: nil).instantiateViewController(identifier: K.StoryboardID.loadingViewController)
             
-        case .adminHome:
-            viewController = UIStoryboard(name: K.StoryboardID.main, bundle: nil).instantiateViewController(identifier: K.StoryboardID.adminHomeViewController)
+            case .initial:
+                viewController = UIStoryboard(name: K.StoryboardID.main, bundle: nil).instantiateViewController(identifier: K.StoryboardID.initialViewController)
             
-        case .userHome:
-            viewController = UIStoryboard(name: K.StoryboardID.main, bundle: nil).instantiateViewController(identifier: K.StoryboardID.userHomeViewController)
+            case .signUp:
+                viewController = UIStoryboard(name: K.StoryboardID.main, bundle: nil).instantiateViewController(identifier: K.StoryboardID.signUpViewController)
+            
+            case .login:
+                viewController = UIStoryboard(name: K.StoryboardID.main, bundle: nil).instantiateViewController(identifier: K.StoryboardID.loginViewController)
+                
+            case .adminHome:
+                viewController = UIStoryboard(name: K.StoryboardID.main, bundle: nil).instantiateViewController(identifier: K.StoryboardID.adminHomeViewController)
+                
+            case .userHome:
+                viewController = UIStoryboard(name: K.StoryboardID.main, bundle: nil).instantiateViewController(identifier: K.StoryboardID.userHomeViewController)
+            
+            case .iosHome:
+                viewController = UIStoryboard(name: K.StoryboardID.main, bundle: nil).instantiateViewController(identifier: K.StoryboardID.iosHomeViewController)
+                
+            case .ios:
+                viewController = UIStoryboard(name: K.StoryboardID.main, bundle: nil).instantiateViewController(identifier: K.StoryboardID.iosViewController)
+            
+//            case .java:
+//                print("Under Construction!")
+//
+//            case .android:
+//                print("Under Construction!")
+            
+        case .gameOver:
+            viewController = UIStoryboard(name: K.StoryboardID.main, bundle: nil).instantiateViewController(identifier: K.StoryboardID.gameOverViewController)
+                    
         }
         
         if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate,
