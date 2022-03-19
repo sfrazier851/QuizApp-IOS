@@ -12,11 +12,13 @@ var c = DBInit()
 class DBInit{
     static var db : OpaquePointer?
      init(){
+         print("DBINIT")
          openDb()
          createTable()
         
     }
     func openDb(){
+        print("DBOPEN")
         let fileP = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("QuizIos.sqlite")
         print("db path is", fileP)
         if sqlite3_open(fileP.path, &DBInit.db) != SQLITE_OK{
@@ -24,6 +26,7 @@ class DBInit{
         }
     }
     func createTable(){
+        print("DBCREATETABLE")
         var stmt : String
         //default table
         stmt = "create table if not exists stu (id integer primary key autoincrement,name text, course text)"
