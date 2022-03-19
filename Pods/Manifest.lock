@@ -1,0 +1,29 @@
+PODS:
+  - FBAEMKit (12.0.0):
+    - FBSDKCoreKit_Basics (= 12.0.0)
+  - FBSDKCoreKit (12.0.0):
+    - FBAEMKit (= 12.0.0)
+    - FBSDKCoreKit_Basics (= 12.0.0)
+  - FBSDKCoreKit_Basics (12.0.0)
+  - FBSDKLoginKit (12.0.0):
+    - FBSDKCoreKit (= 12.0.0)
+
+DEPENDENCIES:
+  - FBSDKLoginKit (= 12.0.0)
+
+SPEC REPOS:
+  trunk:
+    - FBAEMKit
+    - FBSDKCoreKit
+    - FBSDKCoreKit_Basics
+    - FBSDKLoginKit
+
+SPEC CHECKSUMS:
+  FBAEMKit: 7eff0522e86d66591d080612882fa0784026926b
+  FBSDKCoreKit: 23481c9231b64ce25b0980b0a270f1b10aae91ee
+  FBSDKCoreKit_Basics: 99ca5885c4fe153462ae3370edd60077394911c1
+  FBSDKLoginKit: 7260235adcc02b917909d47544a0a982d6f713d8
+
+PODFILE CHECKSUM: d431742fc3d14481884d6c4175b76b898144da0c
+
+COCOAPODS: 1.11.2

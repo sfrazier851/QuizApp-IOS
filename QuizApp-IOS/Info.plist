@@ -25,5 +25,30 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+
+    <!-- Facebook Login config 1 -->
+    <key>CFBundleURLTypes</key>
+    <array>
+      <dict>
+      <key>CFBundleURLSchemes</key>
+      <array>
+        <string>fb3118549225067954</string>
+      </array>
+      </dict>
+    </array>
+    <key>FacebookAppID</key>
+    <string>3118549225067954</string>
+    <key>FacebookClientToken</key>
+    <string>93d88763933d437aeb71e5d0a105cad8</string>
+    <key>FacebookDisplayName</key>
+    <string>QuizApp-IOS</string>
+
+    <!-- Facebook Login config 2 ("To use any of the Facebook dialogs (e.g., Login, Share, App Invites, etc.) that can perform an app switch to Facebook apps...") -->
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+      <string>fbapi</string>
+      <string>fb-messenger-share-api</string>
+    </array>
+
 </dict>
 </plist>

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FBSDKLoginKit
 
 class LoginViewController: UIViewController {
     
@@ -19,12 +20,20 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var loginButton: UIButton!
     
+    @IBOutlet weak var stackView: UIStackView!
+    
+    
     @IBOutlet weak var errorLabel: UILabel!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        let loginButton = FBLoginButton()
+        //loginButton.center = view.center
+        //view.addSubview(loginButton)
+        stackView.insertArrangedSubview(loginButton, at: 5)
+        
         setupElements()
     }
     

@@ -218,6 +218,7 @@
                         <outlet property="forgotPasswordButton" destination="XHm-55-aB2" id="NLr-7u-JXu"/>
                         <outlet property="loginButton" destination="oPg-aC-dzi" id="SgJ-99-nVy"/>
                         <outlet property="passwordTextField" destination="BJD-aM-0iL" id="ffv-1R-lxH"/>
+                        <outlet property="stackView" destination="7Ts-Bu-oak" id="H3T-Gy-MYp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fbt-EA-KRo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -1,0 +1,6 @@
+framework module Pods_QuizApp_IOS {
+  umbrella header "Pods-QuizApp-IOS-umbrella.h"
+
+  export *
+  module * { export * }
+}
