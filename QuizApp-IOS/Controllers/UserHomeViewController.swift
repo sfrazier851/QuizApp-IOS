@@ -9,21 +9,79 @@ import UIKit
 
 class UserHomeViewController: UIViewController {
     
+    @IBOutlet weak var welcomeUserLabel: UILabel!
+    
+    @IBOutlet weak var quizTitleLabel: UILabel!
+    
+    @IBOutlet weak var quizCollectionView: UICollectionView!
+    
+    @IBOutlet weak var selectedQuizPageControl: UIPageControl!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        setupCollectionView()
+        setupPageControl()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func setupCollectionView() {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        quizCollectionView.backgroundColor = .systemGroupedBackground
+        quizCollectionView.collectionViewLayout = layout
+        // snap each cell to fill view (no free scrolling)
+        quizCollectionView.isPagingEnabled = true
+        quizCollectionView.showsHorizontalScrollIndicator = false
     }
-    */
+    
+    private func setupPageControl() {
+        selectedQuizPageControl.numberOfPages = QuizSlide.collection.count
+    }
 
+    private func showTitle(atIndex index: Int) {
+        let slide = QuizSlide.collection[index]
+        quizTitleLabel.text = slide.title
+    }
+}
+
+extension UserHomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    // set number of elements in collection view
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        QuizSlide.collection.count
+    }
+    
+    // populate cells with QuizSlide data/images
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        // prevents app crashing, worst case is it returns empy collection view cell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.ReuseIdentifier.selectQuizCollectionViewCell, for: indexPath) as? SelectQuizCollectionViewCell else { return UICollectionViewCell() }
+        
+        cell.backgroundColor = indexPath.item % 2 == 0 ? .systemRed : .systemBlue
+        
+        /*
+        let imageName = QuizSlide.collection[indexPath.item].imageName
+        let image = UIImage(named: imageName) ?? UIImage()
+        cell.configure(image: image)
+        */
+        return cell
+    }
+    
+    // set cell size to fill collection view frame
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return collectionView.frame.size
+    }
+    
+    // no space between cells
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    // update quiz title and page control
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let index = Int(scrollView.contentOffset.x) / Int(scrollView.frame.width)
+        showTitle(atIndex: index)
+        selectedQuizPageControl.currentPage = index
+    }
+    
 }

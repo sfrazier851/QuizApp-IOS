@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -240,18 +241,117 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="User Home" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xAb-R9-6sL">
-                                <rect key="frame" x="164" y="411" width="86" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GVG-4Y-LIc">
+                                <rect key="frame" x="23" y="54" width="73" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Settings"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NPO-0W-iTV">
+                                <rect key="frame" x="329" y="54" width="62" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Logout"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome, &lt;loggedin_user&gt;!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QON-7m-uqi" userLabel="Welcome Label">
+                                <rect key="frame" x="43.5" y="138" width="327.5" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="E00-sG-36a">
+                                <rect key="frame" x="27" y="360" width="360" height="271"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="271" id="B74-Dj-x7p"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="EFa-C0-ydc">
+                                    <size key="itemSize" width="208" height="186"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="ZZ0-2q-tcU" customClass="SelectQuizCollectionViewCell" customModule="QuizApp_IOS" customModuleProvider="target">
+                                        <rect key="frame" x="76" y="0.0" width="208" height="186"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="AUD-bS-8l7">
+                                            <rect key="frame" x="0.0" y="0.0" width="208" height="186"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yE5-w2-dH3" userLabel="Quiz Slide Image View">
+                                                    <rect key="frame" x="0.0" y="0.0" width="208" height="186"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="yE5-w2-dH3" firstAttribute="leading" secondItem="AUD-bS-8l7" secondAttribute="leading" id="EQZ-sQ-Jru"/>
+                                                <constraint firstItem="yE5-w2-dH3" firstAttribute="top" secondItem="AUD-bS-8l7" secondAttribute="top" id="RUj-9y-SgV"/>
+                                                <constraint firstAttribute="trailing" secondItem="yE5-w2-dH3" secondAttribute="trailing" id="mkk-HW-34i"/>
+                                                <constraint firstAttribute="bottom" secondItem="yE5-w2-dH3" secondAttribute="bottom" id="zLN-hM-SY5"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="208" height="186"/>
+                                        <connections>
+                                            <outlet property="slideImageView" destination="yE5-w2-dH3" id="TK0-jU-4kD"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="2pL-oQ-xb9" id="xZW-6q-1OO"/>
+                                    <outlet property="delegate" destination="2pL-oQ-xb9" id="Dvi-8c-G8i"/>
+                                </connections>
+                            </collectionView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="5RX-df-7Ba">
+                                <rect key="frame" x="146" y="651" width="122" height="27.5"/>
+                                <color key="pageIndicatorTintColor" systemColor="systemGray2Color"/>
+                                <color key="currentPageIndicatorTintColor" systemColor="systemIndigoColor"/>
+                            </pageControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quiz Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0fJ-1y-Xvo" userLabel="Quiz Title Label">
+                                <rect key="frame" x="157" y="291" width="100" height="27.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JOs-Mq-oEd">
+                                <rect key="frame" x="162.5" y="771" width="89" height="36"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <state key="normal" title="Take Quiz"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i0r-VX-AZo">
+                                <rect key="frame" x="146" y="205" width="122" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Leaderboards"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="nib-jD-TaF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="E00-sG-36a" firstAttribute="centerX" secondItem="i0r-VX-AZo" secondAttribute="centerX" id="01m-5T-OoI"/>
+                            <constraint firstItem="E00-sG-36a" firstAttribute="leading" secondItem="nib-jD-TaF" secondAttribute="leading" constant="27" id="2i6-QB-FbK"/>
+                            <constraint firstItem="0fJ-1y-Xvo" firstAttribute="centerX" secondItem="qfW-da-YJi" secondAttribute="centerX" id="3Ha-69-C4Y"/>
+                            <constraint firstItem="E00-sG-36a" firstAttribute="top" secondItem="qfW-da-YJi" secondAttribute="top" constant="360" id="3zN-N8-zXE"/>
+                            <constraint firstItem="E00-sG-36a" firstAttribute="top" secondItem="0fJ-1y-Xvo" secondAttribute="bottom" constant="41.5" id="F5a-pb-pZn"/>
+                            <constraint firstItem="5RX-df-7Ba" firstAttribute="top" secondItem="E00-sG-36a" secondAttribute="bottom" constant="20" id="Hx4-Ds-tjl"/>
+                            <constraint firstItem="E00-sG-36a" firstAttribute="centerX" secondItem="qfW-da-YJi" secondAttribute="centerX" id="LFr-uN-GCo"/>
+                            <constraint firstItem="nib-jD-TaF" firstAttribute="trailing" secondItem="NPO-0W-iTV" secondAttribute="trailing" constant="23" id="LbP-QC-1QM"/>
+                            <constraint firstItem="GVG-4Y-LIc" firstAttribute="top" secondItem="nib-jD-TaF" secondAttribute="top" constant="10" id="Mjd-Vr-sIn"/>
+                            <constraint firstItem="5RX-df-7Ba" firstAttribute="centerX" secondItem="qfW-da-YJi" secondAttribute="centerX" id="Mtn-d9-xud"/>
+                            <constraint firstItem="0fJ-1y-Xvo" firstAttribute="leading" secondItem="nib-jD-TaF" secondAttribute="leading" constant="157" id="PSx-QC-X4E"/>
+                            <constraint firstItem="0fJ-1y-Xvo" firstAttribute="top" secondItem="i0r-VX-AZo" secondAttribute="bottom" constant="50" id="TsA-cd-ck3"/>
+                            <constraint firstItem="NPO-0W-iTV" firstAttribute="top" secondItem="nib-jD-TaF" secondAttribute="top" constant="10" id="fF6-RO-g3a"/>
+                            <constraint firstItem="i0r-VX-AZo" firstAttribute="top" secondItem="QON-7m-uqi" secondAttribute="bottom" constant="37" id="faz-dp-Ojl"/>
+                            <constraint firstItem="E00-sG-36a" firstAttribute="centerX" secondItem="QON-7m-uqi" secondAttribute="centerX" id="kxy-Y7-s0o"/>
+                            <constraint firstItem="E00-sG-36a" firstAttribute="centerX" secondItem="JOs-Mq-oEd" secondAttribute="centerX" id="l1c-E2-YJc"/>
+                            <constraint firstItem="GVG-4Y-LIc" firstAttribute="leading" secondItem="nib-jD-TaF" secondAttribute="leading" constant="23" id="ngQ-yM-bpH"/>
+                            <constraint firstItem="JOs-Mq-oEd" firstAttribute="top" secondItem="5RX-df-7Ba" secondAttribute="bottom" constant="92.5" id="pPK-cx-u0O"/>
+                            <constraint firstItem="0fJ-1y-Xvo" firstAttribute="centerX" secondItem="5RX-df-7Ba" secondAttribute="centerX" id="zYH-ZO-e1O"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="QTD-Ir-g23"/>
+                    <connections>
+                        <outlet property="quizCollectionView" destination="E00-sG-36a" id="a07-uA-qTC"/>
+                        <outlet property="quizTitleLabel" destination="0fJ-1y-Xvo" id="yKF-QZ-73P"/>
+                        <outlet property="selectedQuizPageControl" destination="5RX-df-7Ba" id="Bah-Aw-JtF"/>
+                        <outlet property="welcomeUserLabel" destination="QON-7m-uqi" id="a2E-Xg-4FQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wmW-fu-3F1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1005,6 +1105,13 @@ RANKING: 16th</string>
         <image name="textview_ios" width="142.5" height="75"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemCyanColor">
             <color red="0.19607843137254902" green="0.67843137254901964" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
