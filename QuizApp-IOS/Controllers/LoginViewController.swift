@@ -97,16 +97,10 @@ class LoginViewController: UIViewController {
         else {
         
             // Remove whitespace and new lines from email and password textfield values
-            //let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            //let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             
-            if userIsAdmin {
-                PresenterManager.shared.show(vc: .adminHome)
-            } else {
-                PresenterManager.shared.show(vc: .userHome)
-            }
-            /*
-            var userToLogin: [User]? = ModelController.getUsersByEmail(email: email)
+            var userToLogin: [User]? = User.getByEmail(email: email)
             
             if let userToLoginValue = userToLogin {
                 userToLogin = userToLoginValue
@@ -127,19 +121,25 @@ class LoginViewController: UIViewController {
                             return
                         }
                         
+                        if userToLogin?[0].is_admin == true {
+                            PresenterManager.shared.show(vc: .adminHome)
+                        } else {
+                            PresenterManager.shared.show(vc: .userHome)
+                        }
+                        
+                        /*
                         let homeViewController = self.storyboard?.instantiateViewController(identifier: "welcomeNavigation") as? UINavigationController
                         
                         window.rootViewController = homeViewController
                         window.makeKeyAndVisible()
                         
                         UIView.transition(with: window, duration: 1.65, options: .transitionCrossDissolve, animations: nil, completion: nil)
-                        
+                        */
                     } else {
                         showError("Incorrect credentials, please try again.")
                     }
                 }
             }
-        */
         }
     }
     

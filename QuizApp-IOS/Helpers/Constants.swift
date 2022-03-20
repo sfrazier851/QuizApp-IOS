@@ -8,6 +8,11 @@ import UIKit
 
 struct K {
     
+    struct SQLiteDatabase {
+        static let dbFileName = "QuizApp-IOS"
+        static let dbFileExtension = "sqlite3"
+    }
+    
     struct Color {
         static let Blue = UIColor.init(red: 93/255, green: 163/255, blue: 216/255, alpha: 1.0)
     }

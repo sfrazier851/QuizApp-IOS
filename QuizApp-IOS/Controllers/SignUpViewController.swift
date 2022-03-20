@@ -59,6 +59,13 @@ class SignUpViewController: UIViewController {
             return "Please make sure all fields are filled in."
         }
         
+        //Check if username has already been taken
+        let cleanedUsername = usernameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if User.getByUsername(username: cleanedUsername)!.count > 0 {
+            return "Sorry, that username has been used already."
+        }
+        
         //Check if the email is a valid email
         let cleanedEmail = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         
@@ -108,21 +115,22 @@ class SignUpViewController: UIViewController {
             if let lastNameValue = lastNameTextField?.text?.trimmingCharacters(in: .whitespacesAndNewlines) {
                 lastName = lastNameValue
             } else { lastName = "" }
+            */
+            let username = usernameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             
             // check if user with email already exists
-            if ModelController.getUsersByEmail(email: email)!.count == 0 {
+            if User.getByEmail(email: email)!.count == 0 {
                 // user does not already exist
                 // Create the user
-                ModelController.createUser(firstName: firstName, lastName: lastName, email: email, password: password)
-                transitionLogin()
+                User.create(username: username, email: email, password: password)
+                PresenterManager.shared.show(vc: .login)
             }
             else {
                 // user email already exists
                 showError("That user with email: \(email) already exists.")
             }
-            */
         }
     }
     
