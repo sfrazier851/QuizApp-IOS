@@ -23,6 +23,8 @@ class UserHomeViewController: UIViewController {
 
         setupCollectionView()
         setupPageControl()
+        
+        welcomeUserLabel.text = "Welcome, \(SessionManager.shared.getLoggedInUser()!.username)!"
     }
     
     private func setupCollectionView() {
@@ -47,6 +49,12 @@ class UserHomeViewController: UIViewController {
         let slide = QuizSlide.collection[index]
         quizTitleLabel.text = slide.title
     }
+    
+    @IBAction func logoutButtonTapped(_ sender: Any) {
+        SessionManager.shared.logoutUser()
+    }
+    
+    
 }
 
 extension UserHomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

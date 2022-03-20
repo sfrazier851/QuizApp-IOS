@@ -249,6 +249,9 @@
                                 <rect key="frame" x="329" y="54" width="62" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logoutButtonTapped:" destination="2pL-oQ-xb9" eventType="touchUpInside" id="1bO-uW-xQD"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome, &lt;loggedin_user&gt;!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QON-7m-uqi" userLabel="Welcome Label">
                                 <rect key="frame" x="43.5" y="138" width="327.5" height="30"/>

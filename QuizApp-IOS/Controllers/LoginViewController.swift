@@ -47,8 +47,8 @@ class LoginViewController: UIViewController {
         //forgotPasswordButton.tintColor = K.Color.Blue
         
         // temporary
-        emailTextField.text = "i@gmail.com"
-        passwordTextField.text = "Password!"
+        emailTextField.text = "gary@gmail.com"
+        passwordTextField.text = "Gassword!"
         
         emailTextField.becomeFirstResponder()
     }
@@ -116,6 +116,7 @@ class LoginViewController: UIViewController {
                 } else {
                     // User can be created, then go to logged-in home screen
                     if userToLogin?[0].password == password {
+                        SessionManager.shared.setLoggedInUser(user: userToLogin![0])
                         if userToLogin?[0].is_admin == true {
                             PresenterManager.shared.show(vc: .adminHome)
                         } else {

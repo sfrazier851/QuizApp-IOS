@@ -22,6 +22,7 @@
 		7F65193827E79F2E008C635E /* SQLiteTables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F65193727E79F2E008C635E /* SQLiteTables.swift */; };
 		7F65193B27E79F45008C635E /* SQLiteDAL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F65193A27E79F45008C635E /* SQLiteDAL.swift */; };
 		7F65193E27E79F73008C635E /* SQLiteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F65193D27E79F73008C635E /* SQLiteDatabase.swift */; };
+		7F65194527E7BE70008C635E /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F65194427E7BE6F008C635E /* SessionManager.swift */; };
 		84A5DB1227E4E60D00AFD467 /* UserModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A5DB0827E4E60D00AFD467 /* UserModels.swift */; };
 		84A5DB1327E4E60D00AFD467 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A5DB0927E4E60D00AFD467 /* Login.swift */; };
 		84A5DB1427E4E60D00AFD467 /* ReviewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A5DB0A27E4E60D00AFD467 /* ReviewModels.swift */; };
@@ -66,6 +67,7 @@
 		7F65193727E79F2E008C635E /* SQLiteTables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteTables.swift; sourceTree = "<group>"; };
 		7F65193A27E79F45008C635E /* SQLiteDAL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteDAL.swift; sourceTree = "<group>"; };
 		7F65193D27E79F73008C635E /* SQLiteDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteDatabase.swift; sourceTree = "<group>"; };
+		7F65194427E7BE6F008C635E /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		84A5DB0827E4E60D00AFD467 /* UserModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModels.swift; sourceTree = "<group>"; };
 		84A5DB0927E4E60D00AFD467 /* Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		84A5DB0A27E4E60D00AFD467 /* ReviewModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewModels.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				7F65183727E3849D008C635E /* PresenterManager.swift */,
+				7F65194427E7BE6F008C635E /* SessionManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				7F65185227E50179008C635E /* SelectQuizCollectionViewCell.swift in Sources */,
 				84A5DB1427E4E60D00AFD467 /* ReviewModels.swift in Sources */,
 				9AB2C3D627DC6E3C00B8E171 /* AdminHomeViewController.swift in Sources */,
+				7F65194527E7BE70008C635E /* SessionManager.swift in Sources */,
 				7F65193527E79EE8008C635E /* QuestionAnswer.swift in Sources */,
 				7F65193B27E79F45008C635E /* SQLiteDAL.swift in Sources */,
 				7F65193E27E79F73008C635E /* SQLiteDatabase.swift in Sources */,
