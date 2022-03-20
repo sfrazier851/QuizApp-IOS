@@ -14,6 +14,7 @@ struct QuizSlide {
     static var collection: [QuizSlide] = []
     
     static func setSlides(quizzes: [Quiz]) {
+        collection.removeAll()
         for quiz in quizzes {
             collection.append(QuizSlide(imageName: quiz.imageName, title: quiz.name))
         }
