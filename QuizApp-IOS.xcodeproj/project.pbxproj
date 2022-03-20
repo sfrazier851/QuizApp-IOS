@@ -25,10 +25,13 @@
 		84A5DB1927E4E60D00AFD467 /* DBInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A5DB0F27E4E60D00AFD467 /* DBInit.swift */; };
 		84A5DB1A27E4E60D00AFD467 /* QuestionModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A5DB1027E4E60D00AFD467 /* QuestionModels.swift */; };
 		84A5DB1B27E4E60D00AFD467 /* PrizeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A5DB1127E4E60D00AFD467 /* PrizeModels.swift */; };
+		9A273DB427E6E7CF00567C9C /* QuizPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A273DB327E6E7CF00567C9C /* QuizPageControl.swift */; };
 		9A55634027E5689500997B21 /* GameOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A55633F27E5689500997B21 /* GameOverViewController.swift */; };
 		9A55634727E56A9C00997B21 /* Vingy Normal.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9A55634627E56A9C00997B21 /* Vingy Normal.ttf */; };
 		9A55634927E56F8A00997B21 /* alarm clock.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9A55634827E56DD400997B21 /* alarm clock.ttf */; };
 		9A55634B27E58B6400997B21 /* IOSHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A55634A27E58B6400997B21 /* IOSHomeViewController.swift */; };
+		9A6FD1F527E76B08009B6FB8 /* wrong-answer.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9A6FD1F327E76B08009B6FB8 /* wrong-answer.wav */; };
+		9A6FD1F627E76B08009B6FB8 /* correct-answer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9A6FD1F427E76B08009B6FB8 /* correct-answer.mp3 */; };
 		9AB2C3B327DC62D300B8E171 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2C3B227DC62D300B8E171 /* AppDelegate.swift */; };
 		9AB2C3B527DC62D300B8E171 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2C3B427DC62D300B8E171 /* SceneDelegate.swift */; };
 		9AB2C3B727DC62D300B8E171 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2C3B627DC62D300B8E171 /* InitialViewController.swift */; };
@@ -62,10 +65,13 @@
 		84A5DB0F27E4E60D00AFD467 /* DBInit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBInit.swift; sourceTree = "<group>"; };
 		84A5DB1027E4E60D00AFD467 /* QuestionModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionModels.swift; sourceTree = "<group>"; };
 		84A5DB1127E4E60D00AFD467 /* PrizeModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrizeModels.swift; sourceTree = "<group>"; };
+		9A273DB327E6E7CF00567C9C /* QuizPageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizPageControl.swift; sourceTree = "<group>"; };
 		9A55633F27E5689500997B21 /* GameOverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverViewController.swift; sourceTree = "<group>"; };
-		9A55634627E56A9C00997B21 /* Vingy Normal.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Vingy Normal.ttf"; path = "Fonts/Vingy Normal.ttf"; sourceTree = SOURCE_ROOT; };
-		9A55634827E56DD400997B21 /* alarm clock.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "alarm clock.ttf"; path = "Fonts/alarm clock.ttf"; sourceTree = SOURCE_ROOT; };
+		9A55634627E56A9C00997B21 /* Vingy Normal.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Vingy Normal.ttf"; path = "QuizApp-IOS/Fonts/Vingy Normal.ttf"; sourceTree = SOURCE_ROOT; };
+		9A55634827E56DD400997B21 /* alarm clock.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "alarm clock.ttf"; path = "QuizApp-IOS/Fonts/alarm clock.ttf"; sourceTree = SOURCE_ROOT; };
 		9A55634A27E58B6400997B21 /* IOSHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSHomeViewController.swift; sourceTree = "<group>"; };
+		9A6FD1F327E76B08009B6FB8 /* wrong-answer.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "wrong-answer.wav"; sourceTree = "<group>"; };
+		9A6FD1F427E76B08009B6FB8 /* correct-answer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "correct-answer.mp3"; sourceTree = "<group>"; };
 		9AB2C3AF27DC62D300B8E171 /* QuizApp-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QuizApp-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AB2C3B227DC62D300B8E171 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9AB2C3B427DC62D300B8E171 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -146,6 +152,15 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		9A6FD1F227E76AD5009B6FB8 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				9A6FD1F427E76B08009B6FB8 /* correct-answer.mp3 */,
+				9A6FD1F327E76B08009B6FB8 /* wrong-answer.wav */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		9AB2C3A627DC62D300B8E171 = {
 			isa = PBXGroup;
 			children = (
@@ -170,6 +185,7 @@
 				7F65183627E3848B008C635E /* Managers */,
 				7F65178D27DFB770008C635E /* Helpers */,
 				9AB2C3C927DC638600B8E171 /* Controllers */,
+				9A6FD1F227E76AD5009B6FB8 /* Sounds */,
 				9AB2C3C727DC635800B8E171 /* Views */,
 				9AB2C3B227DC62D300B8E171 /* AppDelegate.swift */,
 				9AB2C3B427DC62D300B8E171 /* SceneDelegate.swift */,
@@ -201,6 +217,7 @@
 				9AB2C3D527DC6E3C00B8E171 /* AdminHomeViewController.swift */,
 				7F65179227DFB7CE008C635E /* LoadingViewController.swift */,
 				7F65183227E37A2F008C635E /* UserHomeViewController.swift */,
+				9A273DB327E6E7CF00567C9C /* QuizPageControl.swift */,
 				9A55633F27E5689500997B21 /* GameOverViewController.swift */,
 				9A55634A27E58B6400997B21 /* IOSHomeViewController.swift */,
 			);
@@ -266,9 +283,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AB2C3BF27DC62D500B8E171 /* LaunchScreen.storyboard in Resources */,
+				9A6FD1F627E76B08009B6FB8 /* correct-answer.mp3 in Resources */,
 				9A55634927E56F8A00997B21 /* alarm clock.ttf in Resources */,
 				9AB2C3BC27DC62D500B8E171 /* Assets.xcassets in Resources */,
 				9A55634727E56A9C00997B21 /* Vingy Normal.ttf in Resources */,
+				9A6FD1F527E76B08009B6FB8 /* wrong-answer.wav in Resources */,
 				9AB2C3BA27DC62D300B8E171 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,6 +304,7 @@
 				84A5DB1327E4E60D00AFD467 /* Login.swift in Sources */,
 				84A5DB1A27E4E60D00AFD467 /* QuestionModels.swift in Sources */,
 				9AB2C3CC27DC6CB300B8E171 /* LoginViewController.swift in Sources */,
+				9A273DB427E6E7CF00567C9C /* QuizPageControl.swift in Sources */,
 				84A5DB1727E4E60D00AFD467 /* DBCRUD.swift in Sources */,
 				84A5DB1B27E4E60D00AFD467 /* PrizeModels.swift in Sources */,
 				9AB2C3B727DC62D300B8E171 /* InitialViewController.swift in Sources */,

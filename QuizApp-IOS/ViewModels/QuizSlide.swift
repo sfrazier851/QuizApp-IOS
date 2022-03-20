@@ -12,8 +12,8 @@ struct QuizSlide {
     var title: String
     
     static let collection: [QuizSlide] = [
-        QuizSlide(imageName: "imSlide1", title: "Java"),
-        QuizSlide(imageName: "imSlide2", title: "iOS"),
-        QuizSlide(imageName: "imSlide3", title: "Android")
+        QuizSlide(imageName: "java", title: "Java"),
+        QuizSlide(imageName: "ios", title: "iOS"),
+        QuizSlide(imageName: "android", title: "Android")
     ]
 }

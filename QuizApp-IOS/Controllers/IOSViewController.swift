@@ -6,28 +6,19 @@
 //
 
 import UIKit
+import AVFoundation
 
 class IOSViewController: UIViewController {
 
     @IBOutlet weak var ios_que_tv: UITextView!
-    @IBOutlet weak var timerLabel: UILabel!
-    @IBOutlet weak var backButton: UIButton!
-    @IBOutlet weak var timerImage: UIImageView!
-    //    @IBOutlet weak var ans_1: UILabel!
-//    @IBOutlet weak var ans_2: UILabel!
-//    @IBOutlet weak var ans_3: UILabel!
-//    @IBOutlet weak var ans_4: UILabel!
-    @IBOutlet weak var progressBar: UIProgressView!
-    
-//    @IBOutlet weak var ans2_view: UIView!
-//    @IBOutlet weak var ans1_view: UIView!
-//    @IBOutlet weak var ans3_view: UIView!
-//    @IBOutlet weak var ans4_view: UIView!
-    
-    @IBOutlet weak var ans_1: UIButton!
-    @IBOutlet weak var ans_2: UIButton!
-    @IBOutlet weak var ans_3: UIButton!
-    @IBOutlet weak var ans_4: UIButton!
+    @IBOutlet weak var ios_timerLabel: UILabel!
+    @IBOutlet weak var ios_backButton: UIButton!
+    @IBOutlet weak var ios_timerImage: UIImageView!
+    @IBOutlet weak var ios_progressBar: UIProgressView!
+    @IBOutlet weak var ios_ans_1: UIButton!
+    @IBOutlet weak var ios_ans_2: UIButton!
+    @IBOutlet weak var ios_ans_3: UIButton!
+    @IBOutlet weak var ios_ans_4: UIButton!
     
     var qArr = [
         ["What does IOS mean?","Internet Operation System","iPhone Operation System","Interval Operation System","iPhone Overriding System","iPhone Operation System"],
@@ -58,14 +49,14 @@ class IOSViewController: UIViewController {
     
     var rand_choices = 0
     
+    var player : AVAudioPlayer!
+    
     override func viewDidLoad() {
        
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        progressBar.progress = 0.0
+        ios_progressBar.progress = 0.0
         count = qArr.count
-        timerLabel.text = String(minTime)+":0"+String(secTime)
+        ios_timerLabel.text = String(minTime)+":0"+String(secTime)
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
         K.ios_gamescore = 0
         showQuestionsForIOS()
@@ -84,7 +75,7 @@ class IOSViewController: UIViewController {
             timer.invalidate()
             let dialogMessage = UIAlertController(title: "Are You Sure?", message: "Leaving the game will lose your daily attempt and your chance for a new ranking. Do you still want to continue?", preferredStyle: .alert)
             let yes = UIAlertAction(title: "Yes", style: .default, handler: { (action) -> Void in
-                PresenterManager.shared.show(vc: .iosHome)
+                PresenterManager.shared.show(vc: .userHome)
             })
             let no = UIAlertAction(title: "No", style: .default, handler: { (action) -> Void in
                 self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTime), userInfo: nil, repeats: true)
@@ -93,7 +84,7 @@ class IOSViewController: UIViewController {
             dialogMessage.addAction(yes)
             self.present(dialogMessage, animated: true, completion: nil)
         } else {
-            PresenterManager.shared.show(vc: .iosHome)
+            PresenterManager.shared.show(vc: .userHome)
           }
         
     }
@@ -103,13 +94,16 @@ class IOSViewController: UIViewController {
         if sender.currentTitle! == qArr[rand][5] {
             //print(sender.currentTitle!)
             K.ios_gamescore += 1
-        }
+            playSound(soundName : "correct-answer", exte : "mp3")
+        } else {
+            playSound(soundName : "wrong-answer", exte : "wav")
+          }
         
         qAsked += 1
         
         let perc = Float(qAsked) / Float(count)
         
-        progressBar.progress = perc
+        ios_progressBar.progress = perc
         
         if perc == 1 {
             
@@ -153,10 +147,10 @@ class IOSViewController: UIViewController {
         
         if minTime < 5 {
             //timerLabel.textColor = UIColor.red
-            timerImage.image = UIImage(named: "redButton")
+            ios_timerImage.image = UIImage(named: "redButton")
         }
         
-        timerLabel.text = String(newTime)
+        ios_timerLabel.text = String(newTime)
         if minTime == 0 && secTime == 0 {
             
             timer.invalidate()
@@ -181,11 +175,18 @@ class IOSViewController: UIViewController {
             }
         }
 
-        ans_1.setTitle(qArr[rand][shuffled_choices[0]], for: .normal)
-        ans_2.setTitle(qArr[rand][shuffled_choices[1]], for: .normal)
-        ans_3.setTitle(qArr[rand][shuffled_choices[2]], for: .normal)
-        ans_4.setTitle(qArr[rand][shuffled_choices[3]], for: .normal)
+        ios_ans_1.setTitle(qArr[rand][shuffled_choices[0]], for: .normal)
+        ios_ans_2.setTitle(qArr[rand][shuffled_choices[1]], for: .normal)
+        ios_ans_3.setTitle(qArr[rand][shuffled_choices[2]], for: .normal)
+        ios_ans_4.setTitle(qArr[rand][shuffled_choices[3]], for: .normal)
         
+    }
+    
+    func playSound(soundName : String, exte : String) { //parameter : DataType
+        let url = Bundle.main.url(forResource: soundName, withExtension: exte)
+        player = try! AVAudioPlayer(contentsOf: url!)
+        player.play()
+
     }
     
 }

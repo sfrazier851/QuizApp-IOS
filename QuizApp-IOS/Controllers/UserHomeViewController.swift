@@ -17,12 +17,16 @@ class UserHomeViewController: UIViewController {
     
     @IBOutlet weak var selectedQuizPageControl: UIPageControl!
     
+    @IBOutlet var uhview: UIView!
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
 
         setupCollectionView()
         setupPageControl()
+        //setupImageBackground()
+        
     }
     
     private func setupCollectionView() {
@@ -33,6 +37,7 @@ class UserHomeViewController: UIViewController {
         // snap each cell to fill view (no free scrolling)
         quizCollectionView.isPagingEnabled = true
         quizCollectionView.showsHorizontalScrollIndicator = false
+        showTitle(atIndex: 0)
     }
     
     private func setupPageControl() {
@@ -43,6 +48,58 @@ class UserHomeViewController: UIViewController {
         let slide = QuizSlide.collection[index]
         quizTitleLabel.text = slide.title
     }
+    
+    private func setupImageBackground() {
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        UIImage(named: "mainBg.png")?.draw(in: self.view.bounds)
+
+        if let image = UIGraphicsGetImageFromCurrentImageContext(){
+            UIGraphicsEndImageContext()
+            self.view.backgroundColor = UIColor(patternImage: image)
+        }else{
+            UIGraphicsEndImageContext()
+            debugPrint("Image not available")
+         }
+    }
+    
+    @IBAction func takeQuiz(_ sender: UIButton) {
+        
+        //CHECK SUBSCRIPTION
+        if K.dailyAttempt == 2 {
+            
+            let dialogMessage = UIAlertController(title: "Alert", message: "You already reached your daily maximum attempts. Upgrade to a paid subscription for unlimited attempts", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+               
+            })
+            dialogMessage.addAction(ok)
+            self.present(dialogMessage, animated: true, completion: nil)
+            
+            
+        } else {
+          
+            K.dailyAttempt += 1
+            
+            switch quizTitleLabel.text?.lowercased() {
+                
+                case "java":
+                    K.currentPage = "java"
+                    PresenterManager.shared.show(vc: .java)
+                case "ios":
+                    K.currentPage = "ios"
+                    PresenterManager.shared.show(vc: .ios)
+                case "android":
+                    K.currentPage = "android"
+                    PresenterManager.shared.show(vc: .android)
+                default:
+                    print("No Controllers!")
+                
+            }
+        
+        }
+        
+    }
+    
+    
 }
 
 extension UserHomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -57,13 +114,15 @@ extension UserHomeViewController: UICollectionViewDelegate, UICollectionViewData
         // prevents app crashing, worst case is it returns empy collection view cell
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.ReuseIdentifier.selectQuizCollectionViewCell, for: indexPath) as? SelectQuizCollectionViewCell else { return UICollectionViewCell() }
         
-        cell.backgroundColor = indexPath.item % 2 == 0 ? .systemRed : .systemBlue
+        //cell.backgroundColor = indexPath.item % 2 == 0 ? .systemRed : .systemBlue
         
-        /*
+        
         let imageName = QuizSlide.collection[indexPath.item].imageName
+        //print(imageName)
         let image = UIImage(named: imageName) ?? UIImage()
         cell.configure(image: image)
-        */
+//        cell.layer.cornerRadius = 50
+//        cell.layer.masksToBounds = true
         return cell
     }
     
@@ -83,5 +142,7 @@ extension UserHomeViewController: UICollectionViewDelegate, UICollectionViewData
         showTitle(atIndex: index)
         selectedQuizPageControl.currentPage = index
     }
+    
+    
     
 }

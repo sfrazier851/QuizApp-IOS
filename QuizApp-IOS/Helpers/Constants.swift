@@ -27,11 +27,19 @@ struct K {
         static let iosHomeViewController = "IOSHomeViewController"
         static let iosViewController = "IOSViewController"
         static let gameOverViewController = "GameOverViewController"
+        static let javaViewController = "JavaViewController"
+        static let androidViewController = "AndroidViewController"
     }
     
     //static let dailyAttempt = UserDefaults.standard.integer(forKey: "DailyAttempts")
     static var dailyAttempt = 0
     
     static var ios_gamescore = 0
+    
+    static var java_gamescore = 0
+    
+    static var android_gamescore = 0
+    
+    static var currentPage = ""
     
 }

@@ -11,10 +11,28 @@ class GameOverViewController: UIViewController {
 
     @IBOutlet weak var gamescoreTextView: UITextView!
    
+    @IBOutlet weak var btn3: UIButton!
+    
     override func viewDidLoad() {
     
         super.viewDidLoad()
-        gamescoreTextView.text = "YOUR SCORE: \(K.ios_gamescore)\nRANKING: 16th"
+        
+        var score : Int = 0
+        
+        switch K.currentPage.lowercased() {
+            
+            case "java":
+                score = K.java_gamescore
+            case "ios":
+                score = K.ios_gamescore
+            case "android":
+                score = K.android_gamescore
+            default:
+                print("No available score")
+            
+        }
+        
+        gamescoreTextView.text = "YOUR SCORE: \(score)\nRANKING: 16th"
 
     }
 
@@ -40,7 +58,19 @@ class GameOverViewController: UIViewController {
         } else {
           
             K.dailyAttempt += 1
-            PresenterManager.shared.show(vc: .ios)
+            
+            switch K.currentPage.lowercased() {
+                
+                case "java":
+                    PresenterManager.shared.show(vc: .java)
+                case "ios":
+                    PresenterManager.shared.show(vc: .ios)
+                case "android":
+                    PresenterManager.shared.show(vc: .android)
+                default:
+                    print("No available view")
+                
+            }
         
           }
         

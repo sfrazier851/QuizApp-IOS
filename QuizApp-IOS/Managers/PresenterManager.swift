@@ -22,8 +22,8 @@ class PresenterManager {
         case userHome
         case iosHome
         case ios
-//        case java
-//        case android
+        case java
+        case android
         case gameOver
     }
     
@@ -57,11 +57,11 @@ class PresenterManager {
             case .ios:
                 viewController = UIStoryboard(name: K.StoryboardID.main, bundle: nil).instantiateViewController(identifier: K.StoryboardID.iosViewController)
             
-//            case .java:
-//                print("Under Construction!")
-//
-//            case .android:
-//                print("Under Construction!")
+            case .java:
+                viewController = UIStoryboard(name: K.StoryboardID.main, bundle: nil).instantiateViewController(identifier: K.StoryboardID.javaViewController)
+
+            case .android:
+                viewController = UIStoryboard(name: K.StoryboardID.main, bundle: nil).instantiateViewController(identifier: K.StoryboardID.androidViewController)
             
         case .gameOver:
             viewController = UIStoryboard(name: K.StoryboardID.main, bundle: nil).instantiateViewController(identifier: K.StoryboardID.gameOverViewController)
