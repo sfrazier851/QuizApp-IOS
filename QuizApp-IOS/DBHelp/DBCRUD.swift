@@ -296,7 +296,7 @@ func EmailToUserID(NE:String) -> Int{
 }
 func UserIDtoEmail(ID:Int)->[String]{
     var emails = [String]()
-    let query = "SELECT Email FROM Emails WHERE User_ID = ?"
+    let query = "SELECT Emails FROM Emails WHERE User_ID = ?"
         var stmt : OpaquePointer?
     
         if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{

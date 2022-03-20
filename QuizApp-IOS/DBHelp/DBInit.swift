@@ -37,8 +37,8 @@ class DBInit{
     }
    
     func initUser(){
-        let u1=UserModels(UserName: "guest", Password: "2", DOB: "June 2, 1994", admin: false, subriction: "trial", Status: "clear", First: "2", Last: "2", email: ["2@gmail.com"])
-        let u2=UserModels(UserName: "admin", Password: "2", DOB: "June 2, 1994", admin: true, subriction: "paid", Status: "clear", First: "admin", Last: "admin", email: ["admin@gmail.com"])
+        let u1=UserModels(UserName: "guest", Password: "123Password!", DOB: "June 2, 1994", admin: false, subriction: "trial", Status: "clear", First: "2", Last: "2", email: ["2@gmail.com"])
+        let u2=UserModels(UserName: "admin", Password: "123Password!", DOB: "June 2, 1994", admin: true, subriction: "paid", Status: "clear", First: "admin", Last: "admin", email: ["admin@gmail.com"])
         DBCRUD.initDBCRUD.createUserWithUserModal(us: u1)
         DBCRUD.initDBCRUD.createUserWithUserModal(us: u2)
     }
