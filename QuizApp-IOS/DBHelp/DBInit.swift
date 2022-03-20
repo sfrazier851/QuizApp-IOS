@@ -17,31 +17,25 @@ class DBInit{
     }
     func openDb(){
         print("DBOPEN")
-
         
-        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
-          let url = NSURL(fileURLWithPath: path)
-          if let pathComponent = url.appendingPathComponent("QuizIos.sqlite") {
-              let filePath = pathComponent.path
-              let fileManager = FileManager.default
-              if fileManager.fileExists(atPath: filePath) {
-                  print("FILE AVAILABLE")
-                  if sqlite3_open(filePath, &DBInit.db) != SQLITE_OK{
-                              print("Can't Open Database")
-                          }
-              } else {
-                  print("FILE NOT AVAILABLE")
-                  createTable()
-                  fileManager.createFile(atPath: filePath, contents: nil, attributes: nil)
-              }
-              if sqlite3_open(filePath, &DBInit.db) != SQLITE_OK{
-                          print("Can't Open Database")
-                      }
-          } else {
-              print("FILE PATH NOT AVAILABLE")
-          }
+        let flagExist:Bool = FileManager.default.fileExists(atPath: (NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String).appendingPathComponent("QuizIos.sqlite"))!.path)
 
+       
+        
+        let fileP = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("QuizIos.sqlite")
+  
+        print("db path is", fileP)
+        
+        if sqlite3_open(fileP.path, &DBInit.db) != SQLITE_OK{
+            print("Can't Open Database")
+        }
+        if !flagExist{
+            print("File didn't Exist")
+            createTable()} else{
+                print("File Exist")
+            }
     }
+   
     func initUser(){
         let u1=UserModels(UserName: "guest", Password: "2", DOB: "June 2, 1994", admin: false, subriction: "trial", Status: "clear", First: "2", Last: "2", email: ["2@gmail.com"])
         let u2=UserModels(UserName: "admin", Password: "2", DOB: "June 2, 1994", admin: true, subriction: "paid", Status: "clear", First: "admin", Last: "admin", email: ["admin@gmail.com"])

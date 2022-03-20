@@ -25,4 +25,12 @@ class QuestionModels{
         self.Quiz_ID=Quiz_ID
         self.ID=ID
     }
+    init(Question:String, Awnser:String, Quiz_ID:Int, ID:Int, choice:[String]){
+        self.Question=Question
+        self.Awnser=Awnser
+        self.Quiz_ID=Quiz_ID
+        self.ID=ID
+        self.choices=choice
+    }
+    
 }
