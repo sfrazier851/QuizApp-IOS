@@ -100,6 +100,10 @@ class LoginViewController: UIViewController {
             let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             
+            
+            
+            
+            /*
             var userToLogin: [User]? = User.getByEmail(email: email)
             
             if let userToLoginValue = userToLogin {
@@ -126,7 +130,7 @@ class LoginViewController: UIViewController {
                         showError("Incorrect credentials, please try again.")
                     }
                 }
-            }
+            }*/
         }
     }
     
