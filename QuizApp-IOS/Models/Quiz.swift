@@ -10,6 +10,7 @@ import Foundation
 struct Quiz {
     var id: Int = 0
     var name: String = ""
+    var imageName: String = ""
     
     static let quiz = Quiz()
     
@@ -22,6 +23,7 @@ struct Quiz {
             var quiz = Quiz()
             quiz.id = Int(columns[0])!
             quiz.name = columns[1]
+            quiz.imageName = columns[2]
             
             quizzes.append(quiz)
         }
@@ -36,7 +38,7 @@ struct Quiz {
         return SQLiteDAL.getByName(name: name)
     }
     
-    static func create(name: String) -> Bool? {
-        return SQLiteDAL.createQuiz(name: name)
+    static func create(name: String, imageName: String) -> Bool? {
+        return SQLiteDAL.createQuiz(name: name, imageName: imageName)
     }
 }

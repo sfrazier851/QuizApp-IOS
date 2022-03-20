@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("\n=======================")
         print("  creating quiz  ")
         print("=======================")
-        Quiz.create(name: "Swift")
+        Quiz.create(name: "Swift", imageName: "imSwift")
         for quiz in Quiz.getAll()! { print(quiz) }
         
         print("\n=======================")

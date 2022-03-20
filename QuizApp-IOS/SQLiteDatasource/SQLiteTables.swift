@@ -39,11 +39,12 @@ class SQLiteTables {
     private static var createQuizTable = """
              CREATE TABLE IF NOT EXISTS Quiz \
              (ID INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE, \
-             name TEXT NOT NULL);
+             name TEXT NOT NULL, \
+             imageName TEXT NOT NULL);
              """
     private static var insertIntoQuizTable = """
-             INSERT INTO Quiz ( name ) \
-             VALUES ( 'Java' ), ( 'Android' ), ( 'iOS');
+             INSERT INTO Quiz ( name, imageName ) \
+             VALUES ( 'Java', 'imJava' ), ( 'Android', 'imAndroid' ), ( 'iOS', 'imiOS');
              """
     static var quizTableScripts = [dropQuizTable, createQuizTable, insertIntoQuizTable]
     
