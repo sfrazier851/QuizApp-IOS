@@ -140,21 +140,6 @@ class SignUpViewController: UIViewController {
         errorLabel.alpha = 1
     }
     
-    /*
-    func transitionLogin() {
-        
-        let loginViewController = self.storyboard?.instantiateViewController(identifier: "loginView") as? LoginViewController
-        
-        let transition = CATransition()
-        transition.type = .push
-        transition.duration = 0.25
-        view.window?.layer.add(transition, forKey: kCATransition)
-        
-        view.window?.rootViewController = loginViewController
-        view.window?.makeKeyAndVisible()
-    }
-    */
-    
     @IBAction func backButtonTapped(_ sender: Any) {
         PresenterManager.shared.show(vc: .initial)
     }

@@ -33,6 +33,10 @@ class UserHomeViewController: UIViewController {
         // snap each cell to fill view (no free scrolling)
         quizCollectionView.isPagingEnabled = true
         quizCollectionView.showsHorizontalScrollIndicator = false
+        
+        // set the collection view and title initially
+        QuizSlide.setSlides(quizzes: Quiz.getAll()!)
+        quizTitleLabel.text = QuizSlide.collection[0].title
     }
     
     private func setupPageControl() {
@@ -57,13 +61,12 @@ extension UserHomeViewController: UICollectionViewDelegate, UICollectionViewData
         // prevents app crashing, worst case is it returns empy collection view cell
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.ReuseIdentifier.selectQuizCollectionViewCell, for: indexPath) as? SelectQuizCollectionViewCell else { return UICollectionViewCell() }
         
-        cell.backgroundColor = indexPath.item % 2 == 0 ? .systemRed : .systemBlue
+        //cell.backgroundColor = indexPath.item % 2 == 0 ? .systemRed : .systemBlue
         
-        /*
         let imageName = QuizSlide.collection[indexPath.item].imageName
         let image = UIImage(named: imageName) ?? UIImage()
         cell.configure(image: image)
-        */
+        
         return cell
     }
     
