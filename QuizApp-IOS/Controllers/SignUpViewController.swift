@@ -44,7 +44,7 @@ class SignUpViewController: UIViewController {
         Utilities.styleTextField(passwordTextField, placeHolderString: "password")
         Utilities.styleTextField(passwordConfirmTextField, placeHolderString: "confirm password")
         Utilities.styleFilledButton(signUpButton)
-        Utilities.styleHollowButton(backButton)
+        //Utilities.styleHollowButton(backButton)
         
         usernameTextField.becomeFirstResponder()
     }
