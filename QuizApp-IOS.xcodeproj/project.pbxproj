@@ -44,6 +44,7 @@
 		9AB2C3D227DC6E0100B8E171 /* IOSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2C3D127DC6E0100B8E171 /* IOSViewController.swift */; };
 		9AB2C3D427DC6E1500B8E171 /* AndroidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2C3D327DC6E1500B8E171 /* AndroidViewController.swift */; };
 		9AB2C3D627DC6E3C00B8E171 /* AdminHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2C3D527DC6E3C00B8E171 /* AdminHomeViewController.swift */; };
+		C240893527E8A88A001981A7 /* Quiz_Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C240893427E8A88A001981A7 /* Quiz_Editor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +87,7 @@
 		9AB2C3D127DC6E0100B8E171 /* IOSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSViewController.swift; sourceTree = "<group>"; };
 		9AB2C3D327DC6E1500B8E171 /* AndroidViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AndroidViewController.swift; sourceTree = "<group>"; };
 		9AB2C3D527DC6E3C00B8E171 /* AdminHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminHomeViewController.swift; sourceTree = "<group>"; };
+		C240893427E8A88A001981A7 /* Quiz_Editor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz_Editor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +222,7 @@
 				9A273DB327E6E7CF00567C9C /* QuizPageControl.swift */,
 				9A55633F27E5689500997B21 /* GameOverViewController.swift */,
 				9A55634A27E58B6400997B21 /* IOSHomeViewController.swift */,
+				C240893427E8A88A001981A7 /* Quiz_Editor.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				9A55634027E5689500997B21 /* GameOverViewController.swift in Sources */,
 				9AB2C3D027DC6DF100B8E171 /* JavaViewController.swift in Sources */,
 				7F65179927DFCD40008C635E /* Utilities.swift in Sources */,
+				C240893527E8A88A001981A7 /* Quiz_Editor.swift in Sources */,
 				9AB2C3B327DC62D300B8E171 /* AppDelegate.swift in Sources */,
 				9AB2C3D227DC6E0100B8E171 /* IOSViewController.swift in Sources */,
 				9AB2C3B527DC62D300B8E171 /* SceneDelegate.swift in Sources */,
@@ -477,7 +481,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = C76ZC5RLMX;
+				DEVELOPMENT_TEAM = L774RRX3UB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "QuizApp-IOS/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -507,7 +511,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = C76ZC5RLMX;
+				DEVELOPMENT_TEAM = L774RRX3UB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "QuizApp-IOS/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

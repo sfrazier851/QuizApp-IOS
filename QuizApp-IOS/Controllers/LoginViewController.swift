@@ -99,13 +99,19 @@ class LoginViewController: UIViewController {
         else {
         
             // Remove whitespace and new lines from email and password textfield values
-            //let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            //let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             
-            if userIsAdmin {
-                PresenterManager.shared.show(vc: .adminHome)
-            } else {
-                PresenterManager.shared.show(vc: .userHome)
+            if LoginPort.initLogin.login(S: email, PW: password){
+                
+                if LoginPort.user?.admin ?? false {
+                    PresenterManager.shared.show(vc: .adminHome)
+                } else {
+                    PresenterManager.shared.show(vc: .userHome)
+                }
+            }
+            else{
+                showError("Invalid Credentials")
             }
             /*
             var userToLogin: [User]? = ModelController.getUsersByEmail(email: email)
