@@ -8,6 +8,7 @@
 import Foundation
 
 class UserModels{
+    
     enum SubcriptionType:Int, CaseIterable{
          case prize = 2
         case trial = 1
@@ -56,9 +57,10 @@ class UserModels{
         self.Last = Last
         self.Email = email
     }
-    init(Email:String, Password:String){
+    init(Email:String, Password:String, UserName:String){
         self.Email=[Email]
         self.Password=Password
+        self.UserName=UserName
         Subscript=SubcriptionType.trial.rawValue
         status="unblocked"
     }

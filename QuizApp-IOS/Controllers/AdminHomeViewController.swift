@@ -26,4 +26,12 @@ class AdminHomeViewController: UIViewController {
     }
     */
 
+    
+    @IBAction func CreateQuiz()
+    {
+        let QEdit = self.storyboard?.instantiateViewController(withIdentifier:"Quiz_Editor") as! Quiz_Editor;
+        
+        self.present(QEdit, animated: true);
+    }
+    
 }

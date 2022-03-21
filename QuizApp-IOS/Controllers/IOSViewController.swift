@@ -94,10 +94,11 @@ class IOSViewController: UIViewController {
         if sender.currentTitle! == qArr[rand][5] {
             //print(sender.currentTitle!)
             K.ios_gamescore += 1
-            playSound(soundName : "correct-answer", exte : "mp3")
-        } else {
-            playSound(soundName : "wrong-answer", exte : "wav")
-          }
+            //playSound(soundName : "correct-answer", exte : "mp3")
+        }
+//        else {
+//            playSound(soundName : "wrong-answer", exte : "wav")
+//          }
         
         qAsked += 1
         

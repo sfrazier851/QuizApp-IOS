@@ -21,6 +21,8 @@ class SignUpViewController: UIViewController {
     
     @IBOutlet weak var errorLabel: UILabel!
     
+    @IBOutlet weak var backButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,18 +32,19 @@ class SignUpViewController: UIViewController {
     private func setupElements() {
         // Hide the error label
         errorLabel.alpha = 0
-        //errorLabel.backgroundColor = UIColor(white: 0.0, alpha: 1.0)
-        //errorLabel.layer.masksToBounds = true
-        //errorLabel.layer.cornerRadius = 10
+        errorLabel.backgroundColor = UIColor(white: 0.0, alpha: 1.0)
+        errorLabel.layer.masksToBounds = true
+        errorLabel.layer.cornerRadius = 10
         errorLabel.lineBreakMode = .byWordWrapping
         errorLabel.numberOfLines = 0
     
         // Style the elements
-        //Utilities.styleTextField(usernameTextField, placeHolderString: "username")
-        //Utilities.styleTextField(emailTextField, placeHolderString: "email")
-        //Utilities.styleTextField(passwordTextField, placeHolderString: "password")
-        //Utilities.styleTextField(passwordConfirmTextField, placeHolderString: "confirm password")
-        //Utilities.styleFilledButton(signUpButton)
+        Utilities.styleTextField(usernameTextField, placeHolderString: "username")
+        Utilities.styleTextField(emailTextField, placeHolderString: "email")
+        Utilities.styleTextField(passwordTextField, placeHolderString: "password")
+        Utilities.styleTextField(passwordConfirmTextField, placeHolderString: "confirm password")
+        Utilities.styleFilledButton(signUpButton)
+        Utilities.styleHollowButton(backButton)
         
         usernameTextField.becomeFirstResponder()
     }
@@ -85,6 +88,7 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func signUpTapped(_ sender: Any) {
+       
         // Clear the error label
         errorLabel.alpha = 0
         
@@ -95,42 +99,32 @@ class SignUpViewController: UIViewController {
             
             // There's something wrong with the fields, show error message
             showError(error!)
-        }
-        else {
+        } else {
             print(DBCRUD.initDBCRUD.EmailToUserID(NE: emailTextField.text!), emailTextField.text!)
             if(DBCRUD.initDBCRUD.EmailToUserID(NE: emailTextField.text!) < 0){
                 
-                DBCRUD.initDBCRUD.createUserWithUserModal(us: UserModels(Email: emailTextField.text!, Password: passwordTextField.text!))
+                if DBCRUD.initDBCRUD.createUserWithUserModal(us: UserModels(Email: emailTextField.text!, Password: passwordTextField.text!, UserName: usernameTextField.text!)) == false {
+                    let dialogMessage = UIAlertController(title: "Alert", message: "Account Not Successfully Created!", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+                       
+                    })
+                    dialogMessage.addAction(ok)
+                    self.present(dialogMessage, animated: true, completion: nil)
+                } else {
+                    let dialogMessage = UIAlertController(title: "Alert", message: "Account Successfully Created!", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+                        PresenterManager.shared.show(vc: .userHome)
+                    })
+                    dialogMessage.addAction(ok)
+                    self.present(dialogMessage, animated: true, completion: nil)
+                  }
                 //transitionLogin()
-        }else{
-            showError("Email already has a User")
-        }
-            /*
-            var firstName: String?
-            var lastName: String?
-            // Create cleaned versions of the data
-            if let firstNameValue = firstNameTextField?.text?.trimmingCharacters(in: .whitespacesAndNewlines) {
-                firstName = firstNameValue
-            } else { firstName = "" }
-            if let lastNameValue = lastNameTextField?.text?.trimmingCharacters(in: .whitespacesAndNewlines) {
-                lastName = lastNameValue
-            } else { lastName = "" }
-            let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            
-            // check if user with email already exists
-            if ModelController.getUsersByEmail(email: email)!.count == 0 {
-                // user does not already exist
-                // Create the user
-                ModelController.createUser(firstName: firstName, lastName: lastName, email: email, password: password)
-                transitionLogin()
-            }
-            else {
-                // user email already exists
-                showError("That user with email: \(email) already exists.")
-            }
-            */
-        }
+            } else {
+                showError("Email already has a User")
+              }
+        
+          }
+           
     }
     
     func showError(_ message:String) {
@@ -139,7 +133,7 @@ class SignUpViewController: UIViewController {
         errorLabel.alpha = 1
     }
     
-    
+    /*
     func transitionLogin() {
         
         let loginViewController = self.storyboard?.instantiateViewController(identifier: "loginView") as? LoginViewController
@@ -152,7 +146,7 @@ class SignUpViewController: UIViewController {
         view.window?.rootViewController = loginViewController
         view.window?.makeKeyAndVisible()
     }
-    
+    */
     
     @IBAction func backButtonTapped(_ sender: Any) {
         PresenterManager.shared.show(vc: .initial)
