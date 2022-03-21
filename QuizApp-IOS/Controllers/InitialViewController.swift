@@ -21,8 +21,8 @@ class InitialViewController: UIViewController {
     }
     
     private func setupViews() {
-        //Utilities.styleHollowButton(signUpButton)
-        //Utilities.styleFilledButton(loginButton)
+        Utilities.styleHollowButton(signUpButton)
+        Utilities.styleFilledButton(loginButton)
     }
     
     @IBAction func signUpButtonTapped(_ sender: Any) {
