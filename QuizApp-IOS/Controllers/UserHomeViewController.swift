@@ -17,6 +17,10 @@ class UserHomeViewController: UIViewController {
     
     @IBOutlet weak var selectedQuizPageControl: UIPageControl!
     
+    @IBOutlet weak var logoutButton: UIButton!
+    
+    @IBOutlet weak var takeQuizButton: UIButton!
+    
     @IBOutlet var uhview: UIView!
     
     override func viewDidLoad() {
@@ -26,6 +30,10 @@ class UserHomeViewController: UIViewController {
         setupCollectionView()
         setupPageControl()
         //setupImageBackground()
+        Utilities.styleHollowButton(logoutButton)
+        Utilities.styleHollowButton(takeQuizButton)
+        selectedQuizPageControl.backgroundColor = .clear
+        selectedQuizPageControl.currentPageIndicatorTintColor = K.Color.Orange
         
     }
     
@@ -99,7 +107,9 @@ class UserHomeViewController: UIViewController {
         
     }
     
-    
+    @IBAction func logoutButtonTapped(_ sender: Any) {
+        PresenterManager.shared.show(vc: .login)
+    }
 }
 
 extension UserHomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
