@@ -21,7 +21,6 @@ class SignUpViewController: UIViewController {
     
     @IBOutlet weak var errorLabel: UILabel!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -98,6 +97,14 @@ class SignUpViewController: UIViewController {
             showError(error!)
         }
         else {
+            print(DBCRUD.initDBCRUD.EmailToUserID(NE: emailTextField.text!), emailTextField.text!)
+            if(DBCRUD.initDBCRUD.EmailToUserID(NE: emailTextField.text!) < 0){
+                
+                DBCRUD.initDBCRUD.createUserWithUserModal(us: UserModels(Email: emailTextField.text!, Password: passwordTextField.text!))
+                //transitionLogin()
+        }else{
+            showError("Email already has a User")
+        }
             /*
             var firstName: String?
             var lastName: String?
@@ -132,7 +139,7 @@ class SignUpViewController: UIViewController {
         errorLabel.alpha = 1
     }
     
-    /*
+    
     func transitionLogin() {
         
         let loginViewController = self.storyboard?.instantiateViewController(identifier: "loginView") as? LoginViewController
@@ -145,7 +152,7 @@ class SignUpViewController: UIViewController {
         view.window?.rootViewController = loginViewController
         view.window?.makeKeyAndVisible()
     }
-    */
+    
     
     @IBAction func backButtonTapped(_ sender: Any) {
         PresenterManager.shared.show(vc: .initial)

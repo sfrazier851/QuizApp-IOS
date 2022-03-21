@@ -21,11 +21,11 @@ class UserModels{
     
     //optional fields
     var ID:Int?//its given
-    var UserName:String?//User Choice
-    var First:String?
-    var Last:String?
-    var Dob:String?
-    var admin:Bool?//Not Always needed in all cases
+    var UserName:String? = "User"//User Choice
+    var First:String? = "First"
+    var Last:String? = "Last"
+    var Dob:String? = "Some Day"
+    var admin:Bool? = false//Not Always needed in all cases
     init(){
         Email=[String]()
         Password=""
