@@ -83,6 +83,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginTapped(_ sender: Any) {
+        
         // Clear the error label
         errorLabel.alpha = 0
         
@@ -93,8 +94,7 @@ class LoginViewController: UIViewController {
             
             // There's something wrong with the fields, show error message
             showError(error!)
-        }
-        else {
+        } else {
         
             // Remove whitespace and new lines from email and password textfield values
             let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -107,46 +107,12 @@ class LoginViewController: UIViewController {
                 } else {
                     PresenterManager.shared.show(vc: .userHome)
                 }
-            }
-            else{
+            } else{
                 showError("Invalid Credentials")
-            }
-            /*
-            var userToLogin: [User]? = ModelController.getUsersByEmail(email: email)
+              }
             
-            if let userToLoginValue = userToLogin {
-                userToLogin = userToLoginValue
-                // Email or Password is left blank
-                if email == "" || password == "" {
-                    showError("Please make sure both fields are filled in.")
-                  // Email is not valid email
-                } else if !Utilities.isValidEmail(email: email) {
-                    showError("Please make sure your email is formatted correctly.")
-                  // User already exists
-                } else if userToLogin?.count == 0 {
-                    showError("That user doesn't exist.")
-                } else {
-                    // User can be created, then go to logged-in home screen
-                    if userToLogin?[0].password == password {
-                        
-                        guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate, let window = sceneDelegate.window else {
-                            return
-                        }
-                        
-                        let homeViewController = self.storyboard?.instantiateViewController(identifier: "welcomeNavigation") as? UINavigationController
-                        
-                        window.rootViewController = homeViewController
-                        window.makeKeyAndVisible()
-                        
-                        UIView.transition(with: window, duration: 1.65, options: .transitionCrossDissolve, animations: nil, completion: nil)
-                        
-                    } else {
-                        showError("Incorrect credentials, please try again.")
-                    }
-                }
-            }
-        */
-        }
+          }
+        
     }
     
     func showError(_ message:String) {
