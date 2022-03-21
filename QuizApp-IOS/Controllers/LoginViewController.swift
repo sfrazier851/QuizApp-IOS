@@ -44,7 +44,7 @@ class LoginViewController: UIViewController {
         Utilities.styleTextField(emailTextField, placeHolderString: "email")
         Utilities.styleTextField(passwordTextField, placeHolderString: "password")
         Utilities.styleFilledButton(loginButton)
-        //Utilities.styleHollowButton(backButton)
+        Utilities.styleHollowButton(backButton)
         
         forgotPasswordButton.tintColor = K.Color.Orange
         

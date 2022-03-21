@@ -192,6 +192,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="kZA-Jg-7sS"/>
                     <connections>
+                        <outlet property="backButton" destination="fRF-Ah-KWv" id="NUH-VR-M3Q"/>
                         <outlet property="emailTextField" destination="SlH-Ne-NaN" id="RQa-Hw-5pG"/>
                         <outlet property="errorLabel" destination="Uu1-tk-eAL" id="dwl-pi-ydM"/>
                         <outlet property="passwordConfirmTextField" destination="YF1-sn-09e" id="Nmz-fn-Xdn"/>
@@ -279,6 +280,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="5nS-7S-RoY"/>
                     <connections>
+                        <outlet property="backButton" destination="qZA-kQ-a2z" id="eu9-0K-ysf"/>
                         <outlet property="emailTextField" destination="DYp-eT-OaR" id="edW-Ep-qHe"/>
                         <outlet property="errorLabel" destination="uMX-Wa-B9m" id="ef4-HZ-jkD"/>
                         <outlet property="forgotPasswordButton" destination="XHm-55-aB2" id="NLr-7u-JXu"/>

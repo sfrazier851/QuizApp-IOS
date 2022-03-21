@@ -19,7 +19,7 @@ class Utilities {
         return emailTest.evaluate(with: email)
     }
     
-    // UITextField with black background, white text and red cursor
+    // UITextField with black background, orange text and blue cursor
     static func styleTextField(_ textfield:UITextField, placeHolderString:String) {
         
         // disable auto capitalize first letter
@@ -40,8 +40,6 @@ class Utilities {
         ]
         textfield.attributedPlaceholder = NSAttributedString(string: placeHolderString, attributes: attributes)
         
-        //(red: 48/255, green: 173/255, blue: 99/255, alpha: 1).cgColor
-        
         textfield.heightAnchor.constraint(equalToConstant: 35.0).isActive = true
         
         // Remove border on text field
@@ -49,11 +47,11 @@ class Utilities {
         textfield.layer.cornerRadius = 10.0
         
         textfield.backgroundColor =  UIColor.black
-        //white.withAlphaComponent(CGFloat(0.75))
+        
         textfield.font = UIFont(name: "Bold", size: 45)
         textfield.textColor = UIColor.white
         // set the cursor color
-        textfield.tintColor = UIColor.white
+        textfield.tintColor = K.Color.Blue
         
         // Add the line to the text field
         textfield.layer.addSublayer(bottomLine)
