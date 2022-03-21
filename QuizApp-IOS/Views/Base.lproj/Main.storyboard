@@ -1241,7 +1241,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JkT-Nd-P59" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6521.739130434783" y="-419.19642857142856"/>
+            <point key="canvasLocation" x="4658" y="-419"/>
         </scene>
         <!--Quiz Mng-->
         <scene sceneID="inm-HY-jia">
