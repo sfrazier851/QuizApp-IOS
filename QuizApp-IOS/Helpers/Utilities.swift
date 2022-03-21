@@ -35,7 +35,7 @@ class Utilities {
         
         
         let attributes = [
-            NSAttributedString.Key.foregroundColor: UIColor.white,
+            NSAttributedString.Key.foregroundColor: K.Color.Orange,//UIColor.white,
             .font: UIFont.systemFont(ofSize: 30)
         ]
         textfield.attributedPlaceholder = NSAttributedString(string: placeHolderString, attributes: attributes)
@@ -53,7 +53,7 @@ class Utilities {
         textfield.font = UIFont(name: "Bold", size: 45)
         textfield.textColor = UIColor.white
         // set the cursor color
-        textfield.tintColor = UIColor.systemRed
+        textfield.tintColor = UIColor.white
         
         // Add the line to the text field
         textfield.layer.addSublayer(bottomLine)
@@ -65,40 +65,24 @@ class Utilities {
         
         button.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
         // Filled rounded corner style
-        button.backgroundColor = K.Color.Blue.withAlphaComponent(0.7)
+        button.backgroundColor = K.Color.Blue//.withAlphaComponent(0.7)
         
         button.layer.cornerRadius = 25.0
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
-        button.tintColor = UIColor.black
-    }
-    
-    /*
-    static func styleFilledButtonRed(_ button:UIButton){
-        // Filled rounded corner style
-        button.backgroundColor = UIColor.init(red: 255/255, green: 40/255, blue: 29/255, alpha: 0.8)
-        
-        //(red: 48/255, green: 173/255, blue: 99/255, alpha: 1)
-        
-        button.layer.cornerRadius = 25.0
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
-        button.tintColor = UIColor.black
-        //UIColor.white
-        
-        button.layer.borderColor = UIColor.black.cgColor
-        button.layer.borderWidth = 2
+        button.tintColor = UIColor.black//UIColor.white
     }
     
     static func styleHollowButton(_ button:UIButton) {
         
+        button.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
         // Hollow rounded corner style
         button.layer.borderWidth = 2
-        button.layer.borderColor = UIColor.init(red: 226/255, green: 92/255, blue: 176/255, alpha: 0.45).cgColor
-            //UIColor.black.cgColor
-        button.backgroundColor = UIColor.init(red: 226/255, green: 92/255, blue: 176/255, alpha: 0.7)
+        button.layer.borderColor = K.Color.Orange.cgColor
+        button.backgroundColor = UIColor.black
+        
         button.layer.cornerRadius = 25.0
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
-        button.tintColor = UIColor.black
+        button.tintColor = K.Color.Orange//UIColor.white
     }
-    */
 }
 
