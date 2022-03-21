@@ -32,9 +32,6 @@ class UserHomeViewController: UIViewController {
         //setupImageBackground()
         Utilities.styleHollowButton(logoutButton)
         Utilities.styleHollowButton(takeQuizButton)
-        selectedQuizPageControl.backgroundColor = .clear
-        selectedQuizPageControl.currentPageIndicatorTintColor = K.Color.Orange
-        
     }
     
     private func setupCollectionView() {
@@ -45,11 +42,19 @@ class UserHomeViewController: UIViewController {
         // snap each cell to fill view (no free scrolling)
         quizCollectionView.isPagingEnabled = true
         quizCollectionView.showsHorizontalScrollIndicator = false
+        // rounded edges
+        quizCollectionView.layer.cornerRadius = 25.0
+        quizCollectionView.layer.masksToBounds = true
+        quizCollectionView.backgroundColor = .clear
+        
         showTitle(atIndex: 0)
     }
     
     private func setupPageControl() {
         selectedQuizPageControl.numberOfPages = QuizSlide.collection.count
+        selectedQuizPageControl.backgroundColor = .clear
+        selectedQuizPageControl.currentPageIndicatorTintColor = K.Color.Orange
+        selectedQuizPageControl.pageIndicatorTintColor = K.Color.Blue
     }
 
     private func showTitle(atIndex index: Int) {
@@ -131,8 +136,23 @@ extension UserHomeViewController: UICollectionViewDelegate, UICollectionViewData
         //print(imageName)
         let image = UIImage(named: imageName) ?? UIImage()
         cell.configure(image: image)
-//        cell.layer.cornerRadius = 50
-//        cell.layer.masksToBounds = true
+        
+        //cell.layer.cornerRadius = 25.0
+        //cell.contentView.layer.borderWidth = 8.0
+        
+        cell.contentView.layer.cornerRadius = 25.0
+        //cell.contentView.layer.borderWidth = 8.0
+        //cell.contentView.layer.borderColor = K.Color.Blue.cgColor
+        cell.contentView.layer.masksToBounds = false
+        cell.layer.shadowColor = K.Color.Orange.cgColor
+        cell.layer.shadowOffset = CGSize(width: 10, height: 10.0)
+        cell.layer.shadowRadius = 6.0
+        cell.layer.shadowOpacity = 0.15
+        cell.layer.cornerRadius = 25.0
+        cell.layer.masksToBounds = false
+        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
+        
+        
         return cell
     }
     

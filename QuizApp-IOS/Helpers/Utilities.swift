@@ -27,11 +27,11 @@ class Utilities {
         textfield.textAlignment = .center
         
         // Create the bottom line
-        let bottomLine = CALayer()
+        //let bottomLine = CALayer()
         
-        bottomLine.frame = CGRect(x: 0, y: textfield.frame.height - 7, width: textfield.frame.width, height: 8)
+        //bottomLine.frame = CGRect(x: 0, y: textfield.frame.height - 7, width: textfield.frame.width, height: 8)
         
-        bottomLine.backgroundColor = K.Color.Blue.cgColor
+        //bottomLine.backgroundColor = K.Color.Blue.cgColor
         
         
         let attributes = [
@@ -44,7 +44,7 @@ class Utilities {
         
         // Remove border on text field
         textfield.borderStyle = .none
-        textfield.layer.cornerRadius = 10.0
+        textfield.layer.cornerRadius = 18.0
         
         textfield.backgroundColor =  UIColor.black
         
@@ -54,7 +54,7 @@ class Utilities {
         textfield.tintColor = K.Color.Blue
         
         // Add the line to the text field
-        textfield.layer.addSublayer(bottomLine)
+        //textfield.layer.addSublayer(bottomLine)
         
     }
     
