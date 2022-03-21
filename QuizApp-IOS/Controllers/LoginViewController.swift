@@ -49,8 +49,8 @@ class LoginViewController: UIViewController {
         forgotPasswordButton.tintColor = K.Color.Orange
         
         // temporary
-        emailTextField.text = "s@gmail.com"
-        passwordTextField.text = "Password!"
+//        emailTextField.text = "s@gmail.com"
+//        passwordTextField.text = "Password!"
         
         emailTextField.becomeFirstResponder()
     }

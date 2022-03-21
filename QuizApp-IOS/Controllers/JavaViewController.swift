@@ -99,10 +99,11 @@ class JavaViewController: UIViewController {
         if sender.currentTitle! == qArr[rand][5] {
             //print(sender.currentTitle!)
             K.java_gamescore += 1
-            playSound(soundName: "correct-answer", exte: "mp3")
-        } else {
-            playSound(soundName: "wrong-answer", exte: "wav")
-          }
+            //playSound(soundName: "correct-answer", exte: "mp3")
+        }
+//        } else {
+//            playSound(soundName: "wrong-answer", exte: "wav")
+//          }
         
         qAsked += 1
         

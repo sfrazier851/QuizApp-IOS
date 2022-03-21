@@ -103,7 +103,21 @@ class SignUpViewController: UIViewController {
             print(DBCRUD.initDBCRUD.EmailToUserID(NE: emailTextField.text!), emailTextField.text!)
             if(DBCRUD.initDBCRUD.EmailToUserID(NE: emailTextField.text!) < 0){
                 
-                DBCRUD.initDBCRUD.createUserWithUserModal(us: UserModels(Email: emailTextField.text!, Password: passwordTextField.text!))
+                if DBCRUD.initDBCRUD.createUserWithUserModal(us: UserModels(Email: emailTextField.text!, Password: passwordTextField.text!, UserName: usernameTextField.text!)) == false {
+                    let dialogMessage = UIAlertController(title: "Alert", message: "Account Not Successfully Created!", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+                       
+                    })
+                    dialogMessage.addAction(ok)
+                    self.present(dialogMessage, animated: true, completion: nil)
+                } else {
+                    let dialogMessage = UIAlertController(title: "Alert", message: "Account Successfully Created!", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+                        PresenterManager.shared.show(vc: .userHome)
+                    })
+                    dialogMessage.addAction(ok)
+                    self.present(dialogMessage, animated: true, completion: nil)
+                  }
                 //transitionLogin()
             } else {
                 showError("Email already has a User")
