@@ -86,6 +86,7 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func signUpTapped(_ sender: Any) {
+       
         // Clear the error label
         errorLabel.alpha = 0
         
@@ -96,34 +97,18 @@ class SignUpViewController: UIViewController {
             
             // There's something wrong with the fields, show error message
             showError(error!)
-        }
-        else {
-            /*
-            var firstName: String?
-            var lastName: String?
-            // Create cleaned versions of the data
-            if let firstNameValue = firstNameTextField?.text?.trimmingCharacters(in: .whitespacesAndNewlines) {
-                firstName = firstNameValue
-            } else { firstName = "" }
-            if let lastNameValue = lastNameTextField?.text?.trimmingCharacters(in: .whitespacesAndNewlines) {
-                lastName = lastNameValue
-            } else { lastName = "" }
-            let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            
-            // check if user with email already exists
-            if ModelController.getUsersByEmail(email: email)!.count == 0 {
-                // user does not already exist
-                // Create the user
-                ModelController.createUser(firstName: firstName, lastName: lastName, email: email, password: password)
-                transitionLogin()
-            }
-            else {
-                // user email already exists
-                showError("That user with email: \(email) already exists.")
-            }
-            */
-        }
+        } else {
+            print(DBCRUD.initDBCRUD.EmailToUserID(NE: emailTextField.text!), emailTextField.text!)
+            if(DBCRUD.initDBCRUD.EmailToUserID(NE: emailTextField.text!) < 0){
+                
+                DBCRUD.initDBCRUD.createUserWithUserModal(us: UserModels(Email: emailTextField.text!, Password: passwordTextField.text!))
+                //transitionLogin()
+            } else {
+                showError("Email already has a User")
+              }
+        
+          }
+           
     }
     
     func showError(_ message:String) {

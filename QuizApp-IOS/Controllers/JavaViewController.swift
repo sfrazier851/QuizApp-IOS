@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class JavaViewController: UIViewController {
     
@@ -53,6 +54,8 @@ class JavaViewController: UIViewController {
     
     var rand_choices = 0
     
+    var player : AVAudioPlayer!
+    
     
     override func viewDidLoad() {
 
@@ -96,7 +99,10 @@ class JavaViewController: UIViewController {
         if sender.currentTitle! == qArr[rand][5] {
             //print(sender.currentTitle!)
             K.java_gamescore += 1
-        }
+            playSound(soundName: "correct-answer", exte: "mp3")
+        } else {
+            playSound(soundName: "wrong-answer", exte: "wav")
+          }
         
         qAsked += 1
         
@@ -179,6 +185,14 @@ class JavaViewController: UIViewController {
         java_ans_3.setTitle(qArr[rand][shuffled_choices[2]], for: .normal)
         java_ans_4.setTitle(qArr[rand][shuffled_choices[3]], for: .normal)
         
+    }
+    
+    func playSound(soundName : String, exte : String) { //parameter : DataType
+        
+        let url = Bundle.main.url(forResource: soundName, withExtension: exte)
+        player = try! AVAudioPlayer(contentsOf: url!)
+        player.play()
+
     }
         
 }
