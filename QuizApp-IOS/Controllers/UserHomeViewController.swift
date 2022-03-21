@@ -24,7 +24,7 @@ class UserHomeViewController: UIViewController {
     @IBOutlet var uhview: UIView!
     
     override func viewDidLoad() {
-        
+        print("User in page is", LoginPort.user?.UserName)
         super.viewDidLoad()
 
         setupCollectionView()
