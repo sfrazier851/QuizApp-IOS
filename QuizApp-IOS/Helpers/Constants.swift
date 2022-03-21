@@ -9,7 +9,8 @@ import UIKit
 struct K {
     
     struct Color {
-        static let Blue = UIColor.init(red: 93/255, green: 163/255, blue: 216/255, alpha: 1.0)
+        static let Blue = UIColor.init(red: 0/255, green: 123/255, blue: 241/255, alpha: 1.0)
+        static let Orange = UIColor.init(red: 251/255, green: 67/255, blue: 30/255, alpha: 1.0)
     }
     
     struct ReuseIdentifier {

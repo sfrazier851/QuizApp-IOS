@@ -21,6 +21,7 @@ class SignUpViewController: UIViewController {
     
     @IBOutlet weak var errorLabel: UILabel!
     
+    @IBOutlet weak var backButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,18 +32,19 @@ class SignUpViewController: UIViewController {
     private func setupElements() {
         // Hide the error label
         errorLabel.alpha = 0
-        //errorLabel.backgroundColor = UIColor(white: 0.0, alpha: 1.0)
-        //errorLabel.layer.masksToBounds = true
-        //errorLabel.layer.cornerRadius = 10
+        errorLabel.backgroundColor = UIColor(white: 0.0, alpha: 1.0)
+        errorLabel.layer.masksToBounds = true
+        errorLabel.layer.cornerRadius = 10
         errorLabel.lineBreakMode = .byWordWrapping
         errorLabel.numberOfLines = 0
     
         // Style the elements
-        //Utilities.styleTextField(usernameTextField, placeHolderString: "username")
-        //Utilities.styleTextField(emailTextField, placeHolderString: "email")
-        //Utilities.styleTextField(passwordTextField, placeHolderString: "password")
-        //Utilities.styleTextField(passwordConfirmTextField, placeHolderString: "confirm password")
-        //Utilities.styleFilledButton(signUpButton)
+        Utilities.styleTextField(usernameTextField, placeHolderString: "username")
+        Utilities.styleTextField(emailTextField, placeHolderString: "email")
+        Utilities.styleTextField(passwordTextField, placeHolderString: "password")
+        Utilities.styleTextField(passwordConfirmTextField, placeHolderString: "confirm password")
+        Utilities.styleFilledButton(signUpButton)
+        Utilities.styleHollowButton(backButton)
         
         usernameTextField.becomeFirstResponder()
     }

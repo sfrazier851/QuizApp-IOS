@@ -21,6 +21,7 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var errorLabel: UILabel!
     
+    @IBOutlet weak var backButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,19 +33,20 @@ class LoginViewController: UIViewController {
         // Hide the error label
         errorLabel.alpha = 0
         // Set background color to black
-        //errorLabel.backgroundColor = .black //UIColor(white: 0.0, alpha: 1.0)
+        errorLabel.backgroundColor = .black //UIColor(white: 0.0, alpha: 1.0)
         // Give label border rounded edges
-        //errorLabel.layer.masksToBounds = true
-        //errorLabel.layer.cornerRadius = 5
+        errorLabel.layer.masksToBounds = true
+        errorLabel.layer.cornerRadius = 5
         errorLabel.lineBreakMode = .byWordWrapping
         errorLabel.numberOfLines = 0
         
         // Style the elements
-        //Utilities.styleTextField(emailTextField, placeHolderString: "email")
-        //Utilities.styleTextField(passwordTextField, placeHolderString: "password")
-        //Utilities.styleFilledButton(loginButton)
+        Utilities.styleTextField(emailTextField, placeHolderString: "email")
+        Utilities.styleTextField(passwordTextField, placeHolderString: "password")
+        Utilities.styleFilledButton(loginButton)
+        Utilities.styleHollowButton(backButton)
         
-        //forgotPasswordButton.tintColor = K.Color.Blue
+        forgotPasswordButton.tintColor = K.Color.Orange
         
         // temporary
         emailTextField.text = "s@gmail.com"
