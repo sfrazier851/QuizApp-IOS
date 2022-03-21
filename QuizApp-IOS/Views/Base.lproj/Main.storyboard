@@ -759,11 +759,11 @@
             <objects>
                 <viewController storyboardIdentifier="Quiz_Editor" modalPresentationStyle="fullScreen" id="C18-Hd-Ttl" customClass="Quiz_Editor" customModule="QuizApp_IOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GaV-VE-dlF">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="3000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JrM-1b-Eqz">
-                                <rect key="frame" x="0.0" y="44" width="414" height="2800"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Question 1:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a8S-WQ-WgJ">
@@ -834,7 +834,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vs2-QI-JRl">
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Wrong Answer 3" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vs2-QI-JRl">
                                         <rect key="frame" x="16" y="447" width="382" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -871,7 +871,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Aov-hn-Rwh">
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Wrong Answer 3" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Aov-hn-Rwh">
                                         <rect key="frame" x="16" y="689" width="382" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -908,7 +908,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wrm-Vf-zZW">
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Wrong Answer 3" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wrm-Vf-zZW">
                                         <rect key="frame" x="16" y="931" width="382" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -945,7 +945,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="61c-lA-vGJ">
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Wrong Answer 3" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="61c-lA-vGJ">
                                         <rect key="frame" x="16" y="1173" width="382" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -982,7 +982,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JTx-nu-mFq">
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Wrong Answer 3" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JTx-nu-mFq">
                                         <rect key="frame" x="16" y="1415" width="382" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1019,7 +1019,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZOq-U2-gf5">
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Wrong Answer 3" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZOq-U2-gf5">
                                         <rect key="frame" x="16" y="1657" width="382" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1056,7 +1056,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4vP-oE-9Qu">
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Wrong Answer 3" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4vP-oE-9Qu">
                                         <rect key="frame" x="16" y="1899" width="382" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1141,31 +1141,43 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="gray" title="Save As Java"/>
+                                        <connections>
+                                            <action selector="Save_As_Java:" destination="C18-Hd-Ttl" eventType="touchUpInside" id="hk4-3c-CaN"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rpq-on-PXQ">
                                         <rect key="frame" x="269" y="2464" width="129" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="gray" title="Save as IOS"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hFp-de-xaK">
-                                        <rect key="frame" x="269" y="2503" width="129" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="gray" title="Save as Android"/>
+                                        <connections>
+                                            <action selector="Save_as_IOS:" destination="C18-Hd-Ttl" eventType="touchUpInside" id="imw-ci-HpU"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ccs-um-Fb0">
                                         <rect key="frame" x="16" y="2425" width="129" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="gray" title="Cancel"/>
+                                        <connections>
+                                            <action selector="Cancel:" destination="C18-Hd-Ttl" eventType="touchUpInside" id="8ko-KE-6lB"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hFp-de-xaK">
+                                        <rect key="frame" x="269" y="2503" width="129" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="gray" title="Save as Android"/>
+                                        <connections>
+                                            <action selector="Save_as_Android:" destination="C18-Hd-Ttl" eventType="touchUpInside" id="TGt-5z-kuE"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <viewLayoutGuide key="contentLayoutGuide" id="E9g-yw-Jdd"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="ILn-g7-CZ7"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="size" keyPath="contentSize">
-                                        <size key="value" width="414" height="2800"/>
+                                        <size key="value" width="414" height="2570"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </scrollView>
@@ -1173,8 +1185,57 @@
                         <viewLayoutGuide key="safeArea" id="bc6-u3-ys7"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <size key="freeformSize" width="414" height="3000"/>
                     <connections>
+                        <outlet property="Q1" destination="Xct-FX-I5S" id="gXe-r4-b8n"/>
+                        <outlet property="Q10" destination="h6x-si-Ov5" id="ChB-bG-vvL"/>
+                        <outlet property="Q10_C" destination="AMh-Kt-Tbq" id="64a-ye-eFa"/>
+                        <outlet property="Q10_W1" destination="Nee-uu-iee" id="tDa-xd-Wty"/>
+                        <outlet property="Q10_W2" destination="eOl-C4-TIM" id="0FW-tY-Bgp"/>
+                        <outlet property="Q10_W3" destination="bxh-ip-7uT" id="yj5-a6-eZ5"/>
+                        <outlet property="Q1_C" destination="ewJ-Ws-x0b" id="QZf-Wq-myc"/>
+                        <outlet property="Q1_W1" destination="N3F-bW-KCH" id="phb-c5-wQ5"/>
+                        <outlet property="Q1_W2" destination="tDT-Fa-y67" id="yqM-GJ-b4X"/>
+                        <outlet property="Q1_W3" destination="lho-GM-7hv" id="Lsd-Ns-wx4"/>
+                        <outlet property="Q2" destination="EiC-33-T0Z" id="Y8d-ZU-9gc"/>
+                        <outlet property="Q2_C" destination="Nxc-WU-tzh" id="XiY-SW-dVQ"/>
+                        <outlet property="Q2_W1" destination="4FY-2Z-IFq" id="BVZ-Db-LkA"/>
+                        <outlet property="Q2_W2" destination="xY6-VV-VXY" id="0vW-fE-gZX"/>
+                        <outlet property="Q2_W3" destination="Vs2-QI-JRl" id="hUd-mZ-2EW"/>
+                        <outlet property="Q3" destination="5vd-84-Gag" id="rPW-4B-0yx"/>
+                        <outlet property="Q3_C" destination="yvF-CJ-kxD" id="Qfj-1Q-mNl"/>
+                        <outlet property="Q3_W1" destination="TZV-fw-CZ8" id="FQ6-qo-x0v"/>
+                        <outlet property="Q3_W2" destination="jy3-AR-QZp" id="kHJ-Ay-g6S"/>
+                        <outlet property="Q3_W3" destination="Aov-hn-Rwh" id="hOA-hB-0Ea"/>
+                        <outlet property="Q4" destination="Lsl-Q6-YNp" id="D8e-mj-1A0"/>
+                        <outlet property="Q4_C" destination="Y2h-sQ-0DI" id="rec-1n-X62"/>
+                        <outlet property="Q4_W1" destination="PNP-Hs-qBh" id="mVG-Gx-WOU"/>
+                        <outlet property="Q4_W2" destination="2Yx-Xm-rVz" id="lP5-Mj-onP"/>
+                        <outlet property="Q4_W3" destination="wrm-Vf-zZW" id="clK-1k-g70"/>
+                        <outlet property="Q5" destination="A8f-er-FFw" id="5p7-J1-0bL"/>
+                        <outlet property="Q5_C" destination="ros-dD-vhm" id="pUe-UP-2vI"/>
+                        <outlet property="Q5_W1" destination="7aP-bc-7oy" id="fXj-fJ-Pgx"/>
+                        <outlet property="Q5_W2" destination="rsN-zF-4pX" id="GxF-NH-VIa"/>
+                        <outlet property="Q5_W3" destination="61c-lA-vGJ" id="EDa-2e-N5N"/>
+                        <outlet property="Q6" destination="S2U-Zl-UWn" id="Te1-xo-lN8"/>
+                        <outlet property="Q6_C" destination="09V-oO-AIH" id="GWi-2e-3oy"/>
+                        <outlet property="Q6_W1" destination="9J4-UO-gT5" id="w6f-Dg-1hY"/>
+                        <outlet property="Q6_W2" destination="TRH-n1-xoe" id="ptc-OX-Dck"/>
+                        <outlet property="Q6_W3" destination="JTx-nu-mFq" id="rXj-Tj-Z3C"/>
+                        <outlet property="Q7" destination="gfF-Fd-Hcf" id="naH-7D-5Sl"/>
+                        <outlet property="Q7_C" destination="eSh-zK-2Xf" id="Kp7-tg-w6j"/>
+                        <outlet property="Q7_W1" destination="OA8-Cn-O5d" id="TiR-Dr-p4r"/>
+                        <outlet property="Q7_W2" destination="jHo-Hv-srP" id="Z9V-s2-jKI"/>
+                        <outlet property="Q7_W3" destination="ZOq-U2-gf5" id="Tw4-yl-MSo"/>
+                        <outlet property="Q8" destination="YD4-Vg-7FH" id="zGM-j3-N7B"/>
+                        <outlet property="Q8_C" destination="pRR-Fx-43A" id="xm8-Uq-xgN"/>
+                        <outlet property="Q8_W1" destination="U1N-7R-ehE" id="H1I-Xr-nls"/>
+                        <outlet property="Q8_W2" destination="s05-vb-nvD" id="sCW-mA-0b1"/>
+                        <outlet property="Q8_W3" destination="4vP-oE-9Qu" id="RtL-k0-9GZ"/>
+                        <outlet property="Q9" destination="XIx-Au-1Ea" id="5oW-0Y-Vak"/>
+                        <outlet property="Q9_C" destination="Ehj-FO-rvD" id="W4W-9L-4vV"/>
+                        <outlet property="Q9_W1" destination="jti-1x-NrQ" id="f0u-KG-PT7"/>
+                        <outlet property="Q9_W2" destination="szn-2t-TbW" id="6hg-xL-8bi"/>
+                        <outlet property="Q9_W3" destination="e6W-tL-GRp" id="sZy-vm-0AF"/>
                         <outlet property="Scroll" destination="JrM-1b-Eqz" id="gkc-rZ-pS0"/>
                     </connections>
                 </viewController>
