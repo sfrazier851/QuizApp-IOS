@@ -136,8 +136,8 @@
 				84A5DB0C27E4E60D00AFD467 /* TechnologyModel.swift */,
 				84A5DB0D27E4E60D00AFD467 /* DBCRUD.swift */,
 				84A5DB0E27E4E60D00AFD467 /* QuizModels.swift */,
-				84A5DB0F27E4E60D00AFD467 /* DBInit.swift */,
 				84A5DB1027E4E60D00AFD467 /* QuestionModels.swift */,
+				84A5DB0F27E4E60D00AFD467 /* DBInit.swift */,
 				84A5DB1127E4E60D00AFD467 /* PrizeModels.swift */,
 			);
 			path = DBHelp;

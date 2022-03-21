@@ -18,6 +18,11 @@ class QuizModels{
         self.Title=Title
         self.Technology_Title=Technology_Title
     }
+    init(Title:String, Technology_Title:String, questions:[QuestionModels]){
+        self.Questions = questions
+        self.Title=Title
+        self.Technology_Title=Technology_Title
+    }
     init( Title:String, ID:Int, Technology_Title:String  ){
         self.Title=Title
         self.Technology_Title=Technology_Title
