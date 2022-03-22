@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zTA-Dx-C7m">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zTA-Dx-C7m">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -35,7 +34,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="color" systemColor="systemOrangeColor"/>
                             </activityIndicatorView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="mainLogo" translatesAutoresizingMaskIntoConstraints="NO" id="aP0-hN-gkG">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="quiz-logo-white" translatesAutoresizingMaskIntoConstraints="NO" id="aP0-hN-gkG">
                                 <rect key="frame" x="87" y="162" width="240" height="240"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -88,12 +87,12 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="mainLogo" translatesAutoresizingMaskIntoConstraints="NO" id="lHu-C4-LaI">
-                                <rect key="frame" x="87" y="161" width="240" height="240"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="quiz-logo-white" translatesAutoresizingMaskIntoConstraints="NO" id="lHu-C4-LaI">
+                                <rect key="frame" x="87" y="162" width="240" height="240"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PUMP THAT BRAIN WITH TECH QUESTIONS" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqs-xE-R9g">
-                                <rect key="frame" x="73" y="397" width="268" height="21"/>
+                                <rect key="frame" x="73" y="398" width="268" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="VingyNormal" family="Vingy" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -134,8 +133,8 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.45000000000000001" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mainBg" translatesAutoresizingMaskIntoConstraints="NO" id="bSw-Xs-JWs">
                                 <rect key="frame" x="0.0" y="-30" width="414" height="957"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="mainLogo" translatesAutoresizingMaskIntoConstraints="NO" id="RKf-eD-UKI">
-                                <rect key="frame" x="87" y="160" width="240" height="240"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="quiz-logo-white" translatesAutoresizingMaskIntoConstraints="NO" id="RKf-eD-UKI">
+                                <rect key="frame" x="87" y="162" width="240" height="240"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fRF-Ah-KWv">
@@ -149,7 +148,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PUMP THAT BRAIN WITH TECH QUESTIONS" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7k8-ec-0aO">
-                                <rect key="frame" x="73" y="396" width="268" height="21"/>
+                                <rect key="frame" x="73" y="398" width="268" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="VingyNormal" family="Vingy" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -277,17 +276,13 @@
                                     <action selector="backButtonTapped:" destination="tQJ-tZ-MrQ" eventType="touchUpInside" id="Dpw-tY-obI"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mainLogo" translatesAutoresizingMaskIntoConstraints="NO" id="nTX-aJ-xwz">
-                                <rect key="frame" x="86" y="170" width="240" height="240"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="240" id="kJl-ZG-sRT"/>
-                                </constraints>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="quiz-logo-white" translatesAutoresizingMaskIntoConstraints="NO" id="YZb-e1-RgP">
+                                <rect key="frame" x="87" y="162" width="240" height="240"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PUMP THAT BRAIN WITH TECH QUESTIONS" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k52-bb-j8W">
-                                <rect key="frame" x="73" y="406" width="268" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="TnP-0T-Ekn"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PUMP THAT BRAIN WITH TECH QUESTIONS" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ojy-Tp-buP">
+                                <rect key="frame" x="73" y="398" width="268" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="VingyNormal" family="Vingy" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -297,21 +292,15 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="7Ts-Bu-oak" firstAttribute="centerY" secondItem="fpz-Fy-bLS" secondAttribute="centerY" constant="141.25" id="0TF-1X-r8u"/>
-                            <constraint firstItem="k52-bb-j8W" firstAttribute="leading" secondItem="TX0-NV-aqi" secondAttribute="leading" constant="73" id="8MH-sg-iTm"/>
                             <constraint firstItem="qZA-kQ-a2z" firstAttribute="leading" secondItem="TX0-NV-aqi" secondAttribute="leading" constant="20" id="ByG-wj-YoZ"/>
                             <constraint firstItem="7Ts-Bu-oak" firstAttribute="centerX" secondItem="fpz-Fy-bLS" secondAttribute="centerX" id="J8R-Ww-4VE"/>
                             <constraint firstItem="7Ts-Bu-oak" firstAttribute="leading" secondItem="TX0-NV-aqi" secondAttribute="leading" constant="40" id="KSX-WL-66s"/>
                             <constraint firstItem="IEh-hf-PfJ" firstAttribute="top" secondItem="fpz-Fy-bLS" secondAttribute="top" constant="-30" id="QOo-dW-EqI"/>
                             <constraint firstItem="IEh-hf-PfJ" firstAttribute="trailing" secondItem="TX0-NV-aqi" secondAttribute="trailing" id="YFl-lb-Not"/>
-                            <constraint firstItem="7Ts-Bu-oak" firstAttribute="top" secondItem="k52-bb-j8W" secondAttribute="bottom" constant="38" id="aTk-eE-rtA"/>
                             <constraint firstAttribute="bottom" secondItem="IEh-hf-PfJ" secondAttribute="bottom" constant="-31" id="dAP-rZ-kSu"/>
-                            <constraint firstItem="nTX-aJ-xwz" firstAttribute="centerX" secondItem="fpz-Fy-bLS" secondAttribute="centerX" constant="-1" id="fiM-VF-f7T"/>
                             <constraint firstItem="IEh-hf-PfJ" firstAttribute="leading" secondItem="TX0-NV-aqi" secondAttribute="leading" id="lcJ-eE-ihZ"/>
-                            <constraint firstItem="k52-bb-j8W" firstAttribute="centerX" secondItem="fpz-Fy-bLS" secondAttribute="centerX" id="lcN-Yf-Pgi"/>
-                            <constraint firstItem="7Ts-Bu-oak" firstAttribute="top" secondItem="nTX-aJ-xwz" secondAttribute="bottom" constant="55" id="s1J-Y5-pos"/>
                             <constraint firstItem="TX0-NV-aqi" firstAttribute="trailing" secondItem="7Ts-Bu-oak" secondAttribute="trailing" constant="40" id="sEi-aK-WMe"/>
                             <constraint firstItem="qZA-kQ-a2z" firstAttribute="top" secondItem="TX0-NV-aqi" secondAttribute="top" id="xdf-qX-vJK"/>
-                            <constraint firstItem="nTX-aJ-xwz" firstAttribute="leading" secondItem="TX0-NV-aqi" secondAttribute="leading" constant="86" id="zhW-As-yLZ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="5nS-7S-RoY"/>
@@ -394,7 +383,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="5RX-df-7Ba">
-                                <rect key="frame" x="145" y="583" width="124" height="26"/>
+                                <rect key="frame" x="145" y="583" width="124" height="27.5"/>
                                 <color key="pageIndicatorTintColor" systemColor="systemGray2Color"/>
                                 <color key="currentPageIndicatorTintColor" systemColor="systemOrangeColor"/>
                             </pageControl>
@@ -405,7 +394,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JOs-Mq-oEd">
-                                <rect key="frame" x="107" y="675" width="200" height="36"/>
+                                <rect key="frame" x="107" y="676.5" width="200" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="26G-Ve-adt"/>
                                 </constraints>
@@ -1182,7 +1171,6 @@
                                         <rect key="frame" x="269" y="2425" width="129" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="gray" title="Save As Java"/>
                                         <connections>
                                             <action selector="Save_As_Java:" destination="C18-Hd-Ttl" eventType="touchUpInside" id="hk4-3c-CaN"/>
                                         </connections>
@@ -1191,7 +1179,6 @@
                                         <rect key="frame" x="269" y="2464" width="129" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="gray" title="Save as IOS"/>
                                         <connections>
                                             <action selector="Save_as_IOS:" destination="C18-Hd-Ttl" eventType="touchUpInside" id="imw-ci-HpU"/>
                                         </connections>
@@ -1200,7 +1187,6 @@
                                         <rect key="frame" x="16" y="2425" width="129" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="gray" title="Cancel"/>
                                         <connections>
                                             <action selector="Cancel:" destination="C18-Hd-Ttl" eventType="touchUpInside" id="8ko-KE-6lB"/>
                                         </connections>
@@ -1209,7 +1195,6 @@
                                         <rect key="frame" x="269" y="2503" width="129" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="gray" title="Save as Android"/>
                                         <connections>
                                             <action selector="Save_as_Android:" destination="C18-Hd-Ttl" eventType="touchUpInside" id="TGt-5z-kuE"/>
                                         </connections>
@@ -2002,8 +1987,8 @@
         <image name="java_wallpaper" width="371" height="600"/>
         <image name="lightBlueButton" width="99" height="69"/>
         <image name="mainBg" width="533" height="405"/>
-        <image name="mainLogo" width="685.5" height="632.5"/>
         <image name="purpleButton" width="99" height="69"/>
+        <image name="quiz-logo-white" width="235" height="218"/>
         <image name="spchBub" width="193.5" height="125"/>
         <image name="textview_ios" width="142.5" height="75"/>
         <systemColor name="systemBackgroundColor">

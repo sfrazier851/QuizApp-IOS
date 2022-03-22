@@ -103,7 +103,7 @@ class LoginViewController: UIViewController {
             let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             
             if LoginPort.initLogin.login(S: email, PW: password){
-                
+                SessionManager.shared.setLoggedInUser(user: LoginPort.user!)
                 if LoginPort.user?.admin ?? false {
                     PresenterManager.shared.show(vc: .adminHome)
                 } else {
