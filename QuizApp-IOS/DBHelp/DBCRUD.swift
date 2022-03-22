@@ -758,36 +758,38 @@ var stmt : OpaquePointer?
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Questions
     //create
-        func createQuestion(r:QuestionModels){
+        func createQuestion(r:QuestionModels)->Int{
             let query = "INSERT INTO Questions (Question, Awnser, Quiz_ID) Values (?,?,?)"
             var stmt : OpaquePointer?
-
+var i = -1
                 if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
                     let err = String(cString: sqlite3_errmsg(db)!)
                     print("There is an Error:",err)
-                    return
+                    return i
                 }
             
-            if sqlite3_bind_text(stmt, 0, (r.Question as NSString).utf8String, -1, nil) != SQLITE_OK{
+            if sqlite3_bind_text(stmt, 1, (r.Question as NSString).utf8String, -1, nil) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
-            return}
+            return i}
             
-            if sqlite3_bind_text(stmt, 1, (r.Awnser as NSString).utf8String, -1, nil) != SQLITE_OK{
+            if sqlite3_bind_text(stmt, 2, (r.Awnser as NSString).utf8String, -1, nil) != SQLITE_OK{
                 let err = String(cString: sqlite3_errmsg(db)!)
                 print("There is an Error:",err)
-                return}
-            if sqlite3_bind_int(stmt, 2, Int32(r.Quiz_ID)) != SQLITE_OK{
+                return i}
+            if sqlite3_bind_int(stmt, 3, Int32(r.Quiz_ID)) != SQLITE_OK{
                 let err = String(cString: sqlite3_errmsg(db)!)
                 print("There is an Error:",err)
-                return
+                return i
             }
             
             if sqlite3_step(stmt) != SQLITE_DONE{
                 let err = String(cString: sqlite3_errmsg(db)!)
                 print("There is an Error:",err)
-            
+            return i
             }
+	            i =	Int(sqlite3_last_insert_rowid(db))
+            return i
         }
     //read
       
@@ -814,6 +816,53 @@ var stmt : OpaquePointer?
                     }
                 return rev
         }
+    
+    func getQuestionByTitle(id:String)->QuestionModels{
+        let query = "select * from Questions WHERE Question = ?"
+            var stmt : OpaquePointer?
+        var rev: QuestionModels=QuestionModels()
+            if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
+                let err = String(cString: sqlite3_errmsg(db)!)
+                print("There is an Error:",err)
+                return rev
+            }
+        //bind
+       if sqlite3_bind_text(stmt, 1, (id as NSString).utf8String, -1, nil) != SQLITE_OK{
+        let err = String(cString: sqlite3_errmsg(db)!)
+        print("There is an Error:",err)
+    }
+        
+        //step
+        //Appending Emails to Array
+            if(sqlite3_step(stmt) == SQLITE_ROW){
+                rev = QuestionModels(Question: String(cString: sqlite3_column_text(stmt, 0)), Awnser: String(cString: sqlite3_column_text(stmt, 1)), Quiz_ID: Int(sqlite3_column_int(stmt, 2)), ID: Int(sqlite3_column_int(stmt, 3)))
+                }
+            return rev
+    }
+
+     func getQuestionsForQuiz(id:Int)->[QuestionModels]{
+        let query = "select * from Questions WHERE Quiz_ID = ?"
+            var stmt : OpaquePointer?
+        var rev: [QuestionModels]=[QuestionModels]()
+            if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
+                let err = String(cString: sqlite3_errmsg(db)!)
+                print("There is an Error:",err)
+                return rev
+            }
+        //bind
+        if sqlite3_bind_int(stmt, 1, Int32(id)) != SQLITE_OK{
+            let err = String(cString: sqlite3_errmsg(db)!)
+            print("There is an Error:",err)
+            return rev
+        }
+        
+        //step
+        //Appending Emails to Array
+            while(sqlite3_step(stmt) == SQLITE_ROW){
+                rev.append( QuestionModels(Question: String(cString: sqlite3_column_text(stmt, 0)), Awnser: String(cString: sqlite3_column_text(stmt, 1)), Quiz_ID: Int(sqlite3_column_int(stmt, 2)), ID: Int(sqlite3_column_int(stmt, 3))))
+                }
+            return rev
+    }
     //update
         func updateQuestion(r:QuestionModels){
             let query = "UPDATE Questions set Question = ?, Awnser = ?, Quiz_ID = ? WHERE ID = ?"
@@ -837,7 +886,7 @@ var stmt : OpaquePointer?
             print("There is an Error:",err)
         }
             
-                if sqlite3_bind_int(stmt, 3, Int32(r.ID)) != SQLITE_OK{ let err = String(cString: sqlite3_errmsg(db)!)
+                if sqlite3_bind_int(stmt, 3, Int32(r.ID!)) != SQLITE_OK{ let err = String(cString: sqlite3_errmsg(db)!)
                 print("There is an Error:",err)
             }
         if sqlite3_step(stmt) != SQLITE_DONE{
