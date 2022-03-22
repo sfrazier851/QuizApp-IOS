@@ -652,7 +652,7 @@ var stmt : OpaquePointer?
                 }
                 return rev
         }
-    func getQuizFromTechnology_Title(id:String)->[QuizModels]{
+    func getQuizsFromTechnology_Title(id:String)->[QuizModels]{
         let query = "select * from Quiz WHERE Technology_Title = ?"
             var stmt : OpaquePointer?
         var rev: [QuizModels]=[QuizModels]()
@@ -676,6 +676,34 @@ var stmt : OpaquePointer?
             }
             return rev
     }
+      func getQuizByTitle(title:String, Tecchnology_Title:String)->QuizModels{
+            let query = "select * from Quiz WHERE Title = ? AND Tecchnology_Title = ?"
+                var stmt : OpaquePointer?
+            
+                if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
+                    let err = String(cString: sqlite3_errmsg(db)!)
+                    print("There is an Error:",err)
+                    return QuizModels()
+                }
+            //bind
+            if sqlite3_bind_text(stmt, 1, (title as NSString).utf8String, -1, nil) != SQLITE_OK{
+                let err = String(cString: sqlite3_errmsg(db)!)
+                print("There is an Error:",err)
+                return QuizModels()
+            }
+        if sqlite3_bind_text(stmt, 2, (Tecchnology_Title as NSString).utf8String, -1, nil) != SQLITE_OK{
+                let err = String(cString: sqlite3_errmsg(db)!)
+                print("There is an Error:",err)
+                return QuizModels()
+            }
+            var rev: QuizModels=QuizModels()
+            //step
+            //Appending Emails to Array
+                if(sqlite3_step(stmt) == SQLITE_ROW){
+                    rev = QuizModels(Title: String(cString: sqlite3_column_text(stmt, 0)),  ID: Int(sqlite3_column_int(stmt, 1)), Technology_Title: String(cString: sqlite3_column_text(stmt, 2)))
+                }
+                return rev
+        }
     //update
         func updateQuiz(r:QuizModels){
             let query = "UPDATE Quiz set Title = ?, Technology_Title = ? WHERE ID = ?"
