@@ -111,10 +111,16 @@ class SignUpViewController: UIViewController {
                     dialogMessage.addAction(ok)
                     self.present(dialogMessage, animated: true, completion: nil)
                 } else {
-                    LoginPort.user=DBCRUD.initDBCRUD.UserIDToUser(id: DBCRUD.initDBCRUD.EmailToUserID(NE: emailTextField.text!))
                     let dialogMessage = UIAlertController(title: "Alert", message: "Account Successfully Created!", preferredStyle: .alert)
                     let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
-                        PresenterManager.shared.show(vc: .userHome)
+                        //LoginPort.user = usernameTextField.text!
+                        if self.callLoginPort(S: self.emailTextField.text!, PW: self.passwordTextField.text!) {
+                            print(LoginPort.user!)
+                            SessionManager.shared.setLoggedInUser(user: LoginPort.user!)
+                            PresenterManager.shared.show(vc: .userHome)
+                        } else {
+                            PresenterManager.shared.show(vc: .login)
+                          }
                     })
                     dialogMessage.addAction(ok)
                     self.present(dialogMessage, animated: true, completion: nil)
@@ -151,6 +157,12 @@ class SignUpViewController: UIViewController {
     
     @IBAction func backButtonTapped(_ sender: Any) {
         PresenterManager.shared.show(vc: .initial)
+    }
+    
+    func callLoginPort(S: String, PW: String) -> Bool {
+        
+        return LoginPort.initLogin.login(S: S, PW: PW)
+        
     }
     
 }

@@ -13,29 +13,29 @@ class JavaViewController: UIViewController {
     @IBOutlet weak var java_backButton: UIButton!
     @IBOutlet weak var java_timerImage: UIImageView!
     @IBOutlet weak var java_timerLabel: UILabel!
-    @IBOutlet weak var java_que_tv: UITextView!
     @IBOutlet weak var java_progressBar: UIProgressView!
     @IBOutlet weak var java_ans_1: UIButton!
     @IBOutlet weak var java_ans_2: UIButton!
     @IBOutlet weak var java_ans_3: UIButton!
     @IBOutlet weak var java_ans_4: UIButton!
-
+    @IBOutlet weak var java_que_tl: UILabel!
+    
     var qArr = [
         ["It is a subsystem in Java Virtual Machine dedicated to loading class files when a program is executed.","classLoader","bootstrapLoader","applet","java kit","classLoader"],
         ["It is called when an instance of the object is created, and memory is allocated for the object.","Method","Constructor","Class","Object","Constructor"],
         ["The founder and lead designer behind the Java Programming Language.","James Gosling","Alan Turing","Larry Ellison","Dennis Ritchie","James Gosling"],
-        ["It is a technique in Java of having more than one constructor with different parameter lists.","Constructor Overloading","Constructor Overriding","Method Overloading","Method Overriding","Constructor Overloading"],
+//        ["It is a technique in Java of having more than one constructor with different parameter lists.","Constructor Overloading","Constructor Overriding","Method Overloading","Method Overriding","Constructor Overloading"],
         ["It is a mechanism in which one object acquires all the properties and behaviors of a parent object.","Inheritance","Encapsulation","Polymorphism","Abstraction","Inheritance"],
         ["It is the ability of an object to take on many forms.", "Inheritance","Encapsulation","Polymorphism","Abstraction","Polymorphism"],
         ["It is a process of wrapping code and data together into a single unit.","Inheritance","Encapsulation","Polymorphism","Abstraction","Encapsulation"],
         ["It is a process of hiding the implementation details and showing only functionality to the user.","Inheritance","Encapsulation","Polymorphism","Abstraction","Abstraction"],
         ["It is a template or blueprint from which objects are created.","Class","Constructor","Struct","Enum","Class"],
-        ["It is a class which inherits the other class. It is also called a derived class, extended class, or child class.","Sub Class","Super Class","Function","Protocol","Sub Class"],
-        ["It is the class from where a subclass inherits the features. It is also called a base class or a parent class.", "Method","Abstraction","Object","Super Class","Super Class"],
+//        ["It is a class which inherits the other class. It is also called a derived class, extended class, or child class.","Sub Class","Super Class","Function","Protocol","Sub Class"],
+//        ["It is the class from where a subclass inherits the features. It is also called a base class or a parent class.", "Method","Abstraction","Object","Super Class","Super Class"],
         ["It indicates that you are making a new class that derives from an existing class.", "extends", "let","birthed","reached","extends"],
-        ["All are types of Inheritance except:","Single Inheritance","Multi-Level Inheritance","Hierarchical Inheritance","Heirarchical Inheritance","Heirarchical Inheritance"],
-        ["All are advantages of Encapsulation except:","Not Accessible","Control Over Data","Data Hiding","Easy To Test","Not Accessible"],
-        ["It specifies accessibility (scope) of a data member, method, constructor or class.","Access Modifiers","Struct","Constants","Class","Access Modifiers"]
+        ["All are types of Inheritance except:","Single Inheritance","Multi-Level Inheritance","Hierarchical Inheritance","Heirarchical Inheritance","Heirarchical Inheritance"]
+//        ["All are advantages of Encapsulation except:","Not Accessible","Control Over Data","Data Hiding","Easy To Test","Not Accessible"],
+//        ["It specifies accessibility (scope) of a data member, method, constructor or class.","Access Modifiers","Struct","Constants","Class","Access Modifiers"]
     ]
     
     var qAsked = 0 //for questions answered by player
@@ -60,19 +60,20 @@ class JavaViewController: UIViewController {
     override func viewDidLoad() {
 
         super.viewDidLoad()
+        javaSetupElements()
+        
+        
+    }
+    
+    private func javaSetupElements() {
+    
         java_progressBar.progress = 0.0
         count = qArr.count
         java_timerLabel.text = String(minTime)+":0"+String(secTime)
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
         K.java_gamescore = 0
         showQuestionsForJava()
-        
-        
-    }
-    
-    override func viewDidLayoutSubviews() {
-        
-        java_que_tv.centerVertically()
+        Utilities.styleHollowButton(java_backButton)
         
     }
     
@@ -173,7 +174,7 @@ class JavaViewController: UIViewController {
         rand = Int.random(in: 0...qArr.count - 1)
         //rand_choices = Int.random(in: 1...4)
         //print(rand)
-        java_que_tv.text = qArr[rand][0]
+        java_que_tl.text = qArr[rand][0]
         var shuffled_choices : [Int] = []
         while shuffled_choices.count != 4 {
             rand_choices = Int.random(in: 1...4)

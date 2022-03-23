@@ -10,7 +10,6 @@ import AVFoundation
 
 class IOSViewController: UIViewController {
 
-    @IBOutlet weak var ios_que_tv: UITextView!
     @IBOutlet weak var ios_timerLabel: UILabel!
     @IBOutlet weak var ios_backButton: UIButton!
     @IBOutlet weak var ios_timerImage: UIImageView!
@@ -19,6 +18,7 @@ class IOSViewController: UIViewController {
     @IBOutlet weak var ios_ans_2: UIButton!
     @IBOutlet weak var ios_ans_3: UIButton!
     @IBOutlet weak var ios_ans_4: UIButton!
+    @IBOutlet weak var ios_que_tl: UILabel!
     
     var qArr = [
         ["What does IOS mean?","Internet Operation System","iPhone Operation System","Interval Operation System","iPhone Overriding System","iPhone Operation System"],
@@ -54,19 +54,19 @@ class IOSViewController: UIViewController {
     override func viewDidLoad() {
        
         super.viewDidLoad()
+        iosSetupElements()
+        
+    }
+
+    private func iosSetupElements() {
+        
         ios_progressBar.progress = 0.0
         count = qArr.count
         ios_timerLabel.text = String(minTime)+":0"+String(secTime)
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
         K.ios_gamescore = 0
         showQuestionsForIOS()
-        
-    }
-    
-    override func viewDidLayoutSubviews() {
-        
-        ios_que_tv.centerVertically()
-        
+        Utilities.styleHollowButton(ios_backButton)
     }
     
     @IBAction func backButtonTapped(_ sender: UIButton) {
@@ -166,7 +166,7 @@ class IOSViewController: UIViewController {
         rand = Int.random(in: 0...qArr.count - 1)
         //rand_choices = Int.random(in: 1...4)
         //print(rand)
-        ios_que_tv.text = qArr[rand][0]
+        ios_que_tl.text = qArr[rand][0]
         var shuffled_choices : [Int] = []
         while shuffled_choices.count != 4 {
             rand_choices = Int.random(in: 1...4)

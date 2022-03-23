@@ -11,29 +11,26 @@ class AndroidViewController: UIViewController {
 
     @IBOutlet weak var android_backButton: UIButton!
     @IBOutlet weak var android_timerImage: UIImageView!
-    
     @IBOutlet weak var android_timerLabel: UILabel!
-    
     @IBOutlet weak var android_que_tv: UITextView!
-    
     @IBOutlet weak var android_progressBar: UIProgressView!
-    
     @IBOutlet weak var android_ans_1: UIButton!
     @IBOutlet weak var android_ans_2: UIButton!
     @IBOutlet weak var android_ans_3: UIButton!
     @IBOutlet weak var android_ans_4: UIButton!
     
+    @IBOutlet weak var android_que_tl: UILabel!
     var qArr = [
-        ["What does IOS mean?","Internet Operation System","iPhone Operation System","Interval Operation System","iPhone Overriding System","iPhone Operation System"],
-        ["It manages the appearance of the table.","UITableView","UIViewController","UICollectionView","UIImageView","UITableView"],
-        ["It is the topmost layer in the iOS Architecture.","Core Services","Media Services","Cocoa Touch","Core OS","Cocoa Touch"],
-        ["It is a connection or reference to the object created in the Interface Builder.","IBOutlet","IBAction","IBVariables","IBObject","IBOutlet"],
-        ["A file that contains a key-value pair configuration of your application.","info.plist","dictionary","keychain","bundle identifier","info.plist"],
-        ["It is a technology that allows transmission of data, voice and video through a computer or any portable device.","Mobile Programming", "Mobile Data","Mobile Computing","Mobile Phone","Mobile Computing"],
-        ["For unwrapping value inside an Optional, what should be used?","!","!@","@","None Of Them","!"],
-        ["What is the name of the deinitializer in the class declaration?","dealloc","release","deinit","finalize","deinit"],
-        ["Which keyword do you use to define a protocol?", "protocol","@protocol","@interface","Protocol", "protocol"],
-        ["Which keyword in the context of a Switch statement is required to force the execution of a subsequent case?","fallthrough","break","continue","throw","fallthrough"]
+        ["Android Architecture is made up of the following components except:","Linux Kernel","Android Frameworks","Libraries","Cocoa Touch","Cocoa Touch"],
+        ["This is where you can find all the classes and methods that developers would need in order to write applications on the Android environment.","Libraries","Android Frameworks","Android Applications","Linux Kernel","Android Frameworks"],
+        ["This tool provides developers with the ability to deal with zip-compatible archives, which includes creating, extracting as well as viewing its contents.","Android Asset Packaging Tool","Asset Android Packaging Tool","Apple Archive Package Tool","Andro Asset Packaging Tool","Android Asset Packaging Tool"],
+        ["It is the first step towards the creation of a new Android project. It is made up of a shell script that will be used to create new file system structure necessary for writing codes within the Android IDE.","canvasCreator","projectCreator","activityCreator","libCreator","activityCreator"],
+        ["Activities are what you refer to as the window to a user interface.","True","False","","","True"],
+        ["All are essential states of an activity except:","Active","Paused","Destroyed","Inactive","Inactive"],
+        ["It allows developers the power to execute remote shell commands. Its basic function is to allow and control communication towards and from the emulator port.", "Android Debug Bridge","Apple Debug Bridge","Android Debug Box","Android Debugger Bridge","Android Debug Bridge"],
+        ["This is actually a dialog that appears to the user whenever an application have been unresponsive for a long period of time.","Application Not Responding","Agent Inactive Message","Window Blocker","State Not Active","Application Not Responding"],
+        ["The 'and' elements must be present and can occur as much as it's needed.","True","False","","","False"],
+        ["Andy Rubin originally founded Android under Android, Inc. in November 2003.","True","False","","","False"]
     ]
     
     var qAsked = 0 //for questions answered by player
@@ -56,17 +53,25 @@ class AndroidViewController: UIViewController {
     override func viewDidLoad() {
 
         super.viewDidLoad()
+        androidSetupElements()
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        
+        //android_que_tv.centerVertically()
+        
+    }
+    
+    private func androidSetupElements() {
+        
         android_progressBar.progress = 0.0
         count = qArr.count
         android_timerLabel.text = String(minTime)+":0"+String(secTime)
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
         K.android_gamescore = 0
         showQuestionsForAndroid()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        
-        android_que_tv.centerVertically()
+        Utilities.styleHollowButton(android_backButton)
         
     }
     
@@ -160,10 +165,11 @@ class AndroidViewController: UIViewController {
     
     func showQuestionsForAndroid() {
         
+        var found = false
         rand = Int.random(in: 0...qArr.count - 1)
         //rand_choices = Int.random(in: 1...4)
         //print(rand)
-        android_que_tv.text = qArr[rand][0]
+        android_que_tl.text = qArr[rand][0]
         var shuffled_choices : [Int] = []
         while shuffled_choices.count != 4 {
             rand_choices = Int.random(in: 1...4)
@@ -172,11 +178,33 @@ class AndroidViewController: UIViewController {
                 shuffled_choices.append(rand_choices)
             }
         }
+        
+        for sc in shuffled_choices {
+            
+            if qArr[rand][sc] == "" {
+                found = true
+                break
+            }
+            
+        }
+        
+        if found {
+         
+            android_ans_1.isHidden = true
+            android_ans_2.setTitle("True", for: .normal)
+            android_ans_3.setTitle("False", for: .normal)
+            android_ans_4.isHidden = true
+            
+        } else {
 
-        android_ans_1.setTitle(qArr[rand][shuffled_choices[0]], for: .normal)
-        android_ans_2.setTitle(qArr[rand][shuffled_choices[1]], for: .normal)
-        android_ans_3.setTitle(qArr[rand][shuffled_choices[2]], for: .normal)
-        android_ans_4.setTitle(qArr[rand][shuffled_choices[3]], for: .normal)
+            android_ans_1.setTitle(qArr[rand][shuffled_choices[0]], for: .normal)
+            android_ans_2.setTitle(qArr[rand][shuffled_choices[1]], for: .normal)
+            android_ans_3.setTitle(qArr[rand][shuffled_choices[2]], for: .normal)
+            android_ans_4.setTitle(qArr[rand][shuffled_choices[3]], for: .normal)
+            android_ans_1.isHidden = false
+            android_ans_4.isHidden = false
+            
+         }
         
     }
         

@@ -82,7 +82,7 @@ class GameOverViewController: UIViewController {
     
     @IBAction func goBackHome(_ sender: UIButton) {
         
-        PresenterManager.shared.show(vc: .iosHome)
+        PresenterManager.shared.show(vc: .userHome)
     }
     
     @IBAction func goMainPage(_ sender: UIButton) {

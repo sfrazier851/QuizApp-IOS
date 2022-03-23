@@ -82,5 +82,13 @@ class Utilities {
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
         button.tintColor = K.Color.Orange//UIColor.white
     }
+    
+    static func fitTextInsideButton(_ button: UIButton) {
+        
+        button.titleLabel?.numberOfLines = 0
+        button.titleLabel?.adjustsFontSizeToFitWidth = true
+        button.titleLabel?.lineBreakMode = .byClipping
+        
+    }
 }
 
