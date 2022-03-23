@@ -25,6 +25,7 @@ class PresenterManager {
         case java
         case android
         case gameOver
+        case ranking
     }
     
     func show(vc: VC) {
@@ -63,8 +64,12 @@ class PresenterManager {
             case .android:
                 viewController = UIStoryboard(name: K.StoryboardID.main, bundle: nil).instantiateViewController(identifier: K.StoryboardID.androidViewController)
             
-        case .gameOver:
-            viewController = UIStoryboard(name: K.StoryboardID.main, bundle: nil).instantiateViewController(identifier: K.StoryboardID.gameOverViewController)
+            case .gameOver:
+                viewController = UIStoryboard(name: K.StoryboardID.main, bundle: nil).instantiateViewController(identifier: K.StoryboardID.gameOverViewController)
+            
+            case .ranking:
+                viewController = UIStoryboard(name: K.StoryboardID.main, bundle: nil).instantiateViewController(identifier: K.StoryboardID.viewRankingViewController)
+            
                     
         }
         

@@ -30,6 +30,7 @@ struct K {
         static let gameOverViewController = "GameOverViewController"
         static let javaViewController = "JavaViewController"
         static let androidViewController = "AndroidViewController"
+        static let viewRankingViewController = "ViewRankingViewController"
     }
     
     //static let dailyAttempt = UserDefaults.standard.integer(forKey: "DailyAttempts")

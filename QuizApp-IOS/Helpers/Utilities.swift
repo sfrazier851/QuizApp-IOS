@@ -83,5 +83,40 @@ class Utilities {
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
         button.tintColor = K.Color.Orange//UIColor.white
     }
+    static func formatDate(date: Date)->String
+    {
+        let formatter = DateFormatter()
+        formatter.dateFormat="MMMM dd yyyy"
+        return formatter.string(from: date)
+    }
+    static func formatetoDate(s:String)->Date{
+        print("format to date",s)
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.dateFormat="MMMM dd, yyyy"
+        return formatter.date(from: s)!
+    }
+       static func fitTextInsideButton(_ button: UIButton) {
+        
+        button.titleLabel?.numberOfLines = 0
+        button.titleLabel?.adjustsFontSizeToFitWidth = true
+        button.titleLabel?.lineBreakMode = .byClipping
+        
+    }
+    
+    static func loadQuiz(Q : QuizModels) -> [[String]] {
+        
+        var Quiz:[[String]]=[[String]]()
+        
+        for Quest in Q.Questions!{
+            
+            let Question:[String] =  [Quest.Question,Quest.choices![0],Quest.choices![1],Quest.choices![2],Quest.choices![3], Quest.Awnser]
+                Quiz.append(Question)
+            
+        }
+        
+        return Quiz
+    }
+    
 }
 
