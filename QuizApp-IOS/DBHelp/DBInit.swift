@@ -98,6 +98,7 @@ class DBInit{
             questions.append(QuestionModels(Question: i[0], Awnser: i[5], choice: [i[1],i[2],i[3]
                                                                                    ,i[4]]))
         }
+
         let t3:QuizModels=QuizModels(Title: "quiz title3", Technology_Title: "Android", Questions: questions)
         t3.save()
         

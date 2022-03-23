@@ -50,7 +50,7 @@ class JavaViewController: UIViewController {
         javaSetupElements()
     
     }
-    
+   
     private func javaSetupElements() {
     
         java_progressBar.progress = 0.0
@@ -207,5 +207,5 @@ class JavaViewController: UIViewController {
         player.play()
 
     }
-    
+
 }

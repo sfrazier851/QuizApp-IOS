@@ -13,7 +13,6 @@ class LoginPort{
     private init(){}
     static var user:UserModels?
 func login(S:String, PW:String)->Bool{
-    print("trying to login",S," With",PW)
     if DBCRUD.initDBCRUD.UserIDToPassword(id: DBCRUD.initDBCRUD.EmailToUserID(NE: S)) == PW{
         print("Login Successful")
         LoginPort.user = DBCRUD.initDBCRUD.UserIDToUser(id:DBCRUD.initDBCRUD.EmailToUserID(NE: S) )

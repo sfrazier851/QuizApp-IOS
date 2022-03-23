@@ -205,21 +205,6 @@ class IOSViewController: UIViewController {
         player.play()
 
     }
-
-    func loadQuiz(){
-        
-        var Quiz : [[String]] = [[String]]()
-        
-        for Quest in Q1.Questions!{
-            
-            let Question:[String] =  [Quest.Question,Quest.choices![0],Quest.choices![1],Quest.choices![2],Quest.choices![3], Quest.Awnser]
-                Quiz.append(Question)
-            
-        }
-        
-        self.qArr = Quiz
-        
-    }
     
 }
 
