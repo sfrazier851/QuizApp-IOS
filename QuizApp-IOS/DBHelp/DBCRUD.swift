@@ -601,31 +601,33 @@ var stmt : OpaquePointer?
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //QUIZ
     //create
-        func createQuiz(r:QuizModels){
+        func createQuiz(r:QuizModels)->Int{
+            print("creating quiz")
             let query = "INSERT INTO Quiz (Title, Technology_Title) Values (?,?)"
             var stmt : OpaquePointer?
-
+let i = -1
                 if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
                     let err = String(cString: sqlite3_errmsg(db)!)
                     print("There is an Error:",err)
-                    return
+                    return i
                 }
             
             if sqlite3_bind_text(stmt, 1, (r.Title as NSString).utf8String, -1, nil) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
-            return}
+            return i}
             
             if sqlite3_bind_text(stmt, 2, (r.Technology_Title as NSString).utf8String, -1, nil) != SQLITE_OK{
                 let err = String(cString: sqlite3_errmsg(db)!)
                 print("There is an Error:",err)
-                return}
+                return i }
             
             if sqlite3_step(stmt) != SQLITE_DONE{
                 let err = String(cString: sqlite3_errmsg(db)!)
                 print("There is an Error:",err)
-            
+            return i
             }
+            return Int(sqlite3_last_insert_rowid(db))
         }
     //read
       
@@ -676,25 +678,25 @@ var stmt : OpaquePointer?
             }
             return rev
     }
-      func getQuizByTitle(title:String, Tecchnology_Title:String)->QuizModels{
-            let query = "select * from Quiz WHERE Title = ? AND Tecchnology_Title = ?"
+      func getQuizByTitle(title:String, Technology_Title:String)->QuizModels?{
+            let query = "select * from Quiz WHERE Title = ? AND Technology_Title = ?"
                 var stmt : OpaquePointer?
             
                 if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
                     let err = String(cString: sqlite3_errmsg(db)!)
                     print("There is an Error:",err)
-                    return QuizModels()
+                    return nil
                 }
             //bind
             if sqlite3_bind_text(stmt, 1, (title as NSString).utf8String, -1, nil) != SQLITE_OK{
                 let err = String(cString: sqlite3_errmsg(db)!)
                 print("There is an Error:",err)
-                return QuizModels()
+                return nil
             }
-        if sqlite3_bind_text(stmt, 2, (Tecchnology_Title as NSString).utf8String, -1, nil) != SQLITE_OK{
+        if sqlite3_bind_text(stmt, 2, (Technology_Title as NSString).utf8String, -1, nil) != SQLITE_OK{
                 let err = String(cString: sqlite3_errmsg(db)!)
                 print("There is an Error:",err)
-                return QuizModels()
+                return nil
             }
             var rev: QuizModels=QuizModels()
             //step
@@ -759,33 +761,35 @@ var stmt : OpaquePointer?
 //Questions
     //create
         func createQuestion(r:QuestionModels)->Int{
+            print("creating Questions")
+            print(r.Quiz_ID,r.Awnser,r.Question)
             let query = "INSERT INTO Questions (Question, Awnser, Quiz_ID) Values (?,?,?)"
             var stmt : OpaquePointer?
 var i = -1
                 if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
                     let err = String(cString: sqlite3_errmsg(db)!)
-                    print("There is an Error:",err)
+                    print("There is an Error prepare:",err)
                     return i
                 }
             
             if sqlite3_bind_text(stmt, 1, (r.Question as NSString).utf8String, -1, nil) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(db)!)
-            print("There is an Error:",err)
+            print("There is an Error bind1:",err)
             return i}
             
             if sqlite3_bind_text(stmt, 2, (r.Awnser as NSString).utf8String, -1, nil) != SQLITE_OK{
                 let err = String(cString: sqlite3_errmsg(db)!)
-                print("There is an Error:",err)
+                print("There is an Error bind2:",err)
                 return i}
             if sqlite3_bind_int(stmt, 3, Int32(r.Quiz_ID)) != SQLITE_OK{
                 let err = String(cString: sqlite3_errmsg(db)!)
-                print("There is an Error:",err)
+                print("There is an Error bind3:",err)
                 return i
             }
             
             if sqlite3_step(stmt) != SQLITE_DONE{
                 let err = String(cString: sqlite3_errmsg(db)!)
-                print("There is an Error:",err)
+                print("There is an Error result:",err)
             return i
             }
 	            i =	Int(sqlite3_last_insert_rowid(db))
@@ -921,6 +925,8 @@ var i = -1
     //choice
     //create
     func createChoice(Choice:String,ID:Int){
+        print("creating choice")
+
             let query = "INSERT INTO choices (choice, Questions_ID) Values (?,?)"
             var stmt : OpaquePointer?
 
@@ -1000,7 +1006,7 @@ var i = -1
     //delete
         
         func deleteAChoice(NE:String){
-            let query = "DELETE * FROM choices WHERE choice = ?"
+            let query = "DELETE FROM choices WHERE choice = ?"
         var stmt : OpaquePointer?
             if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
                 let err = String(cString: sqlite3_errmsg(db)!)
@@ -1019,7 +1025,7 @@ var i = -1
             
         }
     func deleteQuestionsChoice(ID:Int){
-        let query = "DELETE * FROM choices WHERE Questions_ID = ?"
+        let query = "DELETE FROM choices WHERE Questions_ID = ?"
     var stmt : OpaquePointer?
         if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(db)!)

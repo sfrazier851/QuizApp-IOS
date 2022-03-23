@@ -14,6 +14,7 @@ class DBInit{
      init(){
          print("DBINIT")
          openDb()
+         initquiz()
     }
     func openDb(){
         print("DBOPEN")
@@ -35,7 +36,44 @@ class DBInit{
                 print("File Exist")
             }
     }
-   
+    func initquiz(){
+
+        print("Testing Quiz")
+        var qArr = [
+                ["It is a subsystem in Java Virtual Machine dedicated to loading class files when a program is executed.","classLoader","bootstrapLoader","applet","java kit","classLoader"],
+                ["It is called when an instance of the object is created, and memory is allocated for the object.","Method","Constructor","Class","Object","Constructor"],
+                ["The founder and lead designer behind the Java Programming Language.","James Gosling","Alan Turing","Larry Ellison","Dennis Ritchie","James Gosling"],
+                ["It is a technique in Java of having more than one constructor with different parameter lists.","Constructor Overloading","Constructor Overriding","Method Overloading","Method Overriding","Constructor Overloading"],
+                ["It is a mechanism in which one object acquires all the properties and behaviors of a parent object.","Inheritance","Encapsulation","Polymorphism","Abstraction","Inheritance"],
+                ["It is the ability of an object to take on many forms.", "Inheritance","Encapsulation","Polymorphism","Abstraction","Polymorphism"],
+                ["It is a process of wrapping code and data together into a single unit.","Inheritance","Encapsulation","Polymorphism","Abstraction","Encapsulation"],
+                ["It is a process of hiding the implementation details and showing only functionality to the user.","Inheritance","Encapsulation","Polymorphism","Abstraction","Abstraction"],
+                ["It is a template or blueprint from which objects are created.","Class","Constructor","Struct","Enum","Class"],
+                ["It is a class which inherits the other class. It is also called a derived class, extended class, or child class.","Sub Class","Super Class","Function","Protocol","Sub Class"],
+                ["It is the class from where a subclass inherits the features. It is also called a base class or a parent class.", "Method","Abstraction","Object","Super Class","Super Class"],
+                ["It indicates that you are making a new class that derives from an existing class.", "extends", "let","birthed","reached","extends"],
+                ["All are types of Inheritance except:","Single Inheritance","Multi-Level Inheritance","Hierarchical Inheritance","Heirarchical Inheritance","Heirarchical Inheritance"],
+                ["All are advantages of Encapsulation except:","Not Accessible","Control Over Data","Data Hiding","Easy To Test","Not Accessible"],
+                ["It specifies accessibility (scope) of a data member, method, constructor or class.","Access Modifiers","Struct","Constants","Class","Access Modifiers"]
+            ]
+        //saving
+        print("saving")
+              var questions=[QuestionModels]()
+              for i in qArr{
+                  questions.append(QuestionModels(Question: i[0], Awnser: i[4], choice: [i[1],i[2],i[3]]))
+              }
+              let t1:QuizModels=QuizModels(Title: "quiz title", Technology_Title: "Java", Questions: questions)
+              t1.save()
+              print("loading")
+              //loading
+              let t2:QuizModels=DBCRUD.initDBCRUD.getQuiz(id: t1.ID!)
+              
+              t2.loadQuestion()
+              for question in t2.Questions!{
+                  print(question.ID,question.Awnser, question.choices)
+              }
+
+    }
     func initUser(){
         let u1=UserModels(UserName: "guest", Password: "123Password!", DOB: "June 2, 1994", admin: false, subriction: "trial", Status: "clear", First: "2", Last: "2", email: ["2@gmail.com"])
         let u2=UserModels(UserName: "admin", Password: "123Password!", DOB: "June 2, 1994", admin: true, subriction: "paid", Status: "clear", First: "admin", Last: "admin", email: ["admin@gmail.com"])
@@ -60,14 +98,14 @@ class DBInit{
             print("there is error creating Emails table", err)
         }
         //Question table
-        stmt="CREATE TABLE IF NOT EXISTS `Questions` (`Question` TEXT NULL, `Awnser` TEXT NOT NULL,`Quiz_ID` INT NOT NULL, `ID` INT  AUTO_INCREMENT NOT NULL, PRIMARY KEY (`ID`), CONSTRAINT `fk_Questions_Quiz1` FOREIGN KEY (`Quiz_ID`) REFERENCES `Quiz` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION); CREATE INDEX `fk_Questions_Quiz1_idx` ON `Questions` (`Quiz_ID` ASC);"
+        stmt="CREATE TABLE IF NOT EXISTS `Questions` (`Question` TEXT NULL, `Awnser` TEXT NOT NULL,`Quiz_ID` INT NOT NULL, `ID` INTEGER Primary KEY AUTOINCREMENT NOT NULL, CONSTRAINT `fk_Questions_Quiz1` FOREIGN KEY (`Quiz_ID`) REFERENCES `Quiz` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION); CREATE INDEX `fk_Questions_Quiz1_idx` ON `Questions` (`Quiz_ID` ASC);"
         if sqlite3_exec(DBInit.db, stmt, nil, nil, nil) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(DBInit.db)!)
             print("there is error creating Question table", err)
         }
         	
         //Choices
-        stmt="CREATE TABLE IF NOT EXISTS `choices` (`choice` TEXT NOT NULL, `Questions_ID` INT NOT NULL, PRIMARY KEY (`choice`), CONSTRAINT `fk_choices_Questions1` FOREIGN KEY (`Questions_ID`) REFERENCES `Questions` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION); CREATE INDEX `fk_choices_Questions1_idx` ON `choices` (`Questions_ID` ASC);"
+        stmt="CREATE TABLE IF NOT EXISTS `choices` (`choice` TEXT NOT NULL,  `Questions_ID` INT NOT NULL,  CONSTRAINT `fk_choices_Questions1` FOREIGN KEY (`Questions_ID`) REFERENCES `Questions` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION); CREATE INDEX `fk_choices_Questions1_idx` ON `choices` (`Questions_ID` ASC);"
         if sqlite3_exec(DBInit.db, stmt, nil, nil, nil) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(DBInit.db)!)
             print("there is error creating Choices table", err)

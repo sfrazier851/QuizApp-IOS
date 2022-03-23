@@ -66,6 +66,8 @@ class JavaViewController: UIViewController {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
         K.java_gamescore = 0
         showQuestionsForJava()
+        
+        
     }
     
     override func viewDidLayoutSubviews() {

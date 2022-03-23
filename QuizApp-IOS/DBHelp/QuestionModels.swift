@@ -32,7 +32,12 @@ class QuestionModels{
         self.ID=ID
         
     }
-    
+    init(Question:String, Awnser:String, choice:[String]){
+        self.Question=Question
+        self.Awnser=Awnser
+        self.choices=choice
+        Quiz_ID = -1
+    }
     init(Question:String, Awnser:String, Quiz_ID:Int, choice:[String]){
         self.Question=Question
         self.Awnser=Awnser
@@ -46,6 +51,17 @@ class QuestionModels{
         self.Quiz_ID=Quiz_ID
         self.ID=ID
         self.choices=choice
+    }
+    func loadChoices(){
+        if self.ID != nil{
+            self.choices=DBCRUD.initDBCRUD.getChoiceFromQuestionID(id: self.ID!)
+            if self.choices!.isEmpty || self.choices==nil{
+                print("No choice was given")
+            }
+        }
+        else{
+            print("Can't Get choices no ID")
+        }
     }
     func errorcheck()->Bool{
         //error handling
@@ -61,19 +77,23 @@ class QuestionModels{
     }
     func save(){
         if errorcheck(){ return;}
+        
         if ID == nil{
             let id = DBCRUD.initDBCRUD.createQuestion(r: self)
             if id != -1{
                 for choice in choices!{
                 DBCRUD.initDBCRUD.createChoice(Choice: choice, ID: id)}
         }
-        else{
+            else{
+                print("question couldn't be added")
+            }
+       
+        } else{
             DBCRUD.initDBCRUD.updateQuestion(r: self)
             DBCRUD.initDBCRUD.deleteQuestionsChoice(ID: self.ID!)
             for i in self.choices!{
                 DBCRUD.initDBCRUD.createChoice(Choice: i, ID: self.ID!)
             }
-        }
             
     }
     
