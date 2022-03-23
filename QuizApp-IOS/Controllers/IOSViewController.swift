@@ -19,20 +19,6 @@ class IOSViewController: UIViewController {
     @IBOutlet weak var ios_ans_3: UIButton!
     @IBOutlet weak var ios_ans_4: UIButton!
     @IBOutlet weak var ios_que_tl: UILabel!
-//
-//    var qArr = [
-//        ["What does IOS mean?","Internet Operation System","iPhone Operation System","Interval Operation System","iPhone Overriding System","iPhone Operation System"],
-//        ["It manages the appearance of the table.","UITableView","UIViewController","UICollectionView","UIImageView","UITableView"],
-//        ["It is the topmost layer in the iOS Architecture.","Core Services","Media Services","Cocoa Touch","Core OS","Cocoa Touch"],
-//        ["It is a connection or reference to the object created in the Interface Builder.","IBOutlet","IBAction","IBVariables","IBObject","IBOutlet"],
-//        ["A file that contains a key-value pair configuration of your application.","info.plist","dictionary","keychain","bundle identifier","info.plist"],
-//        ["It is a technology that allows transmission of data, voice and video through a computer or any portable device.","Mobile Programming", "Mobile Data","Mobile Computing","Mobile Phone","Mobile Computing"],
-//        ["For unwrapping value inside an Optional, what should be used?","!","!@","@","None Of Them","!"],
-//        ["What is the name of the deinitializer in the class declaration?","dealloc","release","deinit","finalize","deinit"],
-//        ["Which keyword do you use to define a protocol?", "protocol","@protocol","@interface","Protocol", "protocol"],
-//        ["Which keyword in the context of a Switch statement is required to force the execution of a subsequent case?","fallthrough","break","continue","throw","fallthrough"]
-//    ]
-//
     
     var qAsked = 0 //for questions answered by player
     
@@ -52,10 +38,14 @@ class IOSViewController: UIViewController {
     
     var player : AVAudioPlayer!
     
+    var qArr = [[String]]()
+    
+    var Q1 : QuizModels = DBCRUD.initDBCRUD.getQuizsFromTechnology_Title(id: "IOS")[0]
+    
     override func viewDidLoad() {
        
         super.viewDidLoad()
-        loadQuiz()
+        qArr = Utilities.loadQuiz(Q : Q1)
         iosSetupElements()
         
     }
@@ -165,6 +155,7 @@ class IOSViewController: UIViewController {
     
     func showQuestionsForIOS() {
         
+        var found = false
         rand = Int.random(in: 0...qArr.count - 1)
         //rand_choices = Int.random(in: 1...4)
         //print(rand)
@@ -177,31 +168,42 @@ class IOSViewController: UIViewController {
                 shuffled_choices.append(rand_choices)
             }
         }
+        
+        for sc in shuffled_choices {
+            
+            if qArr[rand][sc] == "" {
+                found = true
+                break
+            }
+            
+        }
+        
+        if found {
+         
+            ios_ans_1.isHidden = true
+            ios_ans_2.setTitle("True", for: .normal)
+            ios_ans_3.setTitle("False", for: .normal)
+            ios_ans_4.isHidden = true
+            
+        } else {
 
-        ios_ans_1.setTitle(qArr[rand][shuffled_choices[0]], for: .normal)
-        ios_ans_2.setTitle(qArr[rand][shuffled_choices[1]], for: .normal)
-        ios_ans_3.setTitle(qArr[rand][shuffled_choices[2]], for: .normal)
-        ios_ans_4.setTitle(qArr[rand][shuffled_choices[3]], for: .normal)
+            ios_ans_1.setTitle(qArr[rand][shuffled_choices[0]], for: .normal)
+            ios_ans_2.setTitle(qArr[rand][shuffled_choices[1]], for: .normal)
+            ios_ans_3.setTitle(qArr[rand][shuffled_choices[2]], for: .normal)
+            ios_ans_4.setTitle(qArr[rand][shuffled_choices[3]], for: .normal)
+            ios_ans_1.isHidden = false
+            ios_ans_4.isHidden = false
+            
+         }
         
     }
     
     func playSound(soundName : String, exte : String) { //parameter : DataType
+
         let url = Bundle.main.url(forResource: soundName, withExtension: exte)
         player = try! AVAudioPlayer(contentsOf: url!)
         player.play()
 
-    }
-    var qArr = [[String]]()
-    var Q1:QuizModels=DBCRUD.initDBCRUD.getQuizsFromTechnology_Title(id: "IOS")[0]
-    func loadQuiz(){
-        
-        var Quiz:[[String]]=[[String]]()
-        
-        for Quest in Q1.Questions!{
-        let Question:[String] =  [Quest.Question,Quest.choices![0],Quest.choices![1],Quest.choices![2],Quest.choices![3], Quest.Awnser]
-            Quiz.append(Question)
-        }
-        self.qArr=Quiz
     }
     
 }

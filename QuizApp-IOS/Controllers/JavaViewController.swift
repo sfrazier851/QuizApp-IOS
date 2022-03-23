@@ -20,23 +20,6 @@ class JavaViewController: UIViewController {
     @IBOutlet weak var java_ans_4: UIButton!
     @IBOutlet weak var java_que_tl: UILabel!
     
-//    var qArr = [
-//        ["It is a subsystem in Java Virtual Machine dedicated to loading class files when a program is executed.","classLoader","bootstrapLoader","applet","java kit","classLoader"],
-//        ["It is called when an instance of the object is created, and memory is allocated for the object.","Method","Constructor","Class","Object","Constructor"],
-//        ["The founder and lead designer behind the Java Programming Language.","James Gosling","Alan Turing","Larry Ellison","Dennis Ritchie","James Gosling"],
-////        ["It is a technique in Java of having more than one constructor with different parameter lists.","Constructor Overloading","Constructor Overriding","Method Overloading","Method Overriding","Constructor Overloading"],
-//        ["It is a mechanism in which one object acquires all the properties and behaviors of a parent object.","Inheritance","Encapsulation","Polymorphism","Abstraction","Inheritance"],
-//        ["It is the ability of an object to take on many forms.", "Inheritance","Encapsulation","Polymorphism","Abstraction","Polymorphism"],
-//        ["It is a process of wrapping code and data together into a single unit.","Inheritance","Encapsulation","Polymorphism","Abstraction","Encapsulation"],
-//        ["It is a process of hiding the implementation details and showing only functionality to the user.","Inheritance","Encapsulation","Polymorphism","Abstraction","Abstraction"],
-//        ["It is a template or blueprint from which objects are created.","Class","Constructor","Struct","Enum","Class"],
-////        ["It is a class which inherits the other class. It is also called a derived class, extended class, or child class.","Sub Class","Super Class","Function","Protocol","Sub Class"],
-////        ["It is the class from where a subclass inherits the features. It is also called a base class or a parent class.", "Method","Abstraction","Object","Super Class","Super Class"],
-//        ["It indicates that you are making a new class that derives from an existing class.", "extends", "let","birthed","reached","extends"],
-//        ["All are types of Inheritance except:","Single Inheritance","Multi-Level Inheritance","Hierarchical Inheritance","Heirarchical Inheritance","Heirarchical Inheritance"]
-////        ["All are advantages of Encapsulation except:","Not Accessible","Control Over Data","Data Hiding","Easy To Test","Not Accessible"],
-////        ["It specifies accessibility (scope) of a data member, method, constructor or class.","Access Modifiers","Struct","Constants","Class","Access Modifiers"]
-//    ]
     var qAsked = 0 //for questions answered by player
     
     var count = 0 //for total of questions
@@ -55,13 +38,17 @@ class JavaViewController: UIViewController {
     
     var player : AVAudioPlayer!
     
+    var qArr = [[String]]()
+    
+    var Q1 : QuizModels = DBCRUD.initDBCRUD.getQuizsFromTechnology_Title(id: "Java")[0]
+    
     
     override func viewDidLoad() {
 
         super.viewDidLoad()
-        loadQuiz()
+        qArr = Utilities.loadQuiz(Q : Q1)
         javaSetupElements()
-        
+    
     }
    
     private func javaSetupElements() {
@@ -170,6 +157,7 @@ class JavaViewController: UIViewController {
     
     func showQuestionsForJava() {
         
+        var found = false
         rand = Int.random(in: 0...qArr.count - 1)
         //rand_choices = Int.random(in: 1...4)
         //print(rand)
@@ -182,11 +170,33 @@ class JavaViewController: UIViewController {
                 shuffled_choices.append(rand_choices)
             }
         }
+        
+        for sc in shuffled_choices {
+            
+            if qArr[rand][sc] == "" {
+                found = true
+                break
+            }
+            
+        }
+        
+        if found {
+         
+            java_ans_1.isHidden = true
+            java_ans_2.setTitle("True", for: .normal)
+            java_ans_3.setTitle("False", for: .normal)
+            java_ans_4.isHidden = true
+            
+        } else {
 
-        java_ans_1.setTitle(qArr[rand][shuffled_choices[0]], for: .normal)
-        java_ans_2.setTitle(qArr[rand][shuffled_choices[1]], for: .normal)
-        java_ans_3.setTitle(qArr[rand][shuffled_choices[2]], for: .normal)
-        java_ans_4.setTitle(qArr[rand][shuffled_choices[3]], for: .normal)
+            java_ans_1.setTitle(qArr[rand][shuffled_choices[0]], for: .normal)
+            java_ans_2.setTitle(qArr[rand][shuffled_choices[1]], for: .normal)
+            java_ans_3.setTitle(qArr[rand][shuffled_choices[2]], for: .normal)
+            java_ans_4.setTitle(qArr[rand][shuffled_choices[3]], for: .normal)
+            java_ans_1.isHidden = false
+            java_ans_4.isHidden = false
+            
+         }
         
     }
     
@@ -197,16 +207,5 @@ class JavaViewController: UIViewController {
         player.play()
 
     }
-    var qArr = [[String]]()
-    var Q1:QuizModels=DBCRUD.initDBCRUD.getQuizsFromTechnology_Title(id: "Java")[0]
-    func loadQuiz(){
-        
-        var Quiz:[[String]]=[[String]]()
-        
-        for Quest in Q1.Questions!{
-        let Question:[String] =  [Quest.Question,Quest.choices![0],Quest.choices![1],Quest.choices![2],Quest.choices![3], Quest.Awnser]
-            Quiz.append(Question)
-        }
-        self.qArr=Quiz
-    }
+
 }

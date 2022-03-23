@@ -79,7 +79,7 @@ class DBInit{
         for i in qArr{
             questions.append(QuestionModels(Question: i[0], Awnser: i[5], choice: [i[1],i[2],i[3]
                                                                                    ,i[4]]))        }
-        let t2:QuizModels=QuizModels(Title: "quiz title2", Technology_Title: "Andriod", Questions: questions)
+        let t2:QuizModels=QuizModels(Title: "quiz title2", Technology_Title: "IOS", Questions: questions)
         t2.save()
         qArr = [
                 ["Android Architecture is made up of the following components except:","Linux Kernel","Android Frameworks","Libraries","Cocoa Touch","Cocoa Touch"],
@@ -98,7 +98,8 @@ class DBInit{
             questions.append(QuestionModels(Question: i[0], Awnser: i[5], choice: [i[1],i[2],i[3]
                                                                                    ,i[4]]))
         }
-        let t3:QuizModels=QuizModels(Title: "quiz title3", Technology_Title: "IOS", Questions: questions)
+
+        let t3:QuizModels=QuizModels(Title: "quiz title3", Technology_Title: "Android", Questions: questions)
         t3.save()
         
              
@@ -142,7 +143,7 @@ class DBInit{
             let err = String(cString: sqlite3_errmsg(DBInit.db)!)
             print("there is error creating Question table", err)
         }
-        	
+            
         //Choices
         stmt="CREATE TABLE IF NOT EXISTS `choices` (`choice` TEXT NOT NULL,  `Questions_ID` INT NOT NULL,  CONSTRAINT `fk_choices_Questions1` FOREIGN KEY (`Questions_ID`) REFERENCES `Questions` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION); CREATE INDEX `fk_choices_Questions1_idx` ON `choices` (`Questions_ID` ASC);"
         if sqlite3_exec(DBInit.db, stmt, nil, nil, nil) != SQLITE_OK{
@@ -159,7 +160,7 @@ class DBInit{
         
 
         //Prizes has dual keys
-        	stmt="CREATE TABLE IF NOT EXISTS `Prizes` (`idPrizes` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `GivenDate` DATE NULL, `StartDate` DATE NULL, `EndDate` DATE NULL, `active` TINYINT NULL, `Type` TEXT NULL, `User_ID` INT NOT NULL, CONSTRAINT `fk_Prizes_User1` FOREIGN KEY (`User_ID`) REFERENCES `User` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION); CREATE INDEX `fk_Prizes_User1_idx` ON `Prizes` (`User_ID` ASC);"
+            stmt="CREATE TABLE IF NOT EXISTS `Prizes` (`idPrizes` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `GivenDate` DATE NULL, `StartDate` DATE NULL, `EndDate` DATE NULL, `active` TINYINT NULL, `Type` TEXT NULL, `User_ID` INT NOT NULL, CONSTRAINT `fk_Prizes_User1` FOREIGN KEY (`User_ID`) REFERENCES `User` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION); CREATE INDEX `fk_Prizes_User1_idx` ON `Prizes` (`User_ID` ASC);"
         if sqlite3_exec(DBInit.db, stmt, nil, nil, nil) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(DBInit.db)!)
             print("there is error creating Prizes table", err)
@@ -188,4 +189,4 @@ class DBInit{
     }
     
 }
-	
+    

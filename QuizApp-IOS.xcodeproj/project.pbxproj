@@ -45,7 +45,9 @@
 		9AB2C3D227DC6E0100B8E171 /* IOSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2C3D127DC6E0100B8E171 /* IOSViewController.swift */; };
 		9AB2C3D427DC6E1500B8E171 /* AndroidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2C3D327DC6E1500B8E171 /* AndroidViewController.swift */; };
 		9AB2C3D627DC6E3C00B8E171 /* AdminHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2C3D527DC6E3C00B8E171 /* AdminHomeViewController.swift */; };
+		9AEDEB9527EAC6DA00F82499 /* ViewRankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEDEB9427EAC6DA00F82499 /* ViewRankingViewController.swift */; };
 		C240893527E8A88A001981A7 /* Quiz_Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C240893427E8A88A001981A7 /* Quiz_Editor.swift */; };
+		C2B40B9C27EB0D37007B602C /* Usr_Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B40B9B27EB0D37007B602C /* Usr_Stats.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,7 +91,9 @@
 		9AB2C3D127DC6E0100B8E171 /* IOSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSViewController.swift; sourceTree = "<group>"; };
 		9AB2C3D327DC6E1500B8E171 /* AndroidViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AndroidViewController.swift; sourceTree = "<group>"; };
 		9AB2C3D527DC6E3C00B8E171 /* AdminHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminHomeViewController.swift; sourceTree = "<group>"; };
+		9AEDEB9427EAC6DA00F82499 /* ViewRankingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewRankingViewController.swift; path = "QuizApp-IOS/Views/ViewRankingViewController.swift"; sourceTree = SOURCE_ROOT; };
 		C240893427E8A88A001981A7 /* Quiz_Editor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz_Editor.swift; sourceTree = "<group>"; };
+		C2B40B9B27EB0D37007B602C /* Usr_Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Usr_Stats.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +217,7 @@
 		9AB2C3C927DC638600B8E171 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9AEDEB9427EAC6DA00F82499 /* ViewRankingViewController.swift */,
 				9AB2C3B627DC62D300B8E171 /* InitialViewController.swift */,
 				9AB2C3CB27DC6CB300B8E171 /* LoginViewController.swift */,
 				9AB2C3CD27DC6CD800B8E171 /* SignUpViewController.swift */,
@@ -226,6 +231,7 @@
 				9A55633F27E5689500997B21 /* GameOverViewController.swift */,
 				9A55634A27E58B6400997B21 /* IOSHomeViewController.swift */,
 				C240893427E8A88A001981A7 /* Quiz_Editor.swift */,
+				C2B40B9B27EB0D37007B602C /* Usr_Stats.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -322,6 +328,7 @@
 				7F65195627E91DAB008C635E /* SessionManager.swift in Sources */,
 				9A55634027E5689500997B21 /* GameOverViewController.swift in Sources */,
 				9AB2C3D027DC6DF100B8E171 /* JavaViewController.swift in Sources */,
+				C2B40B9C27EB0D37007B602C /* Usr_Stats.swift in Sources */,
 				7F65179927DFCD40008C635E /* Utilities.swift in Sources */,
 				C240893527E8A88A001981A7 /* Quiz_Editor.swift in Sources */,
 				9AB2C3B327DC62D300B8E171 /* AppDelegate.swift in Sources */,
@@ -332,6 +339,7 @@
 				9AB2C3D627DC6E3C00B8E171 /* AdminHomeViewController.swift in Sources */,
 				9AB2C3D427DC6E1500B8E171 /* AndroidViewController.swift in Sources */,
 				7F6517A327DFE970008C635E /* Constants.swift in Sources */,
+				9AEDEB9527EAC6DA00F82499 /* ViewRankingViewController.swift in Sources */,
 				84A5DB1827E4E60D00AFD467 /* QuizModels.swift in Sources */,
 				9AB2C3CE27DC6CD800B8E171 /* SignUpViewController.swift in Sources */,
 				84A5DB1227E4E60D00AFD467 /* UserModels.swift in Sources */,
