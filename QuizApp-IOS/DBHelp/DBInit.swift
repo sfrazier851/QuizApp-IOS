@@ -59,8 +59,7 @@ class DBInit{
         print("saving")
               var questions=[QuestionModels]()
               for i in qArr{
-                  questions.append(QuestionModels(Question: i[0], Awnser: i[5], choice: [i[1],i[2],i[3]
-                                                                                         ,i[4]]))              }
+                  questions.append(QuestionModels(Question: i[0], Awnser: i[5], choice: [i[1],i[2],i[3],i[4]]))              }
               let t1:QuizModels=QuizModels(Title: "quiz title1", Technology_Title: "Java", Questions: questions)
               t1.save()
         qArr = [
@@ -105,7 +104,7 @@ class DBInit{
              
               
               
-
+initTech()
     }
     func initUser(){
         let u1=UserModels(UserName: "guest", Password: "123Password!", DOB: "June 2, 1994", admin: false, subriction: "trial", Status: "clear", First: "2", Last: "2", email: ["2@gmail.com"])
@@ -159,7 +158,6 @@ class DBInit{
         }
         
 
-        //Prizes has dual keys
             stmt="CREATE TABLE IF NOT EXISTS `Prizes` (`idPrizes` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `GivenDate` DATE NULL, `StartDate` DATE NULL, `EndDate` DATE NULL, `active` TINYINT NULL, `Type` TEXT NULL, `User_ID` INT NOT NULL, CONSTRAINT `fk_Prizes_User1` FOREIGN KEY (`User_ID`) REFERENCES `User` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION); CREATE INDEX `fk_Prizes_User1_idx` ON `Prizes` (`User_ID` ASC);"
         if sqlite3_exec(DBInit.db, stmt, nil, nil, nil) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(DBInit.db)!)
@@ -186,6 +184,11 @@ class DBInit{
             print("there is error creating Reviews table", err)
         }
         initUser()
+    }
+    func initTech(){
+        DBCRUD.initDBCRUD.createTechnology(r: "Java")
+        DBCRUD.initDBCRUD.createTechnology(r: "Andriod")
+        DBCRUD.initDBCRUD.createTechnology(r: "IOS")
     }
     
 }

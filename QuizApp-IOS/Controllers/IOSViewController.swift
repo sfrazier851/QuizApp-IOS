@@ -99,7 +99,8 @@ class IOSViewController: UIViewController {
         ios_progressBar.progress = perc
         
         if perc == 1 {
-            
+            var s = ScoreBoardModels(Score: K.ios_gamescore, Quiz_ID: Q1.ID!, User_ID: (LoginPort.user?.ID)!, Technology_Title: Q1.Technology_Title)
+            DBCRUD.initDBCRUD.createScore(r: s)
             timer.invalidate()
             PresenterManager.shared.show(vc: .gameOver)
             //show
