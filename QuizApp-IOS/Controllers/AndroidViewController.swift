@@ -20,18 +20,6 @@ class AndroidViewController: UIViewController {
     @IBOutlet weak var android_ans_4: UIButton!
     
     @IBOutlet weak var android_que_tl: UILabel!
-    var qArr = [
-        ["Android Architecture is made up of the following components except:","Linux Kernel","Android Frameworks","Libraries","Cocoa Touch","Cocoa Touch"],
-        ["This is where you can find all the classes and methods that developers would need in order to write applications on the Android environment.","Libraries","Android Frameworks","Android Applications","Linux Kernel","Android Frameworks"],
-        ["This tool provides developers with the ability to deal with zip-compatible archives, which includes creating, extracting as well as viewing its contents.","Android Asset Packaging Tool","Asset Android Packaging Tool","Apple Archive Package Tool","Andro Asset Packaging Tool","Android Asset Packaging Tool"],
-        ["It is the first step towards the creation of a new Android project. It is made up of a shell script that will be used to create new file system structure necessary for writing codes within the Android IDE.","canvasCreator","projectCreator","activityCreator","libCreator","activityCreator"],
-        ["Activities are what you refer to as the window to a user interface.","True","False","","","True"],
-        ["All are essential states of an activity except:","Active","Paused","Destroyed","Inactive","Inactive"],
-        ["It allows developers the power to execute remote shell commands. Its basic function is to allow and control communication towards and from the emulator port.", "Android Debug Bridge","Apple Debug Bridge","Android Debug Box","Android Debugger Bridge","Android Debug Bridge"],
-        ["This is actually a dialog that appears to the user whenever an application have been unresponsive for a long period of time.","Application Not Responding","Agent Inactive Message","Window Blocker","State Not Active","Application Not Responding"],
-        ["The 'and' elements must be present and can occur as much as it's needed.","True","False","","","False"],
-        ["Andy Rubin originally founded Android under Android, Inc. in November 2003.","True","False","","","False"]
-    ]
     
     var qAsked = 0 //for questions answered by player
     
@@ -49,10 +37,14 @@ class AndroidViewController: UIViewController {
     
     var rand_choices = 0
     
+    var qArr = [[String]]()
+    
+    var Q1 : QuizModels=DBCRUD.initDBCRUD.getQuizsFromTechnology_Title(id: "Android")[0]
     
     override func viewDidLoad() {
 
         super.viewDidLoad()
+        qArr = Utilities.loadQuiz(Q : Q1)
         androidSetupElements()
         
     }

@@ -90,5 +90,20 @@ class Utilities {
         button.titleLabel?.lineBreakMode = .byClipping
         
     }
+    
+    static func loadQuiz(Q : QuizModels) -> [[String]] {
+        
+        var Quiz:[[String]]=[[String]]()
+        
+        for Quest in Q.Questions!{
+            
+            let Question:[String] =  [Quest.Question,Quest.choices![0],Quest.choices![1],Quest.choices![2],Quest.choices![3], Quest.Awnser]
+                Quiz.append(Question)
+            
+        }
+        
+        return Quiz
+    }
+    
 }
 

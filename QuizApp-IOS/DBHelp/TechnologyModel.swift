@@ -9,7 +9,7 @@ import Foundation
 enum TechnologyTitle:String, CaseIterable {
     case Java = "Java"
     case IOS = "IOS"
-    case Andriod = "Andriod"
+    case Android = "Android"
     
 }
 func initTechTable(){
