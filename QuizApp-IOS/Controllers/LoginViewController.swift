@@ -24,9 +24,11 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var backButton: UIButton!
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-
         setupElements()
+        hideKeyboardWhenTappedAround()
+        
     }
     
     private func setupElements() {
@@ -49,8 +51,8 @@ class LoginViewController: UIViewController {
         forgotPasswordButton.tintColor = K.Color.Orange
         
         // temporary
-//        emailTextField.text = "s@gmail.com"
-//        passwordTextField.text = "Password!"
+//        emailTextField.text = "mllsumulong@gmail.com"
+//        passwordTextField.text = "$eizhy1624$"
         
         emailTextField.becomeFirstResponder()
     }
@@ -127,4 +129,16 @@ class LoginViewController: UIViewController {
         PresenterManager.shared.show(vc: .initial)
     }
     
+}
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
