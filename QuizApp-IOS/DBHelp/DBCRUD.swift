@@ -14,15 +14,16 @@ var db = DBInit.db
 //USER
         //create
     func createUserWithUserModal(us: UserModels) -> Bool {
+        var flag = true
         print("createUserWithUserModal",us.First!,EmailToUserID(NE: us.Email[0]))
         //if this is a blank user then don't add
         if us.Password == ""{
             print("No Password Given")
-            return false
+            flag = false
         }
         if( EmailToUserID(NE: us.Email[0]) > -1){
             print("email already has user")
-            return false
+            flag = false
         }
         //init template
         let query = "INSERT INTO User (UserName, Password, Dob, admin, subcription, Status, First, Last) VALUES (?,?,?,?,?,?,?,?)"
@@ -30,67 +31,65 @@ var db = DBInit.db
         if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error createUserWithUserModal prepare:",err)
-            return false
+            flag = false
         }
         
-        //template appender
-        if !us.Email.isEmpty{
-            
-        }
+       
         if sqlite3_bind_text(stmt, 1, (us.UserName! as NSString).utf8String, -1, nil) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
-            return false
+            flag = false
         
         }
         if sqlite3_bind_text(stmt, 2, (us.Password as NSString).utf8String, -1, nil) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
-        
+        flag = false
         }
         if sqlite3_bind_text(stmt, 3, (us.Dob! as NSString).utf8String, -1, nil) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
-            return false
+            flag = false
         }
         if sqlite3_bind_int(stmt, 4, Int32(Int(us.admin! ? 1:0))) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
-            return false
+            flag = false
         }
         if sqlite3_bind_int(stmt, 5, Int32(us.Subscript)) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
-            return false
+            flag = false
         }
         if sqlite3_bind_text(stmt, 6, (us.status as NSString).utf8String, -1, nil) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
-            return false
+            flag = false
         
         }
         if sqlite3_bind_text(stmt, 7, (us.First! as NSString).utf8String, -1, nil) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
-            return false
+            flag = false
         }
         if sqlite3_bind_text(stmt, 8, (us.Last! as NSString).utf8String, -1, nil) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
-            return false
+            flag = false
         }
 
         
         if sqlite3_step(stmt) != SQLITE_DONE{
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error createUserWithUserModal step:",err)
-            return false
+            flag = false
         }
         let id=UserCount()
         for a in us.Email{
             CreateEmail(ID: id, NE: a)
         }
-        return true
+        
+        return flag
     }
     
 //read

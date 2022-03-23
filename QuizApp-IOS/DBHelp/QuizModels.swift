@@ -22,6 +22,7 @@ class QuizModels{
         self.Title=Title
         self.Technology_Title=Technology_Title
         self.ID=ID
+        loadQuestion()
     }
     init( Title:String, Technology_Title:String, Questions:[QuestionModels]  ){
         self.Questions=Questions

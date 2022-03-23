@@ -14,7 +14,6 @@ class DBInit{
      init(){
          print("DBINIT")
          openDb()
-         initquiz()
     }
     func openDb(){
         print("DBOPEN")
@@ -67,18 +66,23 @@ class DBInit{
               print("loading")
               //loading
               let t2:QuizModels=DBCRUD.initDBCRUD.getQuiz(id: t1.ID!)
+        print("sample loaded choice", t2.Questions?[0].choices?[0],"From Quize title:", t2.Title)
               
-              t2.loadQuestion()
-              for question in t2.Questions!{
-                  print(question.ID,question.Awnser, question.choices)
-              }
+              
 
     }
     func initUser(){
         let u1=UserModels(UserName: "guest", Password: "123Password!", DOB: "June 2, 1994", admin: false, subriction: "trial", Status: "clear", First: "2", Last: "2", email: ["2@gmail.com"])
         let u2=UserModels(UserName: "admin", Password: "123Password!", DOB: "June 2, 1994", admin: true, subriction: "paid", Status: "clear", First: "admin", Last: "admin", email: ["admin@gmail.com"])
-        DBCRUD.initDBCRUD.createUserWithUserModal(us: u1)
-        DBCRUD.initDBCRUD.createUserWithUserModal(us: u2)
+        if !DBCRUD.initDBCRUD.createUserWithUserModal(us: u1){
+            print("error creating u1")
+            return
+        }
+        if !DBCRUD.initDBCRUD.createUserWithUserModal(us: u2){
+            print("error creating u1")
+            return
+        }
+        initquiz()
     }
     func createTable(){
         print("DBCREATETABLE")
