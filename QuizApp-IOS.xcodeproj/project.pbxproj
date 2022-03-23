@@ -47,6 +47,7 @@
 		9AB2C3D627DC6E3C00B8E171 /* AdminHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2C3D527DC6E3C00B8E171 /* AdminHomeViewController.swift */; };
 		9AEDEB9527EAC6DA00F82499 /* ViewRankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEDEB9427EAC6DA00F82499 /* ViewRankingViewController.swift */; };
 		C240893527E8A88A001981A7 /* Quiz_Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C240893427E8A88A001981A7 /* Quiz_Editor.swift */; };
+		C2B40B9C27EB0D37007B602C /* Usr_Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B40B9B27EB0D37007B602C /* Usr_Stats.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +93,7 @@
 		9AB2C3D527DC6E3C00B8E171 /* AdminHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminHomeViewController.swift; sourceTree = "<group>"; };
 		9AEDEB9427EAC6DA00F82499 /* ViewRankingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewRankingViewController.swift; path = "QuizApp-IOS/Views/ViewRankingViewController.swift"; sourceTree = SOURCE_ROOT; };
 		C240893427E8A88A001981A7 /* Quiz_Editor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz_Editor.swift; sourceTree = "<group>"; };
+		C2B40B9B27EB0D37007B602C /* Usr_Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Usr_Stats.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +231,7 @@
 				9A55633F27E5689500997B21 /* GameOverViewController.swift */,
 				9A55634A27E58B6400997B21 /* IOSHomeViewController.swift */,
 				C240893427E8A88A001981A7 /* Quiz_Editor.swift */,
+				C2B40B9B27EB0D37007B602C /* Usr_Stats.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 				7F65195627E91DAB008C635E /* SessionManager.swift in Sources */,
 				9A55634027E5689500997B21 /* GameOverViewController.swift in Sources */,
 				9AB2C3D027DC6DF100B8E171 /* JavaViewController.swift in Sources */,
+				C2B40B9C27EB0D37007B602C /* Usr_Stats.swift in Sources */,
 				7F65179927DFCD40008C635E /* Utilities.swift in Sources */,
 				C240893527E8A88A001981A7 /* Quiz_Editor.swift in Sources */,
 				9AB2C3B327DC62D300B8E171 /* AppDelegate.swift in Sources */,
