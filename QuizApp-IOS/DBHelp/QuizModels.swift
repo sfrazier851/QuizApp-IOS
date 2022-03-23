@@ -57,7 +57,7 @@ class QuizModels{
         }
     }
     func isIN()->Bool{
-        var u = DBCRUD.initDBCRUD.getQuizByTitle(title: self.Title, Technology_Title: self.Technology_Title)
+        let u = DBCRUD.initDBCRUD.getQuizByTitle(title: self.Title, Technology_Title: self.Technology_Title)
         if u?.ID != nil{
             self.ID = u?.ID
             loadQuestion()
