@@ -33,7 +33,7 @@ class UserHomeViewController: UIViewController {
         Utilities.styleHollowButton(logoutButton)
         Utilities.styleHollowButton(takeQuizButton)
         
-        welcomeUserLabel.text = "Welcome, \(String(describing: SessionManager.shared.getLoggedInUser()!.UserName!))."
+        //welcomeUserLabel.text = "Welcome, \(String(describing: SessionManager.shared.getLoggedInUser()!.UserName!))."
     }
     
     private func setupCollectionView() {

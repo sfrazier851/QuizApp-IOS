@@ -101,8 +101,9 @@ class SignUpViewController: UIViewController {
             showError(error!)
         } else {
             print(DBCRUD.initDBCRUD.EmailToUserID(NE: emailTextField.text!), emailTextField.text!)
+            // Check if user already exists (by email)
             if(DBCRUD.initDBCRUD.EmailToUserID(NE: emailTextField.text!) < 0){
-                
+                // if user creation unsuccessful alert
                 if DBCRUD.initDBCRUD.createUserWithUserModal(us: UserModels(Email: emailTextField.text!, Password: passwordTextField.text!, UserName: usernameTextField.text!)) == false {
                     let dialogMessage = UIAlertController(title: "Alert", message: "Account Not Successfully Created!", preferredStyle: .alert)
                     let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
@@ -111,8 +112,15 @@ class SignUpViewController: UIViewController {
                     dialogMessage.addAction(ok)
                     self.present(dialogMessage, animated: true, completion: nil)
                 } else {
+                    // if user creation successful, alert, and save logged in user to global
+                    // session manager
                     let dialogMessage = UIAlertController(title: "Alert", message: "Account Successfully Created!", preferredStyle: .alert)
                     let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+                        // Login user (setting static LoginPort.user)
+                        LoginPort.initLogin.login(S: self.emailTextField.text!, PW: self.passwordTextField.text!)
+                        // Add/Manage LoginPort.user with Session Manager
+                        SessionManager.shared.setLoggedInUser(user: LoginPort.user!)
+                        print(SessionManager.shared.getLoggedInUser()!.UserName!)
                         PresenterManager.shared.show(vc: .userHome)
                     })
                     dialogMessage.addAction(ok)

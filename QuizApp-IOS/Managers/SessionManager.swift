@@ -27,6 +27,4 @@ class SessionManager {
         SessionManager.loggedInUser = nil
         PresenterManager.shared.show(vc: .login)
     }
-
-    
 }

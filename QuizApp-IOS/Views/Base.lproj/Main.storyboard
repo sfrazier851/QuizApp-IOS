@@ -234,8 +234,8 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.45000000000000001" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mainBg" translatesAutoresizingMaskIntoConstraints="NO" id="IEh-hf-PfJ">
                                 <rect key="frame" x="0.0" y="-30" width="414" height="957"/>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="7Ts-Bu-oak">
-                                <rect key="frame" x="40" y="465" width="334" height="248.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="27" translatesAutoresizingMaskIntoConstraints="NO" id="7Ts-Bu-oak">
+                                <rect key="frame" x="40" y="475.5" width="334" height="313.5"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DYp-eT-OaR" userLabel="Email Text Field">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="34"/>
@@ -243,23 +243,29 @@
                                         <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BJD-aM-0iL" userLabel="Password Text Field">
-                                        <rect key="frame" x="0.0" y="59" width="334" height="34"/>
+                                        <rect key="frame" x="0.0" y="61" width="334" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XHm-55-aB2" userLabel="Forget Password Button">
-                                        <rect key="frame" x="0.0" y="118" width="334" height="30"/>
+                                        <rect key="frame" x="0.0" y="122" width="334" height="30"/>
                                         <state key="normal" title="Forget password?"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oPg-aC-dzi" userLabel="Login Button">
-                                        <rect key="frame" x="0.0" y="173" width="334" height="30"/>
+                                        <rect key="frame" x="0.0" y="179" width="334" height="30"/>
                                         <state key="normal" title="Login"/>
                                         <connections>
                                             <action selector="loginTapped:" destination="tQJ-tZ-MrQ" eventType="touchUpInside" id="2gX-l9-ycE"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YJd-Ib-vse" userLabel="Login With Facebook Button">
+                                        <rect key="frame" x="0.0" y="236" width="334" height="30"/>
+                                        <connections>
+                                            <action selector="loginWithFacebookButtonTapped:" destination="tQJ-tZ-MrQ" eventType="touchUpInside" id="QhY-iA-jzw"/>
+                                        </connections>
+                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMX-Wa-B9m" userLabel="Error Label">
-                                        <rect key="frame" x="0.0" y="228" width="334" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="293" width="334" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" systemColor="systemRedColor"/>
                                         <nil key="highlightedColor"/>
@@ -291,7 +297,7 @@
                         <viewLayoutGuide key="safeArea" id="TX0-NV-aqi"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="7Ts-Bu-oak" firstAttribute="centerY" secondItem="fpz-Fy-bLS" secondAttribute="centerY" constant="141.25" id="0TF-1X-r8u"/>
+                            <constraint firstItem="7Ts-Bu-oak" firstAttribute="centerY" secondItem="fpz-Fy-bLS" secondAttribute="centerY" constant="184.25" id="0TF-1X-r8u"/>
                             <constraint firstItem="qZA-kQ-a2z" firstAttribute="leading" secondItem="TX0-NV-aqi" secondAttribute="leading" constant="20" id="ByG-wj-YoZ"/>
                             <constraint firstItem="7Ts-Bu-oak" firstAttribute="centerX" secondItem="fpz-Fy-bLS" secondAttribute="centerX" id="J8R-Ww-4VE"/>
                             <constraint firstItem="7Ts-Bu-oak" firstAttribute="leading" secondItem="TX0-NV-aqi" secondAttribute="leading" constant="40" id="KSX-WL-66s"/>
@@ -310,12 +316,13 @@
                         <outlet property="errorLabel" destination="uMX-Wa-B9m" id="ef4-HZ-jkD"/>
                         <outlet property="forgotPasswordButton" destination="XHm-55-aB2" id="NLr-7u-JXu"/>
                         <outlet property="loginButton" destination="oPg-aC-dzi" id="SgJ-99-nVy"/>
+                        <outlet property="loginWithFacebookButton" destination="YJd-Ib-vse" id="pCA-7Q-DyH"/>
                         <outlet property="passwordTextField" destination="BJD-aM-0iL" id="ffv-1R-lxH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fbt-EA-KRo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="751" y="443"/>
+            <point key="canvasLocation" x="750.72463768115949" y="442.63392857142856"/>
         </scene>
         <!--User Home View Controller-->
         <scene sceneID="lYA-t3-x0z">

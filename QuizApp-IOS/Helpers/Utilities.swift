@@ -58,7 +58,7 @@ class Utilities {
         
     }
     
-    // Blue semi-transparent button
+    // Blue filled button with black text
     static func styleFilledButton(_ button:UIButton) {
         
         button.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
@@ -70,6 +70,7 @@ class Utilities {
         button.tintColor = UIColor.black//UIColor.white
     }
     
+    // Orange hollow button with border and Orange label
     static func styleHollowButton(_ button:UIButton) {
         
         button.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
