@@ -76,12 +76,15 @@ class Quiz_Editor: UIViewController {
     }
     
     @IBAction func Save_as_Java(_ sender: Any) {
+        
     }
     
     @IBAction func Save_as_IOS(_ sender: Any) {
+        
     }
     
     @IBAction func Save_as_Android(_ sender: Any) {
+        
     }
     
     @IBAction func Cancel(_ sender: Any) {
