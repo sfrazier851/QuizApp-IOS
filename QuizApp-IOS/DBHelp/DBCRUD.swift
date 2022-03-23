@@ -601,7 +601,6 @@ var stmt : OpaquePointer?
 //QUIZ
     //create
         func createQuiz(r:QuizModels)->Int{
-            print("creating quiz")
             let query = "INSERT INTO Quiz (Title, Technology_Title) Values (?,?)"
             var stmt : OpaquePointer?
 let i = -1
@@ -760,7 +759,6 @@ let i = -1
 //Questions
     //create
         func createQuestion(r:QuestionModels)->Int{
-            print("creating Questions")
             print(r.Quiz_ID,r.Awnser,r.Question)
             let query = "INSERT INTO Questions (Question, Awnser, Quiz_ID) Values (?,?,?)"
             var stmt : OpaquePointer?
@@ -924,7 +922,6 @@ var i = -1
     //choice
     //create
     func createChoice(Choice:String,ID:Int){
-        print("creating choice")
 
             let query = "INSERT INTO choices (choice, Questions_ID) Values (?,?)"
             var stmt : OpaquePointer?

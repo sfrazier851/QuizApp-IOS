@@ -59,14 +59,52 @@ class DBInit{
         print("saving")
               var questions=[QuestionModels]()
               for i in qArr{
-                  questions.append(QuestionModels(Question: i[0], Awnser: i[4], choice: [i[1],i[2],i[3]]))
-              }
-              let t1:QuizModels=QuizModels(Title: "quiz title", Technology_Title: "Java", Questions: questions)
+                  questions.append(QuestionModels(Question: i[0], Awnser: i[5], choice: [i[1],i[2],i[3]
+                                                                                         ,i[4]]))              }
+              let t1:QuizModels=QuizModels(Title: "quiz title1", Technology_Title: "Java", Questions: questions)
               t1.save()
+        qArr = [
+                ["What does IOS mean?","Internet Operation System","iPhone Operation System","Interval Operation System","iPhone Overriding System","iPhone Operation System"],
+                ["It manages the appearance of the table.","UITableView","UIViewController","UICollectionView","UIImageView","UITableView"],
+                ["It is the topmost layer in the iOS Architecture.","Core Services","Media Services","Cocoa Touch","Core OS","Cocoa Touch"],
+                ["It is a connection or reference to the object created in the Interface Builder.","IBOutlet","IBAction","IBVariables","IBObject","IBOutlet"],
+                ["A file that contains a key-value pair configuration of your application.","info.plist","dictionary","keychain","bundle identifier","info.plist"],
+                ["It is a technology that allows transmission of data, voice and video through a computer or any portable device.","Mobile Programming", "Mobile Data","Mobile Computing","Mobile Phone","Mobile Computing"],
+                ["For unwrapping value inside an Optional, what should be used?","!","!@","@","None Of Them","!"],
+                ["What is the name of the deinitializer in the class declaration?","dealloc","release","deinit","finalize","deinit"],
+                ["Which keyword do you use to define a protocol?", "protocol","@protocol","@interface","Protocol", "protocol"],
+                ["Which keyword in the context of a Switch statement is required to force the execution of a subsequent case?","fallthrough","break","continue","throw","fallthrough"]
+            ]
+        questions=[QuestionModels]()
+        for i in qArr{
+            questions.append(QuestionModels(Question: i[0], Awnser: i[5], choice: [i[1],i[2],i[3]
+                                                                                   ,i[4]]))        }
+        let t2:QuizModels=QuizModels(Title: "quiz title2", Technology_Title: "Andriod", Questions: questions)
+        t2.save()
+        qArr = [
+                ["Android Architecture is made up of the following components except:","Linux Kernel","Android Frameworks","Libraries","Cocoa Touch","Cocoa Touch"],
+                ["This is where you can find all the classes and methods that developers would need in order to write applications on the Android environment.","Libraries","Android Frameworks","Android Applications","Linux Kernel","Android Frameworks"],
+                ["This tool provides developers with the ability to deal with zip-compatible archives, which includes creating, extracting as well as viewing its contents.","Android Asset Packaging Tool","Asset Android Packaging Tool","Apple Archive Package Tool","Andro Asset Packaging Tool","Android Asset Packaging Tool"],
+                ["It is the first step towards the creation of a new Android project. It is made up of a shell script that will be used to create new file system structure necessary for writing codes within the Android IDE.","canvasCreator","projectCreator","activityCreator","libCreator","activityCreator"],
+                ["Activities are what you refer to as the window to a user interface.","True","False","","","True"],
+                ["All are essential states of an activity except:","Active","Paused","Destroyed","Inactive","Inactive"],
+                ["It allows developers the power to execute remote shell commands. Its basic function is to allow and control communication towards and from the emulator port.", "Android Debug Bridge","Apple Debug Bridge","Android Debug Box","Android Debugger Bridge","Android Debug Bridge"],
+                ["This is actually a dialog that appears to the user whenever an application have been unresponsive for a long period of time.","Application Not Responding","Agent Inactive Message","Window Blocker","State Not Active","Application Not Responding"],
+                ["The 'and' elements must be present and can occur as much as it's needed.","True","False","","","False"],
+                ["Andy Rubin originally founded Android under Android, Inc. in November 2003.","True","False","","","False"]
+            ]
+        questions=[QuestionModels]()
+        for i in qArr{
+            questions.append(QuestionModels(Question: i[0], Awnser: i[5], choice: [i[1],i[2],i[3]
+                                                                                   ,i[4]]))
+        }
+        let t3:QuizModels=QuizModels(Title: "quiz title3", Technology_Title: "IOS", Questions: questions)
+        t3.save()
+        
               print("loading")
               //loading
-              let t2:QuizModels=DBCRUD.initDBCRUD.getQuiz(id: t1.ID!)
-        print("sample loaded choice", t2.Questions?[0].choices?[0],"From Quize title:", t2.Title)
+              let t9:QuizModels=DBCRUD.initDBCRUD.getQuiz(id: t1.ID!)
+        print("sample loaded choice", t9.Questions?[0].choices?[0],"From Quize title:", t9.Title)
               
               
 
