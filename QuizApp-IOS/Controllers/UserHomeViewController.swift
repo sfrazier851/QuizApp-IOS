@@ -25,6 +25,8 @@ class UserHomeViewController: UIViewController {
     
     @IBOutlet weak var leaderBoardsButton: UIButton!
     
+    @IBOutlet weak var upgradeAccountButton: UIButton!
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -34,12 +36,23 @@ class UserHomeViewController: UIViewController {
         //setupImageBackground()
         Utilities.styleHollowButton(logoutButton)
         Utilities.styleHollowButton(takeQuizButton)
+        
+        // upgrade account button starts out as hidden
+        Utilities.styleFilledButton(upgradeAccountButton)
+        upgradeAccountButton.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        upgradeAccountButton.layer.borderWidth = 2
+        upgradeAccountButton.layer.borderColor = K.Color.Blue.cgColor
+        upgradeAccountButton.tintColor = .white
+        upgradeAccountButton.isHidden = true
+        
         Utilities.styleHollowButton(leaderBoardsButton)
         let userSub = DBCRUD.initDBCRUD.getUserSubscription(id: (LoginPort.user?.ID)!)
         if userSub == 1 {
             leaderBoardsButton.isHidden = true
+            upgradeAccountButton.isHidden = false
         }
-        welcomeUserLabel.text = "Welcome, \(String(describing: LoginPort.user!.UserName!))"
+        
+        welcomeUserLabel.text = "Welcome, \(String(describing: LoginPort.user!.UserName!))."
         
     }
     
@@ -122,9 +135,29 @@ class UserHomeViewController: UIViewController {
     }
     
     @IBAction func logoutButtonTapped(_ sender: Any) {
-        UserSessionManager.endSession()
         LoginPort.initLogin.logout()
+        PresenterManager.shared.show(vc: .login)
     }
+    
+    @IBAction func upgradeAccountButtonTapped(_ sender: Any) {
+        let dialogMessage = UIAlertController(title: "Alert", message: "Redirecting to payment processor site... ...your subscription is now active.", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+            // switch button visibility
+            DispatchQueue.main.async {
+                self.leaderBoardsButton.isHidden = false
+                self.upgradeAccountButton.isHidden = true
+            }
+            // update subscription for user
+            let u = LoginPort.user!
+            print(u.UserName, u.Email)// confirm user is populated
+            // set subscription for user to paid
+            u.Subscript = 0
+            DBCRUD.initDBCRUD.updateUser(us: u)//currently getting error
+        })
+        dialogMessage.addAction(ok)
+        self.present(dialogMessage, animated: true, completion: nil)
+    }
+    
     
     @IBAction func showRankingsPage(_ sender: UIButton) {
         
