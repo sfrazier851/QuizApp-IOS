@@ -27,6 +27,7 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
 
         setupElements()
+        hideKeyboardWhenTappedAround()
     }
 
     private func setupElements() {
@@ -103,7 +104,7 @@ class SignUpViewController: UIViewController {
             print(DBCRUD.initDBCRUD.EmailToUserID(NE: emailTextField.text!), emailTextField.text!)
             // Check if user already exists (by email)
             if(DBCRUD.initDBCRUD.EmailToUserID(NE: emailTextField.text!) < 0){
-                // if user creation unsuccessful alert
+                // if user creation unsuccessful, alert
                 if DBCRUD.initDBCRUD.createUserWithUserModal(us: UserModels(Email: emailTextField.text!, Password: passwordTextField.text!, UserName: usernameTextField.text!)) == false {
                     let dialogMessage = UIAlertController(title: "Alert", message: "Account Not Successfully Created!", preferredStyle: .alert)
                     let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
@@ -116,18 +117,13 @@ class SignUpViewController: UIViewController {
                     // session manager
                     let dialogMessage = UIAlertController(title: "Alert", message: "Account Successfully Created!", preferredStyle: .alert)
                     let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
-
+                        
                         // Login user (setting static LoginPort.user)
-                        LoginPort.initLogin.login(S: self.emailTextField.text!, PW: self.passwordTextField.text!)
-                        // Add/Manage LoginPort.user with Session Manager
-                        SessionManager.shared.setLoggedInUser(user: LoginPort.user!)
-                        print(SessionManager.shared.getLoggedInUser()!.UserName!)
-                        PresenterManager.shared.show(vc: .userHome)
-
-                        //LoginPort.user = usernameTextField.text!
                         if self.callLoginPort(S: self.emailTextField.text!, PW: self.passwordTextField.text!) {
-                            print(LoginPort.user!)
-                            SessionManager.shared.setLoggedInUser(user: LoginPort.user!)
+                            // Add LoginPort.user to SessionManager
+                            //SessionManager.shared.setLoggedInUser(user: LoginPort.user!)
+                            UserSessionManager.createSession(loginType: .inApp)
+                            //print(LoginPort.user!.UserName!)
                             PresenterManager.shared.show(vc: .userHome)
                         } else {
                             PresenterManager.shared.show(vc: .login)
@@ -151,21 +147,6 @@ class SignUpViewController: UIViewController {
         errorLabel.text = message
         errorLabel.alpha = 1
     }
-
-    /*
-    func transitionLogin() {
-
-        let loginViewController = self.storyboard?.instantiateViewController(identifier: "loginView") as? LoginViewController
-
-        let transition = CATransition()
-        transition.type = .push
-        transition.duration = 0.25
-        view.window?.layer.add(transition, forKey: kCATransition)
-
-        view.window?.rootViewController = loginViewController
-        view.window?.makeKeyAndVisible()
-    }
-    */
 
     @IBAction func backButtonTapped(_ sender: Any) {
         PresenterManager.shared.show(vc: .initial)

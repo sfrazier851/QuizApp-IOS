@@ -8,6 +8,27 @@ import UIKit
 
 struct K {
     
+    struct Keychain {
+        struct Facebook {
+            static let service = "facebook"
+            static let account = "facebook"
+            static let kClass = ""
+            static let accessToken = "access-token"
+        }
+    }
+    
+    struct Network {
+        struct Facebook {
+            static let appID = "3118549225067954"
+            static let oauthBaseURL = "https://www.facebook.com/v7.0/dialog/oauth"
+            static let baseGraphAPI = "https://graph.facebook.com/me"
+            static let permissionScopes = ["email"]
+            static let callbackScheme = "fb"+appID
+            static let redirectURI = callbackScheme+"://authorize/"
+            static let responseType = "token%20granted_scopes"
+        }
+    }
+    
     struct Color {
         static let Blue = UIColor.init(red: 0/255, green: 123/255, blue: 241/255, alpha: 1.0)
         static let Orange = UIColor.init(red: 251/255, green: 67/255, blue: 30/255, alpha: 1.0)

@@ -8,84 +8,8 @@
 import UIKit
 import AuthenticationServices
 
-/*
-public struct FacebookLoginResponse {
-    let grantedPermissionScopes: [String]
-    let code: String
-    let state: String
-}
-*/
-
-public struct FacebookLoginResponse {
-    let grantedPermissionScopes: [String]
-    let accessToken: String
-    let state: String
-}
 
 class LoginViewController: UIViewController {
-
-    func getComponent(named name: String, in items: [URLQueryItem]) -> String? {
-        items.first(where: { $0.name == name })?.value
-    }
-
-    func response(from url: URL) -> FacebookLoginResponse? {
-        guard let items = URLComponents(url: url, resolvingAgainstBaseURL: true)?.queryItems,
-              let state = getComponent(named: "state", in: items),
-              let scope = getComponent(named: "granted_scopes", in: items),
-              //let code = getComponent(named: "code", in: items)
-              let accessToken = getComponent(named: "access_token", in: items)
-        else {
-            return nil
-        }
-        let grantedPermissions = scope
-            .split(separator: ",")
-            .map(String.init)
-
-        return FacebookLoginResponse(
-            grantedPermissionScopes: grantedPermissions,
-            //code: code,
-            accessToken: accessToken,
-            state: state)
-    }
-    /*
-    func sendCodeToServer(_ code: String) {
-        let url = URL(string: "https://example.com/login/facebookCode")!
-        var request = URLRequest(url: url)
-        request.httpBody = code.data(using: .utf8)
-        request.httpMethod = "POST"
-
-        URLSession.shared.dataTask(with: request) {
-            [weak self] (data, response, error) in
-
-            guard let data = data else {
-                print("An error ocurred.")
-                return
-            }
-
-            let receivedToken = String(decoding: data, as: UTF8.self)
-            guard !receivedToken.isEmpty else {
-                print("An error ocurred.")
-                return
-            }
-            print(receivedToken)
-            //self?.store(token: receivedToken)
-        }
-    }*/
-
-    func checkTokenValidity(_ accessToken: String) {
-        let url = URL(string: "https://graph.facebook.com/me?access_token=\(accessToken)")!
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard let response = response as? HTTPURLResponse else {
-                return
-            }
-
-            if response.statusCode < 200 || response.statusCode >= 300 {
-                print("token invalid or expired")
-            }
-        }.resume()
-    }
-
-    var userIsAdmin = false;
 
     @IBOutlet weak var emailTextField: UITextField!
 
@@ -106,7 +30,6 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         setupElements()
         hideKeyboardWhenTappedAround()
-
     }
 
     private func setupElements() {
@@ -188,7 +111,8 @@ class LoginViewController: UIViewController {
             let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
 
             if LoginPort.initLogin.login(S: email, PW: password){
-                SessionManager.shared.setLoggedInUser(user: LoginPort.user!)
+                //SessionManager.shared.setLoggedInUser(user: LoginPort.user!)
+                UserSessionManager.createSession(loginType: .inApp)
                 if LoginPort.user?.admin ?? false {
                     PresenterManager.shared.show(vc: .adminHome)
                 } else {
@@ -213,27 +137,17 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func loginWithFacebookButtonTapped(_ sender: Any) {
-        let facebookAppID = "3118549225067954"
-        let permissionScopes = ["email"]
-
         let state = UUID().uuidString
-        let callbackScheme = "fb" + facebookAppID
-        let baseURLString = "https://www.facebook.com/v7.0/dialog/oauth"
-        /*let urlString = "\(baseURLString)" +
-                 "?client_id=\(facebookAppID)" +
-                 "&redirect_uri=\(callbackScheme)://authorize" +
-                 "&scope=\(permissionScopes.joined(separator: ","))" +
-                 "&response_type=code%20granted_scopes" +
-                 "&state=\(state)"*/
-        let urlString = "\(baseURLString)" +
-                "?client_id=\(facebookAppID)" +
-                "&redirect_uri=\(callbackScheme)://authorize/" +
-                "&scope=\(permissionScopes.joined(separator: ","))" +
-                "&response_type=token%20granted_scopes" +
+        
+        let urlString = "\(K.Network.Facebook.oauthBaseURL)" +
+                "?client_id=\(K.Network.Facebook.appID)" +
+                "&redirect_uri=\(K.Network.Facebook.redirectURI)" +
+                "&scope=\(K.Network.Facebook.permissionScopes.joined(separator: ","))" +
+                "&response_type=\(K.Network.Facebook.responseType)" +
                 "&state=\(state)"
         let url = URL(string: urlString)!
 
-        let session = ASWebAuthenticationSession(url: url, callbackURLScheme: callbackScheme) {
+        let session = ASWebAuthenticationSession(url: url, callbackURLScheme: K.Network.Facebook.callbackScheme) {
             [weak self] (url, error) in
             guard error == nil else {
                 print(error!)
@@ -242,7 +156,7 @@ class LoginViewController: UIViewController {
             //print(url)
 
             guard let receivedURL = URL(string: (url?.absoluteString.replacingOccurrences(of: "#", with: "?"))!),
-                  let response = self!.response(from: receivedURL) else {
+                  let response = Utilities.response(from: receivedURL) else {
 
                 print("invalid url: \(String(describing: url))")
                 return
@@ -256,27 +170,14 @@ class LoginViewController: UIViewController {
             // You should send the code to your backend
             // service and get regular/long-lived authentication credentials
             // that you use in the rest of your app.
-            print(response.accessToken)//code) // POST code (in body) to backend service
+            //print(response.accessToken)//code) // POST code (in body) to backend service
             //self?.sendCodeToServer(response.code)
-            URLSession.shared.dataTask(with: URLRequest(url: URL(string: "https://graph.facebook.com/me?fields=first_name&access_token=\(response.accessToken)")!)) {
-                [weak self] (data, response, error) in
-
-                guard let data = data else {
-                    print("An error occurred.")
-                    return
-                }
-
-                let receivedName = String(decoding: data, as: UTF8.self)
-                guard !receivedName.isEmpty else {
-                    print("An error ocurred.")
-                    return
-                }
-                print(receivedName)
-                // save name to session manager facebook user
-                DispatchQueue.main.async {
-                    PresenterManager.shared.show(vc: .userHome)
-                }
-            }.resume()
+            
+            // save access token to keychain
+            KeychainManager.save(response.accessToken.data(using: .utf8)!, service: K.Keychain.Facebook.service, account: K.Keychain.Facebook.account)
+            
+            // create facebook user session
+            UserSessionManager.createSession(loginType: .facebook)
         }
 
         session.presentationContextProvider = self

@@ -9,6 +9,12 @@ import UIKit
 
 class Utilities {
     
+    static func convertToDictionary(from text: String) throws -> [String: String]? {
+        guard let data = text.data(using: .utf8) else { return [:] }
+        let anyResult: Any = try JSONSerialization.jsonObject(with: data, options: [])
+        return anyResult as? [String: String]
+    }
+    
     static func isValidPassword(_ password : String) -> Bool {
         let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{8,}")
         return passwordTest.evaluate(with: password)
@@ -118,5 +124,86 @@ class Utilities {
         return Quiz
     }
     
+    
+    // verify facebook access token
+    static func checkTokenValidity(_ accessToken: String) {
+        let url = URL(string: K.Network.Facebook.baseGraphAPI+"?access_token=\(accessToken)")!
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard let response = response as? HTTPURLResponse else {
+                return
+            }
+
+            if response.statusCode < 200 || response.statusCode >= 300 {
+                print("token invalid or expired")
+            }
+        }.resume()
+    }
+    
+    static func getURLComponent(named name: String, in items: [URLQueryItem]) -> String? {
+        items.first(where: { $0.name == name })?.value
+    }
+    
+    public struct FacebookLoginResponse {
+        let grantedPermissionScopes: [String]
+        let accessToken: String
+        let state: String
+    }
+    
+    static func response(from url: URL) -> FacebookLoginResponse? {
+        guard let items = URLComponents(url: url, resolvingAgainstBaseURL: true)?.queryItems,
+              let state = Utilities.getURLComponent(named: "state", in: items),
+              let scope = Utilities.getURLComponent(named: "granted_scopes", in: items),
+              let accessToken = Utilities.getURLComponent(named: "access_token", in: items)
+        else {
+            return nil
+        }
+        let grantedPermissions = scope
+            .split(separator: ",")
+            .map(String.init)
+
+        return FacebookLoginResponse(
+            grantedPermissionScopes: grantedPermissions,
+            accessToken: accessToken,
+            state: state)
+    }
+    
+    /*
+    public struct FacebookLoginResponse {
+        let grantedPermissionScopes: [String]
+        let code: String
+        let state: String
+    }
+    */
+    /*let urlString = "\(baseURLString)" +
+             "?client_id=\(facebookAppID)" +
+             "&redirect_uri=\(callbackScheme)://authorize" +
+             "&scope=\(permissionScopes.joined(separator: ","))" +
+             "&response_type=code%20granted_scopes" +
+             "&state=\(state)"*/
+    /*
+    func sendCodeToServer(_ code: String) {
+        let url = URL(string: "https://example.com/login/facebookCode")!
+        var request = URLRequest(url: url)
+        request.httpBody = code.data(using: .utf8)
+        request.httpMethod = "POST"
+
+        URLSession.shared.dataTask(with: request) {
+            [weak self] (data, response, error) in
+
+            guard let data = data else {
+                print("An error ocurred.")
+                return
+            }
+
+            let receivedToken = String(decoding: data, as: UTF8.self)
+            guard !receivedToken.isEmpty else {
+                print("An error ocurred.")
+                return
+            }
+            print(receivedToken)
+            //self?.store(token: receivedToken)
+        }
+    }*/
+
 }
 
