@@ -106,6 +106,17 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3vX-Lh-iGC">
+                                <rect key="frame" x="128" y="764" width="172.33333333333337" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="172.33000000000001" id="yGU-b5-9zf"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="About"/>
+                                <connections>
+                                    <action selector="aboutButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eiM-Fg-thP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -113,8 +124,12 @@
                             <constraint firstItem="fnW-yg-Wdj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="0bQ-gg-lY5"/>
                             <constraint firstItem="cXV-ij-F7y" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="33O-CC-v69"/>
                             <constraint firstItem="fnW-yg-Wdj" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="8ES-Hi-B97"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="3vX-Lh-iGC" secondAttribute="bottom" constant="82" id="Gms-hj-JYg"/>
+                            <constraint firstItem="3vX-Lh-iGC" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="720" id="V4U-sa-nPX"/>
                             <constraint firstItem="fnW-yg-Wdj" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="-30" id="ZD3-nb-B7H"/>
                             <constraint firstAttribute="bottom" secondItem="fnW-yg-Wdj" secondAttribute="bottom" constant="-31" id="epv-Mc-fg2"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3vX-Lh-iGC" secondAttribute="trailing" constant="127.67" id="fhC-Bv-FnJ"/>
+                            <constraint firstItem="3vX-Lh-iGC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="128" id="kuO-vU-zUT"/>
                             <constraint firstItem="cXV-ij-F7y" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="64.5" id="o02-YW-6ou"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cXV-ij-F7y" secondAttribute="trailing" constant="40" id="rRN-uc-D9x"/>
                             <constraint firstItem="cXV-ij-F7y" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vqV-XC-aHn"/>
@@ -122,6 +137,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="kaZ-N2-biA"/>
                     <connections>
+                        <outlet property="aboutButton" destination="3vX-Lh-iGC" id="1xd-FO-NNN"/>
                         <outlet property="loginButton" destination="wdB-6Y-Old" id="yd8-ZD-5Kx"/>
                         <outlet property="signUpButton" destination="8b5-ak-nyD" id="7xA-Jj-mN5"/>
                     </connections>
@@ -230,6 +246,92 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sar-Ac-UzS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="752" y="-275"/>
+        </scene>
+        <!--About View Controller-->
+        <scene sceneID="7HQ-M0-IpI">
+            <objects>
+                <viewController storyboardIdentifier="AboutViewController" modalPresentationStyle="formSheet" id="BAn-F9-mB2" customClass="AboutViewController" customModule="QuizApp_IOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WX6-Lj-uCr">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pWf-YN-e1P">
+                                <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="vua-nr-IvA">
+                                    <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="regular"/>
+                            </visualEffectView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="mainLogo" translatesAutoresizingMaskIntoConstraints="NO" id="xye-nJ-poE">
+                                <rect key="frame" x="39" y="100" width="350" height="244"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="textview_ios" translatesAutoresizingMaskIntoConstraints="NO" id="nxV-e2-4G1">
+                                <rect key="frame" x="20" y="352" width="388" height="378"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8o4-Bw-nHT">
+                                <rect key="frame" x="39" y="385" width="350" height="313"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <string key="text">Just like any other Trivia Applications, BrainTech is a Trivia Application that tests your knowledge in today's technologies.
+
+Developed under Ms. Asha Rani’s guidelines and requirements, this application is a group project in partial fulfillment of the Revature’s IOS Training.
+
+Developed By:
+Andrew Malmstead
+Christopher Medina
+Spencer Frazier
+Maricel Sumulong</string>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="VingyNormal" family="Vingy" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no"/>
+                            </textView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="chris" translatesAutoresizingMaskIntoConstraints="NO" id="meW-2R-x0z">
+                                <rect key="frame" x="276" y="550" width="211" height="180"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="maricel" translatesAutoresizingMaskIntoConstraints="NO" id="evg-Ob-gbf">
+                                <rect key="frame" x="-24" y="602" width="132" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="andrew" translatesAutoresizingMaskIntoConstraints="NO" id="0jR-B9-BMr">
+                                <rect key="frame" x="70" y="654" width="66" height="107"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BrL-Fl-pXS">
+                                <rect key="frame" x="128" y="788" width="172.33333333333337" height="54"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="172.33000000000001" id="7m9-Gt-JCz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="VingyNormal" family="Vingy" pointSize="15"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Go Back"/>
+                                <connections>
+                                    <action selector="dismissModal:" destination="BAn-F9-mB2" eventType="touchUpInside" id="zBh-lW-Gn2"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="spencer" translatesAutoresizingMaskIntoConstraints="NO" id="yPW-19-fRc">
+                                <rect key="frame" x="273" y="633" width="135" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="cXO-4g-x60"/>
+                        <constraints>
+                            <constraint firstItem="cXO-4g-x60" firstAttribute="bottom" secondItem="BrL-Fl-pXS" secondAttribute="bottom" constant="50" id="MuW-f6-zBW"/>
+                            <constraint firstItem="cXO-4g-x60" firstAttribute="trailing" secondItem="BrL-Fl-pXS" secondAttribute="trailing" constant="127.67" id="WY2-Ls-vRO"/>
+                            <constraint firstItem="BrL-Fl-pXS" firstAttribute="top" secondItem="cXO-4g-x60" secondAttribute="top" constant="744" id="X8G-gb-7y6"/>
+                            <constraint firstItem="BrL-Fl-pXS" firstAttribute="leading" secondItem="cXO-4g-x60" secondAttribute="leading" constant="128" id="mKo-3z-5T9"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="goBackBtn" destination="BrL-Fl-pXS" id="WTC-UV-xtT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W3F-nx-7gY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-112.14953271028037" y="834.55723542116641"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="g3N-SC-O1d">
@@ -2778,63 +2880,63 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gkBoy_ios" translatesAutoresizingMaskIntoConstraints="NO" id="1Dc-FV-Bud">
                                         <rect key="frame" x="20" y="20" width="312" height="390"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ggw-be-koA">
-                                        <rect key="frame" x="293" y="197" width="172" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="HUr-mt-GDj"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="VingyNormal" family="Vingy" pointSize="20"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="VIEW RANKINGS" backgroundImage="blueButton">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="viewRankings:" destination="J0I-ae-zhk" eventType="touchUpInside" id="w0M-i7-Hwz"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n51-qS-NNJ">
-                                        <rect key="frame" x="293" y="255" width="172" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="2T2-Pc-ydv"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="VingyNormal" family="Vingy" pointSize="20"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="MAIN" backgroundImage="blueButton">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="goMainPage:" destination="J0I-ae-zhk" eventType="touchUpInside" id="hOV-SJ-bqN"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="plC-Ma-BdO">
-                                        <rect key="frame" x="293" y="139" width="172" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="NWb-lE-ukh"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="VingyNormal" family="Vingy" pointSize="20"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="PLAY AGAIN" backgroundImage="blueButton">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="playAgain:" destination="J0I-ae-zhk" eventType="touchUpInside" id="qmt-pK-KXX"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="UNs-DL-4md">
+                                        <rect key="frame" x="273" y="143" width="200" height="166"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="plC-Ma-BdO">
+                                                <rect key="frame" x="0.0" y="0.0" width="200" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="NWb-lE-ukh"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="VingyNormal" family="Vingy" pointSize="20"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="PLAY AGAIN" backgroundImage="blueButton">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="playAgain:" destination="J0I-ae-zhk" eventType="touchUpInside" id="qmt-pK-KXX"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ggw-be-koA">
+                                                <rect key="frame" x="0.0" y="58" width="200" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="HUr-mt-GDj"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="VingyNormal" family="Vingy" pointSize="20"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="VIEW RANKINGS" backgroundImage="blueButton">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="viewRankings:" destination="J0I-ae-zhk" eventType="touchUpInside" id="w0M-i7-Hwz"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n51-qS-NNJ">
+                                                <rect key="frame" x="0.0" y="116" width="200" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="2T2-Pc-ydv"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="VingyNormal" family="Vingy" pointSize="20"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="MAIN" backgroundImage="blueButton">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="goMainPage:" destination="J0I-ae-zhk" eventType="touchUpInside" id="hOV-SJ-bqN"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="ggw-be-koA" firstAttribute="leading" secondItem="nZL-az-n9Q" secondAttribute="leading" constant="293" id="0Kq-eO-anl"/>
                                     <constraint firstAttribute="bottom" secondItem="1Dc-FV-Bud" secondAttribute="bottom" constant="20" symbolic="YES" id="LJs-4B-rCQ"/>
-                                    <constraint firstAttribute="trailing" secondItem="ggw-be-koA" secondAttribute="trailing" constant="26" id="POi-fs-mfx"/>
+                                    <constraint firstAttribute="trailing" secondItem="UNs-DL-4md" secondAttribute="trailing" constant="18" id="OmI-6S-ZQi"/>
+                                    <constraint firstItem="UNs-DL-4md" firstAttribute="leading" secondItem="nZL-az-n9Q" secondAttribute="leading" constant="273" id="PbA-Be-21p"/>
                                     <constraint firstItem="1Dc-FV-Bud" firstAttribute="leading" secondItem="nZL-az-n9Q" secondAttribute="leading" constant="20" symbolic="YES" id="QKI-Kn-7vl"/>
-                                    <constraint firstItem="n51-qS-NNJ" firstAttribute="leading" secondItem="nZL-az-n9Q" secondAttribute="leading" constant="293" id="SBx-zc-dNU"/>
-                                    <constraint firstItem="plC-Ma-BdO" firstAttribute="top" secondItem="nZL-az-n9Q" secondAttribute="top" constant="139" id="WZU-Ss-WjA"/>
+                                    <constraint firstAttribute="bottom" secondItem="UNs-DL-4md" secondAttribute="bottom" constant="121" id="XWr-YM-mBB"/>
+                                    <constraint firstItem="UNs-DL-4md" firstAttribute="top" secondItem="nZL-az-n9Q" secondAttribute="top" constant="143" id="hjq-SM-myF"/>
                                     <constraint firstAttribute="trailing" secondItem="1Dc-FV-Bud" secondAttribute="trailing" constant="159" id="joA-jJ-vta"/>
-                                    <constraint firstItem="n51-qS-NNJ" firstAttribute="top" secondItem="ggw-be-koA" secondAttribute="bottom" constant="8" symbolic="YES" id="jtG-e2-TJX"/>
                                     <constraint firstItem="1Dc-FV-Bud" firstAttribute="top" secondItem="nZL-az-n9Q" secondAttribute="top" constant="20" symbolic="YES" id="ntf-2I-JZe"/>
-                                    <constraint firstItem="ggw-be-koA" firstAttribute="top" secondItem="plC-Ma-BdO" secondAttribute="bottom" constant="8" symbolic="YES" id="ufr-o9-RaB"/>
-                                    <constraint firstAttribute="trailing" secondItem="n51-qS-NNJ" secondAttribute="trailing" constant="26" id="wSV-Qf-jSy"/>
-                                    <constraint firstItem="plC-Ma-BdO" firstAttribute="leading" secondItem="nZL-az-n9Q" secondAttribute="leading" constant="293" id="ykg-aJ-UbA"/>
-                                    <constraint firstAttribute="trailing" secondItem="plC-Ma-BdO" secondAttribute="trailing" constant="26" id="zuW-Bb-PvX"/>
                                 </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gameOver" translatesAutoresizingMaskIntoConstraints="NO" id="uHb-rC-79F">
@@ -2866,6 +2968,7 @@
                     </view>
                     <connections>
                         <outlet property="gameOverLabel" destination="hNV-0q-JOE" id="0us-7F-2QF"/>
+                        <outlet property="viewRankingBtn" destination="ggw-be-koA" id="hWy-5n-GD0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zbR-fs-6St" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -3435,11 +3538,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="andrew" width="226" height="370"/>
         <image name="android2" width="375" height="812"/>
         <image name="android_2" width="170.66667175292969" height="170.66667175292969"/>
         <image name="apple" width="170.66667175292969" height="170.66667175292969"/>
         <image name="blueButton" width="200" height="84"/>
         <image name="brownButton" width="166.66667175292969" height="115.33333587646484"/>
+        <image name="chris" width="249" height="434"/>
         <image name="gameOver" width="176" height="36.666667938232422"/>
         <image name="gkBoy_ios" width="242.66667175292969" height="265.33334350585938"/>
         <image name="greenButton" width="200" height="139.33332824707031"/>
@@ -3448,10 +3553,13 @@
         <image name="java_2" width="170.66667175292969" height="170.66667175292969"/>
         <image name="java_wallpaper" width="371.33334350585938" height="600"/>
         <image name="mainBg" width="533.33331298828125" height="405"/>
+        <image name="mainLogo" width="685.66668701171875" height="632.66668701171875"/>
+        <image name="maricel" width="280" height="286"/>
         <image name="orangeButton" width="99" height="69"/>
         <image name="purpleButton" width="99" height="69"/>
         <image name="quiz-logo-white" width="235" height="218"/>
         <image name="spchBub" width="193.66667175292969" height="125.33333587646484"/>
+        <image name="spencer" width="266" height="266"/>
         <image name="textview_ios" width="142.66667175292969" height="75"/>
         <image name="yellowButton" width="99" height="69"/>
         <systemColor name="labelColor">

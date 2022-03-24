@@ -14,6 +14,8 @@ class GameOverViewController: UIViewController {
     
     @IBOutlet weak var btn3: UIButton!
     
+    @IBOutlet weak var viewRankingBtn: UIButton!
+    
     var score : Int = 0
     
     override func viewDidLoad() {
@@ -41,6 +43,11 @@ class GameOverViewController: UIViewController {
         //print("tech is",K.currentPage, " day is ",day, " user is",LoginPort.user!.ID!)
         let rank = DBCRUD.initDBCRUD.getTacRankOfUser(Technology_Title: K.currentPage, User_ID: LoginPort.user!.ID!, Date: day)
         gameOverLabel.text = "YOUR SCORE: \(score)\nRANKING: \(rank)th"
+        
+        if DBCRUD.initDBCRUD.getUserSubscription(id: (LoginPort.user?.ID)!) == 1 {
+            viewRankingBtn.isHidden = true
+        }
+        
 
     }
     
