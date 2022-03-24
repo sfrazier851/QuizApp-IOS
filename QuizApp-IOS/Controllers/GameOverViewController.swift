@@ -18,21 +18,28 @@ class GameOverViewController: UIViewController {
         super.viewDidLoad()
         
         var score : Int = 0
+        var technology: String = ""
         
         switch K.currentPage.lowercased() {
             
             case "java":
                 score = K.java_gamescore
+            technology="Java"
             case "ios":
+            technology="IOS"
                 score = K.ios_gamescore
             case "android":
+            technology="Andriod"
                 score = K.android_gamescore
             default:
                 print("No available score")
             
         }
         
-        gamescoreTextView.text = "YOUR SCORE: \(score)\nRANKING: 16th"
+        let day:String = Utilities.formatDate(date: Date())
+        print("tech is",technology, " day is ",day, " user is",LoginPort.user!.ID)
+        let rank = DBCRUD.initDBCRUD.getTacRankOfUser(Technology_Title: technology, User_ID: LoginPort.user!.ID!, Date: day)
+        gamescoreTextView.text = "YOUR SCORE: \(score)\nRANKING: \(rank)th"
 
     }
 

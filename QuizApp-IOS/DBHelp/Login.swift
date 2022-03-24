@@ -16,7 +16,6 @@ func login(S:String, PW:String)->Bool{
     if DBCRUD.initDBCRUD.UserIDToPassword(id: DBCRUD.initDBCRUD.EmailToUserID(NE: S)) == PW{
         print("Login Successful")
         LoginPort.user = DBCRUD.initDBCRUD.UserIDToUser(id:DBCRUD.initDBCRUD.EmailToUserID(NE: S) )
-        print("user is", LoginPort.user?.UserName)
         return true
     }
     print("login fail")
