@@ -37,7 +37,6 @@ final class UserSessionManager {
                     let fbAccessToken = String(data: KeychainManager.read(service: K.Keychain.Facebook.service, account: K.Keychain.Facebook.account)!, encoding: .utf8)!
                     
                     // construct request for facebook user's first name
-                    // TODO: replace (response.accessToken) with get from keychain call
                     let baseURL = URL(string: K.Network.Facebook.baseGraphAPI)
                     let urlWithParams = URL(string: baseURL!.absoluteString + "?fields=first_name&access_token=\(fbAccessToken)")
                     let requestFirstName = URLRequest(url: urlWithParams!)

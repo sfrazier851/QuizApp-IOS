@@ -102,8 +102,15 @@ class SignUpViewController: UIViewController {
             showError(error!)
         } else {
             print(DBCRUD.initDBCRUD.EmailToUserID(NE: emailTextField.text!), emailTextField.text!)
+            
             // Check if user already exists (by email)
-            if(DBCRUD.initDBCRUD.EmailToUserID(NE: emailTextField.text!) < 0){
+            if(DBCRUD.initDBCRUD.EmailToUserID(NE: emailTextField.text!) < 0) {
+                
+                // Check if username is already taken
+                if DBCRUD.initDBCRUD.usernameIsUnique(username: usernameTextField.text!) == false {
+                    showError("Username is already taken.")
+                    return
+                }
                 // if user creation unsuccessful, alert
                 if DBCRUD.initDBCRUD.createUserWithUserModal(us: UserModels(Email: emailTextField.text!, Password: passwordTextField.text!, UserName: usernameTextField.text!)) == false {
                     let dialogMessage = UIAlertController(title: "Alert", message: "Account Not Successfully Created!", preferredStyle: .alert)
@@ -136,9 +143,8 @@ class SignUpViewController: UIViewController {
                     dialogMessage.addAction(ok)
                     self.present(dialogMessage, animated: true, completion: nil)
                   }
-                //transitionLogin()
             } else {
-                showError("Email already has a User")
+                showError("That email is already taken.")
               }
 
           }
