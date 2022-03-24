@@ -2589,16 +2589,18 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.45000000000000001" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mainBg" translatesAutoresizingMaskIntoConstraints="NO" id="pCe-EE-Sim">
                                 <rect key="frame" x="0.0" y="-30" width="428" height="953"/>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="4h9-cD-Eet">
-                                <rect key="frame" x="0.0" y="102" width="414" height="610"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="4h9-cD-Eet">
+                                <rect key="frame" x="20" y="132" width="388" height="610"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="610" id="Wk8-GA-4dA"/>
+                                </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="l9j-zl-1iS">
-                                        <rect key="frame" x="0.0" y="44.666666030883789" width="414" height="43.666667938232422"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ViewRankingTableViewCell" id="l9j-zl-1iS">
+                                        <rect key="frame" x="0.0" y="44.666666030883789" width="388" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="l9j-zl-1iS" id="wkY-Yc-kvE">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="388" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -2611,10 +2613,12 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Back"/>
+                                <connections>
+                                    <action selector="goBack:" destination="Rba-1p-fQs" eventType="touchUpInside" id="xh6-qw-2E0"/>
+                                </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="7Ft-s9-Tiu">
-                                <rect key="frame" x="0.0" y="749" width="414" height="46"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="7Ft-s9-Tiu">
+                                <rect key="frame" x="20" y="782" width="388" height="46"/>
                                 <fontDescription key="fontDescription" name="VingyNormal" family="Vingy" pointSize="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -2627,19 +2631,28 @@
                             <constraint firstAttribute="bottomMargin" secondItem="pCe-EE-Sim" secondAttribute="bottom" constant="-31" id="7Ci-xD-XpZ"/>
                             <constraint firstItem="HeA-Xf-qTA" firstAttribute="top" secondItem="rhM-QV-ZpF" secondAttribute="top" id="EQl-X9-gML"/>
                             <constraint firstItem="pCe-EE-Sim" firstAttribute="centerX" secondItem="KHI-Ix-mXf" secondAttribute="centerX" id="JAJ-2M-6YW"/>
+                            <constraint firstItem="7Ft-s9-Tiu" firstAttribute="top" secondItem="4h9-cD-Eet" secondAttribute="bottom" constant="40" id="KI0-dj-QNR"/>
+                            <constraint firstItem="4h9-cD-Eet" firstAttribute="leading" secondItem="rhM-QV-ZpF" secondAttribute="leading" constant="20" id="QHM-Ju-DMr"/>
+                            <constraint firstItem="rhM-QV-ZpF" firstAttribute="trailing" secondItem="4h9-cD-Eet" secondAttribute="trailing" constant="20" id="TLN-1a-kUA"/>
+                            <constraint firstItem="4h9-cD-Eet" firstAttribute="top" secondItem="rhM-QV-ZpF" secondAttribute="top" constant="88" id="V0S-o1-1oh"/>
+                            <constraint firstItem="rhM-QV-ZpF" firstAttribute="trailing" secondItem="7Ft-s9-Tiu" secondAttribute="trailing" constant="20" id="cFa-WB-F3F"/>
+                            <constraint firstItem="rhM-QV-ZpF" firstAttribute="bottom" secondItem="4h9-cD-Eet" secondAttribute="bottom" constant="150" id="ffl-7n-A4z"/>
+                            <constraint firstItem="rhM-QV-ZpF" firstAttribute="bottom" secondItem="7Ft-s9-Tiu" secondAttribute="bottom" constant="64" id="guh-2h-IMF"/>
                             <constraint firstItem="pCe-EE-Sim" firstAttribute="top" secondItem="KHI-Ix-mXf" secondAttribute="topMargin" constant="-74" id="jgB-Er-VbS"/>
+                            <constraint firstItem="7Ft-s9-Tiu" firstAttribute="leading" secondItem="rhM-QV-ZpF" secondAttribute="leading" constant="20" id="lRt-KS-cUP"/>
                             <constraint firstItem="pCe-EE-Sim" firstAttribute="leading" secondItem="rhM-QV-ZpF" secondAttribute="leading" id="mSY-Gj-WaQ"/>
                             <constraint firstItem="HeA-Xf-qTA" firstAttribute="leading" secondItem="rhM-QV-ZpF" secondAttribute="leading" constant="20" id="wvP-7i-kwX"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="HeA-Xf-qTA" id="4H8-qD-Mem"/>
                         <outlet property="vrTableView" destination="4h9-cD-Eet" id="SRm-ea-Ie9"/>
                         <outlet property="vrTimerLabel" destination="7Ft-s9-Tiu" id="J4u-lR-yM6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OAP-HW-3Ja" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3689.8550724637685" y="1395.5357142857142"/>
+            <point key="canvasLocation" x="3689.7196261682243" y="1395.0323974082075"/>
         </scene>
         <!--Game Over View Controller-->
         <scene sceneID="seY-xY-mV4">
@@ -2658,10 +2671,10 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="spchBub" translatesAutoresizingMaskIntoConstraints="NO" id="Hwx-Gt-bYI">
                                         <rect key="frame" x="0.0" y="20" width="388" height="253"/>
                                     </imageView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="YOUR SCORE: 30 RANKING: 16th" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="KlE-3b-GlZ">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="KlE-3b-GlZ">
                                         <rect key="frame" x="50" y="63" width="280" height="140"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" name="VingyNormal" family="Vingy" pointSize="30"/>
+                                        <fontDescription key="fontDescription" name="VingyNormal" family="Vingy" pointSize="40"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>

@@ -13,11 +13,13 @@ class GameOverViewController: UIViewController {
    
     @IBOutlet weak var btn3: UIButton!
     
+    var score : Int = 0
+    
     override func viewDidLoad() {
     
         super.viewDidLoad()
         
-        var score : Int = 0
+        score = 0
         
         switch K.currentPage.lowercased() {
             
@@ -32,7 +34,8 @@ class GameOverViewController: UIViewController {
             
         }
         
-        gamescoreTextView.text = "YOUR SCORE: \(score)\nRANKING: 16th"
+        gamescoreTextView.text = "YOUR SCORE: \(score)"
+        saveScoreToDB()
 
     }
 
@@ -77,6 +80,9 @@ class GameOverViewController: UIViewController {
     }
     
     @IBAction func viewRankings(_ sender: UIButton) {
+        
+        PresenterManager.shared.show(vc: .ranking)
+        
     }
     
     
@@ -88,6 +94,19 @@ class GameOverViewController: UIViewController {
     @IBAction func goMainPage(_ sender: UIButton) {
         
         PresenterManager.shared.show(vc: .userHome)
+        
+    }
+    
+    func saveScoreToDB() {
+        
+        let SM = ScoreBoardModels(Score: score, Quiz_ID: K.game_quiz_id, User_ID: K.user_id, Technology_Title: K.currentPage)
+    
+        print(SM.Score)
+        print(SM.Quiz_ID)
+        print(SM.User_ID)
+        print(SM.Technology_Title)
+        
+        //let success = DBCRUD.initDBCRUD.createQuiz(r: SM)
         
     }
     

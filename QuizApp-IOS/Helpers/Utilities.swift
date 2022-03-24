@@ -82,20 +82,26 @@ class Utilities {
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
         button.tintColor = K.Color.Orange//UIColor.white
     }
-    static func formatDate(date: Date)->String
-    {
+    
+    static func formatDate(date: Date)->String {
+        
         let formatter = DateFormatter()
         formatter.dateFormat="MMMM dd yyyy"
         return formatter.string(from: date)
+    
     }
-    static func formatetoDate(s:String)->Date{
+    
+    static func formatetoDate(s:String)->Date {
+        
         print("format to date",s)
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "en_US_POSIX")
         formatter.dateFormat="MMMM dd, yyyy"
         return formatter.date(from: s)!
+    
     }
-       static func fitTextInsideButton(_ button: UIButton) {
+    
+    static func fitTextInsideButton(_ button: UIButton) {
         
         button.titleLabel?.numberOfLines = 0
         button.titleLabel?.adjustsFontSizeToFitWidth = true

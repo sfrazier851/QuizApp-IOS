@@ -47,6 +47,7 @@ class IOSViewController: UIViewController {
         super.viewDidLoad()
         qArr = Utilities.loadQuiz(Q : Q1)
         iosSetupElements()
+        K.game_quiz_id = Q1.ID!
         
     }
 
@@ -85,7 +86,7 @@ class IOSViewController: UIViewController {
         
         if sender.currentTitle! == qArr[rand][5] {
             //print(sender.currentTitle!)
-            K.ios_gamescore += 1
+            K.ios_gamescore += Int.random(in: 5...15)
             //playSound(soundName : "correct-answer", exte : "mp3")
         }
 //        else {

@@ -48,6 +48,7 @@ class JavaViewController: UIViewController {
         super.viewDidLoad()
         qArr = Utilities.loadQuiz(Q : Q1)
         javaSetupElements()
+        K.game_quiz_id = Q1.ID!
     
     }
    
@@ -87,11 +88,13 @@ class JavaViewController: UIViewController {
         
         if sender.currentTitle! == qArr[rand][5] {
             //print(sender.currentTitle!)
-            K.java_gamescore += 1
+            K.java_gamescore += Int.random(in: 5...15)
+            sender.imageView?.image = UIImage(named: "greenButton")
             //playSound(soundName: "correct-answer", exte: "mp3")
         }
 //        } else {
 //            playSound(soundName: "wrong-answer", exte: "wav")
+              sender.imageView?.image = UIImage(named: "redButton")
 //          }
         
         qAsked += 1

@@ -44,4 +44,8 @@ struct K {
     
     static var currentPage = ""
     
+    static var user_id : Int = 0
+    
+    static var game_quiz_id : Int = 0
+    
 }

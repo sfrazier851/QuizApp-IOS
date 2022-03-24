@@ -1211,11 +1211,12 @@ var i = -1
             let query = "INSERT INTO ScoreBoard (Score, Quiz_ID, User_ID, Technology_title) Values(?,?,?,?)"
             var stmt : OpaquePointer?
 
-                if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
-                    let err = String(cString:sqlite3_errmsg(db)!)
-                    print("There is an Error:",err)
-                    return
-                }
+            if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
+                let err = String(cString:sqlite3_errmsg(db)!)
+                print("There is an Error:",err)
+                return
+            }
+            
             if sqlite3_bind_int(stmt, 1, Int32(r.Score)) != SQLITE_OK{
                 let err = String(cString: sqlite3_errmsg(db)!)
                 print("There is an Error:",err)

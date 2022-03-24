@@ -46,6 +46,7 @@ class AndroidViewController: UIViewController {
         super.viewDidLoad()
         qArr = Utilities.loadQuiz(Q : Q1)
         androidSetupElements()
+        K.game_quiz_id = Q1.ID!
         
     }
     
@@ -91,7 +92,7 @@ class AndroidViewController: UIViewController {
         
         if sender.currentTitle! == qArr[rand][5] {
             //print(sender.currentTitle!)
-            K.android_gamescore += 1
+            K.android_gamescore += Int.random(in: 5...15)
         }
         
         qAsked += 1

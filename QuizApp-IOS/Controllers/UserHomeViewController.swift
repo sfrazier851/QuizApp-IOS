@@ -97,13 +97,13 @@ class UserHomeViewController: UIViewController {
             switch quizTitleLabel.text?.lowercased() {
                 
                 case "java":
-                    K.currentPage = "java"
+                    K.currentPage = "Java"
                     PresenterManager.shared.show(vc: .java)
                 case "ios":
-                    K.currentPage = "ios"
+                    K.currentPage = "IOS"
                     PresenterManager.shared.show(vc: .ios)
                 case "android":
-                    K.currentPage = "android"
+                    K.currentPage = "Android"
                     PresenterManager.shared.show(vc: .android)
                 default:
                     print("No Controllers!")
