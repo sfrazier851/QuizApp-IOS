@@ -119,7 +119,7 @@ class LoginViewController: UIViewController {
 
             if LoginPort.initLogin.login(S: email, PW: password){
                 // create session (saving logged in user object)
-                UserSessionManager.createSession(loginType: .inApp)
+                //UserSessionManager.createSession(loginType: .inApp)
                 if LoginPort.user?.admin ?? false {
                     PresenterManager.shared.show(vc: .adminHome)
                 } else {

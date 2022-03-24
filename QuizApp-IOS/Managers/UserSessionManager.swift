@@ -20,6 +20,7 @@ final class UserSessionManager {
     private static var currentLoginType: loginType = .none
     private static var loggedInUser: UserModels?
     private static var fbFirstName: String? // replace with struct if getting more user fields from facebook
+    private static var fbEmail: String?
     
     // create a session and set respective user data
     static func createSession(loginType: loginType) {
@@ -38,7 +39,7 @@ final class UserSessionManager {
                     
                     // construct request for facebook user's first name
                     let baseURL = URL(string: K.Network.Facebook.baseGraphAPI)
-                    let urlWithParams = URL(string: baseURL!.absoluteString + "?fields=first_name&access_token=\(fbAccessToken)")
+                    let urlWithParams = URL(string: baseURL!.absoluteString + "?fields=first_name,email&access_token=\(fbAccessToken)")
                     let requestFirstName = URLRequest(url: urlWithParams!)
                                 
                         
@@ -50,17 +51,27 @@ final class UserSessionManager {
                             return
                         }
                         
-                        let receivedNameJsonString = String(decoding: data, as: UTF8.self)
+                        let receivedJsonString = String(decoding: data, as: UTF8.self)
                         
-                        guard !receivedNameJsonString.isEmpty else {
+                        guard !receivedJsonString.isEmpty else {
                             print("An error ocurred.")
                             return
                         }
                         
-                        let receivedName = try! Utilities.convertToDictionary(from: receivedNameJsonString)!["first_name"]
+                        let receivedName = try! Utilities.convertToDictionary(from: receivedJsonString)!["first_name"]
+                        let receivedEmail = try! Utilities.convertToDictionary(from: receivedJsonString)!["email"]
                         
-                        UserSessionManager.fbFirstName = receivedName!
-                        UserDefaults.standard.set(receivedName!, forKey: K.UserDefaults.userScreenName)
+                        //UserSessionManager.fbFirstName = receivedName!
+                        //UserDefaults.standard.set(receivedName!, forKey: K.UserDefaults.userScreenName)
+                        
+                        // check if facebook user is already in the database
+                        if LoginPort.initLogin.login(S: receivedEmail!, PW: "facebook-user") == true {
+                            print("USER: ")
+                            print(LoginPort.user!.Email)
+                        } else {
+                            // user is not already in database, create user
+                            DBCRUD.initDBCRUD.createUserWithUserModal(us: UserModels(Email: receivedEmail!, Password: "facebook-user", UserName: receivedName!))
+                        }
                         
                         DispatchQueue.main.async {
                             PresenterManager.shared.show(vc: .userHome)

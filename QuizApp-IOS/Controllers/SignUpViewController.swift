@@ -132,7 +132,7 @@ class SignUpViewController: UIViewController {
                             K.ios_gamescore = 0
                             K.java_gamescore = 0
                             K.android_gamescore = 0
-                            UserSessionManager.createSession(loginType: .inApp)
+                            //UserSessionManager.createSession(loginType: .inApp)
                             //print(LoginPort.user!.UserName!)
                             PresenterManager.shared.show(vc: .userHome)
                         } else {

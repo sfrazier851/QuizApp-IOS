@@ -35,10 +35,10 @@ class UserHomeViewController: UIViewController {
         Utilities.styleHollowButton(logoutButton)
         Utilities.styleHollowButton(takeQuizButton)
         Utilities.styleHollowButton(leaderBoardsButton)
-        let userSub = DBCRUD.initDBCRUD.getUserSubscription(id: (LoginPort.user?.ID)!)
-        if userSub == 1 {
+        //let userSub = DBCRUD.initDBCRUD.getUserSubscription(id: (LoginPort.user?.ID)!)
+        /*if userSub == 1 {
             leaderBoardsButton.isHidden = true
-        }
+        }*/
         welcomeUserLabel.text = "Welcome, \(String(describing: UserSessionManager.getUserScreenName()))"
         
     }
@@ -123,6 +123,7 @@ class UserHomeViewController: UIViewController {
     
     @IBAction func logoutButtonTapped(_ sender: Any) {
         UserSessionManager.endSession()
+        LoginPort.initLogin.logout()
     }
     
     @IBAction func showRankingsPage(_ sender: UIButton) {
