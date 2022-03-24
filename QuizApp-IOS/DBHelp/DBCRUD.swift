@@ -1355,9 +1355,11 @@ var i = -1
         var query : String
         
         if Technology_Title == "" {
-            query = "Select * FROM ScoreBoard WHERE TakenDate = ? ORDER BY Score DESC LIMIT 10"
+            //query = "Select * FROM ScoreBoard WHERE TakenDate = ? ORDER BY Score DESC LIMIT 10"
+            query = "SELECT User_ID, SUM(Score) FROM ScoreBoard WHERE TakenDate = ? GROUP BY User_ID ORDER BY SUM(Score) DESC LIMIT 10"
         } else {
-            query = "Select * FROM ScoreBoard WHERE Technology_Title = ? AND TakenDate = ? ORDER BY Score DESC LIMIT 10"
+            //query = "Select * FROM ScoreBoard WHERE Technology_Title = ? AND TakenDate = ? ORDER BY Score DESC LIMIT 10"
+            query = "SELECT User_ID, SUM(Score) FROM ScoreBoard WHERE Technology_Title = ? AND TakenDate = ? GROUP BY User_ID ORDER BY SUM(Score) DESC LIMIT 10"
           }
         
         //print("QUERY: \(query)")
@@ -1394,7 +1396,7 @@ var i = -1
         //step
         //Appending Emails to Array
         while(sqlite3_step(stmt) == SQLITE_ROW){
-            let score = ScoreBoardModels(Score: Int(sqlite3_column_int(stmt, 0)), Quiz_ID: Int(sqlite3_column_int(stmt, 1)), User_ID: Int(sqlite3_column_int(stmt, 2)), Technology_Title: String(cString : sqlite3_column_text(stmt, 3)), TakenDate: String(cString : sqlite3_column_text(stmt, 4)))
+            let score = ScoreBoardModels(Score: Int(sqlite3_column_int(stmt, 1)), Quiz_ID: 0, User_ID: Int(sqlite3_column_int(stmt, 0)), Technology_Title: Technology_Title, TakenDate: Date)
             rev.append(score)}
         return rev
     
