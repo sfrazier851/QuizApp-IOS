@@ -9,8 +9,9 @@ import UIKit
 
 class GameOverViewController: UIViewController {
 
-    @IBOutlet weak var gamescoreTextView: UITextView!
-   
+    
+    @IBOutlet weak var gameOverLabel: UILabel!
+    
     @IBOutlet weak var btn3: UIButton!
     
     var score : Int = 0
@@ -18,9 +19,11 @@ class GameOverViewController: UIViewController {
     override func viewDidLoad() {
     
         super.viewDidLoad()
-        
+
         score = 0
-        
+
+        var score : Int = 0
+
         switch K.currentPage.lowercased() {
             
             case "java":
@@ -34,15 +37,11 @@ class GameOverViewController: UIViewController {
             
         }
         
-        gamescoreTextView.text = "YOUR SCORE: \(score)"
-        saveScoreToDB()
+        let day:String = Utilities.formatDate(date: Date())
+        print("tech is",K.currentPage, " day is ",day, " user is",LoginPort.user!.ID!)
+        let rank = DBCRUD.initDBCRUD.getTacRankOfUser(Technology_Title: K.currentPage, User_ID: LoginPort.user!.ID!, Date: day)
+        gameOverLabel.text = "YOUR SCORE: \(score)\nRANKING: \(rank)th"
 
-    }
-
-    override func viewDidLayoutSubviews() {
-        
-        gamescoreTextView.centerVertically()
-        
     }
     
     @IBAction func playAgain(_ sender: UIButton) {

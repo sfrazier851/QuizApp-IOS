@@ -33,7 +33,9 @@ class ViewRankingViewController: UIViewController {
 
     @IBAction func goBack(_ sender: UIButton) {
         
-        self.dismiss(animated: true, completion: nil)
+        print("go back")
+        //self.dismiss(animated: true, completion: nil)
+        PresenterManager.shared.show(vc: .gameOver)
         
     }
     
@@ -105,26 +107,26 @@ extension ViewRankingViewController : UITableViewDataSource {
                 cell.userName.textColor = UIColor.cyan
                 cell.score.textColor = UIColor.cyan
                 cell.position.text = String(indexPath.row + 1)
-                cell.userName.text = String(describing: SessionManager.shared.getLoggedInUser()!.UserName!)
+                cell.userName.text = String(describing: UserSessionManager.getUserScreenName())
                 cell.score.text = "1290"
             case 1:
                 cell.position.textColor = UIColor.green
                 cell.userName.textColor = UIColor.green
                 cell.score.textColor = UIColor.green
                 cell.position.text = String(indexPath.row + 1)
-                cell.userName.text = String(describing: SessionManager.shared.getLoggedInUser()!.UserName!)
+                cell.userName.text = String(describing: UserSessionManager.getUserScreenName())
                 cell.score.text = "1290"
             case 2:
                 cell.position.textColor = UIColor.systemPink
                 cell.userName.textColor = UIColor.systemPink
                 cell.score.textColor = UIColor.systemPink
                 cell.position.text = String(indexPath.row + 1)
-                cell.userName.text = String(describing: SessionManager.shared.getLoggedInUser()!.UserName!)
+                cell.userName.text = String(describing: UserSessionManager.getUserScreenName())
                 cell.score.text = "1290"
             default:
                 print("color black")
                 cell.position.text = String(indexPath.row + 1)
-                cell.userName.text = String(describing: SessionManager.shared.getLoggedInUser()!.UserName!)
+                cell.userName.text = String(describing: UserSessionManager.getUserScreenName())
                 cell.score.text = "1290"
             
         }
