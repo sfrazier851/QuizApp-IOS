@@ -300,6 +300,24 @@ func EmailToUserID(NE:String) -> Int{
     
         
 }
+    
+// check if a user already exists with a particular username
+func usernameIsUnique(username:String) -> Bool{
+    let query = "select COUNT(*) from User WHERE UserName = '\(username)'"
+        var stmt : OpaquePointer?
+        var count = 0
+        if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
+            let err = String(cString: sqlite3_errmsg(db)!)
+            print("There is an Error:",err)
+        }
+        //step
+        if(sqlite3_step(stmt) == SQLITE_ROW){
+             count = Int(sqlite3_column_int(stmt, 0))
+        }
+        return count == 0
+}
+    
+    
 func UserIDtoEmail(ID:Int)->[String]{
     var emails = [String]()
     let query = "SELECT Emails FROM Emails WHERE User_ID = ?"
