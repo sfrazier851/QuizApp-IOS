@@ -14,13 +14,8 @@ class DBInit{
      init(){
          print("DBINIT")
          openDb()
-         testupdate()
     }
-    func testupdate(){
-        var u1=DBCRUD.initDBCRUD.UserIDToUser(id: 1)
-        u1.Subscript=1
-        u1.save()
-    }
+  
     func openDb(){
         print("DBOPEN")
         
