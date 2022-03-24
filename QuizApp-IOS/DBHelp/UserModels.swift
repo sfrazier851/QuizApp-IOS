@@ -64,5 +64,9 @@ class UserModels{
         Subscript=SubcriptionType.trial.rawValue
         status="unblocked"
     }
-    		
+    func save(){
+        if ID != nil{
+            DBCRUD.initDBCRUD.updateUser(us: self)
+        }
+    }
 }

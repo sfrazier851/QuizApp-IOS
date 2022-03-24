@@ -42,6 +42,16 @@ class Prize{
         self.active=active
     }
     func save(){
-        updatePriz
+        DBCRUD.initDBCRUD.updatePrize(prize: self)
+    }
+    func isIN()->Bool{
+        if self.idPrize != nil {
+            DBCRUD.initDBCRUD.getPrizeFromPrizeID(id: self.idPrize!)
+            	return true
+        }
+        return false
+    }
+    func delete(){
+        DBCRUD.initDBCRUD.deleteAPrize(NE: self.idPrize!)
     }
 }

@@ -14,6 +14,12 @@ class DBInit{
      init(){
          print("DBINIT")
          openDb()
+         testupdate()
+    }
+    func testupdate(){
+        var u1=DBCRUD.initDBCRUD.UserIDToUser(id: 1)
+        u1.Subscript=1
+        u1.save()
     }
     func openDb(){
         print("DBOPEN")
@@ -158,7 +164,7 @@ initTech()
         }
         
 
-            stmt="CREATE TABLE IF NOT EXISTS `Prizes` (`idPrizes` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `GivenDate` DATE NULL, `StartDate` DATE NULL, `EndDate` DATE NULL, `active` TINYINT NULL, `Type` TEXT NULL, `User_ID` INT NOT NULL, CONSTRAINT `fk_Prizes_User1` FOREIGN KEY (`User_ID`) REFERENCES `User` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION); CREATE INDEX `fk_Prizes_User1_idx` ON `Prizes` (`User_ID` ASC);"
+            stmt="CREATE TABLE IF NOT EXISTS `Prizes` (`idPrizes` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `GivenDate` DATE NULL, `StartDate` DATE NULL, `EndDate` DATE NULL, `active` TINYINT NULL, `Type` INT NULL, `User_ID` INT NOT NULL, CONSTRAINT `fk_Prizes_User1` FOREIGN KEY (`User_ID`) REFERENCES `User` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION); CREATE INDEX `fk_Prizes_User1_idx` ON `Prizes` (`User_ID` ASC);"
         if sqlite3_exec(DBInit.db, stmt, nil, nil, nil) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(DBInit.db)!)
             print("there is error creating Prizes table", err)

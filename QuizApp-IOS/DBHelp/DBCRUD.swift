@@ -191,9 +191,13 @@ func UserIDToPassword(id:Int) -> String{
     //Update
     func updateUser(us:UserModels){
 
-        let query = "UPDATE User set UserName = ?, Password = ?, Dob = ?, admin = ?, subcription = ? Status = ?, First = ?, Last = ?, WHERE ID = ?"
+        let query = "UPDATE User set UserName = ?, Password = ?, Dob = ?, admin = ?, subcription = ?, Status = ?, First = ?, Last = ? WHERE ID = ?"
         
     var stmt : OpaquePointer?
+        if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
+            let err = String(cString: sqlite3_errmsg(db)!)
+            print("There is an Error updateUser prepare:",err)
+        }
         if sqlite3_bind_text(stmt, 1, (us.UserName! as NSString).utf8String, -1, nil) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
@@ -236,14 +240,7 @@ func UserIDToPassword(id:Int) -> String{
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
         }
-    if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
-        let err = String(cString: sqlite3_errmsg(db)!)
-        print("There is an Error:",err)
-    }
-        if sqlite3_bind_int(stmt, 1, Int32(us.ID!)) != SQLITE_OK{
-        let err = String(cString: sqlite3_errmsg(db)!)
-        print("There is an Error:",err)
-    }
+    
     if sqlite3_step(stmt) != SQLITE_DONE{
         let err = String(cString: sqlite3_errmsg(db)!)
         print("There is an Error:",err)
@@ -256,7 +253,7 @@ func UserIDToPassword(id:Int) -> String{
     }
     //delete
     func DeleteUser(ID: Int){
-        let query = "DELETE * FROM User WHERE ID = ?"
+        let query = "DELETE FROM User WHERE ID = ?"
     var stmt : OpaquePointer?
         if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(db)!)
@@ -394,7 +391,7 @@ func replaceEmail(NE:String,OE:String){
     }
 //Delete
 func deleteAEmail(NE:String){
-    let query = "DELETE * FROM Emails WHERE Email = ?"
+    let query = "DELETE FROM Emails WHERE Email = ?"
 var stmt : OpaquePointer?
     if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
         let err = String(cString: sqlite3_errmsg(db)!)
@@ -412,7 +409,8 @@ var stmt : OpaquePointer?
     
 }
 func deleteAllEmail(NE:Int){
-    let query = "DELETE * FROM Emails WHERE User_ID = ?"
+    print("delete all email")
+    let query = "DELETE FROM Emails WHERE User_ID = ?"
 var stmt : OpaquePointer?
     if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
         let err = String(cString: sqlite3_errmsg(db)!)
@@ -557,7 +555,7 @@ var stmt : OpaquePointer?
     }
 //delete
     func deleteAllUserReviews(NE:Int){
-        let query = "DELETE * FROM Reviews WHERE User_ID = ?"
+        let query = "DELETE FROM Reviews WHERE User_ID = ?"
     var stmt : OpaquePointer?
         if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(db)!)
@@ -576,7 +574,7 @@ var stmt : OpaquePointer?
         
     }
     func deleteAReview(NE:Int){
-        let query = "DELETE * FROM Reviews WHERE idReviews = ?"
+        let query = "DELETE FROM Reviews WHERE idReviews = ?"
     var stmt : OpaquePointer?
         if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(db)!)
@@ -626,7 +624,7 @@ var stmt : OpaquePointer?
     }
     //delete
     func deleteATechnology(NE:Int){
-        let query = "DELETE * FROM Reviews WHERE ID = ?"
+        let query = "DELETE FROM Reviews WHERE ID = ?"
     var stmt : OpaquePointer?
         if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(db)!)
@@ -785,7 +783,7 @@ let i = -1
     //delete
         
         func deleteAQuiz(NE:Int){
-            let query = "DELETE * FROM Quiz WHERE ID = ?"
+            let query = "DELETE FROM Quiz WHERE ID = ?"
         var stmt : OpaquePointer?
             if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
                 let err = String(cString: sqlite3_errmsg(db)!)
@@ -947,7 +945,7 @@ var i = -1
     //delete
         
         func DeleteAQuestion(NE:Int){
-            let query = "DELETE * FROM Questions WHERE ID = ?"
+            let query = "DELETE FROM Questions WHERE ID = ?"
         var stmt : OpaquePointer?
             if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
                 let err = String(cString: sqlite3_errmsg(db)!)
@@ -1116,10 +1114,12 @@ var i = -1
             print("There is an Error:",err)
         }
         
-        if sqlite3_bind_text(stmt, 5, (prize.PrizeType! as NSString).utf8String, -1, nil) != SQLITE_OK{
-        let err = String(cString: sqlite3_errmsg(db)!)
-        print("There is an Error:",err)
-        return}
+        
+        if sqlite3_bind_int(stmt, 5, Int32(prize.PrizeType!)) != SQLITE_OK{ let err = String(cString: sqlite3_errmsg(db)!)
+            print("There is an Error:",err)
+        }
+        
+        
         if sqlite3_bind_int(stmt, 6, Int32(prize.User_ID)) != SQLITE_OK{ let err = String(cString: sqlite3_errmsg(db)!)
         print("There is an Error:",err)
     }
@@ -1150,7 +1150,7 @@ var i = -1
         //step
         //Appending Emails to Array
             if(sqlite3_step(stmt) == SQLITE_ROW){
-                rev = Prize(GivenDate:String(cString:sqlite3_column_text(stmt, 0)) ,startDate: String(cString:sqlite3_column_text(stmt, 1)), EndaDate: String(cString:sqlite3_column_text(stmt, 2)), PrizeType: String(cString:sqlite3_column_text(stmt, 3)), User_ID: Int(sqlite3_column_int(stmt, 4)), active: Int(sqlite3_column_int(stmt, 5)))
+                rev = Prize(GivenDate:String(cString:sqlite3_column_text(stmt, 0)) ,startDate: String(cString:sqlite3_column_text(stmt, 1)), EndaDate: String(cString:sqlite3_column_text(stmt, 2)), PrizeType: Int(sqlite3_column_int(stmt, 3)), User_ID: Int(sqlite3_column_int(stmt, 4)), active: Int(sqlite3_column_int(stmt, 5)))
                 
             }
             return rev
@@ -1175,7 +1175,7 @@ var i = -1
         //step
         //Appending Emails to Array
             while(sqlite3_step(stmt) == SQLITE_ROW){
-                rev.append( Prize(GivenDate:String(cString:sqlite3_column_text(stmt, 0)) ,startDate: String(cString:sqlite3_column_text(stmt, 1)), EndaDate: String(cString:sqlite3_column_text(stmt, 2)), PrizeType: String(cString:sqlite3_column_text(stmt, 3)), User_ID: Int(sqlite3_column_int(stmt, 4)), active: Int(sqlite3_column_int(stmt, 5))))
+                rev.append( Prize(GivenDate:String(cString:sqlite3_column_text(stmt, 0)) ,startDate: String(cString:sqlite3_column_text(stmt, 1)), EndaDate: String(cString:sqlite3_column_text(stmt, 2)), PrizeType: Int(sqlite3_column_int(stmt, 3)), User_ID: Int(sqlite3_column_int(stmt, 4)), active: Int(sqlite3_column_int(stmt, 5))))
                 
             }
             return rev
@@ -1208,10 +1208,11 @@ var i = -1
         let err = String(cString: sqlite3_errmsg(db)!)
         print("There is an Error:",err)
     }
-        if sqlite3_bind_text(stmt, 5, (prize.PrizeType! as NSString).utf8String, -1, nil) != SQLITE_OK{
-            let err = String(cString: sqlite3_errmsg(db)!)
-            print("There is an Error:",err)
-        }
+        
+        if sqlite3_bind_int(stmt, 5, Int32(prize.PrizeType!)) != SQLITE_OK{
+        let err = String(cString: sqlite3_errmsg(db)!)
+        print("There is an Error:",err)
+    }
         if sqlite3_bind_int(stmt, 6, Int32(prize.User_ID)) != SQLITE_OK{
         let err = String(cString: sqlite3_errmsg(db)!)
         print("There is an Error:",err)
@@ -1233,7 +1234,7 @@ var i = -1
     //delete
         
         func deleteAPrize(NE:Int){
-            let query = "DELETE * FROM Prizes WHERE idPrizes = ?"
+            let query = "DELETE FROM Prizes WHERE idPrizes = ?"
         var stmt : OpaquePointer?
             if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
                 let err = String(cString: sqlite3_errmsg(db)!)
@@ -1574,7 +1575,7 @@ var i = -1
         }
     //delete
     func deleteAUserScore(User_ID:Int, Quiz_ID:Int){
-            let query = "DELETE * FROM ScoreBoard WHERE Quiz_ID = ? AND User_ID,  = ?"
+            let query = "DELETE FROM ScoreBoard WHERE Quiz_ID = ? AND User_ID,  = ?"
         var stmt : OpaquePointer?
             if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
                 let err = String(cString: sqlite3_errmsg(db)!)
