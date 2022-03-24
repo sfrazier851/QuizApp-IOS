@@ -132,9 +132,16 @@ class Utilities {
             guard let response = response as? HTTPURLResponse else {
                 return
             }
-
             if response.statusCode < 200 || response.statusCode >= 300 {
                 print("token invalid or expired")
+                UserSessionManager.endSession()
+                DispatchQueue.main.async {
+                    PresenterManager.shared.show(vc: .initial)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    UserSessionManager.createSession(loginType: .facebook)
+                }
             }
         }.resume()
     }

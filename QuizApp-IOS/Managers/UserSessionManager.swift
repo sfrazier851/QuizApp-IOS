@@ -28,39 +28,47 @@ final class UserSessionManager {
             case .inApp:
                 loggedInUser = LoginPort.user!
             case .facebook:
-                //get access token from keychain
-                let fbAccessToken = String(data: KeychainManager.read(service: K.Keychain.Facebook.service, account: K.Keychain.Facebook.account)!, encoding: .utf8)!
                 
-                // construct request for facebook user's first name
-                // TODO: replace (response.accessToken) with get from keychain call
-                let baseURL = URL(string: K.Network.Facebook.baseGraphAPI)
-                let urlWithParams = URL(string: baseURL!.absoluteString + "?fields=first_name&access_token=\(fbAccessToken)")
-                let requestFirstName = URLRequest(url: urlWithParams!)
-                            
+                if let userScreenName = UserDefaults.standard.string(forKey: K.UserDefaults.userScreenName) {
+                    UserSessionManager.fbFirstName = userScreenName
+                    PresenterManager.shared.show(vc: .userHome)
+                } else {
+                    //get access token from keychain
+                    let fbAccessToken = String(data: KeychainManager.read(service: K.Keychain.Facebook.service, account: K.Keychain.Facebook.account)!, encoding: .utf8)!
                     
-                URLSession.shared.dataTask(with: requestFirstName) {
-                    (data, response, error) in
+                    // construct request for facebook user's first name
+                    // TODO: replace (response.accessToken) with get from keychain call
+                    let baseURL = URL(string: K.Network.Facebook.baseGraphAPI)
+                    let urlWithParams = URL(string: baseURL!.absoluteString + "?fields=first_name&access_token=\(fbAccessToken)")
+                    let requestFirstName = URLRequest(url: urlWithParams!)
+                                
+                        
+                    URLSession.shared.dataTask(with: requestFirstName) {
+                        (data, response, error) in
 
-                    guard let data = data else {
-                        print("An error occurred.")
-                        return
-                    }
-                    
-                    let receivedNameJsonString = String(decoding: data, as: UTF8.self)
-                    
-                    guard !receivedNameJsonString.isEmpty else {
-                        print("An error ocurred.")
-                        return
-                    }
-                    
-                    let receivedName = try! Utilities.convertToDictionary(from: receivedNameJsonString)!["first_name"]
-                    
-                    UserSessionManager.fbFirstName = receivedName!
-                    
-                    DispatchQueue.main.async {
-                        PresenterManager.shared.show(vc: .userHome)
-                    }
-                }.resume()
+                        guard let data = data else {
+                            print("An error occurred.")
+                            return
+                        }
+                        
+                        let receivedNameJsonString = String(decoding: data, as: UTF8.self)
+                        
+                        guard !receivedNameJsonString.isEmpty else {
+                            print("An error ocurred.")
+                            return
+                        }
+                        
+                        let receivedName = try! Utilities.convertToDictionary(from: receivedNameJsonString)!["first_name"]
+                        
+                        UserSessionManager.fbFirstName = receivedName!
+                        UserDefaults.standard.set(receivedName!, forKey: K.UserDefaults.userScreenName)
+                        
+                        DispatchQueue.main.async {
+                            PresenterManager.shared.show(vc: .userHome)
+                        }
+                    }.resume()
+                }
+                
             case .none:
                 return
         }
@@ -84,6 +92,7 @@ final class UserSessionManager {
             PresenterManager.shared.show(vc: .login)
         case .facebook:
             KeychainManager.delete(service: K.Keychain.Facebook.service, account: K.Keychain.Facebook.account)
+            UserDefaults.standard.removeObject(forKey: K.UserDefaults.userScreenName)
             PresenterManager.shared.show(vc: .login)
         default:
             return
@@ -91,22 +100,4 @@ final class UserSessionManager {
         currentLoginType = .none
     }
     
-    /*
-    func setLoggedInUser(user: UserModels) {
-        SessionManager.loggedInUser = user
-    }
-    
-    func getLoggedInUser() -> UserModels? {
-        guard let user = SessionManager.loggedInUser else {
-            return nil
-        }
-        return user
-    }
-    
-    
-    func logoutUser() {
-        SessionManager.loggedInUser = nil
-        PresenterManager.shared.show(vc: .login)
-    }
-    */
 }

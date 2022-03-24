@@ -20,8 +20,10 @@ class LoadingViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        delay(durationInSeconds: 2.5) {
-            self.showInitialView()
+        delay(durationInSeconds: 1.5) {
+            if let storedToken = String(data: KeychainManager.read(service: K.Keychain.Facebook.service, account: K.Keychain.Facebook.account) ?? Data(), encoding: .utf8) {
+                Utilities.checkTokenValidity(storedToken)
+            }
         }
     }
     

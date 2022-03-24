@@ -8,6 +8,10 @@ import UIKit
 
 struct K {
     
+    struct UserDefaults {
+        static let userScreenName = "loggedInUserScreenName"
+    }
+    
     struct Keychain {
         struct Facebook {
             static let service = "facebook"
