@@ -38,7 +38,7 @@ class GameOverViewController: UIViewController {
         }
         
         let day:String = Utilities.formatDate(date: Date())
-        print("tech is",K.currentPage, " day is ",day, " user is",LoginPort.user!.ID!)
+        //print("tech is",K.currentPage, " day is ",day, " user is",LoginPort.user!.ID!)
         let rank = DBCRUD.initDBCRUD.getTacRankOfUser(Technology_Title: K.currentPage, User_ID: LoginPort.user!.ID!, Date: day)
         gameOverLabel.text = "YOUR SCORE: \(score)\nRANKING: \(rank)th"
 

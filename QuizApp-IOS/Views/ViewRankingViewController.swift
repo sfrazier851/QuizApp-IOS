@@ -13,27 +13,35 @@ class ViewRankingViewController: UIViewController {
     
     @IBOutlet weak var vrTableView: UITableView!
   
-    
     @IBOutlet weak var backButton: UIButton!
     
     var timer : Timer!
     
+    var SM = [ScoreBoardModels]()
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        loadUserRankings()
+        setupViewRankingUI()
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimeLabel), userInfo: nil, repeats: true)
+    
+    }
+    
+    func setupViewRankingUI() {
+        
         vrTableView.dataSource = self
         vrTableView.delegate = self
         vrTableView.register(UINib(nibName: "ViewRankingTableViewCell", bundle: nil), forCellReuseIdentifier: "ViewRankingTableViewCell")
         //vrTimerLabel.isHidden = true
         Utilities.styleHollowButton(backButton)
         vrTableView.backgroundColor = UIColor.clear
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimeLabel), userInfo: nil, repeats: true)
-    
+        
     }
 
     @IBAction func goBack(_ sender: UIButton) {
         
-        print("go back")
+        timer.invalidate()
         //self.dismiss(animated: true, completion: nil)
         PresenterManager.shared.show(vc: .gameOver)
         
@@ -86,13 +94,25 @@ class ViewRankingViewController: UIViewController {
     
     }
     
+    func loadUserRankings() {
+        
+        let day:String = Utilities.formatDate(date: Date())
+//        let userSub = DBCRUD.initDBCRUD.UserIDToUser(id: (LoginPort.user?.ID)!)
+//        if userSub.Subscript == 1 {
+//
+//        } else {
+            SM = DBCRUD.initDBCRUD.getTacRankDay(Technology_Title: K.currentPage, Date: day)
+          }
+        //print("\n\n\n\n\n\(SM.count)")
+//    }
+    
 }
 
 extension ViewRankingViewController : UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return 10
+        return SM.count
 
     }
 
@@ -106,31 +126,24 @@ extension ViewRankingViewController : UITableViewDataSource {
                 cell.position.textColor = UIColor.cyan
                 cell.userName.textColor = UIColor.cyan
                 cell.score.textColor = UIColor.cyan
-                cell.position.text = String(indexPath.row + 1)
-                cell.userName.text = String(describing: UserSessionManager.getUserScreenName())
-                cell.score.text = "1290"
+                
             case 1:
                 cell.position.textColor = UIColor.green
                 cell.userName.textColor = UIColor.green
                 cell.score.textColor = UIColor.green
-                cell.position.text = String(indexPath.row + 1)
-                cell.userName.text = String(describing: UserSessionManager.getUserScreenName())
-                cell.score.text = "1290"
             case 2:
                 cell.position.textColor = UIColor.systemPink
                 cell.userName.textColor = UIColor.systemPink
                 cell.score.textColor = UIColor.systemPink
-                cell.position.text = String(indexPath.row + 1)
-                cell.userName.text = String(describing: UserSessionManager.getUserScreenName())
-                cell.score.text = "1290"
             default:
                 print("color black")
-                cell.position.text = String(indexPath.row + 1)
-                cell.userName.text = String(describing: UserSessionManager.getUserScreenName())
-                cell.score.text = "1290"
             
         }
 
+        cell.position.text = String(indexPath.row + 1)
+        let uname = DBCRUD.initDBCRUD.UserIDToUser(id: SM[indexPath.row].User_ID)
+        cell.userName.text = uname.UserName
+        cell.score.text = String(SM[indexPath.row].Score)
         cell.backgroundColor = UIColor.clear
         return cell
         

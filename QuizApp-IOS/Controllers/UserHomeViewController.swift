@@ -23,6 +23,8 @@ class UserHomeViewController: UIViewController {
     
     @IBOutlet var uhview: UIView!
     
+    @IBOutlet weak var leaderBoardsButton: UIButton!
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -32,8 +34,13 @@ class UserHomeViewController: UIViewController {
         //setupImageBackground()
         Utilities.styleHollowButton(logoutButton)
         Utilities.styleHollowButton(takeQuizButton)
-        
+        Utilities.styleHollowButton(leaderBoardsButton)
+        let userSub = DBCRUD.initDBCRUD.getUserSubscription(id: (LoginPort.user?.ID)!)
+        if userSub == 1 {
+            leaderBoardsButton.isHidden = true
+        }
         welcomeUserLabel.text = "Welcome, \(String(describing: UserSessionManager.getUserScreenName()))"
+        
     }
     
     private func setupCollectionView() {
@@ -117,6 +124,13 @@ class UserHomeViewController: UIViewController {
     @IBAction func logoutButtonTapped(_ sender: Any) {
         UserSessionManager.endSession()
     }
+    
+    @IBAction func showRankingsPage(_ sender: UIButton) {
+        
+        PresenterManager.shared.show(vc: .rankingByTech)
+        
+    }
+    
 }
 
 extension UserHomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

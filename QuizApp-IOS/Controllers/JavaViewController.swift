@@ -105,6 +105,8 @@ class JavaViewController: UIViewController {
         
         if perc == 1 {
             
+            let s = ScoreBoardModels(Score: K.java_gamescore, Quiz_ID: Q1.ID!, User_ID: (LoginPort.user?.ID)!, Technology_Title: Q1.Technology_Title)
+            DBCRUD.initDBCRUD.createScore(r: s)
             timer.invalidate()
             PresenterManager.shared.show(vc: .gameOver)
             //show

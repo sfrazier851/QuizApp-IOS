@@ -121,6 +121,10 @@ class SignUpViewController: UIViewController {
                         // Login user (setting static LoginPort.user)
                         if self.callLoginPort(S: self.emailTextField.text!, PW: self.passwordTextField.text!) {
                             // create session (saving logged in user object)
+                            K.dailyAttempt = 0
+                            K.ios_gamescore = 0
+                            K.java_gamescore = 0
+                            K.android_gamescore = 0
                             UserSessionManager.createSession(loginType: .inApp)
                             //print(LoginPort.user!.UserName!)
                             PresenterManager.shared.show(vc: .userHome)

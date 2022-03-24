@@ -26,6 +26,7 @@ final class PresenterManager {
         case android
         case gameOver
         case ranking
+        case rankingByTech
     }
     
     func show(vc: VC) {
@@ -70,6 +71,8 @@ final class PresenterManager {
             case .ranking:
                 viewController = UIStoryboard(name: K.StoryboardID.main, bundle: nil).instantiateViewController(identifier: K.StoryboardID.viewRankingViewController)
             
+            case .rankingByTech:
+                viewController = UIStoryboard(name: K.StoryboardID.main, bundle: nil).instantiateViewController(identifier: K.StoryboardID.viewRankingByTechViewController)
                     
         }
         
