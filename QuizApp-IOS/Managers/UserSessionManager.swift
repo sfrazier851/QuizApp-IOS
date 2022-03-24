@@ -66,11 +66,11 @@ final class UserSessionManager {
                         
                         // check if facebook user is already in the database
                         if LoginPort.initLogin.login(S: receivedEmail!, PW: "facebook-user") == true {
-                            print("USER: ")
-                            print(LoginPort.user!.Email)
+                            
                         } else {
                             // user is not already in database, create user
                             DBCRUD.initDBCRUD.createUserWithUserModal(us: UserModels(Email: receivedEmail!, Password: "facebook-user", UserName: receivedName!))
+                            LoginPort.initLogin.login(S: receivedEmail!, PW: "facebook-user")
                         }
                         
                         DispatchQueue.main.async {
@@ -98,7 +98,7 @@ final class UserSessionManager {
     static func endSession() {
         switch UserSessionManager.currentLoginType {
         case .inApp:
-            LoginPort.initLogin.logout()
+            //LoginPort.initLogin.logout()
             PresenterManager.shared.show(vc: .login)
         case .facebook:
             KeychainManager.delete(service: K.Keychain.Facebook.service, account: K.Keychain.Facebook.account)
