@@ -111,7 +111,7 @@ class LoginViewController: UIViewController {
             let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
 
             if LoginPort.initLogin.login(S: email, PW: password){
-                //SessionManager.shared.setLoggedInUser(user: LoginPort.user!)
+                // create session (saving logged in user object)
                 UserSessionManager.createSession(loginType: .inApp)
                 if LoginPort.user?.admin ?? false {
                     PresenterManager.shared.show(vc: .adminHome)
@@ -153,7 +153,6 @@ class LoginViewController: UIViewController {
                 print(error!)
                 return
             }
-            //print(url)
 
             guard let receivedURL = URL(string: (url?.absoluteString.replacingOccurrences(of: "#", with: "?"))!),
                   let response = Utilities.response(from: receivedURL) else {

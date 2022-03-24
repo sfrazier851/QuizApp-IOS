@@ -120,8 +120,7 @@ class SignUpViewController: UIViewController {
                         
                         // Login user (setting static LoginPort.user)
                         if self.callLoginPort(S: self.emailTextField.text!, PW: self.passwordTextField.text!) {
-                            // Add LoginPort.user to SessionManager
-                            //SessionManager.shared.setLoggedInUser(user: LoginPort.user!)
+                            // create session (saving logged in user object)
                             UserSessionManager.createSession(loginType: .inApp)
                             //print(LoginPort.user!.UserName!)
                             PresenterManager.shared.show(vc: .userHome)
