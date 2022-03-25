@@ -74,4 +74,6 @@ struct K {
     
     static var game_quiz_id : Int = 0
     
+    static var user_subscription : Int = 0
+    
 }

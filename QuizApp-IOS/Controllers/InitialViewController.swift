@@ -43,15 +43,7 @@ class InitialViewController: UIViewController {
         
         storyboard.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
         self.present(storyboard, animated: true)
-        
-//        secondVC.modalPresentationStyle =
-//        secondVC.modalTransitionStyle = .crossDissolve
-        
-//        present(secondVC, animated: true, completion: nil)
-//        
-//        let popOverVC = UIStoryboard(name: "SpinningWheel", bundle: nil).instantiateViewController(withIdentifier: "PhotoPopUp") as! PopUpViewController
-//            popOverVc.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
-//            tabBarController.present(popOverVC, animated: true)
+
     }
     
 }

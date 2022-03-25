@@ -29,10 +29,29 @@ class LoginViewController: UIViewController {
 
         super.viewDidLoad()
         setupElements()
+        //setupShowHidePassword()
         hideKeyboardWhenTappedAround()
         
     }
+    
+    func setupShowHidePassword() {
+        
+        let button = UIButton(type: .custom)
+        button.setImage(UIImage(systemName: "eye.fill"), for: .normal)
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -16, bottom: 0, right: 0)
+        button.frame = CGRect(x: CGFloat(passwordTextField.frame.size.width - 25), y: CGFloat(5), width: CGFloat(25), height: CGFloat(25))
+        button.addTarget(self, action: #selector(refresh), for: .touchUpInside)
+        passwordTextField.rightView = button
+        passwordTextField.rightViewMode = .always
+        
+    }
 
+    @IBAction func refresh(_ sender: UIButton) {
+        
+        print("hello")
+        //print(sender.imageView)
+    }
+    
     private func setupElements() {
         
         // Hide the error label
@@ -123,6 +142,7 @@ class LoginViewController: UIViewController {
                 if LoginPort.user?.admin ?? false {
                     PresenterManager.shared.show(vc: .adminHome)
                 } else {
+                    K.user_subscription = DBCRUD.initDBCRUD.getUserSubscription(id: (LoginPort.user?.ID)!)
                     PresenterManager.shared.show(vc: .userHome)
                 }
             } else{

@@ -132,6 +132,8 @@ class SignUpViewController: UIViewController {
                             K.ios_gamescore = 0
                             K.java_gamescore = 0
                             K.android_gamescore = 0
+                            K.user_subscription = DBCRUD.initDBCRUD.getUserSubscription(id: (LoginPort.user?.ID)!)
+                            print("SUB: \(K.user_subscription)")
                             //UserSessionManager.createSession(loginType: .inApp)
                             //print(LoginPort.user!.UserName!)
                             PresenterManager.shared.show(vc: .userHome)

@@ -44,7 +44,7 @@ class GameOverViewController: UIViewController {
         let rank = DBCRUD.initDBCRUD.getTacRankOfUser(Technology_Title: K.currentPage, User_ID: LoginPort.user!.ID!, Date: day)
         gameOverLabel.text = "YOUR SCORE: \(score)\nRANKING: \(rank)th"
         
-        if DBCRUD.initDBCRUD.getUserSubscription(id: (LoginPort.user?.ID)!) == 1 {
+        if  K.user_subscription == 1 {
             viewRankingBtn.isHidden = true
         }
         
@@ -54,7 +54,7 @@ class GameOverViewController: UIViewController {
     @IBAction func playAgain(_ sender: UIButton) {
         
         //CHECK SUBSCRIPTION
-        if K.dailyAttempt == 2 {
+        if K.dailyAttempt == 2 && K.user_subscription == 1 {
             
             let dialogMessage = UIAlertController(title: "Alert", message: "You already reached your daily maximum attempts. Upgrade to a paid subscription for unlimited attempts", preferredStyle: .alert)
             let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
@@ -66,7 +66,9 @@ class GameOverViewController: UIViewController {
             
         } else {
           
-            K.dailyAttempt += 1
+            if  K.user_subscription == 1 {
+                K.dailyAttempt += 1
+            }
             
             switch K.currentPage.lowercased() {
                 
@@ -103,29 +105,4 @@ class GameOverViewController: UIViewController {
         
     }
     
-    func saveScoreToDB() {
-        
-        let SM = ScoreBoardModels(Score: score, Quiz_ID: K.game_quiz_id, User_ID: K.user_id, Technology_Title: K.currentPage)
-    
-        print(SM.Score)
-        print(SM.Quiz_ID)
-        print(SM.User_ID)
-        print(SM.Technology_Title)
-        
-        //let success = DBCRUD.initDBCRUD.createQuiz(r: SM)
-        
-    }
-    
 }
-
-//extension UITextView {
-//
-//    func centerVertically() {
-//        let fittingSize = CGSize(width: bounds.width, height: CGFloat.greatestFiniteMagnitude)
-//        let size = sizeThatFits(fittingSize)
-//        let topOffset = (bounds.size.height - size.height * zoomScale) / 2
-//        let positiveTopOffset = max(1, topOffset)
-//        contentOffset.y = -positiveTopOffset
-//    }
-//
-//}

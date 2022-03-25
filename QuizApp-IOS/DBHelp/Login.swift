@@ -35,6 +35,7 @@ class LoginPort {
     func logout() {
      
         LoginPort.user=nil
+        UserSessionManager.endSession()
     
     }
     
