@@ -122,10 +122,13 @@ class Utilities {
         
         for Quest in Q.Questions!{
             
+            print("QUEST: ",Quest)
+            
             let Question:[String] =  [Quest.Question,Quest.choices![0],Quest.choices![1],Quest.choices![2],Quest.choices![3], Quest.Awnser]
                 Quiz.append(Question)
-            
+                print(Question.description)
         }
+        
         
         return Quiz
     }

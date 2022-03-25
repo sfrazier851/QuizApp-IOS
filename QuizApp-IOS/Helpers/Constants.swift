@@ -80,4 +80,10 @@ struct K {
     
     static var feedback_score : Int = 0
     
+    static var quiz_java : [[String]] = []
+    
+    static var quiz_ios : [[String]] = []
+    
+    static var quiz_android : [[String]] = []
+    
 }

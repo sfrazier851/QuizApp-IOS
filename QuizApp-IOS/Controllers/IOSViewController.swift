@@ -40,17 +40,37 @@ class IOSViewController: UIViewController {
     
     var qArr = [[String]]()
     
-    var Q1 : QuizModels = DBCRUD.initDBCRUD.getQuizsFromTechnology_Title(id: "IOS")[0]
+    var randInd = -1
+    
+    var tempQ = [QuizModels]()
     
     override func viewDidLoad() {
        
         super.viewDidLoad()
-        qArr = Utilities.loadQuiz(Q : Q1)
+        
+        if K.quiz_ios.count == 0 {
+            
+            tempQ = DBCRUD.initDBCRUD.getQuizsFromTechnology_Title(id: "IOS")
+       
+        }
+        setupQuestions()
         iosSetupElements()
-        K.game_quiz_id = Q1.ID!
         
     }
 
+    func setupQuestions() {
+        
+        randInd = Int.random(in: 0...tempQ.count - 1)
+        //print("RANDOM: \(randInd)")
+        var Q1 : QuizModels = tempQ[randInd]
+        //print("Q1: ",Q1)
+        qArr = Utilities.loadQuiz(Q : Q1)
+        //print("GID: \(Q1.ID!)")
+        K.game_quiz_id = Q1.ID!
+        
+    }
+    
+    
     private func iosSetupElements() {
         
         ios_progressBar.progress = 0.0
@@ -60,6 +80,7 @@ class IOSViewController: UIViewController {
         K.ios_gamescore = 0
         showQuestionsForIOS()
         Utilities.styleHollowButton(ios_backButton)
+   
     }
     
     @IBAction func backButtonTapped(_ sender: UIButton) {
@@ -101,7 +122,10 @@ class IOSViewController: UIViewController {
         
         if perc == 1 {
             
-            let s = ScoreBoardModels(Score: K.ios_gamescore, Quiz_ID: Q1.ID!, User_ID: (LoginPort.user?.ID)!, Technology_Title: Q1.Technology_Title)
+//            print("GAME ID: \(K.game_quiz_id)")
+//            print("Technology \(K.currentPage)")
+            tempQ.remove(at: randInd)
+            let s = ScoreBoardModels(Score: K.ios_gamescore, Quiz_ID: K.game_quiz_id, User_ID: (LoginPort.user?.ID)!, Technology_Title: K.currentPage)
             DBCRUD.initDBCRUD.createScore(r: s)
             timer.invalidate()
             PresenterManager.shared.show(vc: .gameOver)
