@@ -1336,7 +1336,15 @@ var i = -1
         }
     
     func getTacRankOfUser(Technology_Title:String, User_ID:Int)->Int{
-            let query = "SELECT Rank FROM (SELECT User_ID, DENSE_RANK() OVER (ORDER BY Score) as Rank FROM ScoreBoard WHERE Technology_Title = ? ) WHERE User_ID = ?"
+        var query: String
+        if Technology_Title == "" {
+            //query = "Select * FROM ScoreBoard WHERE TakenDate = ? ORDER BY Score DESC LIMIT 10"
+            query = "SELECT Rank FROM (SELECT Technology_Title, Sum(Score), User_ID, dense_rank () OVER (PARTITION By Technology_Title ORDER By Sum(score) DESC) as Rank FROM ScoreBoard  GROUP BY User_ID, Technology_Title ) Where User_ID = ?  LIMIT 10"
+        } else {
+            //query = "Select * FROM ScoreBoard WHERE Technology_Title = ? AND TakenDate = ? ORDER BY Score DESC LIMIT 10"
+            query = "SELECT Rank FROM (SELECT Technology_Title, Sum(Score), User_ID, dense_rank () OVER (PARTITION By Technology_Title ORDER By Sum(score) DESC) as Rank FROM ScoreBoard  GROUP BY User_ID, Technology_Title ) Where User_ID = ? AND Technology_Title LIMIT 10"
+          }
+        
                 var stmt : OpaquePointer?
         var rev = 999999999
 
@@ -1350,16 +1358,19 @@ var i = -1
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
             return rev}
+        if Technology_Title != ""{
         if sqlite3_bind_int(stmt, 2, Int32(User_ID)) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
             return rev
         }
+            
+        }
             //step
-            //Appending Emails to Array
                 if(sqlite3_step(stmt) == SQLITE_ROW){
                     rev = Int(sqlite3_column_int(stmt, 0))              }
                 return rev
+        
         }
     func getTacRankDay(Technology_Title:String, Date:String)->[ScoreBoardModels]{
         
