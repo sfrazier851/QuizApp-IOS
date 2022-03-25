@@ -32,7 +32,6 @@ class UserHomeViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-
         setupCollectionView()
         setupPageControl()
         //setupImageBackground()

@@ -77,8 +77,7 @@ class DBInit{
             ]
         questions=[QuestionModels]()
         for i in qArr{
-            questions.append(QuestionModels(Question: i[0], Awnser: i[5], choice: [i[1],i[2],i[3]
-                                                                                   ,i[4]]))        }
+            questions.append(QuestionModels(Question: i[0], Awnser: i[5], choice: [i[1],i[2],i[3],i[4]]))}
         let t2:QuizModels=QuizModels(Title: "quiz title2", Technology_Title: "IOS", Questions: questions)
         t2.save()
         qArr = [
@@ -95,8 +94,7 @@ class DBInit{
             ]
         questions=[QuestionModels]()
         for i in qArr{
-            questions.append(QuestionModels(Question: i[0], Awnser: i[5], choice: [i[1],i[2],i[3]
-                                                                                   ,i[4]]))
+            questions.append(QuestionModels(Question: i[0], Awnser: i[5], choice: [i[1],i[2],i[3],i[4]]))
         }
 
         let t3:QuizModels=QuizModels(Title: "quiz title3", Technology_Title: "Android", Questions: questions)
@@ -108,14 +106,19 @@ class DBInit{
 initTech()
     }
     func initUser(){
-        let u1=UserModels(UserName: "guest", Password: "123Password!", DOB: "June 2, 1994", admin: false, subriction: "trial", Status: "clear", First: "2", Last: "2", email: ["2@gmail.com"])
-        let u2=UserModels(UserName: "admin", Password: "123Password!", DOB: "June 2, 1994", admin: true, subriction: "paid", Status: "clear", First: "admin", Last: "admin", email: ["admin@gmail.com"])
+        let u1=UserModels(UserName: "guest", Password: "123Password!", DOB: "June 2, 1994", admin: false, subriction: "trial", Status: "", First: "2", Last: "2", email: ["2@gmail.com"])
+        let u2=UserModels(UserName: "admin", Password: "123Password!", DOB: "June 2, 1994", admin: true, subriction: "paid", Status: "", First: "admin", Last: "admin", email: ["admin@gmail.com"])
+        let u3=UserModels(UserName: "BlockedUser", Password: "123Password!", DOB: "June 2, 1994", admin: false, subriction: "paid", Status: "BLOCKED", First: "This Guy", Last: "Who shall not be named", email: ["block@gmail.com"])
         if !DBCRUD.initDBCRUD.createUserWithUserModal(us: u1){
-            print("error creating u1")
+            print("error creating guest")
             return
         }
         if !DBCRUD.initDBCRUD.createUserWithUserModal(us: u2){
-            print("error creating u1")
+            print("error creating admin")
+            return
+        }
+        if !DBCRUD.initDBCRUD.createUserWithUserModal(us: u3){
+            print("error creating block")
             return
         }
         initquiz()

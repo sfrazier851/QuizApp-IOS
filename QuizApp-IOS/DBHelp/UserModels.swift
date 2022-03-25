@@ -31,7 +31,7 @@ class UserModels{
         Email=[String]()
         Password=""
         Subscript=SubcriptionType.trial.rawValue
-        status="unblocked"
+        status=""
         
     }
     init( UserName:String, Password:String, DOB:String, admin:Bool, subriction:String, Status:String, First:String, Last:String, email:[String]){
@@ -62,11 +62,18 @@ class UserModels{
         self.Password=Password
         self.UserName=UserName
         Subscript=SubcriptionType.trial.rawValue
-        status="unblocked"
+        status=""
     }
     func save(){
         if ID != nil{
             DBCRUD.initDBCRUD.updateUser(us: self)
+        }
+    }
+    func toggleBlock(){
+        if status==""{
+            status="BLOCKED"
+        }else{
+            status=""
         }
     }
 }
