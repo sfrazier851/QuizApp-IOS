@@ -25,6 +25,7 @@ class Utilities {
         return emailTest.evaluate(with: email)
     }
     
+    
     // UITextField with black background, orange text and blue cursor
     static func styleTextField(_ textfield:UITextField, placeHolderString:String) {
         
