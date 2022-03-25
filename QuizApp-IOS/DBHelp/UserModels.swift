@@ -39,7 +39,7 @@ class UserModels{
         self.Password = Password
         self.Dob=DOB
         self.admin=admin
-        self.Subscript=0
+        self.Subscript=1
         self.status = Status
         self.First = First
         self.Last = Last
@@ -51,7 +51,7 @@ class UserModels{
         self.Password = Password
         self.Dob=DOB
         self.admin=admin
-        self.Subscript=0
+        self.Subscript=1
         self.status = Status
         self.First = First
         self.Last = Last
