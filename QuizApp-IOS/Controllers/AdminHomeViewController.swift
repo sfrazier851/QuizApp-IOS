@@ -26,4 +26,8 @@ class AdminHomeViewController: UITabBarController {
     }
     */
 
+    @IBAction func SignOut(_ sender: Any)
+    {
+        self.dismiss(animated: true)
+    }
 }
