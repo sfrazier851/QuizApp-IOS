@@ -27,6 +27,8 @@ class UserHomeViewController: UIViewController {
     
     @IBOutlet weak var upgradeAccountButton: UIButton!
     
+    @IBOutlet weak var feedbackButton: UIButton!
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -36,6 +38,7 @@ class UserHomeViewController: UIViewController {
         //setupImageBackground()
         Utilities.styleHollowButton(logoutButton)
         Utilities.styleHollowButton(takeQuizButton)
+        Utilities.styleHollowButton(feedbackButton)
         
         // upgrade account button starts out as hidden
         Utilities.styleFilledButton(upgradeAccountButton)
@@ -154,7 +157,7 @@ class UserHomeViewController: UIViewController {
             }
             // update subscription for user
             let u = LoginPort.user!
-            print(u.UserName, u.Email)// confirm user is populated
+            //print(u.UserName, u.Email)// confirm user is populated
             // set subscription for user to paid
             u.Subscript = 0
             DBCRUD.initDBCRUD.updateUser(us: u)//currently getting error
@@ -169,6 +172,13 @@ class UserHomeViewController: UIViewController {
         PresenterManager.shared.show(vc: .rankingByTech)
         
     }
+    
+    @IBAction func showFeedback(_ sender: UIButton) {
+        
+        PresenterManager.shared.show(vc: .feedback)
+        
+    }
+    
     
 }
 

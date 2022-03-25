@@ -57,6 +57,8 @@ struct K {
         static let androidViewController = "AndroidViewController"
         static let viewRankingViewController = "ViewRankingViewController"
         static let viewRankingByTechViewController = "ViewRankingByTechViewController"
+        static let feedbackViewController = "FeedbackViewController"
+        
     }
     
     //static let dailyAttempt = UserDefaults.standard.integer(forKey: "DailyAttempts")
@@ -75,5 +77,7 @@ struct K {
     static var game_quiz_id : Int = 0
     
     static var user_subscription : Int = 0
+    
+    static var feedback_score : Int = 0
     
 }

@@ -431,34 +431,44 @@ var stmt : OpaquePointer?
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //REVIEW
 //create
-    func createReview(r:ReviewModels){
-        let query = "INSERT INTO Review (rate, comments, User_ID) Values(?,?,?)"
+    func createReview(r:ReviewModels) -> Bool {
+        
+        let query = "INSERT INTO Reviews (rate, comments, User_ID) Values(?,?,?)"
         var stmt : OpaquePointer?
 
-            if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
-                let err = String(cString: sqlite3_errmsg(db)!)
-                print("There is an Error:",err)
-                return
-            }
+        if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
+            let err = String(cString: sqlite3_errmsg(db)!)
+            print("There is an Error:",err)
+            return false
+        }
+        
         if sqlite3_bind_int(stmt, 1, Int32(r.rate)) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
-            return
+            return false
+        
         }
+        
         if sqlite3_bind_text(stmt, 2, (r.comments as NSString).utf8String, -1, nil) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
-            return}
+            return false
+        }
+        
         if sqlite3_bind_int(stmt, 3, Int32(r.User_ID!)) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
-            return
+            return false
         }
+        
         if sqlite3_step(stmt) != SQLITE_DONE{
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
-        
+            return false
         }
+        
+        return true
+        
     }
 //read
     func ReviewCount()->Int{
