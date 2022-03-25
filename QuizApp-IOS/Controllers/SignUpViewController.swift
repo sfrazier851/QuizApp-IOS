@@ -143,7 +143,7 @@ class SignUpViewController: UIViewController {
 
                     })
                     dialogMessage.addAction(ok)
-                    self.present(dialogMessage, animated: true, completion: nil)
+                    present(dialogMessage, animated: true, completion: nil)
                   }
             } else {
                 showError("That email is already taken.")

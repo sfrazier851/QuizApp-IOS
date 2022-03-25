@@ -75,6 +75,10 @@ class QuestionModels{
         }
         return false
     }
+    func deleteQuestion(){
+        DBCRUD.initDBCRUD.deleteQuestionsChoice(ID: self.ID!)
+        DBCRUD.initDBCRUD.DeleteAQuestion(NE: self.ID!)
+    }
     func save(){
         if errorcheck(){ return;}
         

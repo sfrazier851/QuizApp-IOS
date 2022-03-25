@@ -78,4 +78,10 @@ class QuizModels{
             }
         }
     }
+    func deleteQueiz(){
+        for question in Questions!{
+            question.deleteQuestion()
+        }
+        DBCRUD.initDBCRUD.deleteAQuiz(NE: self.ID!)
+    }
 }
