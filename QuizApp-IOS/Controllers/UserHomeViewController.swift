@@ -57,28 +57,9 @@ class UserHomeViewController: UIViewController {
         
         
         welcomeUserLabel.text = "Welcome, \(String(describing: LoginPort.user!.UserName!))."
-        IsBlockedDo()
-
         
     }
-    func IsBlockedDo(){
-        print("trying to block user current its",LoginPort.user?.status ?? "","For",LoginPort.user?.status == "BLOCKED" )
-        if LoginPort.user?.status == "BLOCKED"{
-            print("trying to block user current its","Sucess")
-            alertor(title: "Admin", message: "You were blocked, please report back to admin.")
-
-        }
-    }
     
-    func alertor(title:String, message:String){
-        print("trying to block user current its", "in Alertor")
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "Ok", style: .default){  _ in
-            PresenterManager.shared.show(vc: .login)
-        }
-        alert.addAction(action)
-        present(alert, animated: true, completion: nil)
-    }
     private func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
