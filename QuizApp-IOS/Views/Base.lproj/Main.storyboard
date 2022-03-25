@@ -490,7 +490,7 @@ Maricel Sumulong</string>
                                 </connections>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome, Gary!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QON-7m-uqi" userLabel="Welcome Label">
-                                <rect key="frame" x="107" y="125" width="214" height="26"/>
+                                <rect key="frame" x="107" y="124.99999999999999" width="214" height="29.333333333333329"/>
                                 <fontDescription key="fontDescription" name="VingyNormal" family="Vingy" pointSize="25"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -501,7 +501,7 @@ Maricel Sumulong</string>
                                 <color key="currentPageIndicatorTintColor" systemColor="systemOrangeColor"/>
                             </pageControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quiz Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0fJ-1y-Xvo" userLabel="Quiz Title Label">
-                                <rect key="frame" x="156" y="226.66666666666666" width="116" height="24"/>
+                                <rect key="frame" x="156" y="223.66666666666666" width="116" height="27"/>
                                 <fontDescription key="fontDescription" name="VingyNormal" family="Vingy" pointSize="23"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -845,10 +845,10 @@ Maricel Sumulong</string>
             </objects>
             <point key="canvasLocation" x="3892" y="-555"/>
         </scene>
-        <!--View Controller-->
+        <!--Admin Test Maker-->
         <scene sceneID="FAs-3M-J4i">
             <objects>
-                <viewController modalTransitionStyle="flipHorizontal" modalPresentationStyle="fullScreen" id="3wh-Cs-CtK" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Test_Maker" modalTransitionStyle="flipHorizontal" modalPresentationStyle="fullScreen" id="3wh-Cs-CtK" customClass="AdminTestMaker" customModule="QuizApp_IOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vkc-Xm-PVs">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1016,10 +1016,74 @@ Maricel Sumulong</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="por-KZ-mx4">
+                                <rect key="frame" x="20" y="793" width="125" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Save to iOS"/>
+                                <connections>
+                                    <action selector="SaveToIOS:" destination="3wh-Cs-CtK" eventType="touchUpInside" id="4kN-mX-DCe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qeA-MJ-lf0">
+                                <rect key="frame" x="151" y="793" width="127" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Save to Android"/>
+                                <connections>
+                                    <action selector="SaveToAndroid:" destination="3wh-Cs-CtK" eventType="touchUpInside" id="4cR-bR-FcH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hn7-gh-GoH">
+                                <rect key="frame" x="286" y="793" width="122" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Save to Java"/>
+                                <connections>
+                                    <action selector="SaveToJava:" destination="3wh-Cs-CtK" eventType="touchUpInside" id="IUp-F9-ja8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gKZ-zD-I9P">
+                                <rect key="frame" x="152" y="832" width="124" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Cancel"/>
+                                <connections>
+                                    <action selector="Cancel:" destination="3wh-Cs-CtK" eventType="touchUpInside" id="1RQ-U8-IET"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Us9-gp-PYY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="CorrectAnswer1" destination="I4e-lY-qYF" id="Xc1-eN-Aoo"/>
+                        <outlet property="CorrectAnswer2" destination="7dy-rU-KDu" id="SuF-aF-Y8J"/>
+                        <outlet property="CorrectAnswer3" destination="beo-w8-HYb" id="3QH-cc-qca"/>
+                        <outlet property="CorrectAnswer4" destination="iLp-Vv-upr" id="kGR-DN-xFP"/>
+                        <outlet property="CorrectAnswer5" destination="uUg-c4-pow" id="gWy-xj-M1v"/>
+                        <outlet property="Question1" destination="ZL1-7C-CQF" id="Z62-j5-qzb"/>
+                        <outlet property="Question2" destination="9Rl-jK-rDz" id="9dk-Kx-gzx"/>
+                        <outlet property="Question3" destination="Lzf-Id-7HG" id="zQq-go-L08"/>
+                        <outlet property="Question4" destination="vDe-ga-SEe" id="ci8-hO-eNg"/>
+                        <outlet property="Question5" destination="DUw-aH-zye" id="yHn-bc-g80"/>
+                        <outlet property="QuizTitle" destination="upc-mO-foc" id="mPu-wH-2Je"/>
+                        <outlet property="WrongAnswer1A" destination="JR4-sx-Djo" id="dt8-fe-Fj4"/>
+                        <outlet property="WrongAnswer1B" destination="nHX-ha-uwW" id="eMu-AY-BTF"/>
+                        <outlet property="WrongAnswer1C" destination="Z8L-lW-eGD" id="C3D-Qx-1ZS"/>
+                        <outlet property="WrongAnswer2A" destination="T7B-wE-kHE" id="oO1-v1-QHB"/>
+                        <outlet property="WrongAnswer2B" destination="veM-67-ee3" id="Q4u-EL-mKE"/>
+                        <outlet property="WrongAnswer2C" destination="g0L-hu-M1E" id="Ukj-8Y-Ao3"/>
+                        <outlet property="WrongAnswer3A" destination="IQh-TZ-p8h" id="7sH-W0-uPW"/>
+                        <outlet property="WrongAnswer3B" destination="pYh-7s-Iyw" id="2t8-UE-fcg"/>
+                        <outlet property="WrongAnswer3C" destination="AuC-8E-Y2O" id="JIl-H2-4Bj"/>
+                        <outlet property="WrongAnswer4A" destination="wgD-iV-iEb" id="9oa-OR-yGb"/>
+                        <outlet property="WrongAnswer4B" destination="JUt-gb-wts" id="Kj6-8Q-EmN"/>
+                        <outlet property="WrongAnswer4C" destination="RSQ-e0-QU5" id="ROB-61-LvH"/>
+                        <outlet property="WrongAnswer5A" destination="VxB-dS-Zf1" id="Woe-ww-8m8"/>
+                        <outlet property="WrongAnswer5B" destination="xCA-dD-9F0" id="rSB-n9-VGL"/>
+                        <outlet property="WrongAnswer5C" destination="kiy-1b-XeT" id="oN0-td-EPk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LtV-ht-PBu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

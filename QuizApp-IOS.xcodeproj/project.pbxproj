@@ -57,6 +57,7 @@
 		C2E3986227EDD37100F6F151 /* AdminUsersTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E3986127EDD37100F6F151 /* AdminUsersTableTableViewController.swift */; };
 		C2E3986427EDD4D400F6F151 /* AdminUserDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E3986327EDD4D400F6F151 /* AdminUserDetails.swift */; };
 		C2E3986627EDDCD500F6F151 /* Chirabi.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E3986527EDDCD500F6F151 /* Chirabi.swift */; };
+		C2E3986A27EE138B00F6F151 /* AdminTestMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E3986927EE138B00F6F151 /* AdminTestMaker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -112,6 +113,7 @@
 		C2E3986127EDD37100F6F151 /* AdminUsersTableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminUsersTableTableViewController.swift; sourceTree = "<group>"; };
 		C2E3986327EDD4D400F6F151 /* AdminUserDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminUserDetails.swift; sourceTree = "<group>"; };
 		C2E3986527EDDCD500F6F151 /* Chirabi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chirabi.swift; sourceTree = "<group>"; };
+		C2E3986927EE138B00F6F151 /* AdminTestMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminTestMaker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,6 +261,7 @@
 				C2E3986127EDD37100F6F151 /* AdminUsersTableTableViewController.swift */,
 				C2E3986327EDD4D400F6F151 /* AdminUserDetails.swift */,
 				C2E3986527EDDCD500F6F151 /* Chirabi.swift */,
+				C2E3986927EE138B00F6F151 /* AdminTestMaker.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 				9AB2C3D427DC6E1500B8E171 /* AndroidViewController.swift in Sources */,
 				7F6517A327DFE970008C635E /* Constants.swift in Sources */,
 				C2E3986227EDD37100F6F151 /* AdminUsersTableTableViewController.swift in Sources */,
+				C2E3986A27EE138B00F6F151 /* AdminTestMaker.swift in Sources */,
 				9AEDEB9527EAC6DA00F82499 /* ViewRankingViewController.swift in Sources */,
 				84A5DB1827E4E60D00AFD467 /* QuizModels.swift in Sources */,
 				9A34AB4727EC8D6100F5DA20 /* ViewRankingByTechViewController.swift in Sources */,
