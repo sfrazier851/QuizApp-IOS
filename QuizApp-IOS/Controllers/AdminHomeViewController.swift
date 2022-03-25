@@ -1,13 +1,13 @@
 //
-//  AdministrationViewController.swift
+//  AdminHomeViewController.swift
 //  QuizApp-IOS
 //
-//  Created by Maricel Sumulong on 3/11/22.
+//  Created by Christopher Medina on 3/25/22.
 //
 
 import UIKit
 
-class AdminHomeViewController: UIViewController {
+class AdminHomeViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,12 +26,4 @@ class AdminHomeViewController: UIViewController {
     }
     */
 
-    
-    @IBAction func CreateQuiz()
-    {
-        let QEdit = self.storyboard?.instantiateViewController(withIdentifier:"Quiz_Editor") as! Quiz_Editor;
-        
-        self.present(QEdit, animated: true);
-    }
-    
 }
