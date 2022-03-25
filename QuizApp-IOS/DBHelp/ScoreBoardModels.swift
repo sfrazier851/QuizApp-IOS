@@ -32,4 +32,8 @@ class ScoreBoardModels{
         self.User_ID=User_ID
         self.Technology_Title=Technology_Title
     }
+   
+    func delete(){
+        DBCRUD.initDBCRUD.deleteAUserScore(User_ID: self.User_ID, Quiz_ID: self.Quiz_ID)
+    }
 }

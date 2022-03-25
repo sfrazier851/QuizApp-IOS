@@ -21,4 +21,10 @@ class ReviewModels{
         self.idReviews=idReviews
         self.User_ID=User_ID
     }
+    func save(){
+        DBCRUD.initDBCRUD.createReview(r: self)
+    }
+    func delete(){
+        DBCRUD.initDBCRUD.deleteAReview(NE: self.idReviews!)
+    }
 }
