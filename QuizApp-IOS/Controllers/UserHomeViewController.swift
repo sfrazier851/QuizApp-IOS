@@ -46,6 +46,10 @@ class UserHomeViewController: UIViewController {
         upgradeAccountButton.isHidden = true
         
         Utilities.styleHollowButton(leaderBoardsButton)
+        leaderBoardsButton.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        leaderBoardsButton.layer.borderWidth = 2
+        leaderBoardsButton.layer.borderColor = K.Color.Blue.cgColor
+        leaderBoardsButton.tintColor = .white
         let userSub = DBCRUD.initDBCRUD.getUserSubscription(id: (LoginPort.user?.ID)!)
         if userSub == 1 {
             leaderBoardsButton.isHidden = true

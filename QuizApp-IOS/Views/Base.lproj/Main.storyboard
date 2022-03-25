@@ -527,18 +527,6 @@ Maricel Sumulong</string>
                                     <action selector="logoutButtonTapped:" destination="2pL-oQ-xb9" eventType="touchUpInside" id="QpM-8A-mud"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cXS-MI-NhV" userLabel="Leaderboards Button">
-                                <rect key="frame" x="114" y="747.33333333333337" width="200" height="36"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="Hsv-gY-pqn"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Leaderboards"/>
-                                <connections>
-                                    <action selector="showRankingsPage:" destination="2pL-oQ-xb9" eventType="touchUpInside" id="eL3-Sb-fRr"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UdO-9l-UzE">
                                 <rect key="frame" x="234" y="44" width="160" height="36"/>
                                 <constraints>
@@ -548,6 +536,18 @@ Maricel Sumulong</string>
                                 <state key="normal" title="Upgrade Account"/>
                                 <connections>
                                     <action selector="upgradeAccountButtonTapped:" destination="2pL-oQ-xb9" eventType="touchUpInside" id="8ds-Mo-XQF"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cXS-MI-NhV" userLabel="Leaderboards Button">
+                                <rect key="frame" x="201" y="44" width="200" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="Hsv-gY-pqn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Leaderboards"/>
+                                <connections>
+                                    <action selector="showRankingsPage:" destination="2pL-oQ-xb9" eventType="touchUpInside" id="eL3-Sb-fRr"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -569,11 +569,8 @@ Maricel Sumulong</string>
                             <constraint firstItem="Lw0-0x-54d" firstAttribute="leading" secondItem="nib-jD-TaF" secondAttribute="leading" id="Ncp-kJ-A0c"/>
                             <constraint firstItem="0fJ-1y-Xvo" firstAttribute="leading" secondItem="nib-jD-TaF" secondAttribute="leading" constant="156" id="PSx-QC-X4E"/>
                             <constraint firstItem="JOs-Mq-oEd" firstAttribute="centerX" secondItem="qfW-da-YJi" secondAttribute="centerX" id="QMf-1z-oaK"/>
-                            <constraint firstItem="cXS-MI-NhV" firstAttribute="top" secondItem="JOs-Mq-oEd" secondAttribute="bottom" constant="35" id="Sjb-C7-3G9"/>
                             <constraint firstItem="Lw0-0x-54d" firstAttribute="trailing" secondItem="nib-jD-TaF" secondAttribute="trailing" id="Tta-yx-vyE"/>
-                            <constraint firstItem="cXS-MI-NhV" firstAttribute="centerX" secondItem="qfW-da-YJi" secondAttribute="centerX" id="cBO-Yc-Ko4"/>
                             <constraint firstItem="5RX-df-7Ba" firstAttribute="leading" secondItem="nib-jD-TaF" secondAttribute="leading" constant="145" id="dtm-IU-09F"/>
-                            <constraint firstItem="E00-sG-36a" firstAttribute="centerX" secondItem="cXS-MI-NhV" secondAttribute="centerX" id="ejG-zQ-fO7"/>
                             <constraint firstItem="0fJ-1y-Xvo" firstAttribute="centerX" secondItem="qfW-da-YJi" secondAttribute="centerX" id="fD2-cy-7C6"/>
                             <constraint firstItem="NPO-0W-iTV" firstAttribute="top" secondItem="nib-jD-TaF" secondAttribute="top" id="fF6-RO-g3a"/>
                             <constraint firstItem="Lw0-0x-54d" firstAttribute="centerY" secondItem="qfW-da-YJi" secondAttribute="centerY" constant="0.5" id="k2U-54-CF3"/>
@@ -583,8 +580,9 @@ Maricel Sumulong</string>
                             <constraint firstItem="5RX-df-7Ba" firstAttribute="centerX" secondItem="qfW-da-YJi" secondAttribute="centerX" id="o1E-Yb-fZ7"/>
                             <constraint firstItem="JOs-Mq-oEd" firstAttribute="top" secondItem="5RX-df-7Ba" secondAttribute="bottom" constant="66" id="pPK-cx-u0O"/>
                             <constraint firstItem="UdO-9l-UzE" firstAttribute="baseline" secondItem="NPO-0W-iTV" secondAttribute="baseline" id="q0j-Ro-QQx"/>
+                            <constraint firstItem="cXS-MI-NhV" firstAttribute="top" secondItem="nib-jD-TaF" secondAttribute="top" id="rRH-Ds-lXs"/>
                             <constraint firstItem="Lw0-0x-54d" firstAttribute="top" secondItem="qfW-da-YJi" secondAttribute="top" constant="-30" id="re1-j5-PXa"/>
-                            <constraint firstItem="5RX-df-7Ba" firstAttribute="centerX" secondItem="cXS-MI-NhV" secondAttribute="centerX" id="wmv-Wa-dbD"/>
+                            <constraint firstItem="5RX-df-7Ba" firstAttribute="centerX" secondItem="cXS-MI-NhV" secondAttribute="centerX" constant="-87" id="wmv-Wa-dbD"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="QTD-Ir-g23"/>
