@@ -26,6 +26,10 @@ class InitialViewController: UIViewController {
         Utilities.styleHollowButton(signUpButton)
         Utilities.styleFilledButton(loginButton)
         Utilities.styleHollowButton(aboutButton)
+        aboutButton.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        aboutButton.layer.borderWidth = 2
+        aboutButton.layer.borderColor = K.Color.Blue.cgColor
+        aboutButton.tintColor = .white
         
     }
     
