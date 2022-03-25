@@ -42,7 +42,11 @@ class Prize{
         self.active=active
     }
     func save(){
-        DBCRUD.initDBCRUD.updatePrize(prize: self)
+        if idPrize != nil{
+            DBCRUD.initDBCRUD.updatePrize(prize: self)}
+        else {
+            DBCRUD.initDBCRUD.createPrize(prize: self)
+        }
     }
     func isIN()->Bool{
         if self.idPrize != nil {

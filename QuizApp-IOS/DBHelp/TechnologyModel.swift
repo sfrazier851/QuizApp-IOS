@@ -16,4 +16,6 @@ func initTechTable(){
     for i in TechnologyTitle.allCases{
         DBCRUD.initDBCRUD.createTechnology(r: i.rawValue)
     }
+    
 }
+

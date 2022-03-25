@@ -69,6 +69,12 @@ class UserModels{
             DBCRUD.initDBCRUD.updateUser(us: self)
         }
     }
+    func delete(){
+        for email in Email{
+            DBCRUD.initDBCRUD.deleteAEmail(NE: email)
+        }
+        DBCRUD.initDBCRUD.DeleteUser(ID: self.ID)
+    }
     func toggleBlock(){
         if status==""{
             status="BLOCKED"
