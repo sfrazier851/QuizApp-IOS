@@ -137,8 +137,6 @@ class LoginViewController: UIViewController {
             let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
 
             if LoginPort.initLogin.login(S: email, PW: password){
-                // create session (saving logged in user object)
-                //UserSessionManager.createSession(loginType: .inApp)
                 if LoginPort.user?.admin ?? false {
                     PresenterManager.shared.show(vc: .adminHome)
                 } else {
