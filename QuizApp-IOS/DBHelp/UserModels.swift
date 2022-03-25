@@ -73,7 +73,7 @@ class UserModels{
         for email in Email{
             DBCRUD.initDBCRUD.deleteAEmail(NE: email)
         }
-        DBCRUD.initDBCRUD.DeleteUser(ID: self.ID)
+        DBCRUD.initDBCRUD.DeleteUser(ID: self.ID!)
     }
     func toggleBlock(){
         if status==""{
