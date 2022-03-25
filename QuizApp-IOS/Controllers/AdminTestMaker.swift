@@ -70,19 +70,19 @@ class AdminTestMaker: UIViewController {
         var Quiz = QuizModels(Title: QuizTitle.text!, Technology_Title: "IOS")
         
         var wrong_choices: Array<String> = [WrongAnswer1A.text!, WrongAnswer1B.text!, WrongAnswer1C.text!]
-        var Question1 = QuestionModels(Question: Question1.text!, Awnser: CorrectAnswer1.text!, choice: wrong_choices)
+        var Question1 = QuestionModels(Question: self.Question1.text!, Awnser: CorrectAnswer1.text!, choice: wrong_choices)
         
         wrong_choices = [WrongAnswer2A.text!, WrongAnswer2B.text!, WrongAnswer2C.text!]
-        var Question2 = QuestionModels(Question: Question2.text!, Awnser: CorrectAnswer2.text!, choice: wrong_choices)
+        var Question2 = QuestionModels(Question: self.Question2.text!, Awnser: CorrectAnswer2.text!, choice: wrong_choices)
         
         wrong_choices = [WrongAnswer3A.text!, WrongAnswer3B.text!, WrongAnswer3C.text!]
-        var Question3 = QuestionModels(Question: Question3.text!, Awnser: CorrectAnswer3.text!, choice: wrong_choices)
+        var Question3 = QuestionModels(Question: self.Question3.text!, Awnser: CorrectAnswer3.text!, choice: wrong_choices)
         
         wrong_choices = [WrongAnswer4A.text!, WrongAnswer4B.text!, WrongAnswer4C.text!]
-        var Question4 = QuestionModels(Question: Question4.text!, Awnser: CorrectAnswer4.text!, choice: wrong_choices)
+        var Question4 = QuestionModels(Question: self.Question4.text!, Awnser: CorrectAnswer4.text!, choice: wrong_choices)
         
         wrong_choices = [WrongAnswer5A.text!, WrongAnswer5B.text!, WrongAnswer5C.text!]
-        var Question5 = QuestionModels(Question: Question5.text!, Awnser: CorrectAnswer5.text!, choice: wrong_choices)
+        var Question5 = QuestionModels(Question: self.Question5.text!, Awnser: CorrectAnswer5.text!, choice: wrong_choices)
         
         Quiz.Questions = [Question1, Question2, Question3, Question4, Question5 ]
         Quiz.save()
@@ -95,19 +95,19 @@ class AdminTestMaker: UIViewController {
         var Quiz = QuizModels(Title: QuizTitle.text!, Technology_Title: "Android")
         
         var wrong_choices: Array<String> = [WrongAnswer1A.text!, WrongAnswer1B.text!, WrongAnswer1C.text!]
-        var Question1 = QuestionModels(Question: Question1.text!, Awnser: CorrectAnswer1.text!, choice: wrong_choices)
+        var Question1 = QuestionModels(Question: self.Question1.text!, Awnser: CorrectAnswer1.text!, choice: wrong_choices)
         
         wrong_choices = [WrongAnswer2A.text!, WrongAnswer2B.text!, WrongAnswer2C.text!]
-        var Question2 = QuestionModels(Question: Question2.text!, Awnser: CorrectAnswer2.text!, choice: wrong_choices)
+        var Question2 = QuestionModels(Question: self.Question2.text!, Awnser: CorrectAnswer2.text!, choice: wrong_choices)
         
         wrong_choices = [WrongAnswer3A.text!, WrongAnswer3B.text!, WrongAnswer3C.text!]
-        var Question3 = QuestionModels(Question: Question3.text!, Awnser: CorrectAnswer3.text!, choice: wrong_choices)
+        var Question3 = QuestionModels(Question: self.Question3.text!, Awnser: CorrectAnswer3.text!, choice: wrong_choices)
         
         wrong_choices = [WrongAnswer4A.text!, WrongAnswer4B.text!, WrongAnswer4C.text!]
-        var Question4 = QuestionModels(Question: Question4.text!, Awnser: CorrectAnswer4.text!, choice: wrong_choices)
+        var Question4 = QuestionModels(Question: self.Question4.text!, Awnser: CorrectAnswer4.text!, choice: wrong_choices)
         
         wrong_choices = [WrongAnswer5A.text!, WrongAnswer5B.text!, WrongAnswer5C.text!]
-        var Question5 = QuestionModels(Question: Question5.text!, Awnser: CorrectAnswer5.text!, choice: wrong_choices)
+        var Question5 = QuestionModels(Question: self.Question5.text!, Awnser: CorrectAnswer5.text!, choice: wrong_choices)
         
         Quiz.Questions = [Question1, Question2, Question3, Question4, Question5 ]
         Quiz.save()
@@ -120,19 +120,19 @@ class AdminTestMaker: UIViewController {
         var Quiz = QuizModels(Title: QuizTitle.text!, Technology_Title: "Java")
         
         var wrong_choices: Array<String> = [WrongAnswer1A.text!, WrongAnswer1B.text!, WrongAnswer1C.text!]
-        var Question1 = QuestionModels(Question: Question1.text!, Awnser: CorrectAnswer1.text!, choice: wrong_choices)
+        var Question1 = QuestionModels(Question: self.Question1.text!, Awnser: CorrectAnswer1.text!, choice: wrong_choices)
         
         wrong_choices = [WrongAnswer2A.text!, WrongAnswer2B.text!, WrongAnswer2C.text!]
-        var Question2 = QuestionModels(Question: Question2.text!, Awnser: CorrectAnswer2.text!, choice: wrong_choices)
+        var Question2 = QuestionModels(Question: self.Question2.text!, Awnser: CorrectAnswer2.text!, choice: wrong_choices)
         
         wrong_choices = [WrongAnswer3A.text!, WrongAnswer3B.text!, WrongAnswer3C.text!]
-        var Question3 = QuestionModels(Question: Question3.text!, Awnser: CorrectAnswer3.text!, choice: wrong_choices)
+        var Question3 = QuestionModels(Question: self.Question3.text!, Awnser: CorrectAnswer3.text!, choice: wrong_choices)
         
         wrong_choices = [WrongAnswer4A.text!, WrongAnswer4B.text!, WrongAnswer4C.text!]
-        var Question4 = QuestionModels(Question: Question4.text!, Awnser: CorrectAnswer4.text!, choice: wrong_choices)
+        var Question4 = QuestionModels(Question: self.Question4.text!, Awnser: CorrectAnswer4.text!, choice: wrong_choices)
         
         wrong_choices = [WrongAnswer5A.text!, WrongAnswer5B.text!, WrongAnswer5C.text!]
-        var Question5 = QuestionModels(Question: Question5.text!, Awnser: CorrectAnswer5.text!, choice: wrong_choices)
+        var Question5 = QuestionModels(Question: self.Question5.text!, Awnser: CorrectAnswer5.text!, choice: wrong_choices)
         
         Quiz.Questions = [Question1, Question2, Question3, Question4, Question5 ]
         Quiz.save()
