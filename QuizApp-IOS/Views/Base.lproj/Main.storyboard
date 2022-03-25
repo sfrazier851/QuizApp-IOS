@@ -492,7 +492,7 @@ Maricel Sumulong</string>
                                     <outlet property="delegate" destination="2pL-oQ-xb9" id="Dvi-8c-G8i"/>
                                 </connections>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome, Gary!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QON-7m-uqi" userLabel="Welcome Label">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome, Gary!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="QON-7m-uqi" userLabel="Welcome Label">
                                 <rect key="frame" x="107" y="125" width="214" height="26"/>
                                 <fontDescription key="fontDescription" name="VingyNormal" family="Vingy" pointSize="25"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2826,7 +2826,7 @@ Maricel Sumulong</string>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="uRH-YD-cYZ"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Back"/>
                                 <connections>
                                     <action selector="goBack:" destination="Rba-1p-fQs" eventType="touchUpInside" id="xh6-qw-2E0"/>
                                 </connections>

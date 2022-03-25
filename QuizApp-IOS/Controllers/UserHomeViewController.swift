@@ -164,6 +164,7 @@ class UserHomeViewController: UIViewController {
             //print(u.UserName, u.Email)// confirm user is populated
             // set subscription for user to paid
             u.Subscript = 0
+            K.user_subscription = 0
             DBCRUD.initDBCRUD.updateUser(us: u)//currently getting error
         })
         dialogMessage.addAction(ok)
