@@ -187,6 +187,41 @@ func UserIDToPassword(id:Int) -> String{
         
     }
     
+    func getNumberOfAttempts(id:Int, date: String) -> Int {
+        
+        let query = "Select COUNT(User_ID) as NumberOfAttempts FROM Scoreboard WHERE User_ID = ? AND TakenDate = ?"
+        var stmt : OpaquePointer?
+        
+        if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
+            let err = String(cString: sqlite3_errmsg(db)!)
+            print("There is an Error:",err)
+            return -1
+        }
+        
+        //bind
+        if sqlite3_bind_int(stmt, 1, Int32(id)) != SQLITE_OK{
+            let err = String(cString: sqlite3_errmsg(db)!)
+            print("There is an Error:",err)
+            return -1
+        }
+        
+        if sqlite3_bind_text(stmt, 2, (date as NSString).utf8String, -1, nil) != SQLITE_OK{
+            let err = String(cString: sqlite3_errmsg(db)!)
+            print("There is an Error:",err)
+            return -1
+        }
+        
+        var num : Int = -1
+        
+        if(sqlite3_step(stmt) == SQLITE_ROW){
+            //get data
+            num = Int(sqlite3_column_int(stmt, 0))
+        }
+        
+        return num
+        
+    }
+
     
     //Update
     func updateUser(us:UserModels){
