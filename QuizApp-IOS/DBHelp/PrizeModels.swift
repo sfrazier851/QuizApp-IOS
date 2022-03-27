@@ -12,8 +12,16 @@ class Prize{
     var StartDate:String?
     var EndaDate:String?
     var PrizeType:Int?
+    var Value:Int?//days
     var User_ID:Int
     var active:Int?
+    
+    enum PrizeType:Int, CaseIterable{
+         case Paid = 1
+        case Awarded = 0
+        
+    
+    }
     init(){
         GivenDate=""
         User_ID=0
