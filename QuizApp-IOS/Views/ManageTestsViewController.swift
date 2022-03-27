@@ -37,4 +37,10 @@ class ManageTestsViewController: UIViewController {
         
     }
     
+    @IBAction func SignOut(_ sender: Any) {
+        
+        PresenterManager.shared.show(vc: .initial)
+    
+    }
+    
 }

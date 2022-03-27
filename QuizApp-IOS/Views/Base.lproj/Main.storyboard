@@ -871,6 +871,9 @@ Maricel Sumulong</string>
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="Log Out"/>
+                                <connections>
+                                    <action selector="SignOut:" destination="iXW-Iw-aJQ" eventType="touchUpInside" id="XLh-oA-pHX"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="58" translatesAutoresizingMaskIntoConstraints="NO" id="NTE-89-eli" userLabel="Buttons Stack View">
                                 <rect key="frame" x="130" y="360" width="168" height="206"/>
@@ -1274,7 +1277,7 @@ Maricel Sumulong</string>
                                         <fontDescription key="fontDescription" name="VingyNormal" family="Vingy" pointSize="20"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" toolTip="Sava As Java Quiz" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W6P-xR-3lt" userLabel="Java Button">
+                                    <button toolTip="Sava As Java Quiz" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W6P-xR-3lt" userLabel="Java Button">
                                         <rect key="frame" x="124" y="0.0" width="70" height="70"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="70" id="E2E-Mw-UOe"/>
