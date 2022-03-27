@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 class UserHomeViewController: UIViewController {
     
@@ -68,12 +69,28 @@ class UserHomeViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        // 5 total new quizzes were created
+        UIApplication.shared.applicationIconBadgeNumber = 5
+        // more specific totals for each technology type
+        K.latestNewQuizTypesAndCount["Java"]! += 2
+        K.latestNewQuizTypesAndCount["iOS"]! += 2
+        K.latestNewQuizTypesAndCount["Android"]! += 1
+        
+        
+        var message = "\(UIApplication.shared.applicationIconBadgeNumber) new quiz(zes).\n"
+        // add specific totals for new quizzes by technology type
+        for key in K.latestNewQuizTypesAndCount.keys {
+            if K.latestNewQuizTypesAndCount[key]! > 0 {
+                message.append("\(K.latestNewQuizTypesAndCount[key]!) new \(key).\n")
+            }
+        }
+        
         // notify user of new quizzes
         if UIApplication.shared.applicationIconBadgeNumber > 0 {
-            let dialogMessage = UIAlertController(title: "Alert", message: "\(UIApplication.shared.applicationIconBadgeNumber) more quizzes have been added.", preferredStyle: .alert)
+            let dialogMessage = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
             let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
                 // reset badge number to 0
-                UIApplication.shared.applicationIconBadgeNumber = 0
+                UIApplication.shared.applicationIconBadgeNumber = 0//
             })
             dialogMessage.addAction(ok)
             self.present(dialogMessage, animated: true, completion: nil)

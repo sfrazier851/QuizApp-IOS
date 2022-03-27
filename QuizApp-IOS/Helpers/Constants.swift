@@ -62,6 +62,12 @@ struct K {
         
     }
     
+    // When admin creates a new quiz, update the Integer value to reflect the number of new
+    // quizzes of its technology type.
+    // Then use this dictionary to print more specific information about what types of new
+    // quizzes were created.
+    static var latestNewQuizTypesAndCount = ["Java":0, "iOS":0, "Android":0]
+    
     //static let dailyAttempt = UserDefaults.standard.integer(forKey: "DailyAttempts")
     static var dailyAttempt = 0
     
