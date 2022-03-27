@@ -14,6 +14,7 @@ class Prize{
     var PrizeType:Int?
     var User_ID:Int
     var active:Int?
+    var value:Int?
     init(){
         GivenDate=""
         User_ID=0
@@ -32,6 +33,17 @@ class Prize{
         self.User_ID=User_ID
         self.active=active
     }
+    
+    init(GivenDate:String, startDate:String,EndaDate:String,PrizeType:Int,User_ID:Int, active:Int, value:Int){
+
+        self.GivenDate=GivenDate
+        self.StartDate=startDate
+        self.EndaDate=EndaDate
+        self.PrizeType=PrizeType
+        self.User_ID=User_ID
+        self.active=active
+        self.value=value
+    }
     init(idPrize:Int,GivenDate:String, startDate:String,EndaDate:String,PrizeType:Int,User_ID:Int, active:Int){
         self.idPrize=idPrize
         self.GivenDate=GivenDate
@@ -40,6 +52,18 @@ class Prize{
         self.PrizeType=PrizeType
         self.User_ID=User_ID
         self.active=active
+    }
+    
+    init(idPrize:Int,GivenDate:String, startDate:String,EndaDate:String,PrizeType:Int,User_ID:Int, active:Int, value:Int){
+
+        self.idPrize=idPrize
+        self.GivenDate=GivenDate
+        self.StartDate=startDate
+        self.EndaDate=EndaDate
+        self.PrizeType=PrizeType
+        self.User_ID=User_ID
+        self.active=active
+        self.value=value
     }
     func save(){
         if idPrize != nil{

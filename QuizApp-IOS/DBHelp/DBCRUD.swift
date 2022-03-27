@@ -1096,7 +1096,7 @@ var i = -1
 //PRIZE
     //create
     func createPrize(prize:Prize){
-            let query = "INSERT INTO Prizes (GivenDate, StartDate, EndDate, active, Type, User_ID) Values (?,?,?,?,?,?)"
+            let query = "INSERT INTO Prizes (GivenDate, StartDate, EndDate, active, Value, Type, User_ID) Values (?,?,?,?,?,?,?)"
             var stmt : OpaquePointer?
         
                 if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
@@ -1124,13 +1124,17 @@ var i = -1
             print("There is an Error:",err)
         }
         
-        
-        if sqlite3_bind_int(stmt, 5, Int32(prize.PrizeType!)) != SQLITE_OK{ let err = String(cString: sqlite3_errmsg(db)!)
+        if sqlite3_bind_int(stmt, 5, Int32(prize.value!)) != SQLITE_OK{ let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
         }
         
         
-        if sqlite3_bind_int(stmt, 6, Int32(prize.User_ID)) != SQLITE_OK{ let err = String(cString: sqlite3_errmsg(db)!)
+        if sqlite3_bind_int(stmt, 6, Int32(prize.PrizeType!)) != SQLITE_OK{ let err = String(cString: sqlite3_errmsg(db)!)
+            print("There is an Error:",err)
+        }
+        
+        
+        if sqlite3_bind_int(stmt, 7, Int32(prize.User_ID)) != SQLITE_OK{ let err = String(cString: sqlite3_errmsg(db)!)
         print("There is an Error:",err)
     }
             
@@ -1160,7 +1164,7 @@ var i = -1
         //step
         //Appending Emails to Array
             if(sqlite3_step(stmt) == SQLITE_ROW){
-                rev = Prize(GivenDate:String(cString:sqlite3_column_text(stmt, 0)) ,startDate: String(cString:sqlite3_column_text(stmt, 1)), EndaDate: String(cString:sqlite3_column_text(stmt, 2)), PrizeType: Int(sqlite3_column_int(stmt, 3)), User_ID: Int(sqlite3_column_int(stmt, 4)), active: Int(sqlite3_column_int(stmt, 5)))
+                rev = Prize(idPrize: Int(sqlite3_column_int(stmt, 0)), GivenDate:String(cString:sqlite3_column_text(stmt, 1)) ,startDate: String(cString:sqlite3_column_text(stmt, 2)), EndaDate: String(cString:sqlite3_column_text(stmt, 3)), PrizeType: Int(sqlite3_column_int(stmt, 4)), User_ID: Int(sqlite3_column_int(stmt, 5)), active: Int(sqlite3_column_int(stmt, 6)),value: Int(sqlite3_column_int(stmt, 7)))
                 
             }
             return rev
@@ -1192,7 +1196,7 @@ var i = -1
     }
     //update
     func updatePrize(prize:Prize){
-            let query = "UPDATE Prizes set GivenDate = ?, StartDate = ?, EndDate = ?, active = ?, Type = ?, User_ID = ? WHERE idPrizes = ?"
+            let query = "UPDATE Prizes set GivenDate = ?, StartDate = ?, EndDate = ?, active = ?, Type = ?, User_ID = ?, Value = ? WHERE idPrizes = ?"
         var stmt : OpaquePointer?
 
         if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
@@ -1229,6 +1233,11 @@ var i = -1
            
     }
         if sqlite3_bind_int(stmt, 7, Int32(prize.idPrize!)) != SQLITE_OK{
+        let err = String(cString: sqlite3_errmsg(db)!)
+        print("There is an Error:",err)
+           
+    }
+        if sqlite3_bind_int(stmt, 8, Int32(prize.value!)) != SQLITE_OK{
         let err = String(cString: sqlite3_errmsg(db)!)
         print("There is an Error:",err)
            
