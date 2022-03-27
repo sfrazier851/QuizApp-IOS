@@ -14,10 +14,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // ask user for permission to send local notifications
+        UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound]){ (granted, error) in
+            DispatchQueue.main.async {
+                application.registerForRemoteNotifications()
+            }
+            
+        }
+        
         Thread.sleep(forTimeInterval: 0.10)
         DBInit.init()
         
         return true
+    }
+    
+    // initialize the application icon badge number
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
 
     // MARK: UISceneSession Lifecycle

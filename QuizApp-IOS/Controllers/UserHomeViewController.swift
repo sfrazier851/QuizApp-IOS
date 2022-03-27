@@ -65,6 +65,21 @@ class UserHomeViewController: UIViewController {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // notify user of new quizzes
+        if UIApplication.shared.applicationIconBadgeNumber > 0 {
+            let dialogMessage = UIAlertController(title: "Alert", message: "\(UIApplication.shared.applicationIconBadgeNumber) more quizzes have been added.", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+                // reset badge number to 0
+                UIApplication.shared.applicationIconBadgeNumber = 0
+            })
+            dialogMessage.addAction(ok)
+            self.present(dialogMessage, animated: true, completion: nil)
+        }
+    }
+    
     private func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
