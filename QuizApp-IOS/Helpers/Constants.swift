@@ -58,6 +58,7 @@ struct K {
         static let viewRankingViewController = "ViewRankingViewController"
         static let viewRankingByTechViewController = "ViewRankingByTechViewController"
         static let feedbackViewController = "FeedbackViewController"
+        static let testMaker = "Test_Maker"
         
     }
     

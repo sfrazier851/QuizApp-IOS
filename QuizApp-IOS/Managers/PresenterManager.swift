@@ -28,6 +28,7 @@ final class PresenterManager {
         case ranking
         case rankingByTech
         case feedback
+        case testMaker
     }
     
     func show(vc: VC) {
@@ -75,9 +76,11 @@ final class PresenterManager {
             case .rankingByTech:
                 viewController = UIStoryboard(name: K.StoryboardID.main, bundle: nil).instantiateViewController(identifier: K.StoryboardID.viewRankingByTechViewController)
             
-        case .feedback:
-            viewController = UIStoryboard(name: K.StoryboardID.main, bundle: nil).instantiateViewController(identifier: K.StoryboardID.feedbackViewController)
+            case .feedback:
+                viewController = UIStoryboard(name: K.StoryboardID.main, bundle: nil).instantiateViewController(identifier: K.StoryboardID.feedbackViewController)
             
+            case .testMaker:
+                viewController = UIStoryboard(name: K.StoryboardID.main, bundle: nil).instantiateViewController(identifier: K.StoryboardID.testMaker)
                     
         }
         

@@ -82,8 +82,8 @@ class LoginViewController: UIViewController {
         loginWithFacebookButton.layer.cornerRadius = 25
         
         //temporary
-//        emailTextField.text = "2@gmail.com"
-//        passwordTextField.text = "123Password!"
+        emailTextField.text = "admin@gmail.com"
+        passwordTextField.text = "123Password!"
         emailTextField.becomeFirstResponder()
     
     }

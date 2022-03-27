@@ -41,22 +41,18 @@ class AdminTestMaker: UIViewController {
     @IBOutlet weak var WrongAnswer5B: UITextField!
     @IBOutlet weak var WrongAnswer5C: UITextField!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    @IBOutlet weak var cancelAdminButton: UIButton!
 
-        // Do any additional setup after loading the view.
-    }
+    @IBOutlet weak var saveAs: UITextView!
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        Utilities.styleHollowButton(cancelAdminButton)
+        saveAs.centerVertically()
+        saveAs.text = "SAVE\nAS:"
+        
     }
-    */
     
     
     @IBAction func Cancel(_ sender: Any)
@@ -87,7 +83,7 @@ class AdminTestMaker: UIViewController {
         Quiz.Questions = [Question1, Question2, Question3, Question4, Question5 ]
         Quiz.save()
         
-        self.dismiss(animated: true)
+        PresenterManager.shared.show(vc: .adminHome)
     }
     
     @IBAction func SaveToAndroid(_ sender: Any)
@@ -112,7 +108,8 @@ class AdminTestMaker: UIViewController {
         Quiz.Questions = [Question1, Question2, Question3, Question4, Question5 ]
         Quiz.save()
         
-        self.dismiss(animated: true)
+        PresenterManager.shared.show(vc: .adminHome)
+        
     }
     
     @IBAction func SaveToJava(_ sender: Any)
@@ -137,6 +134,8 @@ class AdminTestMaker: UIViewController {
         Quiz.Questions = [Question1, Question2, Question3, Question4, Question5 ]
         Quiz.save()
         
-        self.dismiss(animated: true)
+        PresenterManager.shared.show(vc: .adminHome)
+        
     }
+
 }
