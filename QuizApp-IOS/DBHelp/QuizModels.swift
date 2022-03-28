@@ -80,7 +80,7 @@ class QuizModels{
     }
     func deleteQueiz(){
         for question in Questions!{
-            question.deleteQuestion()()
+            question.deleteQuestion()
         }
         DBCRUD.initDBCRUD.deleteAQuiz(NE: self.ID!)
     }

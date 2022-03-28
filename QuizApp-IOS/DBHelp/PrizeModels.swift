@@ -6,7 +6,14 @@
 //
 
 import Foundation
+import SQLite3
 class Prize{
+    enum SubcriptionType:Int, CaseIterable{
+         case given = 2
+        case paid = 1
+        case awarded = 0
+    
+    }
     var idPrize:Int?
     var GivenDate:String
     var StartDate:String?
@@ -74,10 +81,35 @@ class Prize{
     }
     func isIN()->Bool{
         if self.idPrize != nil {
-            DBCRUD.initDBCRUD.getPrizeFromPrizeID(id: self.idPrize!)
             	return true
         }
         return false
+    }
+    func activate(){
+        if value == 0{
+         //no value was given
+            return
+        }
+        if active == 1{
+            //already active
+            return
+        }
+        var dateComponenet = DateComponents()
+        dateComponenet.day=value
+        self.active=1
+        let LatestPrize = DBCRUD.initDBCRUD.getLatestActivePrize(UserID: (LoginPort.user?.ID)!)[0]
+        if LatestPrize.EndaDate == ""{
+            self.StartDate=Utilities.DatetoString(day: Date())
+           let endDate = Calendar.current.date(byAdding: dateComponenet, to: Date())
+            self.EndaDate = Utilities.DatetoString(day: endDate!)
+        }else{
+            let lastday = Utilities.isToDate(day: LatestPrize.EndaDate!)
+            var plusOneday = DateComponents()
+            plusOneday.day=1
+            let startday = Calendar.current.date(byAdding: plusOneday, to: lastday)!
+            self.StartDate=Utilities.DatetoString(day:startday)
+            self.EndaDate = Utilities.DatetoString(day:  Calendar.current.date(byAdding: dateComponenet, to: startday)!)
+        }
     }
     func delete(){
         DBCRUD.initDBCRUD.deleteAPrize(NE: self.idPrize!)

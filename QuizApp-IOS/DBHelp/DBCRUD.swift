@@ -1146,7 +1146,7 @@ var i = -1
         }
     //read
     func getPrizeFromPrizeID(id:Int)->Prize{
-        let query = "select * from choices WHERE idPrizes = ?"
+        let query = "select * from Prizes WHERE idPrizes = ?"
             var stmt : OpaquePointer?
         var rev: Prize = Prize()
 
@@ -1169,9 +1169,32 @@ var i = -1
             }
             return rev
     }
-    
+    func getPrizeFromID(id:Int)->Prize{
+        let query = "select * from Prizes WHERE idPrizes = ?"
+            var stmt : OpaquePointer?
+        var rev: Prize = Prize()
+
+            if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
+                let err = String(cString: sqlite3_errmsg(db)!)
+                print("There is an Error:",err)
+                return rev
+            }
+        //bind
+        if sqlite3_bind_int(stmt, 1, Int32(id)) != SQLITE_OK{
+        let err = String(cString: sqlite3_errmsg(db)!)
+        print("There is an Error:",err)
+            return rev
+    }
+        //step
+        //Appending Emails to Array
+            if(sqlite3_step(stmt) == SQLITE_ROW){
+                rev = Prize(GivenDate:String(cString:sqlite3_column_text(stmt, 0)) ,startDate: String(cString:sqlite3_column_text(stmt, 1)), EndaDate: String(cString:sqlite3_column_text(stmt, 2)), PrizeType: Int(sqlite3_column_int(stmt, 3)), User_ID: Int(sqlite3_column_int(stmt, 4)), active: Int(sqlite3_column_int(stmt, 5)))
+                
+            }
+            return rev
+    }
     func getPrizeFromUserID(id:Int)->[Prize]{
-        let query = "select * from choices WHERE idPrizes = ?"
+        let query = "select * from Prizes WHERE User_ID = ?"
             var stmt : OpaquePointer?
         var rev: [Prize] = [Prize]()
 
@@ -1194,6 +1217,47 @@ var i = -1
             }
             return rev
     }
+    func getLatestActivePrize(UserID:Int)->[Prize]{
+        var prize:[Prize] = [Prize]()
+        let query = "SELECT * FROM Prizes WHERE active = 1 AND User_ID = ? ORDER BY EndDate DESC ;"
+                 var stmt : OpaquePointer?
+        if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
+            let err = String(cString: sqlite3_errmsg(db)!)
+            print("There is an Error:",err)
+        }
+        if sqlite3_bind_int(stmt, 1, Int32(UserID)) != SQLITE_OK{
+        let err = String(cString: sqlite3_errmsg(db)!)
+        print("There is an Error:",err)
+    }
+        while(sqlite3_step(stmt) == SQLITE_ROW){
+            prize.append( Prize(GivenDate:String(cString:sqlite3_column_text(stmt, 0)) ,startDate: String(cString:sqlite3_column_text(stmt, 1)), EndaDate: String(cString:sqlite3_column_text(stmt, 2)), PrizeType: Int(sqlite3_column_int(stmt, 3)), User_ID: Int(sqlite3_column_int(stmt, 4)), active: Int(sqlite3_column_int(stmt, 5))))
+        }
+        return prize
+    }
+    func getActivePrize(active:Int = 1, UserID:Int)->[Prize]{
+        var prize:[Prize] = [Prize]()
+        
+        let query = "select * from Prizes WHERE active = ? AND User_ID = ?"
+                 var stmt : OpaquePointer?
+        if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
+            let err = String(cString: sqlite3_errmsg(db)!)
+            print("There is an Error:",err)
+        }
+        if sqlite3_bind_int(stmt, 1, Int32(active)) != SQLITE_OK{
+        let err = String(cString: sqlite3_errmsg(db)!)
+        print("There is an Error:",err)
+    }
+        if sqlite3_bind_int(stmt, 2, Int32(UserID)) != SQLITE_OK{
+        let err = String(cString: sqlite3_errmsg(db)!)
+        print("There is an Error:",err)
+    }
+        while(sqlite3_step(stmt) == SQLITE_ROW){
+            prize.append( Prize(GivenDate:String(cString:sqlite3_column_text(stmt, 0)) ,startDate: String(cString:sqlite3_column_text(stmt, 1)), EndaDate: String(cString:sqlite3_column_text(stmt, 2)), PrizeType: Int(sqlite3_column_int(stmt, 3)), User_ID: Int(sqlite3_column_int(stmt, 4)), active: Int(sqlite3_column_int(stmt, 5))))
+            
+        }
+        return prize
+    }
+    
     //update
     func updatePrize(prize:Prize){
             let query = "UPDATE Prizes set GivenDate = ?, StartDate = ?, EndDate = ?, active = ?, Type = ?, User_ID = ?, Value = ? WHERE idPrizes = ?"
