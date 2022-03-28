@@ -90,7 +90,19 @@ class Utilities {
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
         button.tintColor = K.Color.Orange//UIColor.white
     }
-    
+   static func isToDate(day: String)->Date{
+         let dateFormatter = DateFormatter()
+         dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+         dateFormatter.dateFormat = "yyyy-MM-dd"
+         return dateFormatter.date(from: day)!
+     }
+     static func DatetoString(day: Date)->String{
+         let dateFormatter = DateFormatter()
+         dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+         dateFormatter.dateFormat = "yyyy-MM-dd"
+         return dateFormatter.string(from: day)
+     }
+
     static func formatDate(date: Date)->String {
         
         let formatter = DateFormatter()

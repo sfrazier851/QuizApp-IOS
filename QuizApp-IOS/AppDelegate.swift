@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         Thread.sleep(forTimeInterval: 0.10)
         DBInit.init()
-        
+        prizeGiver.initPrizeGiver.Update()
         return true
     }
 

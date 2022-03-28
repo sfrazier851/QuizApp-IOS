@@ -64,6 +64,25 @@ class UserModels{
         Subscript=SubcriptionType.trial.rawValue
         status=""
     }
+    func setCurrentStatus(){
+        let ActivePrizes = DBCRUD.initDBCRUD.getLatestActivePrize(UserID: self.ID!)
+        self.Subscript=1
+        for Active in ActivePrizes{
+            if Utilities.isToDate(day: Active.EndaDate!)>Date(){
+                switch Active.PrizeType{
+            case 2,0:
+                    self.Subscript=2
+            case 1:
+                    self.Subscript=0
+            default:
+                    self.Subscript=1
+                    
+                }
+                    }
+            
+        }
+        
+    }
     func save(){
         if ID != nil{
             DBCRUD.initDBCRUD.updateUser(us: self)
