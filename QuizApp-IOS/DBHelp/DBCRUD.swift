@@ -1555,7 +1555,7 @@ var i = -1
             query = "SELECT Rank FROM (SELECT Technology_Title, Sum(Score), User_ID, dense_rank () OVER (PARTITION By Technology_Title ORDER By Sum(score) DESC) as Rank FROM ScoreBoard  GROUP BY User_ID, Technology_Title ) Where User_ID = ?  LIMIT 10"
         } else {
             //query = "Select * FROM ScoreBoard WHERE Technology_Title = ? AND TakenDate = ? ORDER BY Score DESC LIMIT 10"
-            query = "SELECT Rank FROM (SELECT Technology_Title, Sum(Score), User_ID, dense_rank () OVER (PARTITION By Technology_Title ORDER By Sum(score) DESC) as Rank FROM ScoreBoard  GROUP BY User_ID, Technology_Title ) Where User_ID = ? AND Technology_Title LIMIT 10"
+            query = "SELECT Rank FROM (SELECT Technology_Title, Sum(Score), User_ID, dense_rank () OVER (PARTITION By Technology_Title ORDER By Sum(score) DESC) as Rank FROM ScoreBoard  GROUP BY User_ID, Technology_Title ) Where User_ID = ? AND Technology_Title = ? LIMIT 10"
           }
         
                 var stmt : OpaquePointer?
