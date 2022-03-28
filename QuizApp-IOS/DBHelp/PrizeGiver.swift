@@ -22,7 +22,7 @@ class prizeGiver{
             lastUpdate=Calendar.current.date(byAdding: .day, value: 1, to: lastUpdate)!
             for Technology in ["IOS","Andriod","Java"]{
             var count = 0
-                var Rank:[ScoreBoardModels]=DBCRUD.initDBCRUD.getTacRankDay(Technology_Title: Technology, Date:Utilities.formatDate(date: lastUpdate))
+                var Rank:[ScoreBoardModels]=DBCRUD.initDBCRUD.getTacRankDay(Technology_Title: Technology, Date:Utilities.formatDate(date: lastUpdate), Limit: 10)
                 
                 while !Rank.isEmpty{
                     DBCRUD.initDBCRUD.createPrize(prize: Prize(GivenDate: Utilities.DatetoString(day: lastUpdate), User_ID: Rank[0].User_ID, PrizeType: 0, value: count))
