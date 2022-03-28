@@ -109,8 +109,19 @@ initTech()
         let u1=UserModels(UserName: "guest", Password: "123Password!", DOB: "June 2, 1994", admin: false, subriction:1, Status: "", First: "2", Last: "2", email: ["2@gmail.com"])
         let u2=UserModels(UserName: "admin", Password: "123Password!", DOB: "June 2, 1994", admin: true, subriction: 0, Status: "", First: "admin", Last: "admin", email: ["admin@gmail.com"])
         let u3=UserModels(UserName: "BlockedUser", Password: "123Password!", DOB: "June 2, 1994", admin: false, subriction: 0, Status: "BLOCKED", First: "This Guy", Last: "Who shall not be named", email: ["block@gmail.com"])
+        let u4=UserModels(UserName: "guest2", Password: "123Password!", DOB: "June 2, 1994", admin: false, subriction:1, Status: "", First: "3", Last: "3", email: ["3@gmail.com"])
+        let u5=UserModels(UserName: "guest", Password: "123Password!", DOB: "June 2, 1994", admin: false, subriction:1, Status: "", First: "4", Last: "4", email: ["4@gmail.com"])
         if !DBCRUD.initDBCRUD.createUserWithUserModal(us: u1){
             print("error creating guest")
+            return
+        }
+        if !DBCRUD.initDBCRUD.createUserWithUserModal(us: u4){
+            print("error creating block")
+            return
+        }
+        
+        if !DBCRUD.initDBCRUD.createUserWithUserModal(us: u5){
+            print("error creating block")
             return
         }
         if !DBCRUD.initDBCRUD.createUserWithUserModal(us: u2){
@@ -121,6 +132,8 @@ initTech()
             print("error creating block")
             return
         }
+        
+      
         initquiz()
     }
     func createTable(){
@@ -197,10 +210,19 @@ initTech()
     }
    func initPrize(){
  //Init Date will have an  id of 1
-        let today = Utilities.DatetoString(day: Date())
+       var dateComp = DateComponents()
+       dateComp.day = -5
+       
+       let today = Utilities.DatetoString(day: Calendar.current.date(byAdding: dateComp, to: Date())!)
        DBCRUD.initDBCRUD.createPrize(prize: Prize(GivenDate: today, User_ID: 2, PrizeType: 4))
  //Last Update will have an id of 2
+       
        DBCRUD.initDBCRUD.createPrize(prize: Prize(GivenDate: today, User_ID: 2, PrizeType: 4))
      }
+    func initScore(){
+        var dateComp = DateComponents()
+        dateComp.day = -5
+        let today = Utilities.DatetoString(day: Calendar.current.date(byAdding: dateComp, to: Date())!)
+    }
 }
     
