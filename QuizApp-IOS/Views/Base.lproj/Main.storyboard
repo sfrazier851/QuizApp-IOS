@@ -629,11 +629,11 @@ Maricel Sumulong</string>
             <objects>
                 <viewController id="bm0-JR-Ewu" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TRS-Jj-oBC">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.45000000000000001" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mainBg" translatesAutoresizingMaskIntoConstraints="NO" id="CHS-un-tIZ">
-                                <rect key="frame" x="0.0" y="-31" width="428" height="987"/>
+                                <rect key="frame" x="0.0" y="-31" width="428" height="933"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3qd-HO-Rpu">
                                 <rect key="frame" x="51" y="80" width="67" height="31"/>
@@ -858,14 +858,14 @@ Maricel Sumulong</string>
             <objects>
                 <viewController storyboardIdentifier="ManageTestsViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="iXW-Iw-aJQ" customClass="ManageTestsViewController" customModule="QuizApp_IOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7fL-Zm-kmQ">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.45000000000000001" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mainBg" translatesAutoresizingMaskIntoConstraints="NO" id="otf-Ch-hgs">
-                                <rect key="frame" x="0.0" y="-31" width="428" height="987"/>
+                                <rect key="frame" x="0.0" y="-31" width="428" height="933"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iBj-7e-6Pl">
-                                <rect key="frame" x="34" y="44" width="80" height="31"/>
+                                <rect key="frame" x="34" y="0.0" width="80" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="7Kg-AH-0Du"/>
                                 </constraints>
@@ -873,7 +873,7 @@ Maricel Sumulong</string>
                                 <buttonConfiguration key="configuration" style="gray" title="Log Out"/>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="58" translatesAutoresizingMaskIntoConstraints="NO" id="NTE-89-eli" userLabel="Buttons Stack View">
-                                <rect key="frame" x="130" y="360" width="168" height="206"/>
+                                <rect key="frame" x="130" y="333" width="168" height="206"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kCd-VR-rd3">
                                         <rect key="frame" x="0.0" y="0.0" width="168" height="30"/>
@@ -905,7 +905,7 @@ Maricel Sumulong</string>
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome, Admin!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ybH-zY-3Wx" userLabel="Welcome Label">
-                                <rect key="frame" x="125" y="204" width="178" height="26"/>
+                                <rect key="frame" x="125" y="177" width="178" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="178" id="wzA-5W-22s"/>
                                 </constraints>
@@ -1234,7 +1234,7 @@ Maricel Sumulong</string>
             <objects>
                 <viewController storyboardIdentifier="AdminUserDetail" id="cIC-q8-QlU" customClass="AdminUserDetails" customModule="QuizApp_IOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="S2p-TM-Imy">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qLT-rV-8cc">
@@ -1245,7 +1245,7 @@ Maricel Sumulong</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5gV-0w-Ux7">
-                                <rect key="frame" x="20" y="330" width="179" height="41"/>
+                                <rect key="frame" x="20" y="748" width="179" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="Give a Subscription"/>
@@ -1253,8 +1253,8 @@ Maricel Sumulong</string>
                                     <action selector="GiveSub:" destination="cIC-q8-QlU" eventType="touchUpInside" id="5Kz-mW-jLe"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DOA-xX-zHD">
-                                <rect key="frame" x="207" y="330" width="201" height="41"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DOA-xX-zHD" userLabel="BanUser">
+                                <rect key="frame" x="207" y="748" width="201" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Ban">
@@ -1286,26 +1286,76 @@ Maricel Sumulong</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YH0-1q-tjb">
-                                <rect key="frame" x="152" y="154" width="42" height="21"/>
+                                <rect key="frame" x="152" y="154" width="119" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vtn-zk-nbO">
-                                <rect key="frame" x="152" y="197" width="42" height="21"/>
+                                <rect key="frame" x="152" y="197" width="119" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yt9-qM-HcI">
-                                <rect key="frame" x="152" y="240" width="42" height="21"/>
+                                <rect key="frame" x="152" y="240" width="119" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Subscription" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eon-xf-dSf">
+                                <rect key="frame" x="279" y="153" width="96" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PQz-2Q-fuO">
+                                <rect key="frame" x="306" y="182" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8zW-5s-KWL">
+                                <rect key="frame" x="152" y="340" width="256" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xKQ-ut-gRh">
+                                <rect key="frame" x="20" y="318" width="74" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="New Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="naz-aD-d5F">
+                                <rect key="frame" x="20" y="347" width="112" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pN1-xw-NoV">
+                                <rect key="frame" x="152" y="318" width="256" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BXo-7w-d2I">
+                                <rect key="frame" x="227" y="382" width="181" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Update Password"/>
+                                <connections>
+                                    <action selector="UpdatePass:" destination="cIC-q8-QlU" eventType="touchUpInside" id="hpS-ov-gGH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="LbL-m8-qqa"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1315,7 +1365,11 @@ Maricel Sumulong</string>
                     <connections>
                         <outlet property="Android_Score" destination="YH0-1q-tjb" id="AmN-lY-9K8"/>
                         <outlet property="Java_Score" destination="Yt9-qM-HcI" id="JIN-nh-Fc0"/>
+                        <outlet property="Password" destination="pN1-xw-NoV" id="LC6-Bo-ucM"/>
+                        <outlet property="Subscription_Status" destination="PQz-2Q-fuO" id="gFW-JP-4ps"/>
+                        <outlet property="UserBan" destination="DOA-xX-zHD" id="hDT-2J-R6Q"/>
                         <outlet property="UserName" destination="qLT-rV-8cc" id="JA6-vl-4ud"/>
+                        <outlet property="UserPass" destination="8zW-5s-KWL" id="amQ-sk-M6p"/>
                         <outlet property="iOS_Score" destination="Vtn-zk-nbO" id="kvb-wD-yhr"/>
                     </connections>
                 </viewController>
@@ -1328,7 +1382,7 @@ Maricel Sumulong</string>
             <objects>
                 <tableViewController storyboardIdentifier="AdminUsersTable" clearsSelectionOnViewWillAppear="NO" id="Sfn-be-5hY" customClass="AdminUsersTableTableViewController" customModule="QuizApp_IOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="21A-ed-fUa">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -1370,7 +1424,7 @@ Maricel Sumulong</string>
                 <navigationController id="J9Z-vG-nLB" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Manage Users" image="person.crop.circle.fill.badge.plus" catalog="system" id="olb-19-L73"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Zm1-jD-5W1">
-                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -2399,7 +2453,7 @@ Maricel Sumulong</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="dek-Tx-NqO"/>
+        <segue reference="Tum-XL-Yy6"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="andrew" width="226.66667175292969" height="370.66665649414062"/>
