@@ -69,8 +69,10 @@ class UserHomeViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        // NOTE: during presentation, notification messages will not show up for more than one user (would need a remote notification server for that)
+        
         //  ADD THE NEXT TWO LINES OF CODE TO ADMIN CREATE QUIZ CODE
-        // 5 total new quizzes were created (example)
+        // 1 total new quizzes were created (example)
         UIApplication.shared.applicationIconBadgeNumber += 1
         // update technology type count (example)
         K.latestNewQuizTypesAndCount["Java"]! += 1
