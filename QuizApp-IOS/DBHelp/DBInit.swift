@@ -193,6 +193,7 @@ initTech()
         DBCRUD.initDBCRUD.createTechnology(r: "Java")
         DBCRUD.initDBCRUD.createTechnology(r: "Andriod")
         DBCRUD.initDBCRUD.createTechnology(r: "IOS")
+        initPrize()
     }
    func initPrize(){
  //Init Date will have an  id of 1

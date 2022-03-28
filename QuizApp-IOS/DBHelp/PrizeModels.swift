@@ -8,7 +8,7 @@
 import Foundation
 import SQLite3
 class Prize{
-    enum PrizeType:Int, CaseIterable{
+    enum PrizeTypes:Int, CaseIterable{
          case given = 2
         case paid = 1
         case awarded = 0
@@ -16,15 +16,16 @@ class Prize{
     }
     var idPrize:Int?
     var GivenDate:String
-    var StartDate:String?
-    var EndaDate:String?
-    var PrizeType:Int?
+    var StartDate:String?=""
+    var EndaDate:String?=""
+    var PrizeType:Int
     var User_ID:Int
-    var active:Int?
-    var value:Int?
+    var active:Int?=0
+    var value:Int?=7
     init(){
         GivenDate=""
         User_ID=0
+        PrizeType=4
     }
     
     init(idPrize:Int,GivenDate:String, User_ID:Int, PrizeType:Int){

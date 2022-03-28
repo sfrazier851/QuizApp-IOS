@@ -1129,7 +1129,7 @@ var i = -1
         }
         
         
-        if sqlite3_bind_int(stmt, 6, Int32(prize.PrizeType!)) != SQLITE_OK{ let err = String(cString: sqlite3_errmsg(db)!)
+        if sqlite3_bind_int(stmt, 6, Int32(prize.PrizeType)) != SQLITE_OK{ let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
         }
         
@@ -1334,7 +1334,7 @@ var i = -1
         print("There is an Error:",err)
     }
         
-        if sqlite3_bind_int(stmt, 5, Int32(prize.PrizeType!)) != SQLITE_OK{
+        if sqlite3_bind_int(stmt, 5, Int32(prize.PrizeType)) != SQLITE_OK{
         let err = String(cString: sqlite3_errmsg(db)!)
         print("There is an Error:",err)
     }
