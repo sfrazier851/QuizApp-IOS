@@ -194,6 +194,12 @@ initTech()
         DBCRUD.initDBCRUD.createTechnology(r: "Andriod")
         DBCRUD.initDBCRUD.createTechnology(r: "IOS")
     }
-    
+   func initPrize(){
+ //Init Date will have an  id of 1
+        let today = Utilities.DatetoString(day: Date())
+       DBCRUD.initDBCRUD.createPrize(prize: Prize(GivenDate: today, User_ID: 2, PrizeType: 4))
+ //Last Update will have an id of 2
+       DBCRUD.initDBCRUD.createPrize(prize: Prize(GivenDate: today, User_ID: 2, PrizeType: 4))
+     }
 }
     
