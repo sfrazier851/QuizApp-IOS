@@ -154,7 +154,7 @@ func UserIDToPassword(id:Int) -> String{
             let id = Int(sqlite3_column_int(stmt, 0))
             
             
-            user = UserModels(ID: id, UserName: String(cString : sqlite3_column_text(stmt, 1)), Password: String(cString : sqlite3_column_text(stmt, 2)), DOB: String(cString : sqlite3_column_text(stmt, 3)), admin: Int(sqlite3_column_int(stmt, 4)) == 1, subriction: String(cString : sqlite3_column_text(stmt, 5)), Status: String(cString : sqlite3_column_text(stmt, 6)), First: String(cString : sqlite3_column_text(stmt, 7)), Last: String(cString : sqlite3_column_text(stmt, 8)), email: UserIDtoEmail(ID: id))
+            user = UserModels(ID: id, UserName: String(cString : sqlite3_column_text(stmt, 1)), Password: String(cString : sqlite3_column_text(stmt, 2)), DOB: String(cString : sqlite3_column_text(stmt, 3)), admin: Int(sqlite3_column_int(stmt, 4)) == 1, subriction: Int(sqlite3_column_int(stmt, 5)), Status: String(cString : sqlite3_column_text(stmt, 6)), First: String(cString : sqlite3_column_text(stmt, 7)), Last: String(cString : sqlite3_column_text(stmt, 8)), email: UserIDtoEmail(ID: id))
         }
         return user ?? UserModels()
         
@@ -175,7 +175,7 @@ func UserIDToPassword(id:Int) -> String{
             let id = Int(sqlite3_column_int(stmt, 0))
             
             
-            user.append( UserModels(ID: Int(sqlite3_column_int(stmt, 0)), UserName: String(cString : sqlite3_column_text(stmt, 1)), Password: String(cString : sqlite3_column_text(stmt, 2)), DOB: String(cString : sqlite3_column_text(stmt, 3)), admin: Int(sqlite3_column_int(stmt, 4)) == 1, subriction: String(cString : sqlite3_column_text(stmt, 5)), Status: String(cString : sqlite3_column_text(stmt, 6)), First: String(cString : sqlite3_column_text(stmt, 7)), Last: String(cString : sqlite3_column_text(stmt, 8)), email: UserIDtoEmail(ID: id)))
+            user.append( UserModels(ID: Int(sqlite3_column_int(stmt, 0)), UserName: String(cString : sqlite3_column_text(stmt, 1)), Password: String(cString : sqlite3_column_text(stmt, 2)), DOB: String(cString : sqlite3_column_text(stmt, 3)), admin: Int(sqlite3_column_int(stmt, 4)) == 1, subriction: Int( sqlite3_column_int(stmt, 5)), Status: String(cString : sqlite3_column_text(stmt, 6)), First: String(cString : sqlite3_column_text(stmt, 7)), Last: String(cString : sqlite3_column_text(stmt, 8)), email: UserIDtoEmail(ID: id)))
         }
         return user
         
