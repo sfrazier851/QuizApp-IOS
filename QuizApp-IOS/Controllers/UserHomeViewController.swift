@@ -69,15 +69,14 @@ class UserHomeViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        // 5 total new quizzes were created
-        UIApplication.shared.applicationIconBadgeNumber = 5
-        // more specific totals for each technology type
-        K.latestNewQuizTypesAndCount["Java"]! += 2
-        K.latestNewQuizTypesAndCount["iOS"]! += 2
-        K.latestNewQuizTypesAndCount["Android"]! += 1
+        //  ADD THE NEXT TWO LINES OF CODE TO ADMIN CREATE QUIZ CODE
+        // 5 total new quizzes were created (example)
+        UIApplication.shared.applicationIconBadgeNumber += 1
+        // update technology type count (example)
+        K.latestNewQuizTypesAndCount["Java"]! += 1
+        //----------------------------------------------------------
         
-        
-        var message = "\(UIApplication.shared.applicationIconBadgeNumber) new quiz(zes).\n"
+        var message = "\(UIApplication.shared.applicationIconBadgeNumber) new quiz(zes) total.\n"
         // add specific totals for new quizzes by technology type
         for key in K.latestNewQuizTypesAndCount.keys {
             if K.latestNewQuizTypesAndCount[key]! > 0 {
@@ -90,7 +89,13 @@ class UserHomeViewController: UIViewController {
             let dialogMessage = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
             let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
                 // reset badge number to 0
-                UIApplication.shared.applicationIconBadgeNumber = 0//
+                //UIApplication.shared.applicationIconBadgeNumber = 0
+                // reset new quiz counts by technology to 0
+                for key in K.latestNewQuizTypesAndCount.keys {
+                    if K.latestNewQuizTypesAndCount[key]! > 0 {
+                        K.latestNewQuizTypesAndCount[key]! = 0
+                    }
+                }
             })
             dialogMessage.addAction(ok)
             self.present(dialogMessage, animated: true, completion: nil)
