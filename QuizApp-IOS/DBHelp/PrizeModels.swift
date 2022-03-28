@@ -8,7 +8,7 @@
 import Foundation
 import SQLite3
 class Prize{
-    enum SubcriptionType:Int, CaseIterable{
+    enum PrizeType:Int, CaseIterable{
          case given = 2
         case paid = 1
         case awarded = 0
