@@ -101,7 +101,7 @@ class ViewRankingViewController: UIViewController {
 //        if userSub.Subscript == 1 {
 //
 //        } else {
-            SM = DBCRUD.initDBCRUD.getTacRankDay(Technology_Title: K.currentPage, Date: day)
+            SM = DBCRUD.initDBCRUD.getTacRankDay(Technology_Title: K.currentPage, Date: day, Limit: 10)
           }
         //print("\n\n\n\n\n\(SM.count)")
 //    }

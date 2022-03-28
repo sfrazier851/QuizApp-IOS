@@ -48,7 +48,7 @@ class AdminTestMaker: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        //Utilities.styleHollowButton(cancelAdminButton)
+        Utilities.styleHollowButton(cancelAdminButton)
         //saveAs.centerVertically()
         //saveAs.text = "SAVE\nAS:"
         

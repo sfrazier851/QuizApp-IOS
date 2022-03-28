@@ -22,7 +22,7 @@ class ViewRankingByTechViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        loadUserRankings(page : "")
+        loadUserRankings(page : "", limit : 10)
         setupUIElements()
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimeLabel), userInfo: nil, repeats: true)
         
@@ -71,7 +71,7 @@ class ViewRankingByTechViewController: UIViewController {
             
         }
         
-        loadUserRankings(page : page)
+        loadUserRankings(page : page, limit : 10)
         self.vrtbTableView.reloadData()
         //self.refresher.endRefreshing()
         
@@ -132,10 +132,10 @@ class ViewRankingByTechViewController: UIViewController {
     
     }
     
-    func loadUserRankings(page : String) {
+    func loadUserRankings(page : String, limit : Int) {
         
         let day:String = Utilities.formatDate(date: Date())
-        SM = DBCRUD.initDBCRUD.getTacRankDay(Technology_Title: page, Date: day)
+        SM = DBCRUD.initDBCRUD.getTacRankDay(Technology_Title: page, Date: day, Limit: limit)
 
     }
 }

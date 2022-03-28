@@ -28,6 +28,9 @@
 		84A5DB1A27E4E60D00AFD467 /* QuestionModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A5DB1027E4E60D00AFD467 /* QuestionModels.swift */; };
 		84A5DB1B27E4E60D00AFD467 /* PrizeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A5DB1127E4E60D00AFD467 /* PrizeModels.swift */; };
 		9A25FD9627F07C00009C892F /* ManageTestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A25FD9527F07C00009C892F /* ManageTestsViewController.swift */; };
+		9A25FD9827F1CF94009C892F /* PrizesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A25FD9727F1CF94009C892F /* PrizesViewController.swift */; };
+		9A25FD9B27F1DAF4009C892F /* PrizesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A25FD9927F1DAF4009C892F /* PrizesTableViewCell.swift */; };
+		9A25FD9C27F1DAF4009C892F /* PrizesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A25FD9A27F1DAF4009C892F /* PrizesTableViewCell.xib */; };
 		9A273DB427E6E7CF00567C9C /* QuizPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A273DB327E6E7CF00567C9C /* QuizPageControl.swift */; };
 		9A28EA1927ED1D45005DF929 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A28EA1827ED1D45005DF929 /* AboutViewController.swift */; };
 		9A34AB4727EC8D6100F5DA20 /* ViewRankingByTechViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A34AB4627EC8D6100F5DA20 /* ViewRankingByTechViewController.swift */; };
@@ -83,6 +86,9 @@
 		84A5DB1027E4E60D00AFD467 /* QuestionModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionModels.swift; sourceTree = "<group>"; };
 		84A5DB1127E4E60D00AFD467 /* PrizeModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrizeModels.swift; sourceTree = "<group>"; };
 		9A25FD9527F07C00009C892F /* ManageTestsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ManageTestsViewController.swift; path = "QuizApp-IOS/Views/ManageTestsViewController.swift"; sourceTree = SOURCE_ROOT; };
+		9A25FD9727F1CF94009C892F /* PrizesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PrizesViewController.swift; path = "QuizApp-IOS/Views/PrizesViewController.swift"; sourceTree = SOURCE_ROOT; };
+		9A25FD9927F1DAF4009C892F /* PrizesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrizesTableViewCell.swift; sourceTree = "<group>"; };
+		9A25FD9A27F1DAF4009C892F /* PrizesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrizesTableViewCell.xib; sourceTree = "<group>"; };
 		9A273DB327E6E7CF00567C9C /* QuizPageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizPageControl.swift; sourceTree = "<group>"; };
 		9A28EA1827ED1D45005DF929 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		9A34AB4627EC8D6100F5DA20 /* ViewRankingByTechViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRankingByTechViewController.swift; sourceTree = "<group>"; };
@@ -234,6 +240,8 @@
 				9A7AD12227EBB45F00548B7F /* ViewRankingTableViewCell.swift */,
 				9A7AD12327EBB45F00548B7F /* ViewRankingTableViewCell.xib */,
 				9AB2C3B827DC62D300B8E171 /* Main.storyboard */,
+				9A25FD9927F1DAF4009C892F /* PrizesTableViewCell.swift */,
+				9A25FD9A27F1DAF4009C892F /* PrizesTableViewCell.xib */,
 				9AB2C3BD27DC62D500B8E171 /* LaunchScreen.storyboard */,
 				9A34AB4827EC9D4200F5DA20 /* ViewRankingByTechTableViewCell.swift */,
 				9A34AB4927EC9D4200F5DA20 /* ViewRankingByTechTableViewCell.xib */,
@@ -244,6 +252,7 @@
 		9AB2C3C927DC638600B8E171 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9A25FD9727F1CF94009C892F /* PrizesViewController.swift */,
 				9A25FD9527F07C00009C892F /* ManageTestsViewController.swift */,
 				9A8162B727ED6B54008A5BA5 /* FeedbackViewController.swift */,
 				9A28EA1827ED1D45005DF929 /* AboutViewController.swift */,
@@ -329,6 +338,7 @@
 			files = (
 				9AB2C3BF27DC62D500B8E171 /* LaunchScreen.storyboard in Resources */,
 				9A6FD1F627E76B08009B6FB8 /* correct-answer.mp3 in Resources */,
+				9A25FD9C27F1DAF4009C892F /* PrizesTableViewCell.xib in Resources */,
 				9A55634927E56F8A00997B21 /* alarm clock.ttf in Resources */,
 				9AB2C3BC27DC62D500B8E171 /* Assets.xcassets in Resources */,
 				9A55634727E56A9C00997B21 /* Vingy Normal.ttf in Resources */,
@@ -383,6 +393,8 @@
 				C2E3986227EDD37100F6F151 /* AdminUsersTableTableViewController.swift in Sources */,
 				C2E3986A27EE138B00F6F151 /* AdminTestMaker.swift in Sources */,
 				9AEDEB9527EAC6DA00F82499 /* ViewRankingViewController.swift in Sources */,
+				9A25FD9B27F1DAF4009C892F /* PrizesTableViewCell.swift in Sources */,
+				9A25FD9827F1CF94009C892F /* PrizesViewController.swift in Sources */,
 				84A5DB1827E4E60D00AFD467 /* QuizModels.swift in Sources */,
 				9A34AB4727EC8D6100F5DA20 /* ViewRankingByTechViewController.swift in Sources */,
 				9AB2C3CE27DC6CD800B8E171 /* SignUpViewController.swift in Sources */,

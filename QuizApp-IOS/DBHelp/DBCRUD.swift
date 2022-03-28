@@ -1465,16 +1465,16 @@ var i = -1
                 return rev
         
         }
-    func getTacRankDay(Technology_Title:String, Date:String)->[ScoreBoardModels]{
+    func getTacRankDay(Technology_Title:String, Date:String,Limit:Int)->[ScoreBoardModels]{
         
         var query : String
         
         if Technology_Title == "" {
             //query = "Select * FROM ScoreBoard WHERE TakenDate = ? ORDER BY Score DESC LIMIT 10"
-            query = "SELECT User_ID, SUM(Score) FROM ScoreBoard WHERE TakenDate = ? GROUP BY User_ID ORDER BY SUM(Score) DESC LIMIT 10"
+            query = "SELECT User_ID, SUM(Score) FROM ScoreBoard WHERE TakenDate = ? GROUP BY User_ID ORDER BY SUM(Score) DESC LIMIT \(Limit)"
         } else {
             //query = "Select * FROM ScoreBoard WHERE Technology_Title = ? AND TakenDate = ? ORDER BY Score DESC LIMIT 10"
-            query = "SELECT User_ID, SUM(Score) FROM ScoreBoard WHERE Technology_Title = ? AND TakenDate = ? GROUP BY User_ID ORDER BY SUM(Score) DESC LIMIT 10"
+            query = "SELECT User_ID, SUM(Score) FROM ScoreBoard WHERE Technology_Title = ? AND TakenDate = ? GROUP BY User_ID ORDER BY SUM(Score) DESC LIMIT \(Limit)"
           }
         
         //print("QUERY: \(query)")
