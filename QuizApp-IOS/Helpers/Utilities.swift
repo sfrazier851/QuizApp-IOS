@@ -221,6 +221,5 @@ class Utilities {
             //self?.store(token: receivedToken)
         }
     }*/
-
 }
 
