@@ -1677,7 +1677,7 @@ var i = -1
     }
     
     func getTacRankOfUser(Technology_Title:String, User_ID:Int, Date:String)->Int{
-            let query = "SELECT Rank FROM (SELECT User_ID, DENSE_RANK() OVER (ORDER BY Score) as Rank FROM ScoreBoard WHERE Technology_Title = ? AND TakenDate = ? ) WHERE User_ID = ?"
+            let query = "SELECT Rank FROM (SELECT User_ID, DENSE_RANK() OVER (PARTITION By Technology_Title ORDER BY Score) as Rank FROM ScoreBoard WHERE Technology_Title = ? AND TakenDate = ? ) WHERE User_ID = ?"
                 var stmt : OpaquePointer?
         var rev = 999999
 
@@ -1709,7 +1709,7 @@ var i = -1
         }
     
     func getQuizRankOfUser(Quiz_ID:Int, User_ID:Int)->Int{
-            let query = "SELECT Rank FROM(DENSE_RANK() OVER (ORDER BY Score) Rank WHERE Quiz_ID = ? ) WHERE User_ID = ?"
+            let query = "SELECT Rank FROM(DENSE_RANK() OVER (PARTITION By Quiz_ID ORDER BY Score) Rank WHERE Quiz_ID = ? ) WHERE User_ID = ?"
                 var stmt : OpaquePointer?
         var rev = 9999999999999999
 
