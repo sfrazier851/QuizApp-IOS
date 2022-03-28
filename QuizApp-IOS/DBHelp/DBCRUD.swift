@@ -1567,16 +1567,18 @@ var i = -1
                     return rev
                 }
             //bind
-        if sqlite3_bind_text(stmt, 1, (Technology_Title as NSString).utf8String, -1, nil) != SQLITE_OK{
-            let err = String(cString: sqlite3_errmsg(db)!)
-            print("There is an Error:",err)
-            return rev}
-        if Technology_Title != ""{
-        if sqlite3_bind_int(stmt, 2, Int32(User_ID)) != SQLITE_OK{
+        if sqlite3_bind_int(stmt, 1, Int32(User_ID)) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
             return rev
         }
+        if Technology_Title != ""{
+      
+
+            if sqlite3_bind_text(stmt, 2, (Technology_Title as NSString).utf8String, -1, nil) != SQLITE_OK{
+                let err = String(cString: sqlite3_errmsg(db)!)
+                print("There is an Error:",err)
+                return rev}
             
         }
             //step
