@@ -70,6 +70,7 @@ class UserHomeViewController: UIViewController {
         super.viewDidAppear(animated)
         
         if UserDefaults.standard.integer(forKey: K.UserDefaults.appIconBadgeCount) > 0 {
+            print("app icon badge count > 0")
             LocalNotifications().sendNewQuizNotification()
         }
     }
