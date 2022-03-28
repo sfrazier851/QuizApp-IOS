@@ -66,7 +66,7 @@ struct K {
     
     // this is constant just for initializing
     // UserDefaults dictionary of the same name
-    static var latestNewQuizTypesAndCount = ["Java":0, "iOS":0, "Android":0]
+    static let latestNewQuizTypesAndCount = ["Java":0, "iOS":0, "Android":0]
     
     //static let dailyAttempt = UserDefaults.standard.integer(forKey: "DailyAttempts")
     static var dailyAttempt = 0
