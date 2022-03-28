@@ -40,9 +40,33 @@ class AdminUserDetails: UIViewController {
         loadViewIfNeeded()
         UserName.text = user!.UserName
         
-        Android_Score.text = String(DBCRUD.initDBCRUD.getTacRankOfUser(Technology_Title: "Android", User_ID: user!.ID!))
-        iOS_Score.text = String(DBCRUD.initDBCRUD.getTacRankOfUser(Technology_Title: "iOS", User_ID: user!.ID!))
-        Java_Score.text = String(DBCRUD.initDBCRUD.getTacRankOfUser(Technology_Title: "Java", User_ID: user!.ID!))
+        
+        if(DBCRUD.initDBCRUD.getTacRankOfUser(Technology_Title: "Android", User_ID: user!.ID!) >= 1000)
+        {
+            Android_Score.text = "N/A"
+        }
+        else
+        {
+            Android_Score.text = String(DBCRUD.initDBCRUD.getTacRankOfUser(Technology_Title: "Android", User_ID: user!.ID!))
+        }
+        
+        if(DBCRUD.initDBCRUD.getTacRankOfUser(Technology_Title: "iOS", User_ID: user!.ID!) >= 1000)
+        {
+            iOS_Score.text = "N/A"
+        }
+        else
+        {
+            iOS_Score.text = String(DBCRUD.initDBCRUD.getTacRankOfUser(Technology_Title: "iOS", User_ID: user!.ID!))
+        }
+        
+        if(DBCRUD.initDBCRUD.getTacRankOfUser(Technology_Title: "Java", User_ID: user!.ID!) >= 1000)
+        {
+            Java_Score.text = "N/A"
+        }
+        else
+        {
+            Java_Score.text = String(DBCRUD.initDBCRUD.getTacRankOfUser(Technology_Title: "Java", User_ID: user!.ID!))
+        }
         
         switch(user?.Subscript)
         {
