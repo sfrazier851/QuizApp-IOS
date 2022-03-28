@@ -383,17 +383,26 @@
                                 </view>
                                 <blurEffect style="regular"/>
                             </visualEffectView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="mainLogo" translatesAutoresizingMaskIntoConstraints="NO" id="xye-nJ-poE">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mainLogo" translatesAutoresizingMaskIntoConstraints="NO" id="xye-nJ-poE">
                                 <rect key="frame" x="39" y="100" width="350" height="244"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="350" id="AfJ-5W-wpz"/>
+                                    <constraint firstAttribute="height" constant="244" id="pYP-Ng-IfX"/>
+                                </constraints>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="textview_ios" translatesAutoresizingMaskIntoConstraints="NO" id="nxV-e2-4G1">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textview_ios" translatesAutoresizingMaskIntoConstraints="NO" id="nxV-e2-4G1">
                                 <rect key="frame" x="20" y="352" width="388" height="378"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="378" id="mDF-dC-MCp"/>
+                                    <constraint firstAttribute="width" constant="388" id="rUB-1w-Pdx"/>
+                                </constraints>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8o4-Bw-nHT">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8o4-Bw-nHT">
                                 <rect key="frame" x="39" y="385" width="350" height="313"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="313" id="0Jj-t9-et2"/>
+                                    <constraint firstAttribute="width" constant="350" id="SlP-5M-MD9"/>
+                                </constraints>
                                 <string key="text">Just like any other Trivia Applications, BrainTech is a Trivia Application that tests your knowledge in today's technologies.
 
 Developed under Ms. Asha Rani’s guidelines and requirements, this application is a group project in partial fulfillment of the Revature’s IOS Training.
@@ -407,17 +416,33 @@ Maricel Sumulong</string>
                                 <fontDescription key="fontDescription" name="VingyNormal" family="Vingy" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no"/>
                             </textView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="chris" translatesAutoresizingMaskIntoConstraints="NO" id="meW-2R-x0z">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chris" translatesAutoresizingMaskIntoConstraints="NO" id="meW-2R-x0z">
                                 <rect key="frame" x="276" y="550" width="211" height="180"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="AjC-eb-MWV"/>
+                                    <constraint firstAttribute="width" constant="211" id="aA8-qU-kYJ"/>
+                                </constraints>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="maricel" translatesAutoresizingMaskIntoConstraints="NO" id="evg-Ob-gbf">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="maricel" translatesAutoresizingMaskIntoConstraints="NO" id="evg-Ob-gbf">
                                 <rect key="frame" x="-24" y="602" width="132" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="132" id="Zel-K1-Ufj"/>
+                                    <constraint firstAttribute="height" constant="128" id="g0u-He-q1L"/>
+                                </constraints>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="andrew" translatesAutoresizingMaskIntoConstraints="NO" id="0jR-B9-BMr">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="andrew" translatesAutoresizingMaskIntoConstraints="NO" id="0jR-B9-BMr">
                                 <rect key="frame" x="70" y="654" width="66" height="107"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="107" id="X8y-8m-OrK"/>
+                                    <constraint firstAttribute="width" constant="66" id="vE3-BY-ZJB"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="spencer" translatesAutoresizingMaskIntoConstraints="NO" id="yPW-19-fRc">
+                                <rect key="frame" x="273" y="633" width="135" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="135" id="9lX-p6-TEX"/>
+                                    <constraint firstAttribute="height" constant="128" id="imK-n7-1lc"/>
+                                </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BrL-Fl-pXS">
                                 <rect key="frame" x="128" y="814" width="172.33333333333337" height="28"/>
@@ -431,16 +456,26 @@ Maricel Sumulong</string>
                                     <action selector="dismissModal:" destination="BAn-F9-mB2" eventType="touchUpInside" id="zBh-lW-Gn2"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="spencer" translatesAutoresizingMaskIntoConstraints="NO" id="yPW-19-fRc">
-                                <rect key="frame" x="273" y="633" width="135" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="cXO-4g-x60"/>
                         <constraints>
+                            <constraint firstItem="evg-Ob-gbf" firstAttribute="centerX" secondItem="WX6-Lj-uCr" secondAttribute="centerX" constant="-172" id="5bT-I5-bBA"/>
+                            <constraint firstItem="nxV-e2-4G1" firstAttribute="centerY" secondItem="WX6-Lj-uCr" secondAttribute="centerY" constant="78" id="6Im-hF-GsT"/>
+                            <constraint firstItem="meW-2R-x0z" firstAttribute="centerX" secondItem="WX6-Lj-uCr" secondAttribute="centerX" constant="167.5" id="8FT-l1-hmQ"/>
+                            <constraint firstItem="yPW-19-fRc" firstAttribute="centerX" secondItem="WX6-Lj-uCr" secondAttribute="centerX" constant="126.5" id="9gU-BN-ugY"/>
+                            <constraint firstItem="8o4-Bw-nHT" firstAttribute="centerX" secondItem="WX6-Lj-uCr" secondAttribute="centerX" id="Ab8-o6-KcY"/>
+                            <constraint firstItem="nxV-e2-4G1" firstAttribute="centerX" secondItem="WX6-Lj-uCr" secondAttribute="centerX" id="BO0-NI-XoY"/>
+                            <constraint firstItem="evg-Ob-gbf" firstAttribute="centerY" secondItem="WX6-Lj-uCr" secondAttribute="centerY" constant="203" id="HJC-ri-8fs"/>
                             <constraint firstItem="cXO-4g-x60" firstAttribute="bottom" secondItem="BrL-Fl-pXS" secondAttribute="bottom" constant="50" id="MuW-f6-zBW"/>
+                            <constraint firstItem="meW-2R-x0z" firstAttribute="centerY" secondItem="WX6-Lj-uCr" secondAttribute="centerY" constant="177" id="Orx-S2-h5N"/>
+                            <constraint firstItem="yPW-19-fRc" firstAttribute="centerY" secondItem="WX6-Lj-uCr" secondAttribute="centerY" constant="234" id="QR1-3g-5p6"/>
+                            <constraint firstItem="0jR-B9-BMr" firstAttribute="centerX" secondItem="WX6-Lj-uCr" secondAttribute="centerX" constant="-111" id="VLL-ns-ga9"/>
                             <constraint firstItem="cXO-4g-x60" firstAttribute="trailing" secondItem="BrL-Fl-pXS" secondAttribute="trailing" constant="127.67" id="WY2-Ls-vRO"/>
+                            <constraint firstItem="xye-nJ-poE" firstAttribute="centerX" secondItem="WX6-Lj-uCr" secondAttribute="centerX" id="bJ2-fX-UJ5"/>
+                            <constraint firstItem="0jR-B9-BMr" firstAttribute="centerY" secondItem="WX6-Lj-uCr" secondAttribute="centerY" constant="244.5" id="eYe-cN-06C"/>
+                            <constraint firstItem="8o4-Bw-nHT" firstAttribute="centerY" secondItem="WX6-Lj-uCr" secondAttribute="centerY" constant="78.5" id="mED-c9-bFT"/>
                             <constraint firstItem="BrL-Fl-pXS" firstAttribute="leading" secondItem="cXO-4g-x60" secondAttribute="leading" constant="128" id="mKo-3z-5T9"/>
+                            <constraint firstItem="xye-nJ-poE" firstAttribute="centerY" secondItem="WX6-Lj-uCr" secondAttribute="centerY" constant="-241" id="osc-5N-9yK"/>
                         </constraints>
                     </view>
                     <connections>
@@ -611,7 +646,7 @@ Maricel Sumulong</string>
                                     <outlet property="delegate" destination="2pL-oQ-xb9" id="Dvi-8c-G8i"/>
                                 </connections>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome, Gary!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QON-7m-uqi" userLabel="Welcome Label">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome, Gary!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="QON-7m-uqi" userLabel="Welcome Label">
                                 <rect key="frame" x="107" y="125" width="214" height="26"/>
                                 <fontDescription key="fontDescription" name="VingyNormal" family="Vingy" pointSize="25"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1364,21 +1399,21 @@ Maricel Sumulong</string>
                                     <action selector="Ban:" destination="cIC-q8-QlU" eventType="touchUpInside" id="6m9-DP-0vg"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Android Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xOE-6E-xA4">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Android Rank" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xOE-6E-xA4">
                                 <rect key="frame" x="20" y="147" width="124" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="VingyNormal" family="Vingy" pointSize="17"/>
                                 <color key="textColor" systemColor="systemRedColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="iOS Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z7d-bV-4if">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="iOS Rank" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z7d-bV-4if">
                                 <rect key="frame" x="20" y="190" width="124" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="VingyNormal" family="Vingy" pointSize="17"/>
                                 <color key="textColor" systemColor="systemRedColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Java Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Fw-uX-ahp">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Java Rank" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Fw-uX-ahp">
                                 <rect key="frame" x="20" y="233" width="124" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="VingyNormal" family="Vingy" pointSize="17"/>

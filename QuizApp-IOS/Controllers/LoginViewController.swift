@@ -144,7 +144,7 @@ class LoginViewController: UIViewController {
                         K.user_subscription = DBCRUD.initDBCRUD.getUserSubscription(id: (LoginPort.user?.ID)!)
                         PresenterManager.shared.show(vc: .userHome)}
                     else{
-                        showError("You were blocked, please report to admin")
+                        showError("Account is currently blocked. Please email admin@gmail.com for assistance.")
                     }
                 }
             } else{

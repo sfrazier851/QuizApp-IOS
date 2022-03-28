@@ -40,9 +40,29 @@ class AdminUserDetails: UIViewController {
         loadViewIfNeeded()
         UserName.text = user!.UserName
         
-        Android_Score.text = String(DBCRUD.initDBCRUD.getTacRankOfUser(Technology_Title: "Android", User_ID: user!.ID!))
-        iOS_Score.text = String(DBCRUD.initDBCRUD.getTacRankOfUser(Technology_Title: "iOS", User_ID: user!.ID!))
-        Java_Score.text = String(DBCRUD.initDBCRUD.getTacRankOfUser(Technology_Title: "Java", User_ID: user!.ID!))
+//        var SM = [ScoreBoardModels]()
+//        let day:String = Utilities.formatDate(date: Date())
+//        SM = DBCRUD.initDBCRUD.getTacRankDay(Technology_Title: page, Date: day, Limit: 10)
+        
+        var asc = String(DBCRUD.initDBCRUD.getTacRankOfUser(Technology_Title: "Android", User_ID: user!.ID!))
+        var isc = String(DBCRUD.initDBCRUD.getTacRankOfUser(Technology_Title: "IOS", User_ID: user!.ID!))
+        var jsc = String(DBCRUD.initDBCRUD.getTacRankOfUser(Technology_Title: "Java", User_ID: user!.ID!))
+        
+        if asc == "999999999" {
+            asc = "N/A"
+        }
+        
+        if isc == "999999999" {
+            isc = "N/A"
+        }
+        
+        if jsc == "999999999" {
+            jsc = "N/A"
+        }
+        
+        Android_Score.text = asc
+        iOS_Score.text = isc
+        Java_Score.text = jsc
         
         switch(user?.Subscript)
         {

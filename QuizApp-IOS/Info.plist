@@ -31,7 +31,7 @@
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Must GIve</string>
+	<string>Must Give</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>Must Give</string>
 </dict>
