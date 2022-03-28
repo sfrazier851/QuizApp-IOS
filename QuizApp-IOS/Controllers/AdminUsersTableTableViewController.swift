@@ -7,27 +7,27 @@
 
 import UIKit
 
-protocol ChibiSelectionDelegate: AnyObject
-{
-    func ChibiSelected(_ NextChibi: Chirabi)
-}
-
 protocol UserSelectionDelegate: AnyObject
 {
-    func UserSelected(_ NextUser: User)
+    func UserSelected(_ NextUser: UserModels)
 }
 
 class AdminUsersTableTableViewController: UITableViewController {
 
     weak var delegate: UserSelectionDelegate?
     
-    var Users: Array<User> = []
+    var Users: Array<UserModels> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Set up Users From Database
         
+        
+        for n in 1 ... DBCRUD.initDBCRUD.UserCount()
+        {
+            Users.append(DBCRUD.initDBCRUD.UserIDToUser(id: n))
+        }
         
         
     }
@@ -46,7 +46,7 @@ class AdminUsersTableTableViewController: UITableViewController {
         // Configure the cell...
 
         let user = Users[indexPath.row]
-        cell.textLabel?.text = user.Name
+        cell.textLabel?.text = user.UserName
         
         return cell
     }
