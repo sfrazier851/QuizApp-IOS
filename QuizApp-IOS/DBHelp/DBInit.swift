@@ -106,11 +106,34 @@ class DBInit{
 initTech()
     }
     func initUser(){
-        let u1=UserModels(UserName: "guest", Password: "123Password!", DOB: "June 2, 1994", admin: false, subriction: "trial", Status: "", First: "2", Last: "2", email: ["2@gmail.com"])
-        let u2=UserModels(UserName: "admin", Password: "123Password!", DOB: "June 2, 1994", admin: true, subriction: "paid", Status: "", First: "admin", Last: "admin", email: ["admin@gmail.com"])
-        let u3=UserModels(UserName: "BlockedUser", Password: "123Password!", DOB: "June 2, 1994", admin: false, subriction: "paid", Status: "BLOCKED", First: "This Guy", Last: "Who shall not be named", email: ["block@gmail.com"])
+        let u1=UserModels(UserName: "guest", Password: "123Password!", DOB: "June 2, 1994", admin: false, subriction:1, Status: "", First: "2", Last: "2", email: ["2@gmail.com"])
+        let u2=UserModels(UserName: "admin", Password: "123Password!", DOB: "June 2, 1994", admin: true, subriction: 0, Status: "", First: "admin", Last: "admin", email: ["admin@gmail.com"])
+        let u3=UserModels(UserName: "BlockedUser", Password: "123Password!", DOB: "June 2, 1994", admin: false, subriction: 0, Status: "BLOCKED", First: "This Guy", Last: "Who shall not be named", email: ["block@gmail.com"])
+        let u4=UserModels(UserName: "guest2", Password: "123Password!", DOB: "June 2, 1994", admin: false, subriction:1, Status: "", First: "3", Last: "3", email: ["3@gmail.com"])
+        let u5=UserModels(UserName: "guest", Password: "123Password!", DOB: "June 2, 1994", admin: false, subriction:1, Status: "", First: "4", Last: "4", email: ["4@gmail.com"])
+        let u6=UserModels(UserName: "guest", Password: "123Password!", DOB: "June 2, 1994", admin: false, subriction:1, Status: "", First: "5", Last: "5", email: ["5@gmail.com"])
+        let u7=UserModels(UserName: "guest", Password: "123Password!", DOB: "June 2, 1994", admin: false, subriction:1, Status: "", First: "6", Last: "6", email: ["6@gmail.com"])
         if !DBCRUD.initDBCRUD.createUserWithUserModal(us: u1){
             print("error creating guest")
+            return
+        }
+        if !DBCRUD.initDBCRUD.createUserWithUserModal(us: u4){
+            print("error creating block")
+            return
+        }
+        
+        if !DBCRUD.initDBCRUD.createUserWithUserModal(us: u5){
+            print("error creating block")
+            return
+        }
+        
+        if !DBCRUD.initDBCRUD.createUserWithUserModal(us: u6){
+            print("error creating block")
+            return
+        }
+        
+        if !DBCRUD.initDBCRUD.createUserWithUserModal(us: u7){
+            print("error creating block")
             return
         }
         if !DBCRUD.initDBCRUD.createUserWithUserModal(us: u2){
@@ -121,6 +144,8 @@ initTech()
             print("error creating block")
             return
         }
+        
+      
         initquiz()
     }
     func createTable(){
@@ -161,8 +186,8 @@ initTech()
             print("there is error creating Quiz table", err)
         }
         
-            //Prize Table
-            stmt="CREATE TABLE IF NOT EXISTS `Prizes` (`idPrizes` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `GivenDate` DATE NULL, `StartDate` DATE NULL, `EndDate` DATE NULL, `active` TINYINT NULL, `Type` INT NULL, `User_ID` INT NOT NULL, CONSTRAINT `fk_Prizes_User1` FOREIGN KEY (`User_ID`) REFERENCES `User` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION); CREATE INDEX `fk_Prizes_User1_idx` ON `Prizes` (`User_ID` ASC);"
+
+            stmt="CREATE TABLE IF NOT EXISTS `Prizes` (`idPrizes` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `GivenDate` DATE NULL, `StartDate` DATE NULL, `EndDate` DATE NULL, `active` TINYINT NULL, `Value` INT NULL, `Type` INT NULL, `User_ID` INT NOT NULL, CONSTRAINT `fk_Prizes_User1` FOREIGN KEY (`User_ID`) REFERENCES `User` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION); CREATE INDEX `fk_Prizes_User1_idx` ON `Prizes` (`User_ID` ASC);"
         if sqlite3_exec(DBInit.db, stmt, nil, nil, nil) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(DBInit.db)!)
             print("there is error creating Prizes table", err)
@@ -193,7 +218,36 @@ initTech()
         DBCRUD.initDBCRUD.createTechnology(r: "Java")
         DBCRUD.initDBCRUD.createTechnology(r: "Andriod")
         DBCRUD.initDBCRUD.createTechnology(r: "IOS")
+        initPrize()
     }
+   func initPrize(){
+ //Init Date will have an  id of 1
+       var dateComp = DateComponents()
+       dateComp.day = -5
+       
+       let today = Utilities.DatetoString(day: Calendar.current.date(byAdding: dateComp, to: Date())!)
+       DBCRUD.initDBCRUD.createPrize(prize: Prize(GivenDate: today, User_ID: 2, PrizeType: 4))
+ //Last Update will have an id of 2
+       
+       DBCRUD.initDBCRUD.createPrize(prize: Prize(GivenDate: today, User_ID: 2, PrizeType: 4))
+       initScore()
+     }
+    func initScore(){
+        var dateComp = DateComponents()
+        dateComp.day = -5
+        var today =  Calendar.current.date(byAdding: dateComp, to: Date())!
+        let Technology = ["Java","IOS","Andriod"]
+        while today < Date(){
+            for x in (1...5){
+                for y in (1...3){
+                    DBCRUD.initDBCRUD.createScore(r:ScoreBoardModels(Score: Int.random(in:1 ... 135), Quiz_ID: y, User_ID: x, Technology_Title: Technology[y-1], TakenDate: Utilities.formatDate(date: today)))
+                
+            }
+        }
+            today=Calendar.current.date(byAdding: .day, value: 1, to: today)!
+
+    }
+}
     
 }
     

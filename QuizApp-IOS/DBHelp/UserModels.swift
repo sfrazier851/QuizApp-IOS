@@ -34,24 +34,24 @@ class UserModels{
         status=""
         
     }
-    init( UserName:String, Password:String, DOB:String, admin:Bool, subriction:String, Status:String, First:String, Last:String, email:[String]){
+    init( UserName:String, Password:String, DOB:String, admin:Bool, subriction:Int, Status:String, First:String, Last:String, email:[String]){
         self.UserName = UserName
         self.Password = Password
         self.Dob=DOB
         self.admin=admin
-        self.Subscript=1
+        self.Subscript=subriction
         self.status = Status
         self.First = First
         self.Last = Last
         self.Email = email
     }
-    init(ID:Int, UserName:String, Password:String, DOB:String, admin:Bool, subriction:String, Status:String, First:String, Last:String, email:[String]){
+    init(ID:Int, UserName:String, Password:String, DOB:String, admin:Bool, subriction:Int, Status:String, First:String, Last:String, email:[String]){
         self.ID=ID
         self.UserName = UserName
         self.Password = Password
         self.Dob=DOB
         self.admin=admin
-        self.Subscript=1
+        self.Subscript=subriction
         self.status = Status
         self.First = First
         self.Last = Last
@@ -63,6 +63,25 @@ class UserModels{
         self.UserName=UserName
         Subscript=SubcriptionType.trial.rawValue
         status=""
+    }
+    func setCurrentStatus(){
+        let ActivePrizes = DBCRUD.initDBCRUD.getLatestActivePrize(UserID: self.ID!)
+        self.Subscript=1
+        for Active in ActivePrizes{
+            if Utilities.isToDate(day: Active.EndaDate!)>Date(){
+                switch Active.PrizeType{
+            case 2,0:
+                    self.Subscript=2
+            case 1:
+                    self.Subscript=0
+            default:
+                    self.Subscript=1
+                    
+                }
+                    }
+            
+        }
+        
     }
     func save(){
         if ID != nil{

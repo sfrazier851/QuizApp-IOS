@@ -6,25 +6,42 @@
 //
 
 import Foundation
+import SQLite3
 class Prize{
-    var idPrize:Int?
-    var GivenDate:String
-    var StartDate:String?
-    var EndaDate:String?
-    var PrizeType:Int?
-    var Value:Int?//days
-    var User_ID:Int
-    var active:Int?
-    
-    enum PrizeType:Int, CaseIterable{
-         case Paid = 1
-        case Awarded = 0
-        
+    enum PrizeTypes:Int, CaseIterable{
+         case given = 2
+        case paid = 1
+        case awarded = 0
     
     }
+    var idPrize:Int?
+    var GivenDate:String
+    var StartDate:String?=""
+    var EndaDate:String?=""
+    var PrizeType:Int
+    var User_ID:Int
+    var active:Int?=0
+    var value:Int?=7
     init(){
         GivenDate=""
         User_ID=0
+        PrizeType=4
+    }
+    
+    init(idPrize:Int,GivenDate:String, User_ID:Int, PrizeType:Int){
+        self.idPrize=idPrize
+        self.GivenDate=GivenDate
+        self.PrizeType=PrizeType
+        self.User_ID=User_ID
+        
+    }
+    init(GivenDate:String, User_ID:Int, PrizeType:Int, value:Int){
+        
+        self.GivenDate=GivenDate
+        self.PrizeType=PrizeType
+        self.User_ID=User_ID
+        self.value=value
+        
     }
     init(GivenDate:String, User_ID:Int, PrizeType:Int){
         self.GivenDate=GivenDate
@@ -40,6 +57,17 @@ class Prize{
         self.User_ID=User_ID
         self.active=active
     }
+    
+    init(GivenDate:String, startDate:String,EndaDate:String,PrizeType:Int,User_ID:Int, active:Int, value:Int){
+
+        self.GivenDate=GivenDate
+        self.StartDate=startDate
+        self.EndaDate=EndaDate
+        self.PrizeType=PrizeType
+        self.User_ID=User_ID
+        self.active=active
+        self.value=value
+    }
     init(idPrize:Int,GivenDate:String, startDate:String,EndaDate:String,PrizeType:Int,User_ID:Int, active:Int){
         self.idPrize=idPrize
         self.GivenDate=GivenDate
@@ -48,6 +76,18 @@ class Prize{
         self.PrizeType=PrizeType
         self.User_ID=User_ID
         self.active=active
+    }
+    
+    init(idPrize:Int,GivenDate:String, startDate:String,EndaDate:String,PrizeType:Int,User_ID:Int, active:Int, value:Int){
+
+        self.idPrize=idPrize
+        self.GivenDate=GivenDate
+        self.StartDate=startDate
+        self.EndaDate=EndaDate
+        self.PrizeType=PrizeType
+        self.User_ID=User_ID
+        self.active=active
+        self.value=value
     }
     func save(){
         if idPrize != nil{
@@ -58,10 +98,35 @@ class Prize{
     }
     func isIN()->Bool{
         if self.idPrize != nil {
-            DBCRUD.initDBCRUD.getPrizeFromPrizeID(id: self.idPrize!)
             	return true
         }
         return false
+    }
+    func activate(){
+        if value == 0{
+         //no value was given
+            return
+        }
+        if active == 1{
+            //already active
+            return
+        }
+        var dateComponenet = DateComponents()
+        dateComponenet.day=value
+        self.active=1
+        let LatestPrize = DBCRUD.initDBCRUD.getLatestActivePrize(UserID: (LoginPort.user?.ID)!)[0]
+        if LatestPrize.EndaDate == ""{
+            self.StartDate=Utilities.DatetoString(day: Date())
+           let endDate = Calendar.current.date(byAdding: dateComponenet, to: Date())
+            self.EndaDate = Utilities.DatetoString(day: endDate!)
+        }else{
+            let lastday = Utilities.isToDate(day: LatestPrize.EndaDate!)
+            var plusOneday = DateComponents()
+            plusOneday.day=1
+            let startday = Calendar.current.date(byAdding: plusOneday, to: lastday)!
+            self.StartDate=Utilities.DatetoString(day:startday)
+            self.EndaDate = Utilities.DatetoString(day:  Calendar.current.date(byAdding: dateComponenet, to: startday)!)
+        }
     }
     func delete(){
         DBCRUD.initDBCRUD.deleteAPrize(NE: self.idPrize!)

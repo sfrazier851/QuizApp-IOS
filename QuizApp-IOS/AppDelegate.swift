@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  
         Thread.sleep(forTimeInterval: 0.10)
         DBInit.init()
-        
+        prizeGiver.initPrizeGiver.Update()
         return true
     }
     

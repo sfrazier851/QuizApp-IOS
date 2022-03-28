@@ -154,12 +154,32 @@ func UserIDToPassword(id:Int) -> String{
             let id = Int(sqlite3_column_int(stmt, 0))
             
             
-            user = UserModels(ID: id, UserName: String(cString : sqlite3_column_text(stmt, 1)), Password: String(cString : sqlite3_column_text(stmt, 2)), DOB: String(cString : sqlite3_column_text(stmt, 3)), admin: Int(sqlite3_column_int(stmt, 4)) == 1, subriction: String(cString : sqlite3_column_text(stmt, 5)), Status: String(cString : sqlite3_column_text(stmt, 6)), First: String(cString : sqlite3_column_text(stmt, 7)), Last: String(cString : sqlite3_column_text(stmt, 8)), email: UserIDtoEmail(ID: id))
+            user = UserModels(ID: id, UserName: String(cString : sqlite3_column_text(stmt, 1)), Password: String(cString : sqlite3_column_text(stmt, 2)), DOB: String(cString : sqlite3_column_text(stmt, 3)), admin: Int(sqlite3_column_int(stmt, 4)) == 1, subriction: Int(sqlite3_column_int(stmt, 5)), Status: String(cString : sqlite3_column_text(stmt, 6)), First: String(cString : sqlite3_column_text(stmt, 7)), Last: String(cString : sqlite3_column_text(stmt, 8)), email: UserIDtoEmail(ID: id))
         }
         return user ?? UserModels()
         
     }
+    func AllUser() -> [UserModels]{
+        let query = "select * FROM User"
+        var stmt : OpaquePointer?
+        var user: [UserModels]=[UserModels]()
+        if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
+            let err = String(cString: sqlite3_errmsg(db)!)
+            print("There is an Error:",err)
+            return user
+        }
     
+        
+        while(sqlite3_step(stmt) == SQLITE_ROW){
+            //get data
+            let id = Int(sqlite3_column_int(stmt, 0))
+            
+            
+            user.append( UserModels(ID: Int(sqlite3_column_int(stmt, 0)), UserName: String(cString : sqlite3_column_text(stmt, 1)), Password: String(cString : sqlite3_column_text(stmt, 2)), DOB: String(cString : sqlite3_column_text(stmt, 3)), admin: Int(sqlite3_column_int(stmt, 4)) == 1, subriction: Int( sqlite3_column_int(stmt, 5)), Status: String(cString : sqlite3_column_text(stmt, 6)), First: String(cString : sqlite3_column_text(stmt, 7)), Last: String(cString : sqlite3_column_text(stmt, 8)), email: UserIDtoEmail(ID: id)))
+        }
+        return user
+        
+    }
     func getUserSubscription(id:Int) -> Int {
         
         let query = "Select subcription FROM User WHERE ID = ?"
@@ -1131,7 +1151,7 @@ var i = -1
 //PRIZE
     //create
     func createPrize(prize:Prize){
-            let query = "INSERT INTO Prizes (GivenDate, StartDate, EndDate, active, Type, User_ID) Values (?,?,?,?,?,?)"
+            let query = "INSERT INTO Prizes (GivenDate, StartDate, EndDate, active, Value, Type, User_ID) Values (?,?,?,?,?,?,?)"
             var stmt : OpaquePointer?
         
                 if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
@@ -1159,13 +1179,17 @@ var i = -1
             print("There is an Error:",err)
         }
         
-        
-        if sqlite3_bind_int(stmt, 5, Int32(prize.PrizeType!)) != SQLITE_OK{ let err = String(cString: sqlite3_errmsg(db)!)
+        if sqlite3_bind_int(stmt, 5, Int32(prize.value!)) != SQLITE_OK{ let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
         }
         
         
-        if sqlite3_bind_int(stmt, 6, Int32(prize.User_ID)) != SQLITE_OK{ let err = String(cString: sqlite3_errmsg(db)!)
+        if sqlite3_bind_int(stmt, 6, Int32(prize.PrizeType)) != SQLITE_OK{ let err = String(cString: sqlite3_errmsg(db)!)
+            print("There is an Error:",err)
+        }
+        
+        
+        if sqlite3_bind_int(stmt, 7, Int32(prize.User_ID)) != SQLITE_OK{ let err = String(cString: sqlite3_errmsg(db)!)
         print("There is an Error:",err)
     }
             
@@ -1177,7 +1201,31 @@ var i = -1
         }
     //read
     func getPrizeFromPrizeID(id:Int)->Prize{
-        let query = "select * from choices WHERE idPrizes = ?"
+        let query = "select * from Prizes WHERE idPrizes = ?"
+            var stmt : OpaquePointer?
+        var rev: Prize = Prize()
+
+            if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
+                let err = String(cString: sqlite3_errmsg(db)!)
+                print("There is an Error:",err)
+                return rev
+            }
+        //bind
+        if sqlite3_bind_int(stmt, 1, Int32(id)) != SQLITE_OK{
+        let err = String(cString: sqlite3_errmsg(db)!)
+        print("There is an Error:",err)
+            return rev
+    }
+        //step
+        //Appending Emails to Array
+            if(sqlite3_step(stmt) == SQLITE_ROW){
+                rev = Prize(idPrize: Int(sqlite3_column_int(stmt, 0)), GivenDate:String(cString:sqlite3_column_text(stmt, 1)) ,startDate: String(cString:sqlite3_column_text(stmt, 2)), EndaDate: String(cString:sqlite3_column_text(stmt, 3)), PrizeType: Int(sqlite3_column_int(stmt, 4)), User_ID: Int(sqlite3_column_int(stmt, 5)), active: Int(sqlite3_column_int(stmt, 6)),value: Int(sqlite3_column_int(stmt, 7)))
+                
+            }
+            return rev
+    }
+    func getPrizeFromID(id:Int)->Prize{
+        let query = "select * from Prizes WHERE idPrizes = ?"
             var stmt : OpaquePointer?
         var rev: Prize = Prize()
 
@@ -1200,9 +1248,8 @@ var i = -1
             }
             return rev
     }
-    
     func getPrizeFromUserID(id:Int)->[Prize]{
-        let query = "select * from choices WHERE idPrizes = ?"
+        let query = "select * from Prizes WHERE User_ID = ?"
             var stmt : OpaquePointer?
         var rev: [Prize] = [Prize]()
 
@@ -1225,9 +1272,97 @@ var i = -1
             }
             return rev
     }
+    
+    func getPrizeFromUserIDinGivenDayByType(id:Int, type:Int=9, day:Date?=nil)->[Prize]{
+        var query = "select * from Prizes WHERE User_ID = ?"
+            var stmt : OpaquePointer?
+        var rev: [Prize] = [Prize]()
+        if day != nil{
+            query += " AND GivenDate = ?"
+        }
+        if type != 9{
+            query += " AND Type = ?"
+        }
+        var count=2
+            if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
+                let err = String(cString: sqlite3_errmsg(db)!)
+                print("There is an Error:",err)
+                return rev
+            }
+        //bind
+        if sqlite3_bind_int(stmt, 1, Int32(id)) != SQLITE_OK{
+        let err = String(cString: sqlite3_errmsg(db)!)
+        print("There is an Error:",err)
+            return rev
+    }
+        if day != nil{
+            if sqlite3_bind_text(stmt, 1, ( Utilities.DatetoString(day: day!) as NSString).utf8String, -1, nil) != SQLITE_OK{
+                       let err = String(cString: sqlite3_errmsg(db)!)
+                       print("There is an Error:",err)
+                       }
+            
+            count+=1
+        }
+        if type != 9{
+            if sqlite3_bind_int(stmt, Int32(count), Int32(type)) != SQLITE_OK{
+            let err = String(cString: sqlite3_errmsg(db)!)
+            print("There is an Error:",err)
+                return rev
+        }
+            count+=1
+        }
+        //step
+        //Appending Emails to Array
+            while(sqlite3_step(stmt) == SQLITE_ROW){
+                rev.append( Prize(GivenDate:String(cString:sqlite3_column_text(stmt, 0)) ,startDate: String(cString:sqlite3_column_text(stmt, 1)), EndaDate: String(cString:sqlite3_column_text(stmt, 2)), PrizeType: Int(sqlite3_column_int(stmt, 3)), User_ID: Int(sqlite3_column_int(stmt, 4)), active: Int(sqlite3_column_int(stmt, 5))))
+                
+            }
+            return rev
+    }
+    func getLatestActivePrize(UserID:Int)->[Prize]{
+        var prize:[Prize] = [Prize]()
+        let query = "SELECT * FROM Prizes WHERE active = 1 AND User_ID = ? ORDER BY EndDate DESC ;"
+                 var stmt : OpaquePointer?
+        if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
+            let err = String(cString: sqlite3_errmsg(db)!)
+            print("There is an Error:",err)
+        }
+        if sqlite3_bind_int(stmt, 1, Int32(UserID)) != SQLITE_OK{
+        let err = String(cString: sqlite3_errmsg(db)!)
+        print("There is an Error:",err)
+    }
+        while(sqlite3_step(stmt) == SQLITE_ROW){
+            prize.append( Prize(GivenDate:String(cString:sqlite3_column_text(stmt, 0)) ,startDate: String(cString:sqlite3_column_text(stmt, 1)), EndaDate: String(cString:sqlite3_column_text(stmt, 2)), PrizeType: Int(sqlite3_column_int(stmt, 3)), User_ID: Int(sqlite3_column_int(stmt, 4)), active: Int(sqlite3_column_int(stmt, 5))))
+        }
+        return prize
+    }
+    func getActivePrize(active:Int = 1, UserID:Int)->[Prize]{
+        var prize:[Prize] = [Prize]()
+        
+        let query = "select * from Prizes WHERE active = ? AND User_ID = ?"
+                 var stmt : OpaquePointer?
+        if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
+            let err = String(cString: sqlite3_errmsg(db)!)
+            print("There is an Error:",err)
+        }
+        if sqlite3_bind_int(stmt, 1, Int32(active)) != SQLITE_OK{
+        let err = String(cString: sqlite3_errmsg(db)!)
+        print("There is an Error:",err)
+    }
+        if sqlite3_bind_int(stmt, 2, Int32(UserID)) != SQLITE_OK{
+        let err = String(cString: sqlite3_errmsg(db)!)
+        print("There is an Error:",err)
+    }
+        while(sqlite3_step(stmt) == SQLITE_ROW){
+            prize.append( Prize(GivenDate:String(cString:sqlite3_column_text(stmt, 0)) ,startDate: String(cString:sqlite3_column_text(stmt, 1)), EndaDate: String(cString:sqlite3_column_text(stmt, 2)), PrizeType: Int(sqlite3_column_int(stmt, 3)), User_ID: Int(sqlite3_column_int(stmt, 4)), active: Int(sqlite3_column_int(stmt, 5))))
+            
+        }
+        return prize
+    }
+    
     //update
     func updatePrize(prize:Prize){
-            let query = "UPDATE Prizes set GivenDate = ?, StartDate = ?, EndDate = ?, active = ?, Type = ?, User_ID = ? WHERE idPrizes = ?"
+            let query = "UPDATE Prizes set GivenDate = ?, StartDate = ?, EndDate = ?, active = ?, Type = ?, User_ID = ?, Value = ? WHERE idPrizes = ?"
         var stmt : OpaquePointer?
 
         if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
@@ -1254,7 +1389,7 @@ var i = -1
         print("There is an Error:",err)
     }
         
-        if sqlite3_bind_int(stmt, 5, Int32(prize.PrizeType!)) != SQLITE_OK{
+        if sqlite3_bind_int(stmt, 5, Int32(prize.PrizeType)) != SQLITE_OK{
         let err = String(cString: sqlite3_errmsg(db)!)
         print("There is an Error:",err)
     }
@@ -1264,6 +1399,11 @@ var i = -1
            
     }
         if sqlite3_bind_int(stmt, 7, Int32(prize.idPrize!)) != SQLITE_OK{
+        let err = String(cString: sqlite3_errmsg(db)!)
+        print("There is an Error:",err)
+           
+    }
+        if sqlite3_bind_int(stmt, 8, Int32(prize.value!)) != SQLITE_OK{
         let err = String(cString: sqlite3_errmsg(db)!)
         print("There is an Error:",err)
            
@@ -1369,6 +1509,44 @@ var i = -1
                     rev = ScoreBoardModels(Score: Int(sqlite3_column_int(stmt, 0)), Quiz_ID:Int( sqlite3_column_int(stmt, 1)), User_ID: Int(sqlite3_column_int(stmt, 2)), Technology_Title: String(cString:sqlite3_column_text(stmt, 3)), TakenDate: String(cString:sqlite3_column_text(stmt, 4)))                }
                 return rev
         }
+    
+    func getScoreOfUser(User_ID:Int, Technology_Title:String="")->[ScoreBoardModels]{
+        var query=""
+            var stmt : OpaquePointer?
+        if Technology_Title != ""{
+            query = "select * from Review WHERE User_ID = ? AND Technology_Title = ?"
+        }else{
+            query = "select * from Review WHERE User_ID = ?"
+        }
+    var rev: [ScoreBoardModels]=[ScoreBoardModels]()
+
+            if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
+                let err = String(cString: sqlite3_errmsg(db)!)
+                print("There is an Error:",err)
+                return rev
+            }
+        //bind
+        if sqlite3_bind_int(stmt, 1, Int32(User_ID)) != SQLITE_OK{
+            let err = String(cString: sqlite3_errmsg(db)!)
+            print("There is an Error:",err)
+            return rev
+        }
+        if Technology_Title != ""{
+            if sqlite3_bind_text(stmt, 2, (Technology_Title as NSString).utf8String, -1, nil) != SQLITE_OK{
+                     let err = String(cString: sqlite3_errmsg(db)!)
+                     print("There is an Erro bind1r:",err)
+                     return rev}
+            
+        }
+        
+        //step
+        //Appending Emails to Array
+            while(sqlite3_step(stmt) == SQLITE_ROW){
+                rev.append(ScoreBoardModels(Score: Int(sqlite3_column_int(stmt, 0)), Quiz_ID:Int( sqlite3_column_int(stmt, 1)), User_ID: Int(sqlite3_column_int(stmt, 2)), Technology_Title: String(cString:sqlite3_column_text(stmt, 3)), TakenDate: String(cString:sqlite3_column_text(stmt, 4))))
+                           
+                           }
+            return rev
+    }
     
     func getTacRankOfUser(Technology_Title:String, User_ID:Int)->Int{
         var query: String
@@ -1518,31 +1696,7 @@ var i = -1
                     rev = Int(sqlite3_column_int(stmt, 0)) }
                 return rev
         }
-    func getScoreOfUser( User_ID:Int)->[ScoreBoardModels]{
-            let query = "select * from Review WHERE User_ID = ?"
-                var stmt : OpaquePointer?
-        var rev:[ ScoreBoardModels]=[ScoreBoardModels]()
 
-                if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
-                    let err = String(cString: sqlite3_errmsg(db)!)
-                    print("There is an Error:",err)
-                    return rev
-                }
-            //bind
-           
-        if sqlite3_bind_int(stmt, 1, Int32(User_ID)) != SQLITE_OK{
-            let err = String(cString: sqlite3_errmsg(db)!)
-            print("There is an Error:",err)
-            return rev
-        }
-            //step
-            //Appending Emails to Array
-                if(sqlite3_step(stmt) == SQLITE_ROW){
-                    rev .append( ScoreBoardModels(Score: Int(sqlite3_column_int(stmt, 0)), Quiz_ID:Int( sqlite3_column_int(stmt, 1)), User_ID: Int(sqlite3_column_int(stmt, 2)), Technology_Title: String(cString:sqlite3_column_text(stmt, 3)), TakenDate: String(cString:sqlite3_column_text(stmt, 4))))
-                    
-                }
-                return rev
-        }
     func getScoreOfQuiz( Quiz_ID:Int)->[ScoreBoardModels]{
             let query = "select * from Review WHERE Quiz_ID = ?"
                 var stmt : OpaquePointer?

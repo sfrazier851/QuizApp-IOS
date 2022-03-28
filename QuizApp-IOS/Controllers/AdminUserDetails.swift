@@ -10,11 +10,18 @@ import UIKit
 class AdminUserDetails: UIViewController {
 
     @IBOutlet weak var UserName: UILabel!
-    @IBOutlet weak var Biography: UILabel!
-    @IBOutlet weak var Medal: UILabel!
     
+    @IBOutlet weak var Android_Score: UILabel!
+    @IBOutlet weak var iOS_Score: UILabel!
+    @IBOutlet weak var Java_Score: UILabel!
+    @IBOutlet weak var Subscription_Status: UILabel!
     
-    var chibi: Chirabi?
+    @IBOutlet weak var UserBan: UIButton!
+    @IBOutlet weak var UserPass: UITextField!
+    
+    @IBOutlet weak var Password: UILabel!
+    
+    var user: UserModels?
     {
         didSet
         {
@@ -24,7 +31,6 @@ class AdminUserDetails: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
     
@@ -32,56 +38,98 @@ class AdminUserDetails: UIViewController {
     func refreshUI()
     {
         loadViewIfNeeded()
-        UserName.text = chibi?.name
-        Biography.text = chibi?.bio
+        UserName.text = user!.UserName
         
-        var At: String
+        Android_Score.text = String(DBCRUD.initDBCRUD.getTacRankOfUser(Technology_Title: "Android", User_ID: user!.ID!))
+        iOS_Score.text = String(DBCRUD.initDBCRUD.getTacRankOfUser(Technology_Title: "iOS", User_ID: user!.ID!))
+        Java_Score.text = String(DBCRUD.initDBCRUD.getTacRankOfUser(Technology_Title: "Java", User_ID: user!.ID!))
         
-        switch(chibi?.Art)
+        switch(user?.Subscript)
         {
-        case .Aura:
-            At = "Aura"
-        case .Cataclysm:
-            At = "Cataclysm"
-        case .Celestial:
-            At = "Celestial"
-        case .Chaos:
-            At = "Chaos"
-        case .Elem:
-            At = "Elem"
-        case .Emotion:
-            At = "Emotion"
-        case .Force:
-            At = "Force"
-        case .Hyper:
-            At = "Hyper"
-        case .Ragnarok:
-            At = "Ragnarok"
-        case .Weapon:
-            At = "Weapon"
+        case 0:
+            Subscription_Status.text = "Paid"
+        case 1:
+            Subscription_Status.text = "Trial"
+        case 2:
+            Subscription_Status.text = "Prize"
         default:
-            At = "Unknown"
+            Subscription_Status.text = "Unknown"
         }
         
-        Medal.text = At
+        if("BLOCKED" == user?.status)
+        {
+            UserBan.setTitle("Un-Ban", for: .normal);
+        }
+        else
+        {
+            UserBan.setTitle("Ban", for: .normal);
+        }
+        
+        Password.text = user?.Password
+        
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func UpdatePass(_ sender: Any)
+    {
+        var PassChange = UIAlertController(title: "Update Password", message: "This user's Password will be updated to \(self.UserPass.text)", preferredStyle: UIAlertController.Style.alert)
+        
+        PassChange.addAction(UIAlertAction(title: "Ok", style: .destructive, handler: { (action: UIAlertAction!) in print("Password Changed to \(self.UserPass.text)"); self.PassChange(); self.Password.text = self.UserPass.text }))
+    
+        PassChange.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in print("Canceled") }))
+    
+        present(PassChange, animated: true, completion: nil);
     }
-    */
-
+    
+    func PassChange()
+    {
+        user?.Password = UserPass.text ?? "Password"
+        user?.save()
+    }
+    
+    @IBAction func GiveSub(_ sender: Any)
+    {
+        user?.Subscript = 0
+        user?.save()
+    }
+    
+    @IBAction func Ban(_ sender: Any)
+    {
+        if("BLOCKED" == user?.status)
+        {
+            var BanAlert = UIAlertController(title: "Un-Ban", message: "This user will be unbanned", preferredStyle: UIAlertController.Style.alert)
+            
+            BanAlert.addAction(UIAlertAction(title: "Unban", style: .destructive, handler: { (action: UIAlertAction!) in print("User Unbanned"); self.Banning(); self.UserBan.setTitle("Ban", for: .normal) }))
+        
+            BanAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in print("Canceled") }))
+        
+            present(BanAlert, animated: true, completion: nil);
+        }
+        else
+        {
+            var BanAlert = UIAlertController(title: "Ban", message: "This user will be Banned", preferredStyle: UIAlertController.Style.alert)
+        
+            BanAlert.addAction(UIAlertAction(title: "Ban", style: .destructive, handler: { (action: UIAlertAction!) in print("User Banned"); self.Banning(); self.UserBan.setTitle("Un-Ban", for: .normal) }))
+        
+            BanAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in print("Canceled") }))
+        
+            present(BanAlert, animated: true, completion: nil);
+        }
+    }
+    
+    func Banning()
+    {
+        user?.toggleBlock()
+        user?.save()
+    }
+    
 }
 
-extension AdminUserDetails: ChibiSelectionDelegate
+                                         
+                                         
+extension AdminUserDetails: UserSelectionDelegate
 {
-    func ChibiSelected(_ NextChibi: Chirabi)
+    func UserSelected(_ NextUser: UserModels)
     {
-        chibi = NextChibi
+        user = NextUser
     }
 }
