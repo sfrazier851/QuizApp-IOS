@@ -106,9 +106,9 @@ class DBInit{
 initTech()
     }
     func initUser(){
-        let u1=UserModels(UserName: "guest", Password: "123Password!", DOB: "June 2, 1994", admin: false, subriction: "trial", Status: "", First: "2", Last: "2", email: ["2@gmail.com"])
-        let u2=UserModels(UserName: "admin", Password: "123Password!", DOB: "June 2, 1994", admin: true, subriction: "paid", Status: "", First: "admin", Last: "admin", email: ["admin@gmail.com"])
-        let u3=UserModels(UserName: "BlockedUser", Password: "123Password!", DOB: "June 2, 1994", admin: false, subriction: "paid", Status: "BLOCKED", First: "This Guy", Last: "Who shall not be named", email: ["block@gmail.com"])
+        let u1=UserModels(UserName: "guest", Password: "123Password!", DOB: "June 2, 1994", admin: false, subriction:1, Status: "", First: "2", Last: "2", email: ["2@gmail.com"])
+        let u2=UserModels(UserName: "admin", Password: "123Password!", DOB: "June 2, 1994", admin: true, subriction: 0, Status: "", First: "admin", Last: "admin", email: ["admin@gmail.com"])
+        let u3=UserModels(UserName: "BlockedUser", Password: "123Password!", DOB: "June 2, 1994", admin: false, subriction: 0, Status: "BLOCKED", First: "This Guy", Last: "Who shall not be named", email: ["block@gmail.com"])
         if !DBCRUD.initDBCRUD.createUserWithUserModal(us: u1){
             print("error creating guest")
             return
