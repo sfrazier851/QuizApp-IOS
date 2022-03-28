@@ -54,9 +54,9 @@ class GameOverViewController: UIViewController {
     @IBAction func playAgain(_ sender: UIButton) {
         
         //CHECK SUBSCRIPTION
-        if K.dailyAttempt == 2 && K.user_subscription == 1 {
+        if DBCRUD.initDBCRUD.getNumberOfAttempts(id: (LoginPort.user?.ID!)!, date: Utilities.formatDate(date: Date())) >= 2 && K.user_subscription == 1 {
             
-            let dialogMessage = UIAlertController(title: "Alert", message: "You already reached your daily maximum attempts. Upgrade to a paid subscription for unlimited attempts", preferredStyle: .alert)
+            let dialogMessage = UIAlertController(title: "Alert", message: "You already reached your daily maximum attempts. Upgrade to a paid subscription for unlimited attempts.", preferredStyle: .alert)
             let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
                
             })

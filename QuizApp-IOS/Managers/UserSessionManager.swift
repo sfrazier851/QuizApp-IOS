@@ -67,6 +67,17 @@ final class UserSessionManager {
                         // check if facebook user is already in the database
                         if LoginPort.initLogin.login(S: receivedEmail!, PW: "facebook-user") == true {
                             
+                            // prevent user from logging in if they have been blocked
+                            if LoginPort.user?.status != "BLOCKED"{
+                                K.user_subscription = DBCRUD.initDBCRUD.getUserSubscription(id: (LoginPort.user?.ID)!)
+                                DispatchQueue.main.async {
+                                    PresenterManager.shared.show(vc: .userHome)}
+                                }
+                            else{
+                                DispatchQueue.main.async {
+                                    PresenterManager.shared.show(vc: .login)}
+                            }
+                            
                         } else {
                             // user is not already in database, create user
                             DBCRUD.initDBCRUD.createUserWithUserModal(us: UserModels(Email: receivedEmail!, Password: "facebook-user", UserName: receivedName!))
@@ -96,6 +107,8 @@ final class UserSessionManager {
     }
     
     static func endSession() {
+        print("SESSION")
+        print(UserSessionManager.currentLoginType)
         switch UserSessionManager.currentLoginType {
         case .inApp:
             //LoginPort.initLogin.logout()

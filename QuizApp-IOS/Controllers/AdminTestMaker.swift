@@ -41,102 +41,165 @@ class AdminTestMaker: UIViewController {
     @IBOutlet weak var WrongAnswer5B: UITextField!
     @IBOutlet weak var WrongAnswer5C: UITextField!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    @IBOutlet weak var cancelAdminButton: UIButton!
 
-        // Do any additional setup after loading the view.
-    }
+    @IBOutlet weak var saveAs: UITextView!
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        //Utilities.styleHollowButton(cancelAdminButton)
+        //saveAs.centerVertically()
+        //saveAs.text = "SAVE\nAS:"
+        
     }
-    */
     
     
     @IBAction func Cancel(_ sender: Any)
     {
-        self.dismiss(animated: true)
+        PresenterManager.shared.show(vc: .adminHome)
     }
     
-    @IBAction func SaveToIOS(_ sender: Any)
-    {
+    @IBAction func SaveToIOS(_ sender: Any) {
 
-        var Quiz = QuizModels(Title: QuizTitle.text!, Technology_Title: "IOS")
+        let Quiz = QuizModels(Title: QuizTitle.text!, Technology_Title: "IOS")
         
-        var wrong_choices: Array<String> = [WrongAnswer1A.text!, WrongAnswer1B.text!, WrongAnswer1C.text!]
-        var Question1 = QuestionModels(Question: self.Question1.text!, Awnser: CorrectAnswer1.text!, choice: wrong_choices)
+        var wrong_choices: Array<String> = [WrongAnswer1A.text!, WrongAnswer1B.text!, WrongAnswer1C.text!,CorrectAnswer1.text!]
+        let Question1 = QuestionModels(Question: self.Question1.text!, Awnser: CorrectAnswer1.text!, choice: wrong_choices)
         
-        wrong_choices = [WrongAnswer2A.text!, WrongAnswer2B.text!, WrongAnswer2C.text!]
-        var Question2 = QuestionModels(Question: self.Question2.text!, Awnser: CorrectAnswer2.text!, choice: wrong_choices)
+        wrong_choices = [WrongAnswer2A.text!, WrongAnswer2B.text!, WrongAnswer2C.text!,CorrectAnswer2.text!]
+        let Question2 = QuestionModels(Question: self.Question2.text!, Awnser: CorrectAnswer2.text!, choice: wrong_choices)
         
-        wrong_choices = [WrongAnswer3A.text!, WrongAnswer3B.text!, WrongAnswer3C.text!]
-        var Question3 = QuestionModels(Question: self.Question3.text!, Awnser: CorrectAnswer3.text!, choice: wrong_choices)
+        wrong_choices = [WrongAnswer3A.text!, WrongAnswer3B.text!, WrongAnswer3C.text!,CorrectAnswer3.text!]
+        let Question3 = QuestionModels(Question: self.Question3.text!, Awnser: CorrectAnswer3.text!, choice: wrong_choices)
         
-        wrong_choices = [WrongAnswer4A.text!, WrongAnswer4B.text!, WrongAnswer4C.text!]
-        var Question4 = QuestionModels(Question: self.Question4.text!, Awnser: CorrectAnswer4.text!, choice: wrong_choices)
+        wrong_choices = [WrongAnswer4A.text!, WrongAnswer4B.text!, WrongAnswer4C.text!,CorrectAnswer4.text!]
+        let Question4 = QuestionModels(Question: self.Question4.text!, Awnser: CorrectAnswer4.text!, choice: wrong_choices)
         
-        wrong_choices = [WrongAnswer5A.text!, WrongAnswer5B.text!, WrongAnswer5C.text!]
-        var Question5 = QuestionModels(Question: self.Question5.text!, Awnser: CorrectAnswer5.text!, choice: wrong_choices)
+        wrong_choices = [WrongAnswer5A.text!, WrongAnswer5B.text!, WrongAnswer5C.text!,CorrectAnswer5.text!]
+        let Question5 = QuestionModels(Question: self.Question5.text!, Awnser: CorrectAnswer5.text!, choice: wrong_choices)
         
         Quiz.Questions = [Question1, Question2, Question3, Question4, Question5 ]
         Quiz.save()
         
-        self.dismiss(animated: true)
+        let dialogMessage = UIAlertController(title: "Confirmation", message: "Quiz (\(QuizTitle.text!)) has been saved. Would you like to continue adding?", preferredStyle: .alert)
+        let no = UIAlertAction(title: "No", style: .default, handler: { (action) -> Void in
+            PresenterManager.shared.show(vc: .adminHome)
+        })
+        let yes = UIAlertAction(title: "Yes", style: .default, handler: { (action) -> Void in
+            self.resetFields()
+        })
+        dialogMessage.addAction(yes)
+        dialogMessage.addAction(no)
+        self.present(dialogMessage, animated: true, completion: nil)
+        
     }
     
-    @IBAction func SaveToAndroid(_ sender: Any)
-    {
-        var Quiz = QuizModels(Title: QuizTitle.text!, Technology_Title: "Android")
+    @IBAction func SaveToAndroid(_ sender: Any){
         
-        var wrong_choices: Array<String> = [WrongAnswer1A.text!, WrongAnswer1B.text!, WrongAnswer1C.text!]
-        var Question1 = QuestionModels(Question: self.Question1.text!, Awnser: CorrectAnswer1.text!, choice: wrong_choices)
+        let Quiz = QuizModels(Title: QuizTitle.text!, Technology_Title: "Android")
         
-        wrong_choices = [WrongAnswer2A.text!, WrongAnswer2B.text!, WrongAnswer2C.text!]
-        var Question2 = QuestionModels(Question: self.Question2.text!, Awnser: CorrectAnswer2.text!, choice: wrong_choices)
+        var wrong_choices: Array<String> = [WrongAnswer1A.text!, WrongAnswer1B.text!, WrongAnswer1C.text!,CorrectAnswer1.text!]
+        let Question1 = QuestionModels(Question: self.Question1.text!, Awnser: CorrectAnswer1.text!, choice: wrong_choices)
         
-        wrong_choices = [WrongAnswer3A.text!, WrongAnswer3B.text!, WrongAnswer3C.text!]
-        var Question3 = QuestionModels(Question: self.Question3.text!, Awnser: CorrectAnswer3.text!, choice: wrong_choices)
+        wrong_choices = [WrongAnswer2A.text!, WrongAnswer2B.text!, WrongAnswer2C.text!,CorrectAnswer2.text!]
+        let Question2 = QuestionModels(Question: self.Question2.text!, Awnser: CorrectAnswer2.text!, choice: wrong_choices)
         
-        wrong_choices = [WrongAnswer4A.text!, WrongAnswer4B.text!, WrongAnswer4C.text!]
-        var Question4 = QuestionModels(Question: self.Question4.text!, Awnser: CorrectAnswer4.text!, choice: wrong_choices)
+        wrong_choices = [WrongAnswer3A.text!, WrongAnswer3B.text!, WrongAnswer3C.text!, CorrectAnswer3.text!]
+        let Question3 = QuestionModels(Question: self.Question3.text!, Awnser: CorrectAnswer3.text!, choice: wrong_choices)
         
-        wrong_choices = [WrongAnswer5A.text!, WrongAnswer5B.text!, WrongAnswer5C.text!]
-        var Question5 = QuestionModels(Question: self.Question5.text!, Awnser: CorrectAnswer5.text!, choice: wrong_choices)
+        wrong_choices = [WrongAnswer4A.text!, WrongAnswer4B.text!, WrongAnswer4C.text!,CorrectAnswer4.text!]
+        let Question4 = QuestionModels(Question: self.Question4.text!, Awnser: CorrectAnswer4.text!, choice: wrong_choices)
+        
+        wrong_choices = [WrongAnswer5A.text!, WrongAnswer5B.text!, WrongAnswer5C.text!,CorrectAnswer5.text!]
+        let Question5 = QuestionModels(Question: self.Question5.text!, Awnser: CorrectAnswer5.text!, choice: wrong_choices)
         
         Quiz.Questions = [Question1, Question2, Question3, Question4, Question5 ]
         Quiz.save()
         
-        self.dismiss(animated: true)
+        let dialogMessage = UIAlertController(title: "Confirmation", message: "Quiz (\(QuizTitle.text!)) has been saved. Would you like to continue adding?", preferredStyle: .alert)
+        let no = UIAlertAction(title: "No", style: .default, handler: { (action) -> Void in
+            PresenterManager.shared.show(vc: .adminHome)
+        })
+        let yes = UIAlertAction(title: "Yes", style: .default, handler: { (action) -> Void in
+            self.resetFields()
+        })
+        dialogMessage.addAction(yes)
+        dialogMessage.addAction(no)
+        self.present(dialogMessage, animated: true, completion: nil)
+        
     }
     
-    @IBAction func SaveToJava(_ sender: Any)
-    {
-        var Quiz = QuizModels(Title: QuizTitle.text!, Technology_Title: "Java")
+    @IBAction func SaveToJava(_ sender: Any){
         
-        var wrong_choices: Array<String> = [WrongAnswer1A.text!, WrongAnswer1B.text!, WrongAnswer1C.text!]
-        var Question1 = QuestionModels(Question: self.Question1.text!, Awnser: CorrectAnswer1.text!, choice: wrong_choices)
+        let Quiz = QuizModels(Title: QuizTitle.text!, Technology_Title: "Java")
         
-        wrong_choices = [WrongAnswer2A.text!, WrongAnswer2B.text!, WrongAnswer2C.text!]
-        var Question2 = QuestionModels(Question: self.Question2.text!, Awnser: CorrectAnswer2.text!, choice: wrong_choices)
+        var wrong_choices: Array<String> = [WrongAnswer1A.text!, WrongAnswer1B.text!, WrongAnswer1C.text!,CorrectAnswer1.text!]
+        let Question1 = QuestionModels(Question: self.Question1.text!, Awnser: CorrectAnswer1.text!, choice: wrong_choices)
         
-        wrong_choices = [WrongAnswer3A.text!, WrongAnswer3B.text!, WrongAnswer3C.text!]
-        var Question3 = QuestionModels(Question: self.Question3.text!, Awnser: CorrectAnswer3.text!, choice: wrong_choices)
+        wrong_choices = [WrongAnswer2A.text!, WrongAnswer2B.text!, WrongAnswer2C.text!,CorrectAnswer2.text!]
+        let Question2 = QuestionModels(Question: self.Question2.text!, Awnser: CorrectAnswer2.text!, choice: wrong_choices)
         
-        wrong_choices = [WrongAnswer4A.text!, WrongAnswer4B.text!, WrongAnswer4C.text!]
-        var Question4 = QuestionModels(Question: self.Question4.text!, Awnser: CorrectAnswer4.text!, choice: wrong_choices)
+        wrong_choices = [WrongAnswer3A.text!, WrongAnswer3B.text!, WrongAnswer3C.text!,CorrectAnswer3.text!]
+        let Question3 = QuestionModels(Question: self.Question3.text!, Awnser: CorrectAnswer3.text!, choice: wrong_choices)
         
-        wrong_choices = [WrongAnswer5A.text!, WrongAnswer5B.text!, WrongAnswer5C.text!]
-        var Question5 = QuestionModels(Question: self.Question5.text!, Awnser: CorrectAnswer5.text!, choice: wrong_choices)
+        wrong_choices = [WrongAnswer4A.text!, WrongAnswer4B.text!, WrongAnswer4C.text!,CorrectAnswer4.text!]
+        let Question4 = QuestionModels(Question: self.Question4.text!, Awnser: CorrectAnswer4.text!, choice: wrong_choices)
+        
+        wrong_choices = [WrongAnswer5A.text!, WrongAnswer5B.text!, WrongAnswer5C.text!,CorrectAnswer5.text!]
+        let Question5 = QuestionModels(Question: self.Question5.text!, Awnser: CorrectAnswer5.text!, choice: wrong_choices)
         
         Quiz.Questions = [Question1, Question2, Question3, Question4, Question5 ]
         Quiz.save()
         
-        self.dismiss(animated: true)
+        let dialogMessage = UIAlertController(title: "Confirmation", message: "Quiz (\(QuizTitle.text!)) has been saved. Would you like to continue adding?", preferredStyle: .alert)
+        let no = UIAlertAction(title: "No", style: .default, handler: { (action) -> Void in
+            PresenterManager.shared.show(vc: .adminHome)
+        })
+        let yes = UIAlertAction(title: "Yes", style: .default, handler: { (action) -> Void in
+            self.resetFields()
+        })
+        dialogMessage.addAction(yes)
+        dialogMessage.addAction(no)
+        self.present(dialogMessage, animated: true, completion: nil)
+        
     }
+
+    func resetFields() {
+        
+        QuizTitle.text = ""
+        
+        Question1.text = ""
+        WrongAnswer1A.text = ""
+        WrongAnswer1B.text = ""
+        WrongAnswer1C.text = ""
+        CorrectAnswer1.text = ""
+
+        Question2.text = ""
+        WrongAnswer2A.text = ""
+        WrongAnswer2B.text = ""
+        WrongAnswer2C.text = ""
+        CorrectAnswer2.text = ""
+        
+        Question3.text = ""
+        WrongAnswer3A.text = ""
+        WrongAnswer3B.text = ""
+        WrongAnswer3C.text = ""
+        CorrectAnswer3.text = ""
+        
+        Question4.text = ""
+        WrongAnswer4A.text = ""
+        WrongAnswer4B.text = ""
+        WrongAnswer4C.text = ""
+        CorrectAnswer4.text = ""
+        
+        Question5.text = ""
+        WrongAnswer5A.text = ""
+        WrongAnswer5B.text = ""
+        WrongAnswer5C.text = ""
+        CorrectAnswer5.text = ""
+        
+    }
+    
+    
 }

@@ -10,11 +10,13 @@ import UIKit
 class AdminUserDetails: UIViewController {
 
     @IBOutlet weak var UserName: UILabel!
-    @IBOutlet weak var Biography: UILabel!
-    @IBOutlet weak var Medal: UILabel!
+    
+    @IBOutlet weak var Android_Score: UILabel!
+    @IBOutlet weak var iOS_Score: UILabel!
+    @IBOutlet weak var Java_Score: UILabel!
     
     
-    var chibi: Chirabi?
+    var user: User?
     {
         didSet
         {
@@ -32,56 +34,27 @@ class AdminUserDetails: UIViewController {
     func refreshUI()
     {
         loadViewIfNeeded()
-        UserName.text = chibi?.name
-        Biography.text = chibi?.bio
+        UserName.text = user?.Name
         
-        var At: String
-        
-        switch(chibi?.Art)
-        {
-        case .Aura:
-            At = "Aura"
-        case .Cataclysm:
-            At = "Cataclysm"
-        case .Celestial:
-            At = "Celestial"
-        case .Chaos:
-            At = "Chaos"
-        case .Elem:
-            At = "Elem"
-        case .Emotion:
-            At = "Emotion"
-        case .Force:
-            At = "Force"
-        case .Hyper:
-            At = "Hyper"
-        case .Ragnarok:
-            At = "Ragnarok"
-        case .Weapon:
-            At = "Weapon"
-        default:
-            At = "Unknown"
-        }
-        
-        Medal.text = At
+        Android_Score.text = user?.Android_Score
+        iOS_Score.text = user?.iOS_Score
+        Java_Score.text = user?.Java_Score
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    
+    @IBAction func GiveSub(_ sender: Any)
+    {
     }
-    */
-
+    
+    @IBAction func Ban(_ sender: Any)
+    {
+    }
 }
 
-extension AdminUserDetails: ChibiSelectionDelegate
+extension AdminUserDetails: UserSelectionDelegate
 {
-    func ChibiSelected(_ NextChibi: Chirabi)
+    func UserSelected(_ NextUser: User)
     {
-        chibi = NextChibi
+        user = NextUser
     }
 }

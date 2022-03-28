@@ -58,6 +58,7 @@ struct K {
         static let viewRankingViewController = "ViewRankingViewController"
         static let viewRankingByTechViewController = "ViewRankingByTechViewController"
         static let feedbackViewController = "FeedbackViewController"
+        static let testMaker = "Test_Maker"
         
     }
     
@@ -79,5 +80,11 @@ struct K {
     static var user_subscription : Int = 0
     
     static var feedback_score : Int = 0
+    
+    static var quiz_java : [[String]] = []
+    
+    static var quiz_ios : [[String]] = []
+    
+    static var quiz_android : [[String]] = []
     
 }

@@ -39,20 +39,38 @@ class AndroidViewController: UIViewController {
     
     var qArr = [[String]]()
     
-    var Q1 : QuizModels=DBCRUD.initDBCRUD.getQuizsFromTechnology_Title(id: "Android")[0]
+    var randInd = -1
+    
+    var tempQ = [QuizModels]()
     
     override func viewDidLoad() {
 
         super.viewDidLoad()
-        qArr = Utilities.loadQuiz(Q : Q1)
+        
+        if K.quiz_android.count == 0 {
+            
+            tempQ = DBCRUD.initDBCRUD.getQuizsFromTechnology_Title(id: "Android")
+       
+        }
+        setupQuestions()
         androidSetupElements()
-        K.game_quiz_id = Q1.ID!
         
     }
     
     override func viewDidLayoutSubviews() {
         
         //android_que_tv.centerVertically()
+        
+    }
+    
+    func setupQuestions() {
+        
+        randInd = Int.random(in: 0...tempQ.count - 1)
+        //print("RANDOM: \(randInd)")
+        var Q1 : QuizModels = tempQ[randInd]
+        //print("Q1: ",Q1)
+        qArr = Utilities.loadQuiz(Q : Q1)
+        K.game_quiz_id = Q1.ID!
         
     }
     
@@ -103,7 +121,10 @@ class AndroidViewController: UIViewController {
         
         if perc == 1 {
             
-            let s = ScoreBoardModels(Score: K.android_gamescore, Quiz_ID: Q1.ID!, User_ID: (LoginPort.user?.ID)!, Technology_Title: Q1.Technology_Title)
+//            print("GAME ID: \(K.game_quiz_id)")
+//            print("Technology \(K.currentPage)")
+            tempQ.remove(at: randInd)
+            let s = ScoreBoardModels(Score: K.android_gamescore, Quiz_ID: K.game_quiz_id, User_ID: (LoginPort.user?.ID)!, Technology_Title: K.currentPage)
             DBCRUD.initDBCRUD.createScore(r: s)
             timer.invalidate()
             PresenterManager.shared.show(vc: .gameOver)
@@ -111,6 +132,7 @@ class AndroidViewController: UIViewController {
             
         } else {
             
+            //tempQ.remove(at: randInd)
             qArr.remove(at: rand)
             //print(qArr)
             showQuestionsForAndroid()
