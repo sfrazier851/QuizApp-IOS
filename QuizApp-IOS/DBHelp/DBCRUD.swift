@@ -1217,6 +1217,53 @@ var i = -1
             }
             return rev
     }
+    
+    func getPrizeFromUserIDinGivenDayByType(id:Int, type:Int=9, day:Date?=nil)->[Prize]{
+        var query = "select * from Prizes WHERE User_ID = ?"
+            var stmt : OpaquePointer?
+        var rev: [Prize] = [Prize]()
+        if day != nil{
+            query += " AND GivenDate = ?"
+        }
+        if type != 9{
+            query += " AND Type = ?"
+        }
+        var count=2
+            if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
+                let err = String(cString: sqlite3_errmsg(db)!)
+                print("There is an Error:",err)
+                return rev
+            }
+        //bind
+        if sqlite3_bind_int(stmt, 1, Int32(id)) != SQLITE_OK{
+        let err = String(cString: sqlite3_errmsg(db)!)
+        print("There is an Error:",err)
+            return rev
+    }
+        if day != nil{
+            if sqlite3_bind_text(stmt, 1, ( Utilities.DatetoString(day: day!) as NSString).utf8String, -1, nil) != SQLITE_OK{
+                       let err = String(cString: sqlite3_errmsg(db)!)
+                       print("There is an Error:",err)
+                       }
+            
+            count+=1
+        }
+        if type != 9{
+            if sqlite3_bind_int(stmt, Int32(count), Int32(type)) != SQLITE_OK{
+            let err = String(cString: sqlite3_errmsg(db)!)
+            print("There is an Error:",err)
+                return rev
+        }
+            count+=1
+        }
+        //step
+        //Appending Emails to Array
+            while(sqlite3_step(stmt) == SQLITE_ROW){
+                rev.append( Prize(GivenDate:String(cString:sqlite3_column_text(stmt, 0)) ,startDate: String(cString:sqlite3_column_text(stmt, 1)), EndaDate: String(cString:sqlite3_column_text(stmt, 2)), PrizeType: Int(sqlite3_column_int(stmt, 3)), User_ID: Int(sqlite3_column_int(stmt, 4)), active: Int(sqlite3_column_int(stmt, 5))))
+                
+            }
+            return rev
+    }
     func getLatestActivePrize(UserID:Int)->[Prize]{
         var prize:[Prize] = [Prize]()
         let query = "SELECT * FROM Prizes WHERE active = 1 AND User_ID = ? ORDER BY EndDate DESC ;"
