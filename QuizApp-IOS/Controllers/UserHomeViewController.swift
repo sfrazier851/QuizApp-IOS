@@ -182,20 +182,6 @@ class UserHomeViewController: UIViewController {
     
     @IBAction func showRankingsPage(_ sender: UIButton) {
         
-        //  ADD THE NEXT LINES OF CODE TO ADMIN "on create quiz button tapped function" and adjust the next to last line for the specific type of quiz created
-        // get user default values for app icon badge count
-        var appIconBadgeCount = UserDefaults.standard.integer(forKey: K.UserDefaults.appIconBadgeCount)
-        // get dictionary for ["Java":0,"iOS":0,"Android":0] from user defaults (values might not be 0)
-        var latestNewQuizTypesAndCount = UserDefaults.standard.object(forKey: K.UserDefaults.latestNewQuizAndTypesCount) as! [String:Int]
-        // 1 total new quizzes were created (example)
-        appIconBadgeCount += 1
-        UserDefaults.standard.set(appIconBadgeCount, forKey: K.UserDefaults.appIconBadgeCount)
-        // update technology type count (example)
-        latestNewQuizTypesAndCount["Java"]! += 1
-        UserDefaults.standard.set(latestNewQuizTypesAndCount, forKey: K.UserDefaults.latestNewQuizAndTypesCount)
-        //----------------------------------------------------------
-        
-        
         PresenterManager.shared.show(vc: .rankingByTech)
         
     }

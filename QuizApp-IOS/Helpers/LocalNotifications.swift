@@ -53,7 +53,7 @@ class LocalNotifications: NSObject, UNUserNotificationCenterDelegate {
         notificationContent.body = message
         notificationContent.badge = NSNumber(value: appIconBadgeCount)
         
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 2,
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.5,
                                                         repeats: false)
         let request = UNNotificationRequest(identifier: "newQuizNotification",
                                             content: notificationContent,

@@ -60,6 +60,22 @@ class AdminTestMaker: UIViewController {
         PresenterManager.shared.show(vc: .adminHome)
     }
     
+    func addQuizToNotifications(quizType: String) {
+        //  ADD THE NEXT LINES OF CODE TO ADMIN "on create quiz button tapped function" and adjust the next to last line for the specific type of quiz created
+        // get user default values for app icon badge count
+        var appIconBadgeCount = UserDefaults.standard.integer(forKey: K.UserDefaults.appIconBadgeCount)
+        // get dictionary for ["Java":0,"iOS":0,"Android":0] from user defaults (values might not be 0)
+        var latestNewQuizTypesAndCount = UserDefaults.standard.object(forKey: K.UserDefaults.latestNewQuizAndTypesCount) as! [String:Int]
+        // 1 total new quizzes were created (example)
+        appIconBadgeCount += 1
+        UserDefaults.standard.set(appIconBadgeCount, forKey: K.UserDefaults.appIconBadgeCount)
+        // update technology type count (example)
+        latestNewQuizTypesAndCount[quizType]! += 1
+        UserDefaults.standard.set(latestNewQuizTypesAndCount, forKey: K.UserDefaults.latestNewQuizAndTypesCount)
+        //----------------------------------------------------------
+        
+    }
+    
     @IBAction func SaveToIOS(_ sender: Any) {
 
         let Quiz = QuizModels(Title: QuizTitle.text!, Technology_Title: "IOS")
@@ -83,10 +99,12 @@ class AdminTestMaker: UIViewController {
         Quiz.save()
         
         let dialogMessage = UIAlertController(title: "Confirmation", message: "Quiz (\(QuizTitle.text!)) has been saved. Would you like to continue adding?", preferredStyle: .alert)
-        let no = UIAlertAction(title: "No", style: .default, handler: { (action) -> Void in
+        let no = UIAlertAction(title: "No", style: .default, handler: { [self] (action) -> Void in
+            addQuizToNotifications(quizType: "iOS")
             PresenterManager.shared.show(vc: .adminHome)
         })
-        let yes = UIAlertAction(title: "Yes", style: .default, handler: { (action) -> Void in
+        let yes = UIAlertAction(title: "Yes", style: .default, handler: { [self] (action) -> Void in
+            addQuizToNotifications(quizType: "iOS")
             self.resetFields()
         })
         dialogMessage.addAction(yes)
@@ -118,10 +136,12 @@ class AdminTestMaker: UIViewController {
         Quiz.save()
         
         let dialogMessage = UIAlertController(title: "Confirmation", message: "Quiz (\(QuizTitle.text!)) has been saved. Would you like to continue adding?", preferredStyle: .alert)
-        let no = UIAlertAction(title: "No", style: .default, handler: { (action) -> Void in
+        let no = UIAlertAction(title: "No", style: .default, handler: { [self] (action) -> Void in
+            self.addQuizToNotifications(quizType: "Android")
             PresenterManager.shared.show(vc: .adminHome)
         })
-        let yes = UIAlertAction(title: "Yes", style: .default, handler: { (action) -> Void in
+        let yes = UIAlertAction(title: "Yes", style: .default, handler: { [self] (action) -> Void in
+            self.addQuizToNotifications(quizType: "Android")
             self.resetFields()
         })
         dialogMessage.addAction(yes)
@@ -154,9 +174,11 @@ class AdminTestMaker: UIViewController {
         
         let dialogMessage = UIAlertController(title: "Confirmation", message: "Quiz (\(QuizTitle.text!)) has been saved. Would you like to continue adding?", preferredStyle: .alert)
         let no = UIAlertAction(title: "No", style: .default, handler: { (action) -> Void in
+            self.addQuizToNotifications(quizType: "Java")
             PresenterManager.shared.show(vc: .adminHome)
         })
         let yes = UIAlertAction(title: "Yes", style: .default, handler: { (action) -> Void in
+            self.addQuizToNotifications(quizType: "Java")
             self.resetFields()
         })
         dialogMessage.addAction(yes)
