@@ -218,11 +218,24 @@ initTech()
  //Last Update will have an id of 2
        
        DBCRUD.initDBCRUD.createPrize(prize: Prize(GivenDate: today, User_ID: 2, PrizeType: 4))
+       initScore()
      }
     func initScore(){
         var dateComp = DateComponents()
         dateComp.day = -5
-        let today = Utilities.DatetoString(day: Calendar.current.date(byAdding: dateComp, to: Date())!)
+        var today =  Calendar.current.date(byAdding: dateComp, to: Date())!
+        let Technology = ["Java","IOS","Andriod"]
+        while today < Date(){
+            for x in (1...3){
+                for y in (1...3){
+                    DBCRUD.initDBCRUD.createScore(r:ScoreBoardModels(Score: Int.random(in:1 ... 135), Quiz_ID: y, User_ID: x, Technology_Title: Technology[y-1], TakenDate: Utilities.formatDate(date: today)))
+                
+            }
+        }
+            today=Calendar.current.date(byAdding: .day, value: 1, to: today)!
+
     }
+}
+    
 }
     
