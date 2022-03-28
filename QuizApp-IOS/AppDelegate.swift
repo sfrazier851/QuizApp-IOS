@@ -10,19 +10,16 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    let localNotifications = LocalNotifications()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        // ask user for permission to send local notifications
-        UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound]){ (granted, error) in
-            DispatchQueue.main.async {
-                application.registerForRemoteNotifications()
-            }
-            
-        }
-        
+        // set LocalNotifications class instance as delegate
+        localNotifications.userNotificationCenter.delegate = localNotifications
+        // request for user permission to use notifications
+        localNotifications.notificationRequest()
+ 
         Thread.sleep(forTimeInterval: 0.10)
         DBInit.init()
         

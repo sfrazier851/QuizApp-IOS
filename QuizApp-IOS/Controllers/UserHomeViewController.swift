@@ -8,7 +8,7 @@
 import UIKit
 import UserNotifications
 
-class UserHomeViewController: UIViewController, UNUserNotificationCenterDelegate {
+class UserHomeViewController: UIViewController {
     
     @IBOutlet weak var welcomeUserLabel: UILabel!
     
@@ -64,118 +64,28 @@ class UserHomeViewController: UIViewController, UNUserNotificationCenterDelegate
         
         welcomeUserLabel.text = "Welcome, \(String(describing: LoginPort.user!.UserName!))."
         
-        // assigning UserNotificationCenter as delegate
-        self.userNotificationCenter.delegate = self
         
-        
-        //  ADD THE NEXT LINES OF CODE TO ADMIN CREATE QUIZ CODE
-        // 1 total new quizzes were created (example)
+        //  ADD THE NEXT LINES OF CODE TO ADMIN "on create quiz button tapped function" and adjust the last line for the specific type of quiz created
+        // set app icon badge number to 0
         UIApplication.shared.applicationIconBadgeNumber = 0
-        UIApplication.shared.applicationIconBadgeNumber += 1
         // reset new quiz counts by technology to 0
         for key in K.latestNewQuizTypesAndCount.keys {
             if K.latestNewQuizTypesAndCount[key]! > 0 {
                 K.latestNewQuizTypesAndCount[key]! = 0
             }
         }
+        // 1 total new quizzes were created (example)
+        UIApplication.shared.applicationIconBadgeNumber += 1
         // update technology type count (example)
         K.latestNewQuizTypesAndCount["Java"]! += 1
         //----------------------------------------------------------
     }
-    
-    
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        // set app icon badge number to 0
-        DispatchQueue.main.async {
-            UIApplication.shared.applicationIconBadgeNumber = 0
-        }
-        // reset new quiz counts by technology to 0
-        for key in K.latestNewQuizTypesAndCount.keys {
-            if K.latestNewQuizTypesAndCount[key]! > 0 {
-                K.latestNewQuizTypesAndCount[key]! = 0
-            }
-        }
-        completionHandler()
-    }
-
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.banner, .badge])
-    }
-    
-    let userNotificationCenter = UNUserNotificationCenter.current()
-    
-    func sendNotification() {
-        
-        var message = ""//"\(UIApplication.shared.applicationIconBadgeNumber) new quiz(zes) total.\n"
-        // add specific totals for new quizzes by technology type
-        for key in K.latestNewQuizTypesAndCount.keys {
-            if K.latestNewQuizTypesAndCount[key]! > 0 {
-                message.append("\(K.latestNewQuizTypesAndCount[key]!) new \(key) quiz(zes).\n")
-            }
-        }
-        
-        let notificationContent = UNMutableNotificationContent()
-        notificationContent.title = "\(UIApplication.shared.applicationIconBadgeNumber) new quiz(zes) added!"
-        notificationContent.body = message
-        notificationContent.badge = NSNumber(value: UIApplication.shared.applicationIconBadgeNumber)
-        
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 2,
-                                                        repeats: false)
-        let request = UNNotificationRequest(identifier: "newQuizNotification",
-                                            content: notificationContent,
-                                            trigger: trigger)
-        
-        userNotificationCenter.add(request) { (error) in
-            if let error = error {
-                print("Notification Error: ", error)
-                return
-            }
-        }
-    }
-
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        /*
-        // 1st OPTION:
-            NOTE: during presentation, notification messages will not show up for more than one user (would need a remote notification server for that)
-        
-        //  ADD THE NEXT TWO LINES OF CODE TO ADMIN CREATE QUIZ CODE
-        // 1 total new quizzes were created (example)
-        UIApplication.shared.applicationIconBadgeNumber += 1
-        // update technology type count (example)
-        K.latestNewQuizTypesAndCount["Java"]! += 1
-        //----------------------------------------------------------
-        
-        var message = "\(UIApplication.shared.applicationIconBadgeNumber) new quiz(zes) total.\n"
-        // add specific totals for new quizzes by technology type
-        for key in K.latestNewQuizTypesAndCount.keys {
-            if K.latestNewQuizTypesAndCount[key]! > 0 {
-                message.append("\(K.latestNewQuizTypesAndCount[key]!) new \(key).\n")
-            }
-        }
-        // notify user of new quizzes
         if UIApplication.shared.applicationIconBadgeNumber > 0 {
-            let dialogMessage = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
-            let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
-                // reset badge number to 0
-                //UIApplication.shared.applicationIconBadgeNumber = 0
-                // reset new quiz counts by technology to 0
-                for key in K.latestNewQuizTypesAndCount.keys {
-                    if K.latestNewQuizTypesAndCount[key]! > 0 {
-                        K.latestNewQuizTypesAndCount[key]! = 0
-                    }
-                }
-            })
-            dialogMessage.addAction(ok)
-            self.present(dialogMessage, animated: true, completion: nil)
-        }
-         END 1st OPTION ->|
-        */
-        
-        if UIApplication.shared.applicationIconBadgeNumber > 0 {
-            self.sendNotification()
+            LocalNotifications().sendNewQuizNotification()
         }
     }
     

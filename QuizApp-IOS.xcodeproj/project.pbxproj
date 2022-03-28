@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7F37DE1227EB895F0056A3A4 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F37DE1127EB895F0056A3A4 /* KeychainManager.swift */; };
+		7F5D83B227F152170063ED40 /* LocalNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D83B127F152160063ED40 /* LocalNotifications.swift */; };
 		7F65178F27DFB78F008C635E /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F65178E27DFB78F008C635E /* Helpers.swift */; };
 		7F65179327DFB7CE008C635E /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F65179227DFB7CE008C635E /* LoadingViewController.swift */; };
 		7F65179927DFCD40008C635E /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F65179827DFCD40008C635E /* Utilities.swift */; };
@@ -63,6 +64,7 @@
 
 /* Begin PBXFileReference section */
 		7F37DE1127EB895F0056A3A4 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		7F5D83B127F152160063ED40 /* LocalNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotifications.swift; sourceTree = "<group>"; };
 		7F65178E27DFB78F008C635E /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		7F65179227DFB7CE008C635E /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		7F65179827DFCD40008C635E /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				7F65178E27DFB78F008C635E /* Helpers.swift */,
 				7F65179827DFCD40008C635E /* Utilities.swift */,
 				7F6517A227DFE970008C635E /* Constants.swift */,
+				7F5D83B127F152160063ED40 /* LocalNotifications.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				9A34AB4A27EC9D4200F5DA20 /* ViewRankingByTechTableViewCell.swift in Sources */,
 				7F65183327E37A2F008C635E /* UserHomeViewController.swift in Sources */,
 				84A5DB1627E4E60D00AFD467 /* TechnologyModel.swift in Sources */,
+				7F5D83B227F152170063ED40 /* LocalNotifications.swift in Sources */,
 				7F65183827E3849D008C635E /* PresenterManager.swift in Sources */,
 				84A5DB1527E4E60D00AFD467 /* ScoreBoardModels.swift in Sources */,
 				7F65195627E91DAB008C635E /* UserSessionManager.swift in Sources */,
