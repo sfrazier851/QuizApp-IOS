@@ -64,27 +64,12 @@ class UserHomeViewController: UIViewController {
         
         welcomeUserLabel.text = "Welcome, \(String(describing: LoginPort.user!.UserName!))."
         
-        
-        //  ADD THE NEXT LINES OF CODE TO ADMIN "on create quiz button tapped function" and adjust the last line for the specific type of quiz created
-        // set app icon badge number to 0
-        UIApplication.shared.applicationIconBadgeNumber = 0
-        // reset new quiz counts by technology to 0
-        for key in K.latestNewQuizTypesAndCount.keys {
-            if K.latestNewQuizTypesAndCount[key]! > 0 {
-                K.latestNewQuizTypesAndCount[key]! = 0
-            }
-        }
-        // 1 total new quizzes were created (example)
-        UIApplication.shared.applicationIconBadgeNumber += 1
-        // update technology type count (example)
-        K.latestNewQuizTypesAndCount["Java"]! += 1
-        //----------------------------------------------------------
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if UIApplication.shared.applicationIconBadgeNumber > 0 {
+        if UserDefaults.standard.integer(forKey: K.UserDefaults.appIconBadgeCount) > 0 {
             LocalNotifications().sendNewQuizNotification()
         }
     }
@@ -196,6 +181,20 @@ class UserHomeViewController: UIViewController {
     
     
     @IBAction func showRankingsPage(_ sender: UIButton) {
+        
+        //  ADD THE NEXT LINES OF CODE TO ADMIN "on create quiz button tapped function" and adjust the next to last line for the specific type of quiz created
+        // get user default values for app icon badge count
+        var appIconBadgeCount = UserDefaults.standard.integer(forKey: K.UserDefaults.appIconBadgeCount)
+        // get dictionary for ["Java":0,"iOS":0,"Android":0] from user defaults (values might not be 0)
+        var latestNewQuizTypesAndCount = UserDefaults.standard.object(forKey: K.UserDefaults.latestNewQuizAndTypesCount) as! [String:Int]
+        // 1 total new quizzes were created (example)
+        appIconBadgeCount += 1
+        UserDefaults.standard.set(appIconBadgeCount, forKey: K.UserDefaults.appIconBadgeCount)
+        // update technology type count (example)
+        latestNewQuizTypesAndCount["Java"]! += 1
+        UserDefaults.standard.set(latestNewQuizTypesAndCount, forKey: K.UserDefaults.latestNewQuizAndTypesCount)
+        //----------------------------------------------------------
+        
         
         PresenterManager.shared.show(vc: .rankingByTech)
         
