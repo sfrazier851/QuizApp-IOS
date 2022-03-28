@@ -16,7 +16,8 @@ class prizeGiver{
         
     }
     func Update(){
-        if lastUpdate == Date() {return}//if we try to update on the same day we started return
+        let daysBetween=Calendar.current.dateComponents([.day], from: lastUpdate,to: Date()).day!
+        if daysBetween<1 {return}//if we try to update on the same day we started return
    
         while lastUpdate < Date(){
             lastUpdate=Calendar.current.date(byAdding: .day, value: 1, to: lastUpdate)!

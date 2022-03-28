@@ -1547,7 +1547,44 @@ var i = -1
                            }
             return rev
     }
-    
+    func getSumScoreOfUser(User_ID:Int, Technology_Title:String="")->Int{
+            var query=""
+                var stmt : OpaquePointer?
+            if Technology_Title != ""{
+                query = "select Sum(Score) from Review GROUP BY USER_ID, Technology_Title WHERE User_ID = ? AND Technology_Title = ?"
+            }else{
+                query = "select Sum(Score) from Review GROUP BY USER_ID WHERE User_ID = ?"
+            }
+        var rev: Int = 0
+
+                if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
+                    let err = String(cString: sqlite3_errmsg(db)!)
+                    print("There is an Error:",err)
+                    return rev
+                }
+            //bind
+            if sqlite3_bind_int(stmt, 1, Int32(User_ID)) != SQLITE_OK{
+                let err = String(cString: sqlite3_errmsg(db)!)
+                print("There is an Error:",err)
+                return rev
+            }
+            if Technology_Title != ""{
+                if sqlite3_bind_text(stmt, 2, (Technology_Title as NSString).utf8String, -1, nil) != SQLITE_OK{
+                         let err = String(cString: sqlite3_errmsg(db)!)
+                         print("There is an Erro bind1r:",err)
+                         return rev}
+                
+            }
+            
+            //step
+            //Appending Emails to Array
+                while(sqlite3_step(stmt) == SQLITE_ROW){
+                                        rev = Int(sqlite3_column_int(stmt, 0))
+
+                               
+                               }
+                return rev
+        }
     func getTacRankOfUser(Technology_Title:String, User_ID:Int)->Int{
         var query: String
         if Technology_Title == "" {
@@ -1567,30 +1604,20 @@ var i = -1
                     return rev
                 }
             //bind
-//        if sqlite3_bind_text(stmt, 1, (Technology_Title as NSString).utf8String, -1, nil) != SQLITE_OK{
-//            let err = String(cString: sqlite3_errmsg(db)!)
-//            print("There is an Error:",err)
-//            return rev}
-//        if Technology_Title != ""{
-//        if sqlite3_bind_int(stmt, 2, Int32(User_ID)) != SQLITE_OK{
-//            let err = String(cString: sqlite3_errmsg(db)!)
-//            print("There is an Error:",err)
-//            return rev
-//        }
-//
-//        }
         
-        if sqlite3_bind_int(stmt, 1, Int32(User_ID)) != SQLITE_OK{
+	if sqlite3_bind_int(stmt, 1, Int32(User_ID)) != SQLITE_OK{
+
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
             return rev
+
         }
-        
+
         if Technology_Title != ""{
-
-
+      
             if sqlite3_bind_text(stmt, 2, (Technology_Title as NSString).utf8String, -1, nil) != SQLITE_OK{
-                let err = String(cString: sqlite3_errmsg(db)!)
+            
+	    	let err = String(cString: sqlite3_errmsg(db)!)
                 print("There is an Error:",err)
                 return rev
                 
@@ -1656,7 +1683,7 @@ var i = -1
     }
     
     func getTacRankOfUser(Technology_Title:String, User_ID:Int, Date:String)->Int{
-            let query = "SELECT Rank FROM (SELECT User_ID, DENSE_RANK() OVER (ORDER BY Score) as Rank FROM ScoreBoard WHERE Technology_Title = ? AND TakenDate = ? ) WHERE User_ID = ?"
+            let query = "SELECT Rank FROM (SELECT User_ID, DENSE_RANK() OVER (PARTITION By Technology_Title ORDER BY Score) as Rank FROM ScoreBoard WHERE Technology_Title = ? AND TakenDate = ? ) WHERE User_ID = ?"
                 var stmt : OpaquePointer?
         var rev = 999999
 
@@ -1688,7 +1715,7 @@ var i = -1
         }
     
     func getQuizRankOfUser(Quiz_ID:Int, User_ID:Int)->Int{
-            let query = "SELECT Rank FROM(DENSE_RANK() OVER (ORDER BY Score) Rank WHERE Quiz_ID = ? ) WHERE User_ID = ?"
+            let query = "SELECT Rank FROM(DENSE_RANK() OVER (PARTITION By Quiz_ID ORDER BY Score) Rank WHERE Quiz_ID = ? ) WHERE User_ID = ?"
                 var stmt : OpaquePointer?
         var rev = 9999999999999999
 

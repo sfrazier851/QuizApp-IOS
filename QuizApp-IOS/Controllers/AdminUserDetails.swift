@@ -40,10 +40,6 @@ class AdminUserDetails: UIViewController {
         loadViewIfNeeded()
         UserName.text = user!.UserName
         
-//        var SM = [ScoreBoardModels]()
-//        let day:String = Utilities.formatDate(date: Date())
-//        SM = DBCRUD.initDBCRUD.getTacRankDay(Technology_Title: page, Date: day, Limit: 10)
-        
         var asc = String(DBCRUD.initDBCRUD.getTacRankOfUser(Technology_Title: "Android", User_ID: user!.ID!))
         var isc = String(DBCRUD.initDBCRUD.getTacRankOfUser(Technology_Title: "IOS", User_ID: user!.ID!))
         var jsc = String(DBCRUD.initDBCRUD.getTacRankOfUser(Technology_Title: "Java", User_ID: user!.ID!))
