@@ -54,6 +54,7 @@
 		9AB2C3D227DC6E0100B8E171 /* IOSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2C3D127DC6E0100B8E171 /* IOSViewController.swift */; };
 		9AB2C3D427DC6E1500B8E171 /* AndroidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2C3D327DC6E1500B8E171 /* AndroidViewController.swift */; };
 		9AEDEB9527EAC6DA00F82499 /* ViewRankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEDEB9427EAC6DA00F82499 /* ViewRankingViewController.swift */; };
+		C26B848027F1994800D4CFED /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26B847F27F1994800D4CFED /* Users.swift */; };
 		C2E3986027EDC2FB00F6F151 /* AdminHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E3985F27EDC2FB00F6F151 /* AdminHomeViewController.swift */; };
 		C2E3986227EDD37100F6F151 /* AdminUsersTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E3986127EDD37100F6F151 /* AdminUsersTableTableViewController.swift */; };
 		C2E3986427EDD4D400F6F151 /* AdminUserDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E3986327EDD4D400F6F151 /* AdminUserDetails.swift */; };
@@ -111,6 +112,7 @@
 		9AB2C3D127DC6E0100B8E171 /* IOSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSViewController.swift; sourceTree = "<group>"; };
 		9AB2C3D327DC6E1500B8E171 /* AndroidViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AndroidViewController.swift; sourceTree = "<group>"; };
 		9AEDEB9427EAC6DA00F82499 /* ViewRankingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewRankingViewController.swift; path = "QuizApp-IOS/Views/ViewRankingViewController.swift"; sourceTree = SOURCE_ROOT; };
+		C26B847F27F1994800D4CFED /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		C2E3985F27EDC2FB00F6F151 /* AdminHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminHomeViewController.swift; sourceTree = "<group>"; };
 		C2E3986127EDD37100F6F151 /* AdminUsersTableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminUsersTableTableViewController.swift; sourceTree = "<group>"; };
 		C2E3986327EDD4D400F6F151 /* AdminUserDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminUserDetails.swift; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 				C2E3986327EDD4D400F6F151 /* AdminUserDetails.swift */,
 				C2E3986527EDDCD500F6F151 /* Chirabi.swift */,
 				C2E3986927EE138B00F6F151 /* AdminTestMaker.swift */,
+				C26B847F27F1994800D4CFED /* Users.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 				9AB2C3B527DC62D300B8E171 /* SceneDelegate.swift in Sources */,
 				7F65185227E50179008C635E /* SelectQuizCollectionViewCell.swift in Sources */,
 				84A5DB1427E4E60D00AFD467 /* ReviewModels.swift in Sources */,
+				C26B848027F1994800D4CFED /* Users.swift in Sources */,
 				9AB2C3D427DC6E1500B8E171 /* AndroidViewController.swift in Sources */,
 				7F6517A327DFE970008C635E /* Constants.swift in Sources */,
 				C2E3986227EDD37100F6F151 /* AdminUsersTableTableViewController.swift in Sources */,

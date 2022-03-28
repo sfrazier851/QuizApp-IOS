@@ -12,40 +12,31 @@ protocol ChibiSelectionDelegate: AnyObject
     func ChibiSelected(_ NextChibi: Chirabi)
 }
 
+protocol UserSelectionDelegate: AnyObject
+{
+    func UserSelected(_ NextUser: User)
+}
+
 class AdminUsersTableTableViewController: UITableViewController {
 
-    weak var delegate: ChibiSelectionDelegate?
+    weak var delegate: UserSelectionDelegate?
     
-    let Chibi =
-    [
-        Chirabi(Name: "Powder", BIO: "A Timid yet Prodigeous Chirabi", At: .Ragnarok),
-        Chirabi(Name: "Asriel", BIO: "A Highly Skilled Chirabi", At: .Celestial),
-        Chirabi(Name: "Kilo", BIO: "Leader of the Chirabi", At: .Hyper),
-        Chirabi(Name: "Cataclysm", BIO: "An Interdimensional Warrior", At: .Cataclysm),
-        Chirabi(Name: "Missero", BIO: "Founder of the AAK", At: .Hyper),
-        Chirabi(Name: "Fortitude", BIO: "Strategic Genius", At: .Weapon),
-        Chirabi(Name: "Ruby", BIO: "A Trainee with unparalleled Potential", At: .Chaos),
-        Chirabi(Name: "Cinnamon", BIO: "Trainee with a unique take on life", At: .Emotion),
-        Chirabi(Name: "Juno", BIO: "Trainee who's brilliant but lazy", At: .Force),
-        Chirabi(Name: "Max", BIO: "Loner of a Trainee", At: .Aura)
-    ]
-    
+    var Users: Array<User> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        // Set up Users From Database
+        
+        
+        
     }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return Chibi.count
+        return Users.count
     }
 
     
@@ -54,8 +45,8 @@ class AdminUsersTableTableViewController: UITableViewController {
 
         // Configure the cell...
 
-        let chibi = Chibi[indexPath.row]
-        cell.textLabel?.text = chibi.name
+        let user = Users[indexPath.row]
+        cell.textLabel?.text = user.Name
         
         return cell
     }
@@ -63,8 +54,19 @@ class AdminUsersTableTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        let selectedOption = Chibi[indexPath.row]
-        delegate?.ChibiSelected(selectedOption)
+        let selectedOption = Users[indexPath.row]
+        delegate?.UserSelected(selectedOption)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if (segue.identifier == "ShowUserDetail")
+        {
+            let detailViewController = segue.destination as! AdminUserDetails
+            let myIndexPath = self.tableView.indexPathForSelectedRow!
+            let row = myIndexPath.row
+            detailViewController.user = Users[row]
+        }
     }
     
     /*
