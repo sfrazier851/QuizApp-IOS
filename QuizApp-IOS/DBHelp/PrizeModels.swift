@@ -35,6 +35,14 @@ class Prize{
         self.User_ID=User_ID
         
     }
+    init(GivenDate:String, User_ID:Int, PrizeType:Int, value:Int){
+        
+        self.GivenDate=GivenDate
+        self.PrizeType=PrizeType
+        self.User_ID=User_ID
+        self.value=value
+        
+    }
     init(GivenDate:String, User_ID:Int, PrizeType:Int){
         self.GivenDate=GivenDate
         self.PrizeType=PrizeType

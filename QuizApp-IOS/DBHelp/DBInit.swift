@@ -111,6 +111,8 @@ initTech()
         let u3=UserModels(UserName: "BlockedUser", Password: "123Password!", DOB: "June 2, 1994", admin: false, subriction: 0, Status: "BLOCKED", First: "This Guy", Last: "Who shall not be named", email: ["block@gmail.com"])
         let u4=UserModels(UserName: "guest2", Password: "123Password!", DOB: "June 2, 1994", admin: false, subriction:1, Status: "", First: "3", Last: "3", email: ["3@gmail.com"])
         let u5=UserModels(UserName: "guest", Password: "123Password!", DOB: "June 2, 1994", admin: false, subriction:1, Status: "", First: "4", Last: "4", email: ["4@gmail.com"])
+        let u6=UserModels(UserName: "guest", Password: "123Password!", DOB: "June 2, 1994", admin: false, subriction:1, Status: "", First: "5", Last: "5", email: ["5@gmail.com"])
+        let u7=UserModels(UserName: "guest", Password: "123Password!", DOB: "June 2, 1994", admin: false, subriction:1, Status: "", First: "6", Last: "6", email: ["6@gmail.com"])
         if !DBCRUD.initDBCRUD.createUserWithUserModal(us: u1){
             print("error creating guest")
             return
@@ -121,6 +123,16 @@ initTech()
         }
         
         if !DBCRUD.initDBCRUD.createUserWithUserModal(us: u5){
+            print("error creating block")
+            return
+        }
+        
+        if !DBCRUD.initDBCRUD.createUserWithUserModal(us: u6){
+            print("error creating block")
+            return
+        }
+        
+        if !DBCRUD.initDBCRUD.createUserWithUserModal(us: u7){
             print("error creating block")
             return
         }
@@ -226,7 +238,7 @@ initTech()
         var today =  Calendar.current.date(byAdding: dateComp, to: Date())!
         let Technology = ["Java","IOS","Andriod"]
         while today < Date(){
-            for x in (1...3){
+            for x in (1...5){
                 for y in (1...3){
                     DBCRUD.initDBCRUD.createScore(r:ScoreBoardModels(Score: Int.random(in:1 ... 135), Quiz_ID: y, User_ID: x, Technology_Title: Technology[y-1], TakenDate: Utilities.formatDate(date: today)))
                 
