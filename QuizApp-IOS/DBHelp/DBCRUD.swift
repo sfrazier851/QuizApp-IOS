@@ -1,9 +1,13 @@
-//
-//  DBCRUD.swift
-//  QuizApp-IOS
-//
-//  Created by admin on 3/16/22.
-//
+
+//############################
+//Title:DBCRUD
+//Purpose:To contain all CRUD functionality
+//Author:Andrew Malmstead
+//Date: 3/28/2022
+/*Notes:
+
+*/
+//#############################
 
 import Foundation
 import SQLite3
@@ -1713,12 +1717,18 @@ var i = -1
                     rev = Int(sqlite3_column_int(stmt, 0))              }
                 return rev
         }
-    
+    /*
+     *Purpose: To rank the rank of a user in a particular quiz
+     *Methodology: Takes the Quiz and User ID then bind it to the clause of the querry. The querry will group all the quizes and in each group the ranking will start there base
+     *on the score then from this we select the rank for a given user.
+     *
+     */
     func getQuizRankOfUser(Quiz_ID:Int, User_ID:Int)->Int{
             let query = "SELECT Rank FROM(DENSE_RANK() OVER (PARTITION By Quiz_ID ORDER BY Score) Rank WHERE Quiz_ID = ? ) WHERE User_ID = ?"
                 var stmt : OpaquePointer?
+        //If remained the same there is an error.
         var rev = 9999999999999999
-
+                //prepare
                 if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
                     let err = String(cString: sqlite3_errmsg(db)!)
                     print("There is an Error prepare:",err)
@@ -1736,12 +1746,14 @@ var i = -1
             return rev
         }
             //step
-            //Appending Emails to Array
                 if(sqlite3_step(stmt) == SQLITE_ROW){
                     rev = Int(sqlite3_column_int(stmt, 0)) }
                 return rev
         }
-
+    /*
+     *Purpose: To get all the scoremodels for a particular quiz
+     *Methodology: The function takes the quiz ID to be bind to a que that select the whole row and encode it as a ScoreBoard models then append each row into an array that wil be return
+     */
     func getScoreOfQuiz( Quiz_ID:Int)->[ScoreBoardModels]{
             let query = "select * from Review WHERE Quiz_ID = ?"
                 var stmt : OpaquePointer?
@@ -1760,13 +1772,16 @@ var i = -1
             return rev
         }
             //step
-            //Appending Emails to Array
                 if(sqlite3_step(stmt) == SQLITE_ROW){
+                    //append
                     rev .append( ScoreBoardModels(Score: Int(sqlite3_column_int(stmt, 0)), Quiz_ID:Int( sqlite3_column_int(stmt, 1)), User_ID: Int(sqlite3_column_int(stmt, 2)), Technology_Title: String(cString:sqlite3_column_text(stmt, 3)), TakenDate: String(cString:sqlite3_column_text(stmt, 4))))
                     
                 }
                 return rev
-        }
+        /*
+         *Purpose: To get all the scoremodels for a particular Technology
+         *Methodology: The function takes the Technology title to be bind to a que that select the whole row and encode it as a ScoreBoard models then append each row into an array that wil be return
+         */
     func getScoreTchnologyQuiz(Technology_Title:String)->[ScoreBoardModels]{
             let query = "select * from Review WHERE Technology_Title = ?"
                 var stmt : OpaquePointer?
@@ -1854,3 +1869,4 @@ var i = -1
         }
 }
     
+}
