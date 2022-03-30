@@ -5,7 +5,10 @@
 //Author:Andrew Malmstead
 //Date: 3/28/2022
 /*Notes:
-
+&& = Create
+$$ = Read
+@@ = Update
+%% = Delete
 */
 //#############################
 
@@ -17,6 +20,11 @@ class DBCRUD{
 var db = DBInit.db
 //USER
         //create
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//Purpose: To create a user inside the database with a given User Modal
+/*Methodology: The function returns true if we were able to insert a user into the table, false otherwise on failure. It takes apart the user models properties
+and insert them into the values of the querry to thier respective column.
+*/
     func createUserWithUserModal(us: UserModels) -> Bool {
         var flag = true
         print("createUserWithUserModal",us.First!,EmailToUserID(NE: us.Email[0]))
@@ -29,7 +37,7 @@ var db = DBInit.db
             print("email already has user")
             flag = false
         }
-        //init template
+        //prepare
         let query = "INSERT INTO User (UserName, Password, Dob, admin, subcription, Status, First, Last) VALUES (?,?,?,?,?,?,?,?)"
             var stmt : OpaquePointer?
         if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
@@ -38,7 +46,7 @@ var db = DBInit.db
             flag = false
         }
         
-       
+       //bind
         if sqlite3_bind_text(stmt, 1, (us.UserName! as NSString).utf8String, -1, nil) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
@@ -82,12 +90,13 @@ var db = DBInit.db
             flag = false
         }
 
-        
+        //step
         if sqlite3_step(stmt) != SQLITE_DONE{
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error createUserWithUserModal step:",err)
             flag = false
         }
+        //assign all the email in the userModel to
         let id=UserCount()
         for a in us.Email{
             CreateEmail(ID: id, NE: a)
@@ -97,25 +106,34 @@ var db = DBInit.db
     }
     
 //read
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//Purpose: Returns the amount of users in the user table.
+/*Methodology:
+Uses a query to count all the rows in the user table
+*/
     func UserCount()->Int{
         var i = 0
         let query = "select COUNT() from User"
             var stmt : OpaquePointer?
-        
+        //prepare
             if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
                 let err = String(cString: sqlite3_errmsg(db)!)
                 print("There is an Error:",err)
                 return i
             }
+        //step
         if(sqlite3_step(stmt) == SQLITE_ROW){
              i = Int(sqlite3_column_int(stmt, 0))
         }
         return i
     }
+//Purpose:To return the password of a particular user with a given user ID
+/*Methodology: The fuction takes the User ID and binds it to a query that select the password in a given row
+*/
 func UserIDToPassword(id:Int) -> String{
     let query = "select Password from User WHERE ID = ?"
         var stmt : OpaquePointer?
-    
+    //prepare
         if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
@@ -130,17 +148,18 @@ func UserIDToPassword(id:Int) -> String{
     
     var password: String = ""
     //step
-    //Appending Emails to Array
         if(sqlite3_step(stmt) == SQLITE_ROW){
              password = String(cString: sqlite3_column_text(stmt, 0))
         }
         return password
-    
 }
+//Purpose:To return a user Model based on a given User ID
+/*Methodology: The given user ID is binded to the query where it selects a row in the user table. With the given row we break its columns into the user model contstructor
+*/
     func UserIDToUser(id:Int) -> UserModels{
         let query = "select * FROM User WHERE ID = ?"
         var stmt : OpaquePointer?
-        
+        // prepare
         if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
@@ -153,16 +172,18 @@ func UserIDToPassword(id:Int) -> String{
         return UserModels()
     }
         var user: UserModels?
+        //step
         if(sqlite3_step(stmt) == SQLITE_ROW){
             //get data
             let id = Int(sqlite3_column_int(stmt, 0))
-            
-            
             user = UserModels(ID: id, UserName: String(cString : sqlite3_column_text(stmt, 1)), Password: String(cString : sqlite3_column_text(stmt, 2)), DOB: String(cString : sqlite3_column_text(stmt, 3)), admin: Int(sqlite3_column_int(stmt, 4)) == 1, subriction: Int(sqlite3_column_int(stmt, 5)), Status: String(cString : sqlite3_column_text(stmt, 6)), First: String(cString : sqlite3_column_text(stmt, 7)), Last: String(cString : sqlite3_column_text(stmt, 8)), email: UserIDtoEmail(ID: id))
         }
         return user ?? UserModels()
         
     }
+    //Purpose:To return an array of user models that match all users inside the table
+/*Methodology: The query select everything in the user table then takes each row and breaks it columns into the user model constructor.
+*/
     func AllUser() -> [UserModels]{
         let query = "select * FROM User"
         var stmt : OpaquePointer?
@@ -184,6 +205,9 @@ func UserIDToPassword(id:Int) -> String{
         return user
         
     }
+    //Purpose:To return the subscription state of a particular user
+/*Methodology:Take a user ID and binds it into the query. The query select the subcription with a particular User ID and returns it.
+*/
     func getUserSubscription(id:Int) -> Int {
         
         let query = "Select subcription FROM User WHERE ID = ?"
@@ -210,12 +234,14 @@ func UserIDToPassword(id:Int) -> String{
         return sub
         
     }
-    
+    //Purpose:To get the number of attempt a user scored in a day
+/*Methodology: The query counts the amount of rows in scoreboard that match a particular user ID on a particular day. -1 if there are none.
+*/
     func getNumberOfAttempts(id:Int, date: String) -> Int {
         
         let query = "Select COUNT(User_ID) as NumberOfAttempts FROM Scoreboard WHERE User_ID = ? AND TakenDate = ?"
         var stmt : OpaquePointer?
-        
+        //prepare
         if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
@@ -236,7 +262,7 @@ func UserIDToPassword(id:Int) -> String{
         }
         
         var num : Int = -1
-        
+        //step
         if(sqlite3_step(stmt) == SQLITE_ROW){
             //get data
             num = Int(sqlite3_column_int(stmt, 0))
@@ -248,15 +274,22 @@ func UserIDToPassword(id:Int) -> String{
 
     
     //Update
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    //Purpose:To update a user
+/*Methodology:The function takes a user model and uses its' User ID to determine which user to update. With the selected user the user model is broken into
+componets matching each of the column in a user row.
+*/
     func updateUser(us:UserModels){
 
         let query = "UPDATE User set UserName = ?, Password = ?, Dob = ?, admin = ?, subcription = ?, Status = ?, First = ?, Last = ? WHERE ID = ?"
         
     var stmt : OpaquePointer?
+    //prepare
         if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error updateUser prepare:",err)
         }
+        //bind
         if sqlite3_bind_text(stmt, 1, (us.UserName! as NSString).utf8String, -1, nil) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
@@ -299,29 +332,37 @@ func UserIDToPassword(id:Int) -> String{
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
         }
-    
+    //step
     if sqlite3_step(stmt) != SQLITE_DONE{
         let err = String(cString: sqlite3_errmsg(db)!)
         print("There is an Error:",err)
     
     }
+    //update the email list that match this user
         deleteAllEmail(NE: us.ID!)
         for i in us.Email{
             CreateEmail(ID: us.ID!, NE: i)}
      
     }
     //delete
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    //Purpose: To delete user with a given user ID
+/*Methodology: With the given ID we delete any entries in the user table 
+*/
     func DeleteUser(ID: Int){
         let query = "DELETE FROM User WHERE ID = ?"
     var stmt : OpaquePointer?
+    //prepare
         if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
         }
+        //bind
         if sqlite3_bind_int(stmt, 1, Int32(ID)) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
         }
+        //step
         if sqlite3_step(stmt) != SQLITE_DONE{
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
@@ -332,6 +373,9 @@ func UserIDToPassword(id:Int) -> String{
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Email
 //create
+//Purpose: To create a email inside the database with a given User Modal
+/*Methodology: It takes some User and Email to be inserted into the email table.
+*/
 func CreateEmail(ID:Int,NE:String){
     let query = "insert into Emails (Emails, User_ID) VALUES (?,?)"
     var stmt : OpaquePointer?
@@ -361,6 +405,10 @@ func CreateEmail(ID:Int,NE:String){
     
 }
 //read
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//Purpose:To return a User ID that matches to a specific email
+/*Methodology: With the given email, it is bind to the query to seach in the email table for a particular email and return the User ID that it matches too
+*/
 func EmailToUserID(NE:String) -> Int{
     let query = "select User_ID from Emails WHERE Emails = ?"
         var stmt : OpaquePointer?
@@ -386,8 +434,9 @@ func EmailToUserID(NE:String) -> Int{
     
         
 }
-    
-// check if a user already exists with a particular username
+//Purpose:check if a user already exists with a particular username
+/*Methodology:With the given User name we count all the rows in the user table that match it then we return the count
+*/
 func usernameIsUnique(username:String) -> Bool{
     let query = "select COUNT(*) from User WHERE UserName = '\(username)'"
         var stmt : OpaquePointer?
@@ -403,7 +452,9 @@ func usernameIsUnique(username:String) -> Bool{
         return count == 0
 }
     
-    
+    //Purpose:To return an array of emails for a given user
+/*Methodology:With the given user ID we select all emails that contain it then return them.
+*/
 func UserIDtoEmail(ID:Int)->[String]{
     var emails = [String]()
     let query = "SELECT Emails FROM Emails WHERE User_ID = ?"
@@ -426,14 +477,19 @@ func UserIDtoEmail(ID:Int)->[String]{
     return emails
 }
     //update
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//Purpose:To replace an old email with a new email.
+/*Methodology: The query uses the old email to select a row in the email table to update with the new given email
+*/
 func replaceEmail(NE:String,OE:String){
         let query = "UPDATE Emails set Email = ? WHERE Email = ?"
     var stmt : OpaquePointer?
-
+//prepare
     if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
         let err = String(cString: sqlite3_errmsg(db)!)
         print("There is an Error:",err)
     }
+    //bind
     if sqlite3_bind_text(stmt, 1, (NE as NSString).utf8String, -1, nil) != SQLITE_OK{
         let err = String(cString: sqlite3_errmsg(db)!)
         print("There is an Error:",err)
@@ -442,6 +498,7 @@ func replaceEmail(NE:String,OE:String){
         let err = String(cString: sqlite3_errmsg(db)!)
         print("There is an Error:",err)
     }
+    //step
     if sqlite3_step(stmt) != SQLITE_DONE{
         let err = String(cString: sqlite3_errmsg(db)!)
         print("There is an Error:",err)
@@ -449,17 +506,24 @@ func replaceEmail(NE:String,OE:String){
     }
     }
 //Delete
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//Purpose: To delete a particular email
+/*Methodology: The function uses the email in the query to select any rows in the email table to delete
+*/
 func deleteAEmail(NE:String){
     let query = "DELETE FROM Emails WHERE Email = ?"
 var stmt : OpaquePointer?
+//prepare
     if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
         let err = String(cString: sqlite3_errmsg(db)!)
         print("There is an Error:",err)
     }
+    //bind
     if sqlite3_bind_text(stmt, 1, (NE as NSString).utf8String, -1, nil) != SQLITE_OK{
         let err = String(cString: sqlite3_errmsg(db)!)
         print("There is an Error:",err)
     }
+    //step
     if sqlite3_step(stmt) != SQLITE_DONE{
         let err = String(cString: sqlite3_errmsg(db)!)
         print("There is an Error:",err)
@@ -467,6 +531,9 @@ var stmt : OpaquePointer?
     }
     
 }
+//Purpose:To delete all emails that are associated with a given User ID
+/*Methodology: The query takes the User ID to select all rows in the email table that matches each email to particular User for deletion
+*/
 func deleteAllEmail(NE:Int){
     print("delete all email")
     let query = "DELETE FROM Emails WHERE User_ID = ?"
@@ -490,17 +557,21 @@ var stmt : OpaquePointer?
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //REVIEW
 //create
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//Purpose:To take a Review model and insert a review into the table 
+/*Methodology:With the given Review model we break into each of its properties that match each column of the review row then we insert it into the database
+*/
     func createReview(r:ReviewModels) -> Bool {
         
         let query = "INSERT INTO Reviews (rate, comments, User_ID) Values(?,?,?)"
         var stmt : OpaquePointer?
-
+//prepare
         if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
             return false
         }
-        
+        //bind
         if sqlite3_bind_int(stmt, 1, Int32(r.rate)) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
@@ -519,7 +590,7 @@ var stmt : OpaquePointer?
             print("There is an Error:",err)
             return false
         }
-        
+        //step
         if sqlite3_step(stmt) != SQLITE_DONE{
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
@@ -530,6 +601,11 @@ var stmt : OpaquePointer?
         
     }
 //read
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+    //Purpose:To return the number of reviews
+/*Methodology: the function counts each row in the reviews table and returns the count
+*/
+
     func ReviewCount()->Int{
         var i = 0
         let query = "select COUNT() from Review"
@@ -545,6 +621,10 @@ var stmt : OpaquePointer?
         }
         return i
     }
+    //Purpose:to return a review model thaat matches its ID
+/*Methodology:With the given ID select a row from the review table that match it and break its column into properties for the review model
+*/
+
     func getReview(id:Int)->ReviewModels{
         let query = "select * from Review WHERE idReviews = ?"
             var stmt : OpaquePointer?
@@ -568,7 +648,9 @@ var stmt : OpaquePointer?
             }
             return rev
     }
-    
+    //Purpose: To return an array of reviews that associate with a given User ID
+/*Methodology:With the given User ID select all rows in the review table. append each row as a review model into an array and return it.
+*/
     func getUserReview(id:Int)->[ReviewModels]{
         let query = "select * from Review WHERE User_ID = ?"
         var ReviewArray = [ReviewModels]()
@@ -595,14 +677,20 @@ var stmt : OpaquePointer?
             return ReviewArray
     }
 //update
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//Purpose: To update a review with a given review model
+/*Methodology: With the given Review model we use it's ID property to select the row of review that it associates with it. With the row we update it column with 
+the models properties
+*/
     func updateReview(r:ReviewModels){
         let query = "UPDATE Review set rate = ?, comments = ? WHERE idReviews = ?"
     var stmt : OpaquePointer?
-
+//prepare
     if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
         let err = String(cString: sqlite3_errmsg(db)!)
         print("There is an Error:",err)
     }
+    //bind
         if sqlite3_bind_int(stmt, 1, Int32(r.rate)) != SQLITE_OK{
         let err = String(cString: sqlite3_errmsg(db)!)
         print("There is an Error:",err)
@@ -615,6 +703,7 @@ var stmt : OpaquePointer?
         let err = String(cString: sqlite3_errmsg(db)!)
         print("There is an Error:",err)
     }
+    //step
     if sqlite3_step(stmt) != SQLITE_DONE{
         let err = String(cString: sqlite3_errmsg(db)!)
         print("There is an Error:",err)
@@ -623,6 +712,10 @@ var stmt : OpaquePointer?
         
     }
 //delete
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   //Purpose:To delete all review that are associated with a given user ID
+/*Methodology:It takes the user ID and select the rows that associate with that user ID for deletion.
+*/
     func deleteAllUserReviews(NE:Int){
         let query = "DELETE FROM Reviews WHERE User_ID = ?"
     var stmt : OpaquePointer?
@@ -642,6 +735,9 @@ var stmt : OpaquePointer?
         }
         
     }
+    //Purpose: To delete a particular review
+/*Methodology:It take the review ID and uses it to select any rows with that given review ID to delete
+*/
     func deleteAReview(NE:Int){
         let query = "DELETE FROM Reviews WHERE idReviews = ?"
     var stmt : OpaquePointer?
@@ -664,6 +760,10 @@ var stmt : OpaquePointer?
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Technology
     //create
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//Purpose: To create a technology in the table
+/*Methodology:The function takes a string to insert into the technology table
+*/
     func createTechnology(r:String){
         
             let query = "INSERT INTO Technology (Title) Values(?)"
@@ -686,45 +786,25 @@ var stmt : OpaquePointer?
         }
            
     }
-   /* //read
-    //update
-    func updateTechology(NE:String,OE:String){
-        
-    }
-    //delete
-    func deleteATechnology(NE:Int){
-        let query = "DELETE FROM Reviews WHERE ID = ?"
-    var stmt : OpaquePointer?
-        if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
-            let err = String(cString: sqlite3_errmsg(db)!)
-            print("There is an Error:",err)
-        }
-        
-        if sqlite3_bind_int(stmt, 1, Int32(NE)) != SQLITE_OK{
-            let err = String(cString: sqlite3_errmsg(db)!)
-            print("There is an Error:",err)
-        }
-        if sqlite3_step(stmt) != SQLITE_DONE{
-            let err = String(cString: sqlite3_errmsg(db)!)
-            print("There is an Error:",err)
-        
-        }
-        
-    }*/
-    
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //QUIZ
     //create
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+//Purpose: To insert a quiz row into the quiz table that match a given quiz model
+/*Methodology: With the given properties from the quiz model we insert them into the columns that match it and insert it into the table
+*/
         func createQuiz(r:QuizModels)->Int{
             let query = "INSERT INTO Quiz (Title, Technology_Title) Values (?,?)"
             var stmt : OpaquePointer?
 let i = -1
+//prepare
                 if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
                     let err = String(cString: sqlite3_errmsg(db)!)
                     print("There is an Error:",err)
                     return i
                 }
-            
+         //bind   
             if sqlite3_bind_text(stmt, 1, (r.Title as NSString).utf8String, -1, nil) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
@@ -734,7 +814,7 @@ let i = -1
                 let err = String(cString: sqlite3_errmsg(db)!)
                 print("There is an Error:",err)
                 return i }
-            
+            //step
             if sqlite3_step(stmt) != SQLITE_DONE{
                 let err = String(cString: sqlite3_errmsg(db)!)
                 print("There is an Error:",err)
@@ -743,11 +823,14 @@ let i = -1
             return Int(sqlite3_last_insert_rowid(db))
         }
     //read
-      
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$      
+       //Purpose: To get a quiz in the quiz table and construct it into a quiz model
+/*Methodology: With the given quiz ID we select a row that get broken into columns that are used in the quiz model constructor.
+*/
         func getQuiz(id:Int)->QuizModels{
             let query = "select * from Quiz WHERE ID = ?"
                 var stmt : OpaquePointer?
-            
+            //prepare
                 if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
                     let err = String(cString: sqlite3_errmsg(db)!)
                     print("There is an Error:",err)
@@ -761,12 +844,16 @@ let i = -1
             }
             var rev: QuizModels=QuizModels()
             //step
-            //Appending Emails to Array
                 if(sqlite3_step(stmt) == SQLITE_ROW){
                     rev = QuizModels(Title: String(cString: sqlite3_column_text(stmt, 0)),  ID: Int(sqlite3_column_int(stmt, 1)), Technology_Title: String(cString: sqlite3_column_text(stmt, 2)))
                 }
                 return rev
         }
+        //Purpose: To return an array of quiz that corrspond to a particular technology
+/*Methodology: With the given Technology title get select all rows in the quiz table that has that technology and use the quiz model constructor on each row to append
+into an array
+*/
+
     func getQuizsFromTechnology_Title(id:String)->[QuizModels]{
         let query = "select * from Quiz WHERE Technology_Title = ?"
             var stmt : OpaquePointer?
@@ -791,10 +878,14 @@ let i = -1
             }
             return rev
     }
+    //Purpose:To return a quiz model with a given title
+/*Methodology:With the title given a row is selected that matches it in the quiz table then puts it into the quiz constroctor to return a quiz model
+*/
+
       func getQuizByTitle(title:String, Technology_Title:String)->QuizModels?{
             let query = "select * from Quiz WHERE Title = ? AND Technology_Title = ?"
                 var stmt : OpaquePointer?
-            
+            //prepare
                 if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
                     let err = String(cString: sqlite3_errmsg(db)!)
                     print("There is an Error:",err)
@@ -813,22 +904,25 @@ let i = -1
             }
             var rev: QuizModels=QuizModels()
             //step
-            //Appending Emails to Array
                 if(sqlite3_step(stmt) == SQLITE_ROW){
                     rev = QuizModels(Title: String(cString: sqlite3_column_text(stmt, 0)),  ID: Int(sqlite3_column_int(stmt, 1)), Technology_Title: String(cString: sqlite3_column_text(stmt, 2)))
                 }
                 return rev
         }
     //update
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//Purpose:To update a quiz with a given quiz model
+/*Methodology: With the quiz model the id is extracted to select the quiz row in the quiz table to update its columns with the models properties
+*/
         func updateQuiz(r:QuizModels){
             let query = "UPDATE Quiz set Title = ?, Technology_Title = ? WHERE ID = ?"
         var stmt : OpaquePointer?
-
+        //prepare
         if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
         }
-            
+         //bind   
             if sqlite3_bind_text(stmt, 1, (r.Title as NSString).utf8String, -1, nil) != SQLITE_OK{
                 let err = String(cString: sqlite3_errmsg(db)!)
                 print("There is an Error:",err)
@@ -841,7 +935,7 @@ let i = -1
             if sqlite3_bind_int(stmt, 3, Int32(r.ID!)) != SQLITE_OK{ let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
         }
-            
+            //step
         if sqlite3_step(stmt) != SQLITE_DONE{
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
@@ -850,7 +944,10 @@ let i = -1
             
         }
     //delete
-        
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%        
+//Purpose: To delete a quiz with a particular quiz ID
+/*Methodology: With the given quiz ID we delete any row in the quiz table that has that quiz ID
+*/
         func deleteAQuiz(NE:Int){
             let query = "DELETE FROM Quiz WHERE ID = ?"
         var stmt : OpaquePointer?
@@ -873,6 +970,11 @@ let i = -1
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Questions
     //create
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+        //Purpose:To insert a new question and return its ID otherwise a negative is return to state it wasn't inserted
+/*Methodology:With the given Question model that break its properties into columns for the question row to be inserted into the question table
+*/
+
         func createQuestion(r:QuestionModels)->Int{
             let query = "INSERT INTO Questions (Question, Awnser, Quiz_ID) Values (?,?,?)"
             var stmt : OpaquePointer?
@@ -907,11 +1009,15 @@ var i = -1
             return i
         }
     //read
-      
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$      
+        //Purpose: With the given question ID return a constructed question model
+/*Methodology:With the given question ID select a question row that contains it and break its columns into properties for the question model constructor
+*/
         func getQuestion(id:Int)->QuestionModels{
             let query = "select * from Questions WHERE ID = ?"
                 var stmt : OpaquePointer?
             var rev: QuestionModels=QuestionModels()
+            //prepare
                 if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
                     let err = String(cString: sqlite3_errmsg(db)!)
                     print("There is an Error:",err)
@@ -925,17 +1031,19 @@ var i = -1
             }
             
             //step
-            //Appending Emails to Array
                 if(sqlite3_step(stmt) == SQLITE_ROW){
                     rev = QuestionModels(Question: String(cString: sqlite3_column_text(stmt, 0)), Awnser: String(cString: sqlite3_column_text(stmt, 1)), Quiz_ID: Int(sqlite3_column_int(stmt, 2)), ID: Int(sqlite3_column_int(stmt, 3)))
                     }
                 return rev
         }
-    
+    //Purpose: With the given question Title return a constructed question model
+/*Methodology:With the given question Title select a question row that contains it and break its columns into properties for the question model constructor
+*/
     func getQuestionByTitle(id:String)->QuestionModels{
         let query = "select * from Questions WHERE Question = ?"
             var stmt : OpaquePointer?
         var rev: QuestionModels=QuestionModels()
+        //prepare
             if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
                 let err = String(cString: sqlite3_errmsg(db)!)
                 print("There is an Error:",err)
@@ -948,13 +1056,15 @@ var i = -1
     }
         
         //step
-        //Appending Emails to Array
             if(sqlite3_step(stmt) == SQLITE_ROW){
                 rev = QuestionModels(Question: String(cString: sqlite3_column_text(stmt, 0)), Awnser: String(cString: sqlite3_column_text(stmt, 1)), Quiz_ID: Int(sqlite3_column_int(stmt, 2)), ID: Int(sqlite3_column_int(stmt, 3)))
                 }
             return rev
     }
-
+  //Purpose: With the given quiz ID return a constructed question array model
+/*Methodology:With the given quiz select all question row that contains it and break thier columns into properties for the question model constructor then append them into
+an array
+*/
      func getQuestionsForQuiz(id:Int)->[QuestionModels]{
         let query = "select * from Questions WHERE Quiz_ID = ?"
             var stmt : OpaquePointer?
@@ -979,6 +1089,10 @@ var i = -1
             return rev
     }
     //update
+    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//Purpose: To update a question row with a question model
+/*Methodology:With the given question extracts its ID to select a question row that contains it. With the selected row update its columns with the properties of the model
+*/
         func updateQuestion(r:QuestionModels){
             let query = "UPDATE Questions set Question = ?, Awnser = ?, Quiz_ID = ? WHERE ID = ?"
         var stmt : OpaquePointer?
@@ -1012,7 +1126,10 @@ var i = -1
             
         }
     //delete
-        
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        //Purpose: To delete a particular question with a given ID
+/*Methodology: With the given question ID delete any question rows that have that question ID
+*/
         func DeleteAQuestion(NE:Int){
             let query = "DELETE FROM Questions WHERE ID = ?"
         var stmt : OpaquePointer?
@@ -1035,17 +1152,21 @@ var i = -1
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //choice
     //create
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//Purpose:Insert a choice with a given question ID
+/*Methodology: With the given choice and question ID insert it into the choice table
+*/
     func createChoice(Choice:String,ID:Int){
 
             let query = "INSERT INTO choices (choice, Questions_ID) Values (?,?)"
             var stmt : OpaquePointer?
-
+//prepare
                 if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
                     let err = String(cString: sqlite3_errmsg(db)!)
                     print("There is an Error:",err)
                     return
                 }
-            
+         //bind   
         if sqlite3_bind_text(stmt, 1, (Choice as NSString).utf8String, -1, nil) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
@@ -1054,7 +1175,7 @@ var i = -1
             if sqlite3_bind_int(stmt, 2, Int32(ID)) != SQLITE_OK{ let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
         }
-            
+        //step
             if sqlite3_step(stmt) != SQLITE_DONE{
                 let err = String(cString: sqlite3_errmsg(db)!)
                 print("There is an Error:",err)
@@ -1062,12 +1183,15 @@ var i = -1
             }
         }
     //read
-      
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+      //Purpose:To return all choices that are associated with a question
+/*Methodology: With the question ID select all choice row that contain that question ID and return them as an array.
+*/
     func getChoiceFromQuestionID(id:Int)->[String]{
         let query = "select * from choices WHERE Questions_ID = ?"
             var stmt : OpaquePointer?
         var rev: [String]=[String]()
-
+//prepare
             if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
                 let err = String(cString: sqlite3_errmsg(db)!)
                 print("There is an Error:",err)
@@ -1086,54 +1210,13 @@ var i = -1
             }
             return rev
     }
-    //update
-    func updateChoice(new:String,old:String){
-            let query = "UPDATE Choices set choices = ? WHERE choice = ?"
-        var stmt : OpaquePointer?
-
-        if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
-            let err = String(cString: sqlite3_errmsg(db)!)
-            print("There is an Error:",err)
-        }
-            
-        if sqlite3_bind_text(stmt, 1, (new as NSString).utf8String, -1, nil) != SQLITE_OK{
-                let err = String(cString: sqlite3_errmsg(db)!)
-                print("There is an Error:",err)
-            }
-            
-        if sqlite3_bind_text(stmt, 2, (old as NSString).utf8String, -1, nil) != SQLITE_OK{
-            let err = String(cString: sqlite3_errmsg(db)!)
-            print("There is an Error:",err)
-        }
-            
-        if sqlite3_step(stmt) != SQLITE_DONE{
-            let err = String(cString: sqlite3_errmsg(db)!)
-            print("There is an Error:",err)
-        
-        }
-            
-        }
+    
+    
     //delete
-        
-        func deleteAChoice(NE:String){
-            let query = "DELETE FROM choices WHERE choice = ?"
-        var stmt : OpaquePointer?
-            if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
-                let err = String(cString: sqlite3_errmsg(db)!)
-                print("There is an Error:",err)
-            }
-            
-            if sqlite3_bind_text(stmt, 1, (NE as NSString).utf8String, -1, nil) != SQLITE_OK{
-            let err = String(cString: sqlite3_errmsg(db)!)
-            print("There is an Error:",err)
-        }
-            if sqlite3_step(stmt) != SQLITE_DONE{
-                let err = String(cString: sqlite3_errmsg(db)!)
-                print("There is an Error:",err)
-            
-            }
-            
-        }
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    //Purpose:To delete all choices that are associated with a question ID
+/*Methodology:With the given question ID we delete all choice row that has that question ID
+*/
     func deleteQuestionsChoice(ID:Int){
         let query = "DELETE FROM choices WHERE Questions_ID = ?"
     var stmt : OpaquePointer?
@@ -1153,17 +1236,22 @@ var i = -1
     }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //PRIZE
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//Purpose: To insert a prize into the pirze table that match a particular prize model
+/*Methodology:It takes some prize model and break its properties into column to be inserted into a new row in prize table.
+*/
+
     //create
     func createPrize(prize:Prize){
             let query = "INSERT INTO Prizes (GivenDate, StartDate, EndDate, active, Value, Type, User_ID) Values (?,?,?,?,?,?,?)"
             var stmt : OpaquePointer?
-        
+        //Prepare
                 if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
                     let err = String(cString: sqlite3_errmsg(db)!)
                     print("There is an Error:",err)
                     return
                 }
-            
+            //bind
         if sqlite3_bind_text(stmt, 1, ( prize.GivenDate as NSString).utf8String, -1, nil) != SQLITE_OK{
             let err = String(cString: sqlite3_errmsg(db)!)
             print("There is an Error:",err)
@@ -1196,7 +1284,7 @@ var i = -1
         if sqlite3_bind_int(stmt, 7, Int32(prize.User_ID)) != SQLITE_OK{ let err = String(cString: sqlite3_errmsg(db)!)
         print("There is an Error:",err)
     }
-            
+            //step
             if sqlite3_step(stmt) != SQLITE_DONE{
                 let err = String(cString: sqlite3_errmsg(db)!)
                 print("There is an Error:",err)
@@ -1204,11 +1292,16 @@ var i = -1
             }
         }
     //read
+    //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+    
+//Purpose:To return a prize model that match a particular 
+/*Methodology:With the given prize ID get a row from the prize table with that prize ID and break it column into the prize model contstructor
+*/
     func getPrizeFromPrizeID(id:Int)->Prize{
         let query = "select * from Prizes WHERE idPrizes = ?"
             var stmt : OpaquePointer?
         var rev: Prize = Prize()
-
+//prepare
             if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
                 let err = String(cString: sqlite3_errmsg(db)!)
                 print("There is an Error:",err)
@@ -1221,37 +1314,15 @@ var i = -1
             return rev
     }
         //step
-        //Appending Emails to Array
             if(sqlite3_step(stmt) == SQLITE_ROW){
                 rev = Prize(idPrize: Int(sqlite3_column_int(stmt, 0)), GivenDate:String(cString:sqlite3_column_text(stmt, 1)) ,startDate: String(cString:sqlite3_column_text(stmt, 2)), EndaDate: String(cString:sqlite3_column_text(stmt, 3)), PrizeType: Int(sqlite3_column_int(stmt, 4)), User_ID: Int(sqlite3_column_int(stmt, 5)), active: Int(sqlite3_column_int(stmt, 6)),value: Int(sqlite3_column_int(stmt, 7)))
                 
             }
             return rev
     }
-    func getPrizeFromID(id:Int)->Prize{
-        let query = "select * from Prizes WHERE idPrizes = ?"
-            var stmt : OpaquePointer?
-        var rev: Prize = Prize()
-
-            if sqlite3_prepare(db, query, -2, &stmt, nil) != SQLITE_OK{
-                let err = String(cString: sqlite3_errmsg(db)!)
-                print("There is an Error:",err)
-                return rev
-            }
-        //bind
-        if sqlite3_bind_int(stmt, 1, Int32(id)) != SQLITE_OK{
-        let err = String(cString: sqlite3_errmsg(db)!)
-        print("There is an Error:",err)
-            return rev
-    }
-        //step
-        //Appending Emails to Array
-            if(sqlite3_step(stmt) == SQLITE_ROW){
-                rev = Prize(GivenDate:String(cString:sqlite3_column_text(stmt, 0)) ,startDate: String(cString:sqlite3_column_text(stmt, 1)), EndaDate: String(cString:sqlite3_column_text(stmt, 2)), PrizeType: Int(sqlite3_column_int(stmt, 3)), User_ID: Int(sqlite3_column_int(stmt, 4)), active: Int(sqlite3_column_int(stmt, 5)))
-                
-            }
-            return rev
-    }
+//Purpose:To return a prize model that match a particular 
+/*Methodology:With the given prize ID get a row from the prize table with that prize ID and break it column into the prize model contstructor
+*/
     func getPrizeFromUserID(id:Int)->[Prize]{
         let query = "select * from Prizes WHERE User_ID = ?"
             var stmt : OpaquePointer?
