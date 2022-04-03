@@ -1347,9 +1347,7 @@ an array
             }
             return rev
     }
-    //Purpose:To return an array prize model  
-/*Methodology:
-*/
+    
     func getPrizeFromUserIDinGivenDayByType(id:Int, type:Int=9, day:Date?=nil)->[Prize]{
         var query = "select * from Prizes WHERE User_ID = ?"
             var stmt : OpaquePointer?
