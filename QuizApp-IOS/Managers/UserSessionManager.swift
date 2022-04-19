@@ -7,6 +7,7 @@
 
 import Foundation
 
+// manage User's session for multiple login types
 final class UserSessionManager {
     //static let shared = SessionManager()
     private init() {}
@@ -26,10 +27,13 @@ final class UserSessionManager {
     static func createSession(loginType: loginType) {
         currentLoginType = loginType
         switch loginType {
+            // if user logs in via in-app login screen
             case .inApp:
+                // set user within db code provided global (loggedin) user object
                 loggedInUser = LoginPort.user!
+            // if user logs in via facebook login
             case .facebook:
-                
+                // if user screen name is saved in user defaults go to user home screen
                 if let userScreenName = UserDefaults.standard.string(forKey: K.UserDefaults.userScreenName) {
                     UserSessionManager.fbFirstName = userScreenName
                     PresenterManager.shared.show(vc: .userHome)
@@ -42,7 +46,7 @@ final class UserSessionManager {
                     let urlWithParams = URL(string: baseURL!.absoluteString + "?fields=first_name,email&access_token=\(fbAccessToken)")
                     let requestFirstName = URLRequest(url: urlWithParams!)
                                 
-                        
+                    // make request for fb user's first name
                     URLSession.shared.dataTask(with: requestFirstName) {
                         (data, response, error) in
 
@@ -50,7 +54,7 @@ final class UserSessionManager {
                             print("An error occurred.")
                             return
                         }
-                        
+                        // get json response payload as string
                         let receivedJsonString = String(decoding: data, as: UTF8.self)
                         
                         guard !receivedJsonString.isEmpty else {
@@ -58,11 +62,9 @@ final class UserSessionManager {
                             return
                         }
                         
+                        // get name and email from stringified json response
                         let receivedName = try! Utilities.convertToDictionary(from: receivedJsonString)!["first_name"]
                         let receivedEmail = try! Utilities.convertToDictionary(from: receivedJsonString)!["email"]
-                        
-                        //UserSessionManager.fbFirstName = receivedName!
-                        //UserDefaults.standard.set(receivedName!, forKey: K.UserDefaults.userScreenName)
                         
                         // check if facebook user is already in the database
                         if LoginPort.initLogin.login(S: receivedEmail!, PW: "facebook-user") == true {
@@ -80,10 +82,11 @@ final class UserSessionManager {
                             
                         } else {
                             // user is not already in database, create user
+                            // and log them in.
                             DBCRUD.initDBCRUD.createUserWithUserModal(us: UserModels(Email: receivedEmail!, Password: "facebook-user", UserName: receivedName!))
                             LoginPort.initLogin.login(S: receivedEmail!, PW: "facebook-user")
                         }
-                        
+                        // go to user home screen
                         DispatchQueue.main.async {
                             PresenterManager.shared.show(vc: .userHome)
                         }
@@ -95,6 +98,7 @@ final class UserSessionManager {
         }
     }
     
+    // return user screen name for each login/session type
     static func getUserScreenName() -> String {
         switch UserSessionManager.currentLoginType {
             case .inApp:
@@ -106,15 +110,15 @@ final class UserSessionManager {
         }
     }
     
+    // called on logout to clear session data
     static func endSession() {
-        print("SESSION")
-        print(UserSessionManager.currentLoginType)
         switch UserSessionManager.currentLoginType {
         case .inApp:
-            //LoginPort.initLogin.logout()
             PresenterManager.shared.show(vc: .login)
         case .facebook:
+            // remove access token from keychain
             KeychainManager.delete(service: K.Keychain.Facebook.service, account: K.Keychain.Facebook.account)
+            // remove user screen name from user defaults
             UserDefaults.standard.removeObject(forKey: K.UserDefaults.userScreenName)
             PresenterManager.shared.show(vc: .login)
         default:

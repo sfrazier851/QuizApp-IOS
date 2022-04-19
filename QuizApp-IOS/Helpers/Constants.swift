@@ -14,6 +14,7 @@ struct K {
     
     struct Keychain {
         struct Facebook {
+            // keychain currently only contains facebook access token
             static let service = "facebook"
             static let account = "facebook"
             static let kClass = ""

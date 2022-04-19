@@ -7,6 +7,8 @@
 
 import UIKit
 
+// Shows menu of quiz types, upgrade account and leaderboards.
+// displays user welcome message.
 class UserHomeViewController: UIViewController {
     
     @IBOutlet weak var welcomeUserLabel: UILabel!
@@ -34,7 +36,8 @@ class UserHomeViewController: UIViewController {
         super.viewDidLoad()
         setupCollectionView()
         setupPageControl()
-        //setupImageBackground()
+
+        // style buttons
         Utilities.styleHollowButton(logoutButton)
         Utilities.styleHollowButton(takeQuizButton)
         Utilities.styleHollowButton(feedbackButton)
@@ -47,11 +50,14 @@ class UserHomeViewController: UIViewController {
         upgradeAccountButton.tintColor = .white
         upgradeAccountButton.isHidden = true
         
+        // style leaderboards button
         Utilities.styleHollowButton(leaderBoardsButton)
         leaderBoardsButton.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         leaderBoardsButton.layer.borderWidth = 2
         leaderBoardsButton.layer.borderColor = K.Color.Blue.cgColor
         leaderBoardsButton.tintColor = .white
+        
+        // check for if user is subscribed to hide or show leaderboards or upgrade account buttons
         let userSub = DBCRUD.initDBCRUD.getUserSubscription(id: (LoginPort.user?.ID)!)
         if userSub == 1 {
             leaderBoardsButton.isHidden = true
@@ -59,7 +65,6 @@ class UserHomeViewController: UIViewController {
         } else {
             upgradeAccountButton.isHidden = true
           }
-        
         
         welcomeUserLabel.text = "Welcome, \(String(describing: LoginPort.user!.UserName!))."
         
@@ -93,22 +98,11 @@ class UserHomeViewController: UIViewController {
         quizTitleLabel.text = slide.title
     }
     
-    private func setupImageBackground() {
-        UIGraphicsBeginImageContext(self.view.frame.size)
-        UIImage(named: "mainBg.png")?.draw(in: self.view.bounds)
-
-        if let image = UIGraphicsGetImageFromCurrentImageContext(){
-            UIGraphicsEndImageContext()
-            self.view.backgroundColor = UIColor(patternImage: image)
-        }else{
-            UIGraphicsEndImageContext()
-            debugPrint("Image not available")
-         }
-    }
-    
+    // handle selecting quiz to take
     @IBAction func takeQuiz(_ sender: UIButton) {
         
         //CHECK SUBSCRIPTION
+        // if user is not subscribed to app, they have a limit of attempting 2 quizzes per day
         if DBCRUD.initDBCRUD.getNumberOfAttempts(id: (LoginPort.user?.ID!)!, date: Utilities.formatDate(date: Date())) >= 2 && K.user_subscription == 1 {
             
             let dialogMessage = UIAlertController(title: "Alert", message: "You already reached your daily maximum attempts. Upgrade to a paid subscription for unlimited attempts.", preferredStyle: .alert)
@@ -160,11 +154,10 @@ class UserHomeViewController: UIViewController {
             }
             // update subscription for user
             let u = LoginPort.user!
-            //print(u.UserName, u.Email)// confirm user is populated
             // set subscription for user to paid
             u.Subscript = 0
             K.user_subscription = 0
-            DBCRUD.initDBCRUD.updateUser(us: u)//currently getting error
+            DBCRUD.initDBCRUD.updateUser(us: u)
         })
         dialogMessage.addAction(ok)
         self.present(dialogMessage, animated: true, completion: nil)
@@ -172,15 +165,11 @@ class UserHomeViewController: UIViewController {
     
     
     @IBAction func showRankingsPage(_ sender: UIButton) {
-        
         PresenterManager.shared.show(vc: .rankingByTech)
-        
     }
     
     @IBAction func showFeedback(_ sender: UIButton) {
-        
         PresenterManager.shared.show(vc: .feedback)
-        
     }
     
     
@@ -197,12 +186,8 @@ extension UserHomeViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // prevents app crashing, worst case is it returns empy collection view cell
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.ReuseIdentifier.selectQuizCollectionViewCell, for: indexPath) as? SelectQuizCollectionViewCell else { return UICollectionViewCell() }
-        
-        //cell.backgroundColor = indexPath.item % 2 == 0 ? .systemRed : .systemBlue
-        
-        
+
         let imageName = QuizSlide.collection[indexPath.item].imageName
-        //print(imageName)
         let image = UIImage(named: imageName) ?? UIImage()
         cell.configure(image: image)
         

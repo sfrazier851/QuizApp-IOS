@@ -9,17 +9,20 @@ import UIKit
 
 class Utilities {
     
+    // convert json string to dictionary of [String:String]
     static func convertToDictionary(from text: String) throws -> [String: String]? {
         guard let data = text.data(using: .utf8) else { return [:] }
         let anyResult: Any = try JSONSerialization.jsonObject(with: data, options: [])
         return anyResult as? [String: String]
     }
     
+    // validate password format (>=8 chars, alphanumeric, upper case and special char)
     static func isValidPassword(_ password : String) -> Bool {
         let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{8,}")
         return passwordTest.evaluate(with: password)
     }
     
+    // validate email format xxxx@xxx.xxx
     static func isValidEmail(email: String) -> Bool {
         let emailTest = NSPredicate(format: "SELF MATCHES %@", "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}")
         return emailTest.evaluate(with: email)
@@ -33,24 +36,19 @@ class Utilities {
         textfield.autocapitalizationType = .none
         textfield.textAlignment = .center
         
-        // Create the bottom line
-        //let bottomLine = CALayer()
-        
-        //bottomLine.frame = CGRect(x: 0, y: textfield.frame.height - 7, width: textfield.frame.width, height: 8)
-        
-        //bottomLine.backgroundColor = K.Color.Blue.cgColor
-        
-        
+        // add textfield placeholder string (orange text color)
         let attributes = [
-            NSAttributedString.Key.foregroundColor: K.Color.Orange,//UIColor.white,
+            NSAttributedString.Key.foregroundColor: K.Color.Orange,
             .font: UIFont.systemFont(ofSize: 30)
         ]
         textfield.attributedPlaceholder = NSAttributedString(string: placeHolderString, attributes: attributes)
         
+        // set height of textfield via constraint/autolayout
         textfield.heightAnchor.constraint(equalToConstant: 35.0).isActive = true
         
         // Remove border on text field
         textfield.borderStyle = .none
+        // add rounded edges
         textfield.layer.cornerRadius = 18.0
         
         textfield.backgroundColor =  UIColor.black
@@ -59,9 +57,6 @@ class Utilities {
         textfield.textColor = UIColor.white
         // set the cursor color
         textfield.tintColor = K.Color.Blue
-        
-        // Add the line to the text field
-        //textfield.layer.addSublayer(bottomLine)
         
     }
     
@@ -72,6 +67,7 @@ class Utilities {
         // Filled rounded corner style
         button.backgroundColor = K.Color.Blue//.withAlphaComponent(0.7)
         
+        // add rounded edges
         button.layer.cornerRadius = 25.0
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
         button.tintColor = UIColor.black//UIColor.white
@@ -86,6 +82,7 @@ class Utilities {
         button.layer.borderColor = K.Color.Orange.cgColor
         button.backgroundColor = UIColor.black
         
+        // add rounded edges
         button.layer.cornerRadius = 25.0
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
         button.tintColor = K.Color.Orange//UIColor.white
@@ -147,13 +144,14 @@ class Utilities {
     }
     
     
-    // verify facebook access token
+    // verify facebook access token by calling https://graph.facebook.com/me?access_token=
     static func checkTokenValidity(_ accessToken: String) {
         let url = URL(string: K.Network.Facebook.baseGraphAPI+"?access_token=\(accessToken)")!
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let response = response as? HTTPURLResponse else {
                 return
             }
+            // token validation failed, send user back to initial (login/signup) screen
             if response.statusCode < 200 || response.statusCode >= 300 {
                 print("token invalid or expired")
                 UserSessionManager.endSession()
@@ -161,6 +159,7 @@ class Utilities {
                     PresenterManager.shared.show(vc: .initial)
                 }
             } else {
+                // token validation success, let UserSessionManager takeover from here
                 DispatchQueue.main.async {
                     UserSessionManager.createSession(loginType: .facebook)
                 }
@@ -168,16 +167,19 @@ class Utilities {
         }.resume()
     }
     
+    // grab specific url string parameter by name from response url
     static func getURLComponent(named name: String, in items: [URLQueryItem]) -> String? {
         items.first(where: { $0.name == name })?.value
     }
     
+    // custom facebook login response struct
     public struct FacebookLoginResponse {
         let grantedPermissionScopes: [String]
         let accessToken: String
         let state: String
     }
     
+    // get url string parameters from fb login response and return as FacebookLoginResponse
     static func response(from url: URL) -> FacebookLoginResponse? {
         guard let items = URLComponents(url: url, resolvingAgainstBaseURL: true)?.queryItems,
               let state = Utilities.getURLComponent(named: "state", in: items),
@@ -186,6 +188,8 @@ class Utilities {
         else {
             return nil
         }
+        // scope is comma separated string.
+        // Convert to list of string.
         let grantedPermissions = scope
             .split(separator: ",")
             .map(String.init)
@@ -197,6 +201,9 @@ class Utilities {
     }
     
     /*
+     // Code to be used when facebook app is changed from developer mode to
+     //   production/deployed mode and a private auth service is created
+     //   to handle (short-lived) code exchange for (long-lived) access token more securely.
     public struct FacebookLoginResponse {
         let grantedPermissionScopes: [String]
         let code: String

@@ -7,6 +7,7 @@
 
 import UIKit
 
+// DRY viewcontroller navigation
 final class PresenterManager {
     
     static let shared = PresenterManager()

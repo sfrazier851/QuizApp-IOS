@@ -10,6 +10,7 @@ import Foundation
 final class KeychainManager {
     private init() {}
     
+    // save keychain entry with service and account keys
     static func save(_ data: Data, service: String, account: String) {
         let query = [
             kSecValueData: data,
@@ -36,6 +37,7 @@ final class KeychainManager {
         }
     }
     
+    // read from keychain with service and account keys
     static func read(service: String, account: String) -> Data? {
         
         let query = [
@@ -51,6 +53,7 @@ final class KeychainManager {
         return (result as? Data)
     }
     
+    // delete from keychain with service and account
     static func delete(service: String, account: String) {
         
         let query = [

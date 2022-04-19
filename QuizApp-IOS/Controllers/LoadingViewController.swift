@@ -9,8 +9,6 @@ import UIKit
 
 class LoadingViewController: UIViewController {
     
-    private let userIsLoggedIn = false
-    
     @IBOutlet weak var tagline: UILabel!
     
     override func viewDidLoad() {
@@ -20,20 +18,16 @@ class LoadingViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        // wait for animation to run for a bit
         delay(durationInSeconds: 1.3) {
+            // get access token from keychain (or nil colesce to empty Data()/byte buffer)
             if let storedToken = String(data: KeychainManager.read(service: K.Keychain.Facebook.service, account: K.Keychain.Facebook.account) ?? Data(), encoding: .utf8) {
+                // if access token is "" skip token verification
+                if storedToken.isEmpty { PresenterManager.shared.show(vc: .initial)}
+                // verify access token via facebook api
                 Utilities.checkTokenValidity(storedToken)
             }
-        }
-    }
-    
-    private func showInitialView() {
-        // if user is logged in => ?? controller
-        // if user is NOT logged in => show login/signup controller
-        if userIsLoggedIn {
-            //performSegue(withIdentifier: , sender: nil)
-        } else {
-            PresenterManager.shared.show(vc: .initial)
         }
     }
     

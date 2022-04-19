@@ -7,6 +7,7 @@
 
 import Foundation
 
+// general purpose "thread.sleep" then run completion function
 func delay(durationInSeconds seconds: Double, completion: @escaping () -> Void) {
     DispatchQueue.main.asyncAfter(deadline: .now() + seconds, execute: completion)
 }
