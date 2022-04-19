@@ -165,6 +165,7 @@ class LoginViewController: UIViewController {
         PresenterManager.shared.show(vc: .initial)
     }
 
+    // make call to facebook oauth endpoint for access token
     @IBAction func loginWithFacebookButtonTapped(_ sender: Any) {
         let state = UUID().uuidString
         
@@ -176,6 +177,9 @@ class LoginViewController: UIViewController {
                 "&state=\(state)"
         let url = URL(string: urlString)!
 
+        // ASWebAuthenticationSession (part of Apple's Authentication Services framework)
+        //   (Opens web authentication page where user authenticates, then receive callback with user's authn token.)
+        // (NOTE: this currently retrieves the access token and bypasses requesting the typical short-lived authz code that is then exchanged for long-lived access token.
         let session = ASWebAuthenticationSession(url: url, callbackURLScheme: K.Network.Facebook.callbackScheme) {
             [weak self] (url, error) in
             guard error == nil else {
@@ -198,8 +202,8 @@ class LoginViewController: UIViewController {
             // You should send the code to your backend
             // service and get regular/long-lived authentication credentials
             // that you use in the rest of your app.
-            //print(response.accessToken)//code) // POST code (in body) to backend service
-            //self?.sendCodeToServer(response.code)
+            //print(response.code)
+            //self?.sendCodeToServer(response.code) // POST code (in body) to backend service
             
             // save access token to keychain
             KeychainManager.save(response.accessToken.data(using: .utf8)!, service: K.Keychain.Facebook.service, account: K.Keychain.Facebook.account)
