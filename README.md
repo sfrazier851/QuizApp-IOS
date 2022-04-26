@@ -46,43 +46,43 @@ This application tests a user's knowledge in modern software technology through 
 ###### Launch, Initial, SignUp, Login, Facebook Login
 
 <p float="left">
-<img src="Documentation/LaunchScreen.png" width="180" height="360"/>
-<img src="Documentation/Welcome.png" width="180" height="360"/>
-<img src="Documentation/Sign-Up.png" width="180" height="360"/>
-<img src="Documentation/Login.png" width="180" height="360"/>
-<img src="Documentation/Login-FB.png" width="180" height="360"/>
+<kbd><img src="Documentation/LaunchScreen.png" width="180" height="360"/></kbd>
+<kbd><img src="Documentation/Welcome.png" width="180" height="360"/></kbd>
+<kbd><img src="Documentation/Sign-Up.png" width="180" height="360"/></kbd>
+<kbd><img src="Documentation/Login.png" width="180" height="360"/></kbd>
+<kbd><img src="Documentation/Login-FB.png" width="180" height="360"/></kbd>
 </p>
 
 ###### Home (Free Account), Home (Paid Subscription), Leaderboards, App Feedback 
 
 <p float="left">
-<img src="Documentation/FreeUser.png" width="180" height="360"/>
-<img src="Documentation/PaidUser.png" width="180" height="360"/>
-<img src="Documentation/LeaderBoard-Main.png" width="180" height="360"/>
-<img src="Documentation/Feedback.png" width="180" height="360"/>
+<kbd><img src="Documentation/FreeUser.png" width="180" height="360"/></kbd>
+<kbd><img src="Documentation/PaidUser.png" width="180" height="360"/></kbd>
+<kbd><img src="Documentation/LeaderBoard-Main.png" width="180" height="360"/></kbd>
+<kbd><img src="Documentation/Feedback.png" width="180" height="360"/></kbd>
 </p>
 
 ###### Java Quiz, iOS Quiz, Android Quiz, Game Over, Game Over Leaderboard
 
 <p float="left">
-<img src="Documentation/JavaGame.png" width="180" height="360"/>
-<img src="Documentation/IOSGame.png" width="180" height="360"/>
-<img src="Documentation/AndroidGame.png" width="180" height="360"/>
-<img src="Documentation/GameOver.png" width="180" height="360" />
-<img src="Documentation/Leaderboard-ByTech.png" width="180" height="360"/>
+<kbd><img src="Documentation/JavaGame.png" width="180" height="360"/></kbd>
+<kbd><img src="Documentation/IOSGame.png" width="180" height="360"/></kbd>
+<kbd><img src="Documentation/AndroidGame.png" width="180" height="360"/></kbd>
+<kbd><img src="Documentation/GameOver.png" width="180" height="360" /></kbd>
+<kbd><img src="Documentation/Leaderboard-ByTech.png" width="180" height="360"/></kbd>
 </p>
 
 ###### Admin Manage Users, Admin Create a Quiz
 
 <p float="left">
-<img src="Documentation/UserPage.png" width="180" height="360"/>
-<img src="https://user-images.githubusercontent.com/99767638/165230884-aeaad3da-501e-431e-a19d-b7116f73cffa.png" width="180" height="360"/>
-<img src="https://user-images.githubusercontent.com/99767638/165230890-2ac2b0c2-92ca-4d91-b55c-b10175f92b92.png" width="180" height="360"/>
+<kbd><img src="Documentation/UserPage.png" width="180" height="360"/></kbd>
+<kbd><img src="https://user-images.githubusercontent.com/99767638/165230884-aeaad3da-501e-431e-a19d-b7116f73cffa.png" width="180" height="360"/></kbd>
+<kbd><img src="https://user-images.githubusercontent.com/99767638/165230890-2ac2b0c2-92ca-4d91-b55c-b10175f92b92.png" width="180" height="360"/></kbd>
 </p>
 
 ###### About
 
-<img src="https://user-images.githubusercontent.com/99767638/165229275-65a4c13a-8876-439a-9a6f-103ddbde1aed.png" width="180" height="360" />
+<kbd><img src="https://user-images.githubusercontent.com/99767638/165229275-65a4c13a-8876-439a-9a6f-103ddbde1aed.png" width="180" height="360" /></kbd>
 
 ## Contributors
 
