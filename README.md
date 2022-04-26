@@ -2,7 +2,7 @@
 
 ## Project Description
 
-This project is a single base application that lets a user tests his knowledge in today's technology through Trivia.
+This application tests a user's knowledge in modern software technology through trivia.
 
 ## Technologies Used
 
@@ -21,93 +21,68 @@ This project is a single base application that lets a user tests his knowledge i
 
 ## Getting Started
 
-1. All we need to do is to clone the project into your desired folder using the following command: ***git clone https://github.com/azhelle16/QuizApp-IOS.git***.
+##### NOTE: This assumes you have XCode 12+ installed.
 
-![Getting Started](Documentation/Cloning.png)
+1. Clone the project: 
+    - ```git clone https://github.com/sfrazier851/QuizApp-IOS.git```
 
-2. Once cloning is done, switch to the QuizApp-IOS folder and click on ***QuizApp-IOS.xcodeproj***
+2. Open cloned QuizApp-IOS folder and double click:
+    - ```QuizApp-IOS.xcodeproj```
 
-![Next Step](Documentation/MainProject.png)
+3. Set Simulator to "iPhone 11" and click Play/Run button.
 
-3. Select "iPhone 11" as your simulator and click the Play button to start the application.
-
-![Simulation Preparation](Documentation/Simulation.png)
-
-4. Voila, you can now start signing-up to play around with the application
-
-![End Product](Documentation/Voila.png)
+     <img src="Documentation/Simulation.png"/>
     
-## Usage
+## Screenshots
 
-Below are screenshots of the project in action:
+###### AppIcon
 
-1. LaunchScreen Page
+<img src="https://user-images.githubusercontent.com/99767638/165227132-0f29b989-e026-41b4-8c0f-74be661f91e5.png" width="75" height="75"/>
 
-<img src="Documentation/LaunchScreen.png" alt="drawing" width="250"/>
+###### Logo:
 
-2. Welcome Page
+<img src="https://user-images.githubusercontent.com/99767638/165227122-90f9fa3c-c95a-49e3-a6a3-3c61b53348fb.png" width="75" height="75"/>
 
-<img src="Documentation/Welcome.png" alt="drawing" width="250"/>
+###### Launch, Initial, SignUp, Login, Facebook Login
 
-3. Sign-Up Page
+<p float="left">
+<img src="Documentation/LaunchScreen.png" width="180" height="360"/>
+<img src="Documentation/Welcome.png" width="180" height="360"/>
+<img src="Documentation/Sign-Up.png" width="180" height="360"/>
+<img src="Documentation/Login.png" width="180" height="360"/>
+<img src="Documentation/Login-FB.png" width="180" height="360"/>
+</p>
 
-<img src="Documentation/Sign-Up.png" alt="drawing" width="250"/>
+###### Home (Free Account), Home (Paid Subscription), Leaderboards, App Feedback 
 
-4. Login Page
+<p float="left">
+<img src="Documentation/FreeUser.png" width="180" height="360"/>
+<img src="Documentation/PaidUser.png" width="180" height="360"/>
+<img src="Documentation/LeaderBoard-Main.png" width="180" height="360"/>
+<img src="Documentation/Feedback.png" width="180" height="360"/>
+</p>
 
-<img src="Documentation/Login.png" alt="drawing" width="250"/>
+###### Java Quiz, iOS Quiz, Android Quiz, Game Over, Game Over Leaderboard
 
-5. Login via Facebook
+<p float="left">
+<img src="Documentation/JavaGame.png" width="180" height="360"/>
+<img src="Documentation/IOSGame.png" width="180" height="360"/>
+<img src="Documentation/AndroidGame.png" width="180" height="360"/>
+<img src="Documentation/GameOver.png" width="180" height="360" />
+<img src="Documentation/Leaderboard-ByTech.png" width="180" height="360"/>
+</p>
 
-<img src="Documentation/Login-FB.png" alt="drawing" width="250"/>
+###### Admin Manage Users, Admin Create a Quiz
 
-6. Home Page For Players with Free Account
+<p float="left">
+<img src="Documentation/UserPage.png" width="180" height="360"/>
+<img src="https://user-images.githubusercontent.com/99767638/165230884-aeaad3da-501e-431e-a19d-b7116f73cffa.png" width="180" height="360"/>
+<img src="https://user-images.githubusercontent.com/99767638/165230890-2ac2b0c2-92ca-4d91-b55c-b10175f92b92.png" width="180" height="360"/>
+</p>
 
-<img src="Documentation/FreeUser.png" alt="drawing" width="250"/>
+###### About
 
-7. Home Page For Players with Paid Account
-
-<img src="Documentation/PaidUser.png" alt="drawing" width="250"/>
-
-8.  Java Gameplay
-
-<img src="Documentation/JavaGame.png" alt="drawing" width="250"/>
-
-9.  IOS Gameplay
-
-<img src="Documentation/IOSGame.png" alt="drawing" width="250"/>
-
-10.  Android Gameplay
-
-<img src="Documentation/AndroidGame.png" alt="drawing" width="250"/>
-
-11.  Game Over Page
-
-<img src="Documentation/GameOver.png" alt="drawing" width="250"/>
-
-12.  Leaderboard On Home Page
-
-<img src="Documentation/LeaderBoard-Main.png" alt="drawing" width="250"/>
-
-13.  Leaderboard On Game Over Page
-
-<img src="Documentation/Leaderboard-ByTech.png" alt="drawing" width="250"/>
-
-14.  Feedback Page
-
-<img src="Documentation/Feedback.png" alt="drawing" width="250"/>
-
-15. Admin: Create A Quiz
-
-![Ceate Quiz](Documentation/CreateQuiz3.png)
-
-16. Admin: Manage Users
-
-<img src="Documentation/UserPage.png" alt="drawing" width="250"/>
-
-17. About Page
-
-<img src="Documentation/About.png" alt="drawing" width="250"/>
+<img src="https://user-images.githubusercontent.com/99767638/165229275-65a4c13a-8876-439a-9a6f-103ddbde1aed.png" width="180" height="360" />
 
 ## Contributors
 
